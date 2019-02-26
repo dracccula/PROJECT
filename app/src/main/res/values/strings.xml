@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">PROJECT</string>
+    <string name="title_home">Мероприятия</string>
+    <string name="title_dashboard">Мои курсы</string>
+    <string name="title_notifications">Профиль</string>
+    <string name="events_text">Мероприятия</string>
+    <string name="courses_text">Курсы</string>
+    <string name="profile_text">Профиль</string>
+    <string name="student_name">Имя</string>
+    <string name="student_surname">Фамилия</string>
+    <string name="student_patronymic">Отчество</string>
+    <string name="student_fullname_edit">Редактировать</string>
+</resources>
