@@ -4,13 +4,17 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toolbar;
+import android.widget.Button;
 
 
 public class ProfileFragment extends Fragment {
+
+    FragmentTransaction ft;
+    Button editButton;
 
     public ProfileFragment() {
         // Required empty public constructor
@@ -26,6 +30,18 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        ((MainActivity) getActivity())
+                .setActionBarTitle("Профиль"); // TODO: Использовать R.string.title_profile
+        View v = inflater.inflate(R.layout.fragment_profile, null);
+
+        Button button = v.findViewById(R.id.buttonEditFullname);
+        button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                ft = getFragmentManager().beginTransaction();
+                ft.replace(R.id.fragment_container, ProfileFragment.this);
+            }
+        });
+
         return inflater.inflate(R.layout.fragment_profile, container, false);
     }
 
@@ -42,10 +58,5 @@ public class ProfileFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
-    }
-
-    public void onEditFullnameClick(View view)
-    {
-
     }
 }

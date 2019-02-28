@@ -24,6 +24,8 @@ public class EventsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        ((MainActivity) getActivity())
+                .setActionBarTitle("События"); // TODO: Использовать R.string.title_events
         return inflater.inflate(R.layout.fragment_events, container, false);
     }
 
