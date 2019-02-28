@@ -5,19 +5,19 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
 
-public class ProfileFragment extends Fragment {
+public class ProfileEditFragment extends Fragment {
 
     FragmentTransaction ft;
-    Button editButton;
+    Button saveButton;
+    Button cancelButton;
 
-    public ProfileFragment() {
+    public ProfileEditFragment() {
         // Required empty public constructor
     }
 
@@ -32,19 +32,26 @@ public class ProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         ((MainActivity) getActivity())
-                .setActionBarTitle("Профиль"); // TODO: Использовать R.string.title_profile
-        View v = inflater.inflate(R.layout.fragment_profile, container, false);
-        editButton = v.findViewById(R.id.buttonEditFullname);
-        editButton.setOnClickListener(new View.OnClickListener() {
-            @Override
+                .setActionBarTitle("Редактирование"); // TODO: Использовать R.string.xxx
+        View v = inflater.inflate(R.layout.fragment_profile_edit, null);
+        saveButton = v.findViewById(R.id.buttonEditFullname);
+        saveButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Log.e("onViewClicked", "yehhh!!");
                 ft = getFragmentManager().beginTransaction();
-                ft.replace(R.id.fragment_container, new ProfileEditFragment());
+                ft.replace(R.id.fragment_container, new ProfileFragment());
                 ft.commit();
             }
         });
-        return inflater.inflate(R.layout.fragment_profile, container, false);
+        cancelButton = v.findViewById(R.id.buttonEditFullname);
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                ft = getFragmentManager().beginTransaction();
+                ft.replace(R.id.fragment_container, new ProfileFragment());
+                ft.commit();
+            }
+        });
+
+        return inflater.inflate(R.layout.fragment_profile_edit, container, false);
     }
 
     @Override

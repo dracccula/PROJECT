@@ -10,4 +10,6 @@
     <string name="student_surname">Фамилия</string>
     <string name="student_patronymic">Отчество</string>
     <string name="student_fullname_edit">Редактировать</string>
+    <string name="student_fullname_save">Сохранить</string>
+    <string name="student_fullname_cancel">Отмена</string>
 </resources>
