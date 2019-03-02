@@ -1,10 +1,11 @@
 package kireev.ftshw.project;
 
+import android.app.AlertDialog;
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,51 +15,54 @@ import android.widget.Button;
 
 public class ProfileFragment extends Fragment {
 
-    FragmentTransaction ft;
     Button editButton;
+    private OnProfileFragmentListener listener;
+    AlertDialog.Builder ad;
 
     public ProfileFragment() {
         // Required empty public constructor
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+
         ((MainActivity) getActivity())
-                .setActionBarTitle("Профиль"); // TODO: Использовать R.string.title_profile
+                .setActionBarTitle(getString(R.string.title_profile));
         View v = inflater.inflate(R.layout.fragment_profile, container, false);
         editButton = v.findViewById(R.id.buttonEditFullname);
         editButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.e("onViewClicked", "yehhh!!");
-                ft = getFragmentManager().beginTransaction();
-                ft.replace(R.id.fragment_container, new ProfileEditFragment());
-                ft.commit();
+                Log.d("onViewClicked", "yehhh!!");
+                getFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, new ProfileEditFragment())
+                        .addToBackStack(null)
+                        .commit();
             }
         });
-        return inflater.inflate(R.layout.fragment_profile, container, false);
+        return v;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+        listener = (OnProfileFragmentListener) context;
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
+        listener = null;
     }
 
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+    public interface OnProfileFragmentListener {
+        void onOpenEditProfile();
     }
 }

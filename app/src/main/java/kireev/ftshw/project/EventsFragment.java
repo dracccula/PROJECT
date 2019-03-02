@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 
 public class EventsFragment extends Fragment {
 
+
+
     public EventsFragment() {
         // Required empty public constructor
     }
@@ -25,7 +27,7 @@ public class EventsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         ((MainActivity) getActivity())
-                .setActionBarTitle("События"); // TODO: Использовать R.string.title_events
+                .setActionBarTitle(getString(R.string.title_events));
         return inflater.inflate(R.layout.fragment_events, container, false);
     }
 

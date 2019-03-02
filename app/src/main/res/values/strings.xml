@@ -3,13 +3,17 @@
     <string name="title_events">Мероприятия</string>
     <string name="title_courses">Мои курсы</string>
     <string name="title_profile">Профиль</string>
-    <string name="events_text">Мероприятия</string>
-    <string name="courses_text">Курсы</string>
-    <string name="profile_text">Профиль</string>
+    <string name="title_edit_profile">Редактирование</string>
+    <string name="events_text_actionbar">Мероприятия</string>
+    <string name="courses_text_actionbar">Курсы</string>
+    <string name="profile_text_actionbar">Профиль</string>
     <string name="student_name">Имя</string>
     <string name="student_surname">Фамилия</string>
     <string name="student_patronymic">Отчество</string>
-    <string name="student_fullname_edit">Редактировать</string>
-    <string name="student_fullname_save">Сохранить</string>
-    <string name="student_fullname_cancel">Отмена</string>
+    <string name="student_fullname_edit_button">Редактировать</string>
+    <string name="student_fullname_save_button">Сохранить</string>
+    <string name="student_fullname_cancel_button">Отмена</string>
+    <string name="edit_profile_alert_text">Если уйти с экрана редактирования, изменения не сохраняться. Уйти?</string>
+    <string name="edit_profile_alert_stay">Остаться</string>
+    <string name="edit_profile_alert_leave">Уйти</string>
 </resources>

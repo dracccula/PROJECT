@@ -2,7 +2,5 @@
 <project version="4">
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/BottomNavViewWithFragments" vcs="Git" />
-    <mapping directory="$PROJECT_DIR$/multi_fragments_demo" vcs="Git" />
   </component>
 </project>

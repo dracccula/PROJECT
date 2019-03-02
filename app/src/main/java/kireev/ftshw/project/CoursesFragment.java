@@ -25,7 +25,7 @@ public class CoursesFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         ((MainActivity) getActivity())
-                .setActionBarTitle("Мои курсы"); // TODO: Использовать R.string.title_courses
+                .setActionBarTitle(getString(R.string.title_courses));
         return inflater.inflate(R.layout.fragment_courses, container, false);
     }
 

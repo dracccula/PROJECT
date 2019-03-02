@@ -4,7 +4,6 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +12,7 @@ import android.widget.Button;
 
 public class ProfileEditFragment extends Fragment {
 
-    FragmentTransaction ft;
+    private ProfileEditFragment.OnProfileEditFragmentListener listener;
     Button saveButton;
     Button cancelButton;
 
@@ -32,31 +31,32 @@ public class ProfileEditFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         ((MainActivity) getActivity())
-                .setActionBarTitle("Редактирование"); // TODO: Использовать R.string.xxx
-        View v = inflater.inflate(R.layout.fragment_profile_edit, null);
-        saveButton = v.findViewById(R.id.buttonEditFullname);
+                .setActionBarTitle(getString(R.string.title_edit_profile));
+        View v = inflater.inflate(R.layout.fragment_profile_edit, container, false);
+        saveButton = v.findViewById(R.id.saveButton);
         saveButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                ft = getFragmentManager().beginTransaction();
-                ft.replace(R.id.fragment_container, new ProfileFragment());
-                ft.commit();
-            }
-        });
-        cancelButton = v.findViewById(R.id.buttonEditFullname);
-        cancelButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                ft = getFragmentManager().beginTransaction();
-                ft.replace(R.id.fragment_container, new ProfileFragment());
-                ft.commit();
+                getFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container, new ProfileFragment())
+                        .commit();
             }
         });
 
-        return inflater.inflate(R.layout.fragment_profile_edit, container, false);
+        cancelButton = v.findViewById(R.id.cancelButton);
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                ((MainActivity) getActivity())
+                        .ad.show();
+            }
+        });
+
+        return v;
     }
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+        //listener = (ProfileEditFragment.OnProfileEditFragmentListener) context;
     }
 
     @Override
@@ -67,5 +67,9 @@ public class ProfileEditFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    public interface OnProfileEditFragmentListener {
+        void onOpenProfile();
     }
 }

@@ -1,15 +1,22 @@
 package kireev.ftshw.project;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Toolbar;
+import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity {
+
+public class MainActivity extends AppCompatActivity
+        implements ProfileFragment.OnProfileFragmentListener{
+
+    public AlertDialog.Builder ad;
+    Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +33,28 @@ public class MainActivity extends AppCompatActivity {
                     new ProfileFragment()).commit();
         }
 
+
+        ad = new AlertDialog.Builder(this);
+        ad.setMessage(getString(R.string.edit_profile_alert_text)); // сообщение
+        ad.setPositiveButton(getString(R.string.edit_profile_alert_stay), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int arg1) {
+            }
+        });
+        ad.setNegativeButton(getString(R.string.edit_profile_alert_leave), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int arg1) {
+                Toast.makeText(context, "Возможно вы правы", Toast.LENGTH_LONG)
+                        .show();
+            }
+        });
+        ad.setCancelable(false);
+        ad.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            public void onCancel(DialogInterface dialog) {
+                Toast.makeText(context, "Вы ничего не выбрали",
+                        Toast.LENGTH_LONG).show();
+            }
+        });
     }
+
 
     private final BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -56,5 +84,11 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setTitle(title);
     }
 
-
+    @Override
+    public void onOpenEditProfile() {
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragment_container, new ProfileEditFragment())
+                .addToBackStack(null)
+                .commit();
+    }
 }

@@ -5,7 +5,7 @@
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorProfile"
+    android:background="@color/colorProfileEdit"
     tools:context=".ProfileFragment">
 
     <TextView
@@ -51,7 +51,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:ems="10"
-        android:enabled="false"
         android:hint="Канье"
         android:inputType="textPersonName"
         android:text="Канье"
@@ -64,7 +63,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:ems="10"
-        android:enabled="false"
         android:hint="Вест"
         android:inputType="textPersonName"
         android:text="Вест"
@@ -77,7 +75,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:ems="10"
-        android:enabled="false"
         android:hint="Омари"
         android:inputType="textPersonName"
         android:text="Омари"
@@ -85,25 +82,25 @@
         app:layout_constraintTop_toBottomOf="@+id/labelPatronymic" />
 
     <Button
-        android:id="@+id/SaveButton"
+        android:id="@+id/saveButton"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:layout_marginTop="50dp"
-        android:text="@string/student_fullname_save"
+        android:text="@string/student_fullname_save_button"
         app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toBottomOf="@+id/editTextPatronymic" />
 
     <Button
-        android:id="@+id/CancelButton"
+        android:id="@+id/cancelButton"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginTop="48dp"
-        android:text="@string/student_fullname_cancel"
-        app:layout_constraintStart_toEndOf="@+id/SaveButton"
+        android:text="@string/student_fullname_cancel_button"
+        app:layout_constraintStart_toEndOf="@+id/saveButton"
         app:layout_constraintTop_toBottomOf="@+id/editTextPatronymic" />
 
 </android.support.constraint.ConstraintLayout>
