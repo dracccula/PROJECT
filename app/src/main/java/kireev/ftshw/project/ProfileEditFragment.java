@@ -1,20 +1,27 @@
 package kireev.ftshw.project;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 
 
 public class ProfileEditFragment extends Fragment {
 
+    static final String STUDENT_NAME = "Name";
+    static final String STUDENT_SURNAME = "Surname";
+    static final String STUDENT_PATRONYMIC = "Patronymic";
     private ProfileEditFragment.OnProfileEditFragmentListener listener;
-    Button saveButton;
-    Button cancelButton;
+    Button saveButton, cancelButton;
+    static EditText name, surname, patronymic;
+    static SharedPreferences sPref;
 
     public ProfileEditFragment() {
         // Required empty public constructor
@@ -32,13 +39,19 @@ public class ProfileEditFragment extends Fragment {
         // Inflate the layout for this fragment
         ((MainActivity) getActivity())
                 .setActionBarTitle(getString(R.string.title_edit_profile));
+        //loadText();
         View v = inflater.inflate(R.layout.fragment_profile_edit, container, false);
+        name = v.findViewById(R.id.editTextName);
+        surname = v.findViewById(R.id.editTextSurname);
+        patronymic = v.findViewById(R.id.editTextPatronymic);
         saveButton = v.findViewById(R.id.saveButton);
         saveButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                getFragmentManager().beginTransaction()
+                saveText();
+                getActivity().getSupportFragmentManager().popBackStack();
+                /*getFragmentManager().beginTransaction()
                         .replace(R.id.fragment_container, new ProfileFragment())
-                        .commit();
+                        .commit();*/
             }
         });
 
@@ -71,5 +84,25 @@ public class ProfileEditFragment extends Fragment {
 
     public interface OnProfileEditFragmentListener {
         void onOpenProfile();
+    }
+
+    void saveText() {
+        sPref = this.getActivity().getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences.Editor ed = sPref.edit();
+        ed.putString(STUDENT_NAME, name.getText().toString());
+        ed.putString(STUDENT_SURNAME, surname.getText().toString());
+        ed.putString(STUDENT_PATRONYMIC, patronymic.getText().toString());
+        ed.commit();
+        Log.d("saveText", "name " + name.getText().toString() + ", surname " + surname.getText().toString() + ", patronymic " + patronymic.getText().toString() + " are saved SharedPreferences!");
+    }
+
+    void loadText() {
+        sPref = this.getActivity().getPreferences(Context.MODE_PRIVATE);
+        String savedName = sPref.getString(STUDENT_NAME,"");
+        String savedSurname = sPref.getString(STUDENT_SURNAME,"");
+        String savedPatronymic = sPref.getString(STUDENT_PATRONYMIC,"");
+        name.setText(savedName);
+        surname.setText(savedSurname);
+        patronymic.setText(savedPatronymic);
     }
 }

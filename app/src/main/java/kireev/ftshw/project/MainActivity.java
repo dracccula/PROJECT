@@ -3,13 +3,22 @@ package kireev.ftshw.project;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
+
+import static kireev.ftshw.project.ProfileEditFragment.STUDENT_NAME;
+import static kireev.ftshw.project.ProfileEditFragment.STUDENT_PATRONYMIC;
+import static kireev.ftshw.project.ProfileEditFragment.STUDENT_SURNAME;
+import static kireev.ftshw.project.ProfileEditFragment.name;
+import static kireev.ftshw.project.ProfileEditFragment.patronymic;
+import static kireev.ftshw.project.ProfileEditFragment.surname;
 
 
 public class MainActivity extends AppCompatActivity
@@ -17,6 +26,7 @@ public class MainActivity extends AppCompatActivity
 
     public AlertDialog.Builder ad;
     Context context;
+    static SharedPreferences sPref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,11 +52,10 @@ public class MainActivity extends AppCompatActivity
         });
         ad.setNegativeButton(getString(R.string.edit_profile_alert_leave), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int arg1) {
-                Toast.makeText(context, "Возможно вы правы", Toast.LENGTH_LONG)
-                        .show();
+                getSupportFragmentManager().popBackStack();
             }
         });
-        ad.setCancelable(false);
+        ad.setCancelable(true);
         ad.setOnCancelListener(new DialogInterface.OnCancelListener() {
             public void onCancel(DialogInterface dialog) {
                 Toast.makeText(context, "Вы ничего не выбрали",
