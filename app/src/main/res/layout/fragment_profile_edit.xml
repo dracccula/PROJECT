@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorProfileEdit"
-    tools:context=".ProfileFragment">
+    tools:context=".Profile.ProfileFragment">
 
     <TextView
         android:id="@+id/labelPatronymic"
@@ -15,7 +15,7 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="50dp"
         android:text="@string/student_patronymic"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintStart_toStartOf="@+id/bottom_guideline"
         app:layout_constraintTop_toBottomOf="@+id/labelSurname" />
 
     <TextView
@@ -25,7 +25,7 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="50dp"
         android:text="@string/student_name"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintStart_toStartOf="@+id/bottom_guideline"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -35,11 +35,11 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="50dp"
         android:text="@string/student_surname"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintStart_toStartOf="@+id/bottom_guideline"
         app:layout_constraintTop_toBottomOf="@+id/labelName" />
 
     <android.support.constraint.Guideline
-        android:id="@+id/guideline"
+        android:id="@+id/bottom_guideline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
@@ -53,7 +53,7 @@
         android:ems="10"
         android:hint="Канье"
         android:inputType="textCapWords"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintStart_toStartOf="@+id/bottom_guideline"
         app:layout_constraintTop_toBottomOf="@+id/labelName" />
 
     <EditText
@@ -64,7 +64,7 @@
         android:ems="10"
         android:hint="Вест"
         android:inputType="textCapWords"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintStart_toStartOf="@+id/bottom_guideline"
         app:layout_constraintTop_toBottomOf="@+id/labelSurname" />
 
     <EditText
@@ -75,7 +75,7 @@
         android:ems="10"
         android:hint="Омари"
         android:inputType="textCapWords"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintStart_toStartOf="@+id/bottom_guideline"
         app:layout_constraintTop_toBottomOf="@+id/labelPatronymic" />
 
     <Button
@@ -86,7 +86,7 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="50dp"
         android:text="@string/student_fullname_save_button"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintStart_toStartOf="@+id/bottom_guideline"
         app:layout_constraintTop_toBottomOf="@+id/editTextPatronymic" />
 
     <Button

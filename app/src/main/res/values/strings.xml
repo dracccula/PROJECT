@@ -16,4 +16,5 @@
     <string name="edit_profile_alert_text">Если уйти с экрана редактирования, изменения не сохраняться. Уйти?</string>
     <string name="edit_profile_alert_stay">Остаться</string>
     <string name="edit_profile_alert_leave">Уйти</string>
+    <string name="edit_profile_alert_empty_text">Поля Имя, Фамилия, Отчество не должны быть пустыми</string>
 </resources>

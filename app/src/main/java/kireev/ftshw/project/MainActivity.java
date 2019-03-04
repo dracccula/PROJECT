@@ -9,22 +9,19 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.MenuItem;
-import android.widget.Toast;
 
-import static kireev.ftshw.project.ProfileEditFragment.STUDENT_NAME;
-import static kireev.ftshw.project.ProfileEditFragment.STUDENT_PATRONYMIC;
-import static kireev.ftshw.project.ProfileEditFragment.STUDENT_SURNAME;
-import static kireev.ftshw.project.ProfileEditFragment.name;
-import static kireev.ftshw.project.ProfileEditFragment.patronymic;
-import static kireev.ftshw.project.ProfileEditFragment.surname;
+import kireev.ftshw.project.Courses.CoursesFragment;
+import kireev.ftshw.project.Events.EventsFragment;
+import kireev.ftshw.project.Profile.ProfileEditFragment;
+import kireev.ftshw.project.Profile.ProfileFragment;
 
 
 public class MainActivity extends AppCompatActivity
         implements ProfileFragment.OnProfileFragmentListener{
 
     public AlertDialog.Builder ad;
+    public AlertDialog.Builder adEmptyFields;
     Context context;
     static SharedPreferences sPref;
 
@@ -38,11 +35,10 @@ public class MainActivity extends AppCompatActivity
 
         //I added this if statement to keep the selected fragment when rotating the device
         if (savedInstanceState == null) {
-            navigation.getMenu().getItem(2).setChecked(true);
+            navigation.getMenu().getItem(1).setChecked(true);
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                    new ProfileFragment()).commit();
+                    new CoursesFragment()).commit();
         }
-
 
         ad = new AlertDialog.Builder(this);
         ad.setMessage(getString(R.string.edit_profile_alert_text)); // сообщение
@@ -60,6 +56,10 @@ public class MainActivity extends AppCompatActivity
             public void onCancel(DialogInterface dialog) {
             }
         });
+
+        adEmptyFields = new AlertDialog.Builder(this);
+        adEmptyFields.setMessage(R.string.edit_profile_alert_empty_text);
+        adEmptyFields.setCancelable(true);
     }
 
 

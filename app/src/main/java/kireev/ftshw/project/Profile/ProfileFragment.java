@@ -1,8 +1,6 @@
-package kireev.ftshw.project;
+package kireev.ftshw.project.Profile;
 
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -14,13 +12,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
-import static kireev.ftshw.project.ProfileEditFragment.STUDENT_NAME;
-import static kireev.ftshw.project.ProfileEditFragment.STUDENT_PATRONYMIC;
-import static kireev.ftshw.project.ProfileEditFragment.STUDENT_SURNAME;
-import static kireev.ftshw.project.ProfileEditFragment.name;
-import static kireev.ftshw.project.ProfileEditFragment.patronymic;
-import static kireev.ftshw.project.ProfileEditFragment.surname;
-import static kireev.ftshw.project.ProfileEditFragment.sPref;
+import kireev.ftshw.project.MainActivity;
+import kireev.ftshw.project.Profile.ProfileEditFragment;
+import kireev.ftshw.project.R;
+
+import static kireev.ftshw.project.Profile.ProfileEditFragment.STUDENT_NAME;
+import static kireev.ftshw.project.Profile.ProfileEditFragment.STUDENT_PATRONYMIC;
+import static kireev.ftshw.project.Profile.ProfileEditFragment.STUDENT_SURNAME;
+import static kireev.ftshw.project.Profile.ProfileEditFragment.sPref;
 
 
 public class ProfileFragment extends Fragment {

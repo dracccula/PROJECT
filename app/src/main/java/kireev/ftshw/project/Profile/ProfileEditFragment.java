@@ -1,4 +1,4 @@
-package kireev.ftshw.project;
+package kireev.ftshw.project.Profile;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -12,6 +12,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import kireev.ftshw.project.MainActivity;
+import kireev.ftshw.project.R;
 
 
 public class ProfileEditFragment extends Fragment {
@@ -53,12 +56,13 @@ public class ProfileEditFragment extends Fragment {
         saveButton = v.findViewById(R.id.saveButton);
         saveButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if ((name.getText().equals("")) | (surname.getText().equals("")) | (patronymic.getText().equals(""))){
-                    Toast.makeText((MainActivity) getContext(),"Поля ФИО не должны быть пустыми",Toast.LENGTH_LONG);
+                if ((name.getText().toString().equals("")) | (surname.getText().toString().equals("")) | (patronymic.getText().toString().equals(""))){
+                    //Toast.makeText(v.getContext(),"Поля ФИО не должны быть пустыми",Toast.LENGTH_LONG);
+                    ((MainActivity) getActivity()).adEmptyFields.show();
                 } else {
                     saveText();
+                    getActivity().getSupportFragmentManager().popBackStack();
                 }
-                getActivity().getSupportFragmentManager().popBackStack();
                 /*getFragmentManager().beginTransaction()
                         .replace(R.id.fragment_container, new ProfileFragment())
                         .commit();*/

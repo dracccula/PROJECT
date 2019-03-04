@@ -1,4 +1,4 @@
-package kireev.ftshw.project;
+package kireev.ftshw.project.Events;
 
 import android.content.Context;
 import android.net.Uri;
@@ -8,10 +8,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import kireev.ftshw.project.MainActivity;
+import kireev.ftshw.project.R;
 
-public class CoursesFragment extends Fragment {
 
-    public CoursesFragment() {
+public class EventsFragment extends Fragment {
+
+
+
+    public EventsFragment() {
         // Required empty public constructor
     }
 
@@ -25,8 +30,8 @@ public class CoursesFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         ((MainActivity) getActivity())
-                .setActionBarTitle(getString(R.string.title_courses));
-        return inflater.inflate(R.layout.fragment_courses, container, false);
+                .setActionBarTitle(getString(R.string.title_events));
+        return inflater.inflate(R.layout.fragment_events, container, false);
     }
 
     @Override

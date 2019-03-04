@@ -3,8 +3,9 @@
     <color name="colorPrimary">#3C4A5C</color>
     <color name="colorPrimaryDark">#2B3542</color>
     <color name="colorAccent">#3C4A5C</color>
+    <color name="colorBackground">#F6F7F8</color>
     <color name="colorEvents">#6FA2FF</color>
     <color name="colorCourses">#92BEFF</color>
     <color name="colorProfile">#BED0FF</color>
-    <color name="colorProfileEdit">#8389A0</color>
+    <color name="colorProfileEdit">#E6E6E6</color>
 </resources>
