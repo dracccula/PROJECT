@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 
 public class ProfileEditFragment extends Fragment {
@@ -39,15 +40,24 @@ public class ProfileEditFragment extends Fragment {
         // Inflate the layout for this fragment
         ((MainActivity) getActivity())
                 .setActionBarTitle(getString(R.string.title_edit_profile));
-        //loadText();
         View v = inflater.inflate(R.layout.fragment_profile_edit, container, false);
+
         name = v.findViewById(R.id.editTextName);
         surname = v.findViewById(R.id.editTextSurname);
         patronymic = v.findViewById(R.id.editTextPatronymic);
+
+        name.setText(sPref.getString(STUDENT_NAME,""));
+        surname.setText(sPref.getString(STUDENT_SURNAME,""));
+        patronymic.setText(sPref.getString(STUDENT_PATRONYMIC,""));
+
         saveButton = v.findViewById(R.id.saveButton);
         saveButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                saveText();
+                if ((name.getText().equals("")) | (surname.getText().equals("")) | (patronymic.getText().equals(""))){
+                    Toast.makeText((MainActivity) getContext(),"Поля ФИО не должны быть пустыми",Toast.LENGTH_LONG);
+                } else {
+                    saveText();
+                }
                 getActivity().getSupportFragmentManager().popBackStack();
                 /*getFragmentManager().beginTransaction()
                         .replace(R.id.fragment_container, new ProfileFragment())

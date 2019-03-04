@@ -58,8 +58,6 @@ public class MainActivity extends AppCompatActivity
         ad.setCancelable(true);
         ad.setOnCancelListener(new DialogInterface.OnCancelListener() {
             public void onCancel(DialogInterface dialog) {
-                Toast.makeText(context, "Вы ничего не выбрали",
-                        Toast.LENGTH_LONG).show();
             }
         });
     }
