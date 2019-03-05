@@ -1,9 +1,9 @@
 package kireev.ftshw.project.Courses;
 
-import android.arch.lifecycle.ViewModelProviders;
+import android.content.Context;
+import android.net.Uri;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,23 +13,30 @@ import kireev.ftshw.project.R;
 
 public class FinishedCoursesFragment extends Fragment {
 
-    private FinishedCoursesViewModel mViewModel;
-
-    public static FinishedCoursesFragment newInstance() {
-        return new FinishedCoursesFragment();
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
     }
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.finished_courses_fragment, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        return inflater.inflate(R.layout.fragment_finished_courses, container, false);
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        mViewModel = ViewModelProviders.of(this).get(FinishedCoursesViewModel.class);
-        // TODO: Use the ViewModel
+    public void onAttach(Context context) {
+        super.onAttach(context);
     }
 
+    @Override
+    public void onDetach() {
+        super.onDetach();
+    }
+
+    public interface OnFragmentInteractionListener {
+        // TODO: Update argument type and name
+        void onFragmentInteraction(Uri uri);
+    }
 }
