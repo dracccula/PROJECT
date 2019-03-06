@@ -13,13 +13,19 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <include layout="@layout/grades_layout"
+        <fragment
+            android:id="@+id/fragment3"
+            android:name="kireev.ftshw.project.Courses.GradesFragment"
             android:layout_width="match_parent"
-            android:layout_height="200dp"/>
+            android:layout_height="300dp"
+            android:layout_weight="25" />
 
-        <include layout="@layout/rating_layout"
-            android:layout_width="fill_parent"
-            android:layout_height="500dp" />
+        <fragment
+            android:id="@+id/fragment2"
+            android:name="kireev.ftshw.project.Courses.RatingFragment"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_weight="70" />
 
         <fragment
             android:id="@+id/fragment"
