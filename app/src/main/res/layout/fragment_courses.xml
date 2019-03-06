@@ -24,8 +24,7 @@
             android:id="@+id/fragment2"
             android:name="kireev.ftshw.project.Courses.RatingFragment"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:layout_weight="70" />
+            android:layout_height="wrap_content" />
 
         <fragment
             android:id="@+id/fragment"
