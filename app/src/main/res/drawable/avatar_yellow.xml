@@ -2,10 +2,10 @@
     android:shape="oval">
     <size android:height="10dp"
         android:width="10dp" />
-    <solid android:color="#FFEB3B" />
+    <solid android:color="#FAEC6E" />
     <stroke
         android:width="0.1dp"
-        android:color="#000" />
+        android:color="#FFFFFF" />
     <padding
         android:bottom="5dp"
         android:left="5dp"

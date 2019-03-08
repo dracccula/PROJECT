@@ -34,7 +34,8 @@
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#FFFFFF">
+        android:background="#FFFFFF"
+        android:padding="8dp">
 
         <TextView
             android:id="@+id/textView2"
@@ -86,7 +87,8 @@
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#FFFFFF">
+        android:background="#FFFFFF"
+        android:padding="8dp">
 
         <TextView
             android:id="@+id/textView6"
@@ -138,7 +140,9 @@
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#FFFFFF">
+        android:background="#FFFFFF"
+        android:padding="8dp"
+        android:paddingBottom="16dp">
 
         <TextView
             android:id="@+id/textView10"
