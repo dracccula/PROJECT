@@ -4,9 +4,12 @@
     <string name="title_courses">Мои курсы</string>
     <string name="title_profile">Профиль</string>
     <string name="title_edit_profile">Редактирование</string>
+    <string name="title_grades_list">Успеваемость</string>
+
     <string name="events_text_actionbar">Мероприятия</string>
     <string name="courses_text_actionbar">Курсы</string>
     <string name="profile_text_actionbar">Профиль</string>
+
     <string name="student_name">Имя</string>
     <string name="student_surname">Фамилия</string>
     <string name="student_patronymic">Отчество</string>
@@ -17,6 +20,10 @@
     <string name="edit_profile_alert_stay">Остаться</string>
     <string name="edit_profile_alert_leave">Уйти</string>
     <string name="edit_profile_alert_empty_text">Поля Имя, Фамилия, Отчество не должны быть пустыми</string>
+
+    <string name="title_grades_fragment">Успеваемость</string>
+    <string name="details_grades_fragment">ДЕТАЛИ</string>
+
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

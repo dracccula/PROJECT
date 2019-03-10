@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     app:cardElevation="3dp"
     app:cardCornerRadius="5dp"
-    tools:context=".Courses.RatingFragment">
+    tools:context=".Courses.GradesFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,27 +14,30 @@
         android:orientation="vertical">
 
         <android.support.constraint.ConstraintLayout
+            android:id="@+id/titleGradesConstraintLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="8dp"
             android:clickable="true"
             android:focusable="true"
-            android:foreground="?attr/selectableItemBackground">
+            android:foreground="?attr/selectableItemBackground"
+            android:onClick="gradesButtonClick"
+            android:padding="8dp">
 
             <TextView
+                android:id="@+id/titleGrades"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=" Рейтинг"
+                android:text="@string/title_grades_fragment"
                 android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"/>
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textView19"
+                android:id="@+id/detailsGrades"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=" ДЕТАЛИ"
+                android:text="@string/details_grades_fragment"
                 android:textColor="#2196F3"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

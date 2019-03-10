@@ -2,18 +2,18 @@ package kireev.ftshw.project.Courses;
 
 
 import android.os.Bundle;
+import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import kireev.ftshw.project.R;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class GradesFragment extends Fragment {
 
+    ConstraintLayout title;
 
     public GradesFragment() {
         // Required empty public constructor

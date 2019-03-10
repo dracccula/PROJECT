@@ -3,15 +3,19 @@ package kireev.ftshw.project;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 
 import kireev.ftshw.project.Courses.CoursesFragment;
+import kireev.ftshw.project.Courses.GradesListActivity;
 import kireev.ftshw.project.Events.EventsFragment;
 import kireev.ftshw.project.Profile.ProfileEditFragment;
 import kireev.ftshw.project.Profile.ProfileFragment;
@@ -97,5 +101,13 @@ public class MainActivity extends AppCompatActivity
                 .replace(R.id.fragment_container, new ProfileEditFragment())
                 .addToBackStack(null)
                 .commit();
+    }
+
+    public void gradesButtonClick(View view)
+    {
+        Log.d("gradesButtonClick", "clicked!");
+        Intent intent = new Intent(this, GradesListActivity.class);
+        startActivityForResult(intent,1);
+        Log.d("gradesButtonClick", "GradesListActivity opened!");
     }
 }
