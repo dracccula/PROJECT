@@ -4,16 +4,19 @@ package kireev.ftshw.project.Courses;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import kireev.ftshw.project.R;
 
 public class GradesFragment extends Fragment {
 
-    ConstraintLayout title;
+    public static TextView pointsBadge1, pointsBadge2, pointsBadge3;
+
 
     public GradesFragment() {
         // Required empty public constructor
@@ -24,7 +27,11 @@ public class GradesFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_grades, container, false);
+        View v = inflater.inflate(R.layout.fragment_grades, container, false);
+        pointsBadge1 = v.findViewById(R.id.pointsBadge1);
+        pointsBadge2 = v.findViewById(R.id.pointsBadge2);
+        pointsBadge3 = v.findViewById(R.id.pointsBadge3);
+        return v;
     }
 
 }

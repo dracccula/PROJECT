@@ -74,16 +74,16 @@
                     app:layout_constraintTop_toBottomOf="@id/imageView2"/>
 
                 <TextView
-                    android:id="@+id/textView21"
+                    android:id="@+id/pointsBadge1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
                     android:background="@drawable/badge"
-                    android:textSize="12sp"
+                    android:gravity="center"
+                    android:text="200"
                     android:textColor="#FFF"
+                    android:textSize="12sp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:text="200" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
             </android.support.constraint.ConstraintLayout>
 
@@ -110,16 +110,16 @@
                     app:layout_constraintTop_toBottomOf="@id/imageView3"/>
 
                 <TextView
-                    android:id="@+id/textView22"
+                    android:id="@+id/pointsBadge2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
                     android:background="@drawable/badge"
-                    android:textSize="12sp"
+                    android:gravity="center"
+                    android:text="200"
                     android:textColor="#FFF"
+                    android:textSize="12sp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:text="200" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
             </android.support.constraint.ConstraintLayout>
 
@@ -146,16 +146,16 @@
                     app:layout_constraintTop_toBottomOf="@id/imageView4"/>
 
                 <TextView
-                    android:id="@+id/textView20"
+                    android:id="@+id/pointsBadge3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
                     android:background="@drawable/badge"
-                    android:textSize="12sp"
+                    android:gravity="center"
+                    android:text="200"
                     android:textColor="#FFF"
+                    android:textSize="12sp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:text="200" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
             </android.support.constraint.ConstraintLayout>
 

@@ -1,48 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.SwipeRefreshLayout android:layout_height="wrap_content"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content">
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/frameLayout3"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorBackground"
-    android:orientation="vertical"
-    tools:context=".Courses.CoursesFragment">
+<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/swipe_container"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
 
-    <LinearLayout
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/frameLayout3"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:background="@color/colorBackground"
+        android:orientation="vertical"
+        tools:context=".Courses.CoursesFragment">
 
-        <fragment
-            android:id="@+id/fragment3"
-            android:name="kireev.ftshw.project.Courses.GradesFragment"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp" />
+            android:orientation="vertical">
 
-        <fragment
-            android:id="@+id/fragment2"
-            android:name="kireev.ftshw.project.Courses.RatingFragment"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="0dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            />
+            <fragment
+                android:id="@+id/fragment3"
+                android:name="kireev.ftshw.project.Courses.GradesFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp" />
 
-        <fragment
-            android:id="@+id/fragment"
-            android:name="kireev.ftshw.project.Courses.FinishedCoursesFragment"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="35"/>
+            <fragment
+                android:id="@+id/fragment2"
+                android:name="kireev.ftshw.project.Courses.RatingFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="0dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="8dp" />
 
-    </LinearLayout>
+            <fragment
+                android:id="@+id/fragment"
+                android:name="kireev.ftshw.project.Courses.FinishedCoursesFragment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="35" />
 
-</ScrollView>
+        </LinearLayout>
+
+    </ScrollView>
 
 </android.support.v4.widget.SwipeRefreshLayout>

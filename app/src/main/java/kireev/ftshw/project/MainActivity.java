@@ -9,10 +9,12 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import kireev.ftshw.project.Courses.CoursesFragment;
 import kireev.ftshw.project.Courses.GradesListActivity;
@@ -21,13 +23,15 @@ import kireev.ftshw.project.Profile.ProfileEditFragment;
 import kireev.ftshw.project.Profile.ProfileFragment;
 
 
+
 public class MainActivity extends AppCompatActivity
-        implements ProfileFragment.OnProfileFragmentListener{
+        implements ProfileFragment.OnProfileFragmentListener {
 
     public AlertDialog.Builder ad;
     public AlertDialog.Builder adEmptyFields;
-    Context context;
-    static SharedPreferences sPref;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,6 +68,7 @@ public class MainActivity extends AppCompatActivity
         adEmptyFields = new AlertDialog.Builder(this);
         adEmptyFields.setMessage(R.string.edit_profile_alert_empty_text);
         adEmptyFields.setCancelable(true);
+
     }
 
 
@@ -110,4 +115,5 @@ public class MainActivity extends AppCompatActivity
         startActivityForResult(intent,1);
         Log.d("gradesButtonClick", "GradesListActivity opened!");
     }
+
 }
