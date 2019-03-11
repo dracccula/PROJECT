@@ -2,6 +2,7 @@
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:cardElevation="3dp"
@@ -56,34 +57,41 @@
                 android:layout_height="wrap_content"
                 android:padding="4dp">
 
-                <ImageView
-                    android:id="@+id/imageView2"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:src="@drawable/avatar_red"
-                    />
+                <view
+                    android:id="@+id/viewAvatarOne"
+                    class="kireev.ftshw.project.InitialsRoundView"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:gravity="center"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    custom:initials="Vladislav Kireev"
+                    custom:roundColor="#FF7952"/>
 
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="23dp"
-                    android:text="Александр"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Vladislav Kireev"
+                    android:maxLines="2"
                     android:textAlignment="center"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/imageView2"/>
+                    app:layout_constraintTop_toBottomOf="@id/viewAvatarOne"/>
 
                 <TextView
-                    android:id="@+id/pointsBadge1"
+                    android:id="@+id/pointsBadgeOne"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/badge"
                     android:gravity="center"
-                    android:text="200"
+                    android:text="111"
                     android:textColor="#FFF"
                     android:textSize="12sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintEnd_toEndOf="@id/viewAvatarOne"
+                    app:layout_constraintTop_toTopOf="@id/viewAvatarOne" />
 
             </android.support.constraint.ConstraintLayout>
 
@@ -92,34 +100,41 @@
                 android:layout_height="wrap_content"
                 android:padding="4dp">
 
-                <ImageView
-                    android:id="@+id/imageView3"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:src="@drawable/avatar_yellow"
-                    />
+                <view
+                    android:id="@+id/viewAvatarTwo"
+                    class="kireev.ftshw.project.InitialsRoundView"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:gravity="center"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    custom:initials="Jonathan Doe"
+                    custom:roundColor="#FABC6E"/>
 
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="23dp"
-                    android:text="Иван"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Jonathan Davis"
+                    android:maxLines="2"
                     android:textAlignment="center"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/imageView3"/>
+                    app:layout_constraintTop_toBottomOf="@id/viewAvatarTwo"/>
 
                 <TextView
-                    android:id="@+id/pointsBadge2"
+                    android:id="@+id/pointsBadgeTwo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/badge"
                     android:gravity="center"
-                    android:text="200"
+                    android:text="222"
                     android:textColor="#FFF"
                     android:textSize="12sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintEnd_toEndOf="@id/viewAvatarTwo"
+                    app:layout_constraintTop_toTopOf="@id/viewAvatarTwo" />
 
             </android.support.constraint.ConstraintLayout>
 
@@ -128,34 +143,41 @@
                 android:layout_height="wrap_content"
                 android:padding="4dp">
 
-                <ImageView
-                    android:id="@+id/imageView4"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:src="@drawable/avatar_green"
-                    />
+                <view
+                    android:id="@+id/viewAvatarThree"
+                    class="kireev.ftshw.project.InitialsRoundView"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:gravity="center"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    custom:initials="Chivas Regal"
+                    custom:roundColor="#68B16B"/>
 
                 <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="23dp"
-                    android:text="Кирилл"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Johnny Appleseed"
+                    android:maxLines="2"
                     android:textAlignment="center"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/imageView4"/>
+                    app:layout_constraintTop_toBottomOf="@id/viewAvatarThree"/>
 
                 <TextView
-                    android:id="@+id/pointsBadge3"
+                    android:id="@+id/pointsBadgeThree"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/badge"
                     android:gravity="center"
-                    android:text="200"
+                    android:text="333"
                     android:textColor="#FFF"
                     android:textSize="12sp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintEnd_toEndOf="@id/viewAvatarThree"
+                    app:layout_constraintTop_toTopOf="@id/viewAvatarThree" />
 
             </android.support.constraint.ConstraintLayout>
 
