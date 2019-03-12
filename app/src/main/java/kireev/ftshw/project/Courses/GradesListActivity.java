@@ -20,6 +20,7 @@ public class GradesListActivity extends AppCompatActivity {
                     .replace(R.id.container, GradesListFragment.newInstance())
                     .commitNow();
         }
+        //setContentView(R.layout.grades_list_fragment);
     }
 
     @Override

@@ -31,15 +31,70 @@ public class GradesListFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.grades_list_fragment, container, false);
-        rvGrades = v.findViewById(R.id.rvGrades);
+        rvGrades = new RecyclerView(getContext());
+        rvGrades.findViewById(R.id.gradeslist);
         getAllContacts();
-        return inflater.inflate(R.layout.grades_list_fragment, container, false);
+        return rvGrades;
     }
 
     private void getAllContacts() {
         List<ContactVO> contactVOList = new ArrayList();
         ContactVO contactVO;
+        contactVOList.add(new ContactVO("Krista Smartt"));
+        contactVOList.add(new ContactVO("Keith Wint"));
+        contactVOList.add(new ContactVO("Lizette Digennaro"));
+        contactVOList.add(new ContactVO("Ma Ketcham"));
+        contactVOList.add(new ContactVO("Sybil Schwartzman"));
+        contactVOList.add(new ContactVO("Gary Nowland"));
+        contactVOList.add(new ContactVO("Bettie People"));
+        contactVOList.add(new ContactVO("Joan Fudge"));
+        contactVOList.add(new ContactVO("Cathern Canfield"));
+        contactVOList.add(new ContactVO("Samira Hammonds"));
+        contactVOList.add(new ContactVO("Broderick Rafael"));
+        contactVOList.add(new ContactVO("Monty Laconte"));
+        contactVOList.add(new ContactVO("Richelle You"));
+        contactVOList.add(new ContactVO("Cedric Link"));
+        contactVOList.add(new ContactVO("Colette Surprenant"));
+        contactVOList.add(new ContactVO("Filomena Mclelland"));
+        contactVOList.add(new ContactVO("Fumiko Bylsma"));
+        contactVOList.add(new ContactVO("Another Krista Smartt"));
+        contactVOList.add(new ContactVO("Another Keith Wint"));
+        contactVOList.add(new ContactVO("Another Lizette Digennaro"));
+        contactVOList.add(new ContactVO("Another Ma Ketcham"));
+        contactVOList.add(new ContactVO("Another Sybil Schwartzman"));
+        contactVOList.add(new ContactVO("Another Gary Nowland"));
+        contactVOList.add(new ContactVO("Another Bettie People"));
+        contactVOList.add(new ContactVO("Another Joan Fudge"));
+        contactVOList.add(new ContactVO("Another Cathern Canfield"));
+        contactVOList.add(new ContactVO("Another Samira Hammonds"));
+        contactVOList.add(new ContactVO("Another Broderick Rafael"));
+        contactVOList.add(new ContactVO("Another Monty Laconte"));
+        contactVOList.add(new ContactVO("Another Richelle You"));
+        contactVOList.add(new ContactVO("Another Cedric Link"));
+        contactVOList.add(new ContactVO("Another Colette Surprenant"));
+        contactVOList.add(new ContactVO("Another Filomena Mclelland"));
+        contactVOList.add(new ContactVO("Another Fumiko Bylsma"));
+        contactVOList.add(new ContactVO("Another Krista Smartt"));
+        contactVOList.add(new ContactVO("Another Keith Wint"));
+        contactVOList.add(new ContactVO("Another Lizette Digennaro"));
+        contactVOList.add(new ContactVO("Another Ma Ketcham"));
+        contactVOList.add(new ContactVO("Another Sybil Schwartzman"));
+        contactVOList.add(new ContactVO("Another Gary Nowland"));
+        contactVOList.add(new ContactVO("Another Bettie People"));
+        contactVOList.add(new ContactVO("Another Joan Fudge"));
+        contactVOList.add(new ContactVO("Another Cathern Canfield"));
+        contactVOList.add(new ContactVO("Another Samira Hammonds"));
+        contactVOList.add(new ContactVO("Another Broderick Rafael"));
+        contactVOList.add(new ContactVO("Another Monty Laconte"));
+        contactVOList.add(new ContactVO("Another Richelle You"));
+        contactVOList.add(new ContactVO("Another Cedric Link"));
+        contactVOList.add(new ContactVO("Another Colette Surprenant"));
+        contactVOList.add(new ContactVO("Another Filomena Mclelland"));
+        contactVOList.add(new ContactVO("Another Fumiko Bylsma"));
+
+        AllContactsAdapter contactAdapter = new AllContactsAdapter(contactVOList, getContext());
+        rvGrades.setLayoutManager(new LinearLayoutManager(getContext()));
+        rvGrades.setAdapter(contactAdapter);
         /*
         ContentResolver contentResolver = getContentResolver();
         Cursor cursor = contentResolver.query(ContactsContract.Contacts.CONTENT_URI, null, null, null, ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME + " ASC");
