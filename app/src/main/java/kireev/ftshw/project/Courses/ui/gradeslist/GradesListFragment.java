@@ -1,12 +1,11 @@
 package kireev.ftshw.project.Courses.ui.gradeslist;
 
-import android.content.ContentResolver;
-import android.database.Cursor;
+import android.content.Context;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -16,12 +15,13 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
-import kireev.ftshw.project.Courses.GradesListActivity;
 import kireev.ftshw.project.R;
+
 
 public class GradesListFragment extends Fragment {
 
     RecyclerView rvGrades;
+    AllContactsAdapter contactAdapter;
 
     public static GradesListFragment newInstance() {
         return new GradesListFragment();
@@ -37,9 +37,13 @@ public class GradesListFragment extends Fragment {
         return rvGrades;
     }
 
-    private void getAllContacts() {
+    void getAllContacts() {
         List<ContactVO> contactVOList = new ArrayList();
-        ContactVO contactVO;
+        RecyclerView.LayoutManager mLayoutManger = new LinearLayoutManager(getContext());
+        contactAdapter = new AllContactsAdapter(contactVOList);
+        contactAdapter.notifyDataSetChanged();
+        rvGrades.setLayoutManager(mLayoutManger);
+        rvGrades.setAdapter(contactAdapter);
         contactVOList.add(new ContactVO("Krista Smartt"));
         contactVOList.add(new ContactVO("Keith Wint"));
         contactVOList.add(new ContactVO("Lizette Digennaro"));
@@ -92,9 +96,6 @@ public class GradesListFragment extends Fragment {
         contactVOList.add(new ContactVO("Another Filomena Mclelland"));
         contactVOList.add(new ContactVO("Another Fumiko Bylsma"));
 
-        AllContactsAdapter contactAdapter = new AllContactsAdapter(contactVOList, getContext());
-        rvGrades.setLayoutManager(new LinearLayoutManager(getContext()));
-        rvGrades.setAdapter(contactAdapter);
         /*
         ContentResolver contentResolver = getContentResolver();
         Cursor cursor = contentResolver.query(ContactsContract.Contacts.CONTENT_URI, null, null, null, ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME + " ASC");

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="4dp"
+    app:cardCornerRadius="4dp">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="4dp">
+
+        <view
+            android:id="@+id/itvIcon"
+            class="kireev.ftshw.project.InitialsRoundView"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:gravity="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvContactName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Vladislav Kireev"
+            android:textAlignment="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/itvIcon" />
+
+        <TextView
+            android:id="@+id/tvPoints"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/point_rectangle"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="111"
+            android:textColor="#FFF"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="@id/itvIcon"
+            app:layout_constraintTop_toTopOf="@id/itvIcon" />
+
+    </android.support.constraint.ConstraintLayout>
+</android.support.v7.widget.CardView>

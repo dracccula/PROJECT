@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     xmlns:custom="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardView2"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardElevation="3dp"
     app:cardCornerRadius="5dp"
+    app:cardElevation="3dp"
     tools:context=".Courses.GradesFragment">
 
     <LinearLayout
+        android:id="@+id/linearLayout4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -47,6 +49,7 @@
         </android.support.constraint.ConstraintLayout>
 
         <LinearLayout
+            android:id="@+id/linearLayout3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -63,11 +66,9 @@
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:gravity="center"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    custom:roundColor="#FF7952"/>
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/tvAvatarNameOne"
@@ -78,7 +79,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/viewAvatarOne"/>
+                    app:layout_constraintTop_toBottomOf="@id/viewAvatarOne" />
 
                 <TextView
                     android:id="@+id/pointsBadgeOne"
@@ -105,11 +106,9 @@
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:gravity="center"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    custom:roundColor="#FABC6E"/>
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/tvAvatarNameTwo"
@@ -120,7 +119,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/viewAvatarTwo"/>
+                    app:layout_constraintTop_toBottomOf="@id/viewAvatarTwo" />
 
                 <TextView
                     android:id="@+id/pointsBadgeTwo"
@@ -147,11 +146,9 @@
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:gravity="center"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    custom:roundColor="#68B16B"/>
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/tvAvatarNameThree"
@@ -162,7 +159,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/viewAvatarThree"/>
+                    app:layout_constraintTop_toBottomOf="@id/viewAvatarThree" />
 
                 <TextView
                     android:id="@+id/pointsBadgeThree"

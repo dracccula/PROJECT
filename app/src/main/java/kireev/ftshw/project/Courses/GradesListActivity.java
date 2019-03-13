@@ -2,11 +2,13 @@ package kireev.ftshw.project.Courses;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
+import android.view.MenuItem;
 
 import kireev.ftshw.project.Courses.ui.gradeslist.GradesListFragment;
-import kireev.ftshw.project.InitialsRoundView;
 import kireev.ftshw.project.R;
+
 
 public class GradesListActivity extends AppCompatActivity {
 
@@ -29,7 +31,14 @@ public class GradesListActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.grades_list_menu, menu);
         return true;
     }
-
+    /*
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        Log.d("ChangeLayout","clicked!");
+        return true;
+    }
+    */
     @Override
     public boolean onSupportNavigateUp(){
         finish();

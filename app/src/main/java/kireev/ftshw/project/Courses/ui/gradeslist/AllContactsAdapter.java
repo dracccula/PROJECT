@@ -1,6 +1,5 @@
 package kireev.ftshw.project.Courses.ui.gradeslist;
 
-import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,33 +14,42 @@ import kireev.ftshw.project.TempTools.SetRandom;
 
 public class AllContactsAdapter extends RecyclerView.Adapter<AllContactsAdapter.ContactViewHolder> {
 
-    private List<ContactVO> contactVOList;
-    private Context mContext;
+    private List<ContactVO> mContactVOList;
 
-    public AllContactsAdapter(List<ContactVO> contactVOList, Context mContext) {
-        this.contactVOList = contactVOList;
-        this.mContext = mContext;
+    public AllContactsAdapter(List<ContactVO> contactVOList) {
+        mContactVOList = contactVOList;
     }
 
     @Override
     public ContactViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(mContext).inflate(R.layout.grades_list_item, null);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.grades_list_item, parent, false);
         ContactViewHolder contactViewHolder = new ContactViewHolder(view);
         return contactViewHolder;
     }
 
     @Override
     public void onBindViewHolder(ContactViewHolder holder, int position) {
-        ContactVO contactVO = contactVOList.get(position);
+        ContactVO contactVO = mContactVOList.get(position);
         holder.irvIcon.setText(contactVO.getContactName());
         holder.irvIcon.setBackgroundColor(SetRandom.SetRandomColor());
         holder.tvContactName.setText(contactVO.getContactName());
         holder.tvPoints.setText(String.valueOf(SetRandom.SetRandomInt()) + " баллов");
+
     }
 
     @Override
     public int getItemCount() {
-        return contactVOList.size();
+        return mContactVOList.size();
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return position;
     }
 
     public static class ContactViewHolder extends RecyclerView.ViewHolder {
