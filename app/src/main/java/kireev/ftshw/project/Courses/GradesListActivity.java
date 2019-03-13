@@ -2,8 +2,10 @@ package kireev.ftshw.project.Courses;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
 
 import kireev.ftshw.project.Courses.ui.gradeslist.GradesListFragment;
+import kireev.ftshw.project.InitialsRoundView;
 import kireev.ftshw.project.R;
 
 public class GradesListActivity extends AppCompatActivity {
@@ -20,7 +22,12 @@ public class GradesListActivity extends AppCompatActivity {
                     .replace(R.id.container, GradesListFragment.newInstance())
                     .commitNow();
         }
-        //setContentView(R.layout.grades_list_fragment);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.grades_list_menu, menu);
+        return true;
     }
 
     @Override

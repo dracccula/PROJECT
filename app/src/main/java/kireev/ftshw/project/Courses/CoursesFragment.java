@@ -9,15 +9,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.util.ArrayList;
-
 import kireev.ftshw.project.MainActivity;
 import kireev.ftshw.project.R;
-import kireev.ftshw.project.TempTools.TempTools;
+import kireev.ftshw.project.TempTools.SetRandom;
 
 import static kireev.ftshw.project.Courses.GradesFragment.pointsBadge1;
 import static kireev.ftshw.project.Courses.GradesFragment.pointsBadge2;
 import static kireev.ftshw.project.Courses.GradesFragment.pointsBadge3;
+import static kireev.ftshw.project.Courses.GradesFragment.viewAvatarOne;
+import static kireev.ftshw.project.Courses.GradesFragment.viewAvatarTwo;
+import static kireev.ftshw.project.Courses.GradesFragment.viewAvatarThree;
 
 
 public class CoursesFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener{
@@ -63,9 +64,12 @@ public class CoursesFragment extends Fragment implements SwipeRefreshLayout.OnRe
 
     @Override
     public void onRefresh() {
-        pointsBadge1.setText(String.valueOf(TempTools.SetRandom()));
-        pointsBadge2.setText(String.valueOf(TempTools.SetRandom()));
-        pointsBadge3.setText(String.valueOf(TempTools.SetRandom()));
+        pointsBadge1.setText(String.valueOf(SetRandom.SetRandomInt()));
+        pointsBadge2.setText(String.valueOf(SetRandom.SetRandomInt()));
+        pointsBadge3.setText(String.valueOf(SetRandom.SetRandomInt()));
+        viewAvatarOne.setBackgroundColor(SetRandom.SetRandomColor());
+        viewAvatarTwo.setBackgroundColor(SetRandom.SetRandomColor());
+        viewAvatarThree.setBackgroundColor(SetRandom.SetRandomColor());
         mSwipeRefreshLayout.setRefreshing(false);
     }
 

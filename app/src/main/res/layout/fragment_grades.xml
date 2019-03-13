@@ -67,14 +67,13 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    custom:initials="Vladislav Kireev"
                     custom:roundColor="#FF7952"/>
 
                 <TextView
+                    android:id="@+id/tvAvatarNameOne"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="Vladislav Kireev"
-                    android:maxLines="2"
                     android:textAlignment="center"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -110,14 +109,13 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    custom:initials="Jonathan Doe"
                     custom:roundColor="#FABC6E"/>
 
                 <TextView
+                    android:id="@+id/tvAvatarNameTwo"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:text="Jonathan Davis"
-                    android:maxLines="2"
                     android:textAlignment="center"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -153,14 +151,13 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    custom:initials="Chivas Regal"
                     custom:roundColor="#68B16B"/>
 
                 <TextView
+                    android:id="@+id/tvAvatarNameThree"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Johnny Appleseed"
-                    android:maxLines="2"
+                    android:text="Chivas Regal"
                     android:textAlignment="center"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"

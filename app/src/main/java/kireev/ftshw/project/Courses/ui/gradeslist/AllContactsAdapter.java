@@ -9,7 +9,9 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import kireev.ftshw.project.InitialsRoundView;
 import kireev.ftshw.project.R;
+import kireev.ftshw.project.TempTools.SetRandom;
 
 public class AllContactsAdapter extends RecyclerView.Adapter<AllContactsAdapter.ContactViewHolder> {
 
@@ -31,7 +33,10 @@ public class AllContactsAdapter extends RecyclerView.Adapter<AllContactsAdapter.
     @Override
     public void onBindViewHolder(ContactViewHolder holder, int position) {
         ContactVO contactVO = contactVOList.get(position);
+        holder.irvIcon.setText(contactVO.getContactName());
+        holder.irvIcon.setBackgroundColor(SetRandom.SetRandomColor());
         holder.tvContactName.setText(contactVO.getContactName());
+        holder.tvPoints.setText(String.valueOf(SetRandom.SetRandomInt()) + " баллов");
     }
 
     @Override
@@ -42,10 +47,14 @@ public class AllContactsAdapter extends RecyclerView.Adapter<AllContactsAdapter.
     public static class ContactViewHolder extends RecyclerView.ViewHolder {
 
         TextView tvContactName;
+        TextView tvPoints;
+        InitialsRoundView irvIcon;
 
         public ContactViewHolder(View itemView) {
             super(itemView);
-            tvContactName = (TextView) itemView.findViewById(R.id.tvContactName);
+            tvContactName = itemView.findViewById(R.id.tvContactName);
+            tvPoints = itemView.findViewById(R.id.tvPoints);
+            irvIcon = itemView.findViewById(R.id.itvIcon);
         }
     }
 }

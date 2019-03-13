@@ -3,15 +3,36 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="5dp"
-    >
+    android:padding="10dp">
+
+    <kireev.ftshw.project.InitialsRoundView
+        android:id="@+id/itvIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:layout_marginStart="5dp"
+        >
+
+    </kireev.ftshw.project.InitialsRoundView>
+
     <TextView
         android:id="@+id/tvContactName"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="50dp"
+        android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="OLOLO"
+        android:padding="5dp"
+        android:text="tvContactName"
+        android:textStyle="bold"
         />
+
+    <TextView
+        android:id="@+id/tvPoints"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/point_rectangle"
+        android:gravity="center"
+        android:padding="5dp"
+        android:layout_marginStart="10dp"
+        android:text="100 баллов" />
 
 </LinearLayout>

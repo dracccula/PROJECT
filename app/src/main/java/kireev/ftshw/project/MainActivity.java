@@ -45,7 +45,7 @@ public class MainActivity extends AppCompatActivity
         if (savedInstanceState == null) {
             navigation.getMenu().getItem(1).setChecked(true);
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                    new CoursesFragment()).commit();
+                    new CoursesFragment()).commitNow();
         }
 
         ad = new AlertDialog.Builder(this);
@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity
             }
 
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                    selectedFragment).commit();
+                    selectedFragment).commitNow();
             return true;
         }
     };
