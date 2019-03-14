@@ -8,13 +8,17 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import kireev.ftshw.project.Courses.GradesListActivity;
 import kireev.ftshw.project.InitialsRoundView;
 import kireev.ftshw.project.R;
 import kireev.ftshw.project.TempTools.SetRandom;
 
+import static kireev.ftshw.project.Courses.GradesListActivity.mGridMode;
+
 public class AllContactsAdapter extends RecyclerView.Adapter<AllContactsAdapter.ContactViewHolder> {
 
     private List<ContactVO> mContactVOList;
+    private ContactViewHolder contactViewHolder;
 
     public AllContactsAdapter(List<ContactVO> contactVOList) {
         mContactVOList = contactVOList;
@@ -22,8 +26,14 @@ public class AllContactsAdapter extends RecyclerView.Adapter<AllContactsAdapter.
 
     @Override
     public ContactViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.grades_list_item, parent, false);
-        ContactViewHolder contactViewHolder = new ContactViewHolder(view);
+        //View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.grades_list_item, parent, false);
+        if (viewType == R.layout.grades_list_item) {
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.grades_list_item, parent, false);
+            contactViewHolder = new ContactViewHolder(view);
+        } if (viewType == R.layout.grades_grid_item) {
+            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.grades_grid_item, parent, false);
+            contactViewHolder = new ContactViewHolder(view);
+        }
         return contactViewHolder;
     }
 
@@ -38,18 +48,13 @@ public class AllContactsAdapter extends RecyclerView.Adapter<AllContactsAdapter.
     }
 
     @Override
+    public int getItemViewType(int position) {
+        return mGridMode ?  R.layout.grades_grid_item : R.layout.grades_list_item;
+    }
+
+    @Override
     public int getItemCount() {
         return mContactVOList.size();
-    }
-
-    @Override
-    public long getItemId(int position) {
-        return position;
-    }
-
-    @Override
-    public int getItemViewType(int position) {
-        return position;
     }
 
     public static class ContactViewHolder extends RecyclerView.ViewHolder {

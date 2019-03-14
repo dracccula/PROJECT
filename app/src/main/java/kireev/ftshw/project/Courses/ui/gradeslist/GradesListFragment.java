@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,8 +21,14 @@ import kireev.ftshw.project.R;
 
 public class GradesListFragment extends Fragment {
 
-    RecyclerView rvGrades;
-    AllContactsAdapter contactAdapter;
+    public static RecyclerView rvGrades;
+    public static AllContactsAdapter contactAdapter;
+    RecyclerView.LayoutManager mLayoutManger;
+
+    public enum Layout {
+        LIST,
+        GRID
+    }
 
     public static GradesListFragment newInstance() {
         return new GradesListFragment();
@@ -33,17 +40,55 @@ public class GradesListFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         rvGrades = new RecyclerView(getContext());
         rvGrades.findViewById(R.id.gradeslist);
-        getAllContacts();
+        List<ContactVO> contactVOList = initList();
+        contactAdapter = new AllContactsAdapter(contactVOList);
+        rvGrades.setAdapter(contactAdapter);
+        rvGrades.setLayoutManager(new LinearLayoutManager(getContext()));
+        //GradesListFragment.contactAdapter.onCreateViewHolder(GradesListFragment.rvGrades,1);
         return rvGrades;
     }
 
-    void getAllContacts() {
-        List<ContactVO> contactVOList = new ArrayList();
-        RecyclerView.LayoutManager mLayoutManger = new LinearLayoutManager(getContext());
-        contactAdapter = new AllContactsAdapter(contactVOList);
-        contactAdapter.notifyDataSetChanged();
-        rvGrades.setLayoutManager(mLayoutManger);
-        rvGrades.setAdapter(contactAdapter);
+    public void getAllContacts() {
+
+
+//        rvGrades.setLayoutManager(mLayoutManger);
+//        contactAdapter.onCreateViewHolder(rvGrades,0);
+
+
+        /*
+        ContentResolver contentResolver = getContentResolver();
+        Cursor cursor = contentResolver.query(ContactsContract.Contacts.CONTENT_URI, null, null, null, ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME + " ASC");
+        if (cursor.getCount() > 0) {
+            while (cursor.moveToNext()) {
+
+                int hasPhoneNumber = Integer.parseInt(cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER)));
+                if (hasPhoneNumber > 0) {
+                    String id = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts._ID));
+                    String name = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
+
+                    contactVO = new ContactVO();
+                    contactVO.setContactName(name);
+
+                    Cursor emailCursor = contentResolver.query(
+                            ContactsContract.CommonDataKinds.Email.CONTENT_URI,
+                            null,
+                            ContactsContract.CommonDataKinds.Email.CONTACT_ID + " = ?",
+                            new String[]{id}, null);
+                    while (emailCursor.moveToNext()) {
+                        String emailId = emailCursor.getString(emailCursor.getColumnIndex(ContactsContract.CommonDataKinds.Email.DATA));
+                    }
+                    contactVOList.add(contactVO);
+                }
+            }
+
+            AllContactsAdapter contactAdapter = new AllContactsAdapter(contactVOList, getContext());
+            rvGrades.setLayoutManager(new LinearLayoutManager(GradesListActivity.this));
+            rvGrades.setAdapter(contactAdapter);
+        }*/
+    }
+
+    private List<ContactVO> initList() {
+        final ArrayList<ContactVO> contactVOList = new ArrayList<>();
         contactVOList.add(new ContactVO("Krista Smartt"));
         contactVOList.add(new ContactVO("Keith Wint"));
         contactVOList.add(new ContactVO("Lizette Digennaro"));
@@ -95,37 +140,7 @@ public class GradesListFragment extends Fragment {
         contactVOList.add(new ContactVO("Another Colette Surprenant"));
         contactVOList.add(new ContactVO("Another Filomena Mclelland"));
         contactVOList.add(new ContactVO("Another Fumiko Bylsma"));
-
-        /*
-        ContentResolver contentResolver = getContentResolver();
-        Cursor cursor = contentResolver.query(ContactsContract.Contacts.CONTENT_URI, null, null, null, ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME + " ASC");
-        if (cursor.getCount() > 0) {
-            while (cursor.moveToNext()) {
-
-                int hasPhoneNumber = Integer.parseInt(cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER)));
-                if (hasPhoneNumber > 0) {
-                    String id = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts._ID));
-                    String name = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
-
-                    contactVO = new ContactVO();
-                    contactVO.setContactName(name);
-
-                    Cursor emailCursor = contentResolver.query(
-                            ContactsContract.CommonDataKinds.Email.CONTENT_URI,
-                            null,
-                            ContactsContract.CommonDataKinds.Email.CONTACT_ID + " = ?",
-                            new String[]{id}, null);
-                    while (emailCursor.moveToNext()) {
-                        String emailId = emailCursor.getString(emailCursor.getColumnIndex(ContactsContract.CommonDataKinds.Email.DATA));
-                    }
-                    contactVOList.add(contactVO);
-                }
-            }
-
-            AllContactsAdapter contactAdapter = new AllContactsAdapter(contactVOList, getContext());
-            rvGrades.setLayoutManager(new LinearLayoutManager(GradesListActivity.this));
-            rvGrades.setAdapter(contactAdapter);
-        }*/
+        return contactVOList;
     }
 
 }
