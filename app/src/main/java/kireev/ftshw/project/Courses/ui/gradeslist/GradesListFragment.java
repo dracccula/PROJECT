@@ -42,7 +42,6 @@ public class GradesListFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-
         // получаем разрешения
         int hasReadContactPermission = ContextCompat.checkSelfPermission(getContext(), Manifest.permission.READ_CONTACTS);
         // если устройство до API 23, устанавливаем разрешение
@@ -59,6 +58,8 @@ public class GradesListFragment extends Fragment {
         }
         return rv;
     }
+
+
 
     private RecyclerView showContacts(){
         rvGrades = new RecyclerView(getContext());

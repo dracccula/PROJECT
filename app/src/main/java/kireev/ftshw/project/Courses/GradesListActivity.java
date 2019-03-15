@@ -8,14 +8,13 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import kireev.ftshw.project.Courses.ui.gradeslist.AllContactsAdapter;
 import kireev.ftshw.project.Courses.ui.gradeslist.GradesListFragment;
 import kireev.ftshw.project.R;
 
 
 public class GradesListActivity extends AppCompatActivity {
 
-    public static boolean mGridMode = false;
+    public static boolean mGridMode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,11 +23,7 @@ public class GradesListActivity extends AppCompatActivity {
         setTitle(getString(R.string.title_grades_list));
         assert getSupportActionBar() != null;   //null check
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        if (savedInstanceState == null) {
-//            getSupportFragmentManager().beginTransaction()
-//                    .replace(R.id.container, GradesListFragment.newInstance())
-//                    .commitNow();
-        }
+        mGridMode = false;
     }
 
     @Override
@@ -68,10 +63,4 @@ public class GradesListActivity extends AppCompatActivity {
         }
         return true;
     }
-
-//    @Override
-//    public boolean onSupportNavigateUp() {
-//        finish();
-//        return true;
-//    }
 }
