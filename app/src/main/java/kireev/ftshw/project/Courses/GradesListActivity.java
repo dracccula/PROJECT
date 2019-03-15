@@ -29,7 +29,6 @@ public class GradesListActivity extends AppCompatActivity {
 //                    .replace(R.id.container, GradesListFragment.newInstance())
 //                    .commitNow();
         }
-
     }
 
     @Override

@@ -1,17 +1,23 @@
 package kireev.ftshw.project.Courses.ui.gradeslist;
 
-import android.content.Context;
+import android.Manifest;
+import android.app.Activity;
+import android.content.ContentResolver;
+import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.GridLayoutManager;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,14 +27,12 @@ import kireev.ftshw.project.R;
 
 public class GradesListFragment extends Fragment {
 
-    public static RecyclerView rvGrades;
+    private static final int REQUEST_CODE_READ_CONTACTS=1;
+    private static boolean READ_CONTACTS_GRANTED =false;
+    public static RecyclerView rvGrades, rv;
     public static AllContactsAdapter contactAdapter;
-    RecyclerView.LayoutManager mLayoutManger;
+    ContactVO contactVO;
 
-    public enum Layout {
-        LIST,
-        GRID
-    }
 
     public static GradesListFragment newInstance() {
         return new GradesListFragment();
@@ -38,53 +42,69 @@ public class GradesListFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
+
+        // получаем разрешения
+        int hasReadContactPermission = ContextCompat.checkSelfPermission(getContext(), Manifest.permission.READ_CONTACTS);
+        // если устройство до API 23, устанавливаем разрешение
+        if(hasReadContactPermission == PackageManager.PERMISSION_GRANTED){
+            READ_CONTACTS_GRANTED = true;
+        }
+        else{
+            // вызываем диалоговое окно для установки разрешений
+            ActivityCompat.requestPermissions((Activity) getContext(), new String[]{Manifest.permission.READ_CONTACTS}, REQUEST_CODE_READ_CONTACTS);
+        }
+        // если разрешение установлено, загружаем контакты
+        if (READ_CONTACTS_GRANTED){
+            rv = showContacts();
+        }
+        return rv;
+    }
+
+    private RecyclerView showContacts(){
         rvGrades = new RecyclerView(getContext());
         rvGrades.findViewById(R.id.gradeslist);
-        List<ContactVO> contactVOList = initList();
+        List<ContactVO> contactVOList = getAllContacts();
         contactAdapter = new AllContactsAdapter(contactVOList);
         rvGrades.setAdapter(contactAdapter);
         rvGrades.setLayoutManager(new LinearLayoutManager(getContext()));
-        //GradesListFragment.contactAdapter.onCreateViewHolder(GradesListFragment.rvGrades,1);
         return rvGrades;
+        }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults){
+
+        switch (requestCode){
+            case REQUEST_CODE_READ_CONTACTS:
+                if(grantResults.length>0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                    READ_CONTACTS_GRANTED = true;
+                }
+        }
+        if(READ_CONTACTS_GRANTED){
+            showContacts();
+        }
+        else{
+            Toast.makeText(getContext(), "Требуется установить разрешения", Toast.LENGTH_LONG).show();
+        }
     }
 
-    public void getAllContacts() {
-
-
-//        rvGrades.setLayoutManager(mLayoutManger);
-//        contactAdapter.onCreateViewHolder(rvGrades,0);
-
-
-        /*
-        ContentResolver contentResolver = getContentResolver();
-        Cursor cursor = contentResolver.query(ContactsContract.Contacts.CONTENT_URI, null, null, null, ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME + " ASC");
-        if (cursor.getCount() > 0) {
+    private List<ContactVO> getAllContacts() {
+        final ArrayList<ContactVO> contactVOList = new ArrayList<>();
+        ContentResolver contentResolver = getContext().getContentResolver();
+        Cursor cursor = contentResolver.query(ContactsContract.Contacts.CONTENT_URI, null, null, null, null);
+        if(cursor!=null){
             while (cursor.moveToNext()) {
 
-                int hasPhoneNumber = Integer.parseInt(cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER)));
-                if (hasPhoneNumber > 0) {
-                    String id = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts._ID));
-                    String name = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
-
-                    contactVO = new ContactVO();
-                    contactVO.setContactName(name);
-
-                    Cursor emailCursor = contentResolver.query(
-                            ContactsContract.CommonDataKinds.Email.CONTENT_URI,
-                            null,
-                            ContactsContract.CommonDataKinds.Email.CONTACT_ID + " = ?",
-                            new String[]{id}, null);
-                    while (emailCursor.moveToNext()) {
-                        String emailId = emailCursor.getString(emailCursor.getColumnIndex(ContactsContract.CommonDataKinds.Email.DATA));
-                    }
-                    contactVOList.add(contactVO);
-                }
+                // получаем каждый контакт
+                String contact = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME_PRIMARY));
+                String name = cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME));
+                contactVO = new ContactVO();
+                contactVO.setContactName(name);
+                // добавляем контакт в список
+                contactVOList.add(contactVO);
             }
-
-            AllContactsAdapter contactAdapter = new AllContactsAdapter(contactVOList, getContext());
-            rvGrades.setLayoutManager(new LinearLayoutManager(GradesListActivity.this));
-            rvGrades.setAdapter(contactAdapter);
-        }*/
+            cursor.close();
+        }
+        return contactVOList;
     }
 
     private List<ContactVO> initList() {

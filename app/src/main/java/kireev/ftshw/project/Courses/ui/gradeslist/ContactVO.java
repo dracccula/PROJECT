@@ -7,6 +7,10 @@ public class ContactVO {
         ContactName = sContactName;
     }
 
+    public ContactVO() {
+
+    }
+
     public String getContactName() {
         return ContactName;
     }

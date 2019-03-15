@@ -7,8 +7,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.List;
-
-import kireev.ftshw.project.Courses.GradesListActivity;
 import kireev.ftshw.project.InitialsRoundView;
 import kireev.ftshw.project.R;
 import kireev.ftshw.project.TempTools.SetRandom;
@@ -43,7 +41,7 @@ public class AllContactsAdapter extends RecyclerView.Adapter<AllContactsAdapter.
         holder.irvIcon.setText(contactVO.getContactName());
         holder.irvIcon.setBackgroundColor(SetRandom.SetRandomColor());
         holder.tvContactName.setText(contactVO.getContactName());
-        holder.tvPoints.setText(String.valueOf(SetRandom.SetRandomInt()) + " баллов");
+        holder.tvPoints.setText(String.valueOf(SetRandom.SetRandomInt()));
 
     }
 
