@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import kireev.ftshw.project.Courses.ui.gradeslist.GradesListFragment;
+import kireev.ftshw.project.Courses.ui.gradeslist.LoadContacts;
 import kireev.ftshw.project.R;
 
 
@@ -40,6 +41,8 @@ public class GradesListActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
         showPermissionRequest();
+//        LoadContacts lc = new LoadContacts();
+//        lc.execute();
     }
 
     @Override
