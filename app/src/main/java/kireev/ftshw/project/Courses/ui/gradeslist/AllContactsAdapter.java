@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.List;
+
 import kireev.ftshw.project.InitialsRoundView;
 import kireev.ftshw.project.R;
 import kireev.ftshw.project.TempTools.SetRandom;
@@ -28,7 +29,8 @@ public class AllContactsAdapter extends RecyclerView.Adapter<AllContactsAdapter.
         if (viewType == R.layout.grades_list_item) {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.grades_list_item, parent, false);
             contactViewHolder = new ContactViewHolder(view);
-        } if (viewType == R.layout.grades_grid_item) {
+        }
+        if (viewType == R.layout.grades_grid_item) {
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.grades_grid_item, parent, false);
             contactViewHolder = new ContactViewHolder(view);
         }
@@ -47,7 +49,7 @@ public class AllContactsAdapter extends RecyclerView.Adapter<AllContactsAdapter.
 
     @Override
     public int getItemViewType(int position) {
-        return mGridMode ?  R.layout.grades_grid_item : R.layout.grades_list_item;
+        return mGridMode ? R.layout.grades_grid_item : R.layout.grades_list_item;
     }
 
     @Override

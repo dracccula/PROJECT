@@ -27,8 +27,7 @@ import kireev.ftshw.project.R;
 
 public class GradesListFragment extends Fragment {
 
-    private static final int REQUEST_CODE_READ_CONTACTS=1;
-    private static boolean READ_CONTACTS_GRANTED =false;
+
     public static RecyclerView rvGrades, rv;
     public static AllContactsAdapter contactAdapter;
     ContactVO contactVO;
@@ -42,26 +41,10 @@ public class GradesListFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        // получаем разрешения
-        int hasReadContactPermission = ContextCompat.checkSelfPermission(getContext(), Manifest.permission.READ_CONTACTS);
-        // если устройство до API 23, устанавливаем разрешение
-        if(hasReadContactPermission == PackageManager.PERMISSION_GRANTED){
-            READ_CONTACTS_GRANTED = true;
-        }
-        else{
-            // вызываем диалоговое окно для установки разрешений
-            ActivityCompat.requestPermissions((Activity) getContext(), new String[]{Manifest.permission.READ_CONTACTS}, REQUEST_CODE_READ_CONTACTS);
-        }
-        // если разрешение установлено, загружаем контакты
-        if (READ_CONTACTS_GRANTED){
-            rv = showContacts();
-        }
-        return rv;
+        return showContacts();
     }
 
-
-
-    private RecyclerView showContacts(){
+    private RecyclerView showContacts() {
         rvGrades = new RecyclerView(getContext());
         rvGrades.findViewById(R.id.gradeslist);
         List<ContactVO> contactVOList = getAllContacts();
@@ -69,30 +52,13 @@ public class GradesListFragment extends Fragment {
         rvGrades.setAdapter(contactAdapter);
         rvGrades.setLayoutManager(new LinearLayoutManager(getContext()));
         return rvGrades;
-        }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults){
-
-        switch (requestCode){
-            case REQUEST_CODE_READ_CONTACTS:
-                if(grantResults.length>0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
-                    READ_CONTACTS_GRANTED = true;
-                }
-        }
-        if(READ_CONTACTS_GRANTED){
-            showContacts();
-        }
-        else{
-            Toast.makeText(getContext(), "Требуется установить разрешения", Toast.LENGTH_LONG).show();
-        }
     }
 
     private List<ContactVO> getAllContacts() {
         final ArrayList<ContactVO> contactVOList = new ArrayList<>();
         ContentResolver contentResolver = getContext().getContentResolver();
         Cursor cursor = contentResolver.query(ContactsContract.Contacts.CONTENT_URI, null, null, null, null);
-        if(cursor!=null){
+        if (cursor != null) {
             while (cursor.moveToNext()) {
 
                 // получаем каждый контакт
