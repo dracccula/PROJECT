@@ -1,5 +1,6 @@
 package kireev.ftshw.project.Courses.ui.gradeslist;
 
+import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -9,6 +10,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +31,7 @@ public class GradesListFragment extends Fragment {
     ContactVO contactVO;
     LoadContacts lc;
     GradesListActivity context;
+    ProgressDialog pd;
 
 
     public static GradesListFragment newInstance() {
@@ -39,13 +42,9 @@ public class GradesListFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        //View view = inflater.inflate(R.layout.grades_list_fragment, container, false);
+        //View v = inflater.inflate(R.layout.grades_list_fragment, container, false);
         rvGrades = new RecyclerView(getContext());
         rvGrades.findViewById(R.id.gradeslist);
-        rvGrades.setLayoutManager(new LinearLayoutManager(getContext()));
-        List<ContactVO> contactVOList = getAllContacts();
-        contactAdapter = new AllContactsAdapter(contactVOList);
-        rvGrades.setAdapter(contactAdapter);
         return rvGrades;
     }
 
@@ -64,9 +63,7 @@ public class GradesListFragment extends Fragment {
     }
 
     public void prepareContactsList() throws ExecutionException, InterruptedException {
-        //List<ContactVO> contactVOList = getArrayCont();
-        //contactAdapter = new AllContactsAdapter(contactVOList);
-        //rvGrades.setAdapter(contactAdapter);
+
     }
 
     private void showContacts() throws ExecutionException, InterruptedException {
@@ -150,11 +147,18 @@ public class GradesListFragment extends Fragment {
     }
 
     public void showProgress() {
+//        pd = ProgressDialog.show(context, "Loading Contacts", "");
+//        Log.d("pd","show");
     }
 
     public void hideProgress() {
+        pd.cancel();
     }
 
     public void showList(ArrayList<ContactVO> contacts) {
+        List<ContactVO> contactVOList = contacts;
+        contactAdapter = new AllContactsAdapter(contactVOList);
+        rvGrades.setAdapter(contactAdapter);
+        rvGrades.setLayoutManager(new LinearLayoutManager(getContext()));
     }
 }

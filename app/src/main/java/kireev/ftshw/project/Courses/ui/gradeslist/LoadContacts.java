@@ -8,13 +8,12 @@ import android.os.AsyncTask;
 import android.provider.ContactsContract;
 
 import java.util.ArrayList;
-
-import kireev.ftshw.project.Courses.GradesListActivity;
+import java.util.concurrent.TimeUnit;
 
 
 public class LoadContacts extends AsyncTask<Void, Void, ArrayList<ContactVO>> {
-    ProgressDialog pd;
     ContactVO contactVO;
+    ProgressDialog pd;
     private GradesListFragment fragment;
 
     public void subscribe(GradesListFragment fragment) {
@@ -28,13 +27,20 @@ public class LoadContacts extends AsyncTask<Void, Void, ArrayList<ContactVO>> {
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-        fragment.showProgress();
-//        pd = ProgressDialog.show(context, "Loading Contacts",
-//                "Please Wait");
+        pd = new ProgressDialog(fragment.getContext());
+        pd.setTitle("Loading Contacts");
+        pd.setMessage("Please Wait..");
+        pd.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        pd.show();
     }
 
     @Override
     protected ArrayList<ContactVO> doInBackground(Void... params) {
+        try {
+            TimeUnit.SECONDS.sleep(1);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         final ArrayList<ContactVO> contactVOList = new ArrayList<>();
         Context context = fragment.getContext();
         ContentResolver contentResolver = context.getContentResolver();
@@ -59,9 +65,8 @@ public class LoadContacts extends AsyncTask<Void, Void, ArrayList<ContactVO>> {
     protected void onPostExecute(ArrayList<ContactVO> contacts) {
         // TODO Auto-generated method stub
         super.onPostExecute(contacts);
-        fragment.hideProgress();
+        pd.dismiss();
         fragment.showList(contacts);
-//        pd.cancel();
     }
 
 }
