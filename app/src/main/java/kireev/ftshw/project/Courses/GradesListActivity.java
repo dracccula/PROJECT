@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import kireev.ftshw.project.Courses.ui.gradeslist.GradesListFragment;
+import kireev.ftshw.project.Courses.ui.gradeslist.GradesNoContactsAccessFragment;
 import kireev.ftshw.project.Courses.ui.gradeslist.LoadContacts;
 import kireev.ftshw.project.R;
 
@@ -24,7 +25,7 @@ public class GradesListActivity extends AppCompatActivity {
 
     public static boolean mGridMode;
     private static final int REQUEST_CODE_READ_CONTACTS = 1;
-    private static boolean READ_CONTACTS_GRANTED = false;
+    private boolean READ_CONTACTS_GRANTED = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +36,6 @@ public class GradesListActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         mGridMode = false;
     }
-
 
     @Override
     protected void onStart() {
@@ -48,6 +48,13 @@ public class GradesListActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.grades_list_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        MenuItem item = menu.findItem(R.id.change_rv_layout);
+        item.setVisible(READ_CONTACTS_GRANTED);
         return true;
     }
 
@@ -98,6 +105,7 @@ public class GradesListActivity extends AppCompatActivity {
         }
         // если разрешение установлено, загружаем контакты
         if (READ_CONTACTS_GRANTED) {
+            invalidateOptionsMenu();
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.container, GradesListFragment.newInstance())
                     .commitNow();
@@ -118,7 +126,11 @@ public class GradesListActivity extends AppCompatActivity {
                     .replace(R.id.container, GradesListFragment.newInstance())
                     .commitNow();
         } else {
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.container, GradesNoContactsAccessFragment.newInstance())
+                    .commitNow();
             Toast.makeText(this, "Требуется установить разрешения", Toast.LENGTH_LONG).show();
         }
+        invalidateOptionsMenu();
     }
 }

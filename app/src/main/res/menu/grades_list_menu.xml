@@ -5,6 +5,7 @@
     <item
         android:id="@+id/change_rv_layout"
         app:showAsAction="always"
-        android:title="Сетка" />
+        android:title="Сетка"
+        android:visible="false"/>
 
 </menu>

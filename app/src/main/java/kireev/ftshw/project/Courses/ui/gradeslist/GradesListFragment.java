@@ -1,36 +1,34 @@
 package kireev.ftshw.project.Courses.ui.gradeslist;
 
-import android.Manifest;
-import android.app.Activity;
 import android.content.ContentResolver;
-import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
+import kireev.ftshw.project.Courses.GradesListActivity;
 import kireev.ftshw.project.R;
 
 
 public class GradesListFragment extends Fragment {
 
 
-    public static RecyclerView rvGrades, rv;
+    public static RecyclerView rvGrades;
     public static AllContactsAdapter contactAdapter;
     ContactVO contactVO;
+    LoadContacts lc;
+    GradesListActivity context;
 
 
     public static GradesListFragment newInstance() {
@@ -41,17 +39,38 @@ public class GradesListFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return showContacts();
-    }
-
-    private RecyclerView showContacts() {
+        //View view = inflater.inflate(R.layout.grades_list_fragment, container, false);
         rvGrades = new RecyclerView(getContext());
         rvGrades.findViewById(R.id.gradeslist);
+        rvGrades.setLayoutManager(new LinearLayoutManager(getContext()));
         List<ContactVO> contactVOList = getAllContacts();
         contactAdapter = new AllContactsAdapter(contactVOList);
         rvGrades.setAdapter(contactAdapter);
-        rvGrades.setLayoutManager(new LinearLayoutManager(getContext()));
         return rvGrades;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        lc = new LoadContacts();
+        lc.subscribe(this);
+        lc.execute();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        lc.unsubscribe();
+    }
+
+    public void prepareContactsList() throws ExecutionException, InterruptedException {
+        //List<ContactVO> contactVOList = getArrayCont();
+        //contactAdapter = new AllContactsAdapter(contactVOList);
+        //rvGrades.setAdapter(contactAdapter);
+    }
+
+    private void showContacts() throws ExecutionException, InterruptedException {
+        prepareContactsList();
     }
 
     private List<ContactVO> getAllContacts() {
@@ -130,4 +149,12 @@ public class GradesListFragment extends Fragment {
         return contactVOList;
     }
 
+    public void showProgress() {
+    }
+
+    public void hideProgress() {
+    }
+
+    public void showList(ArrayList<ContactVO> contacts) {
+    }
 }
