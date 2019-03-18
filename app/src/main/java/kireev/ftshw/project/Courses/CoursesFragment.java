@@ -3,6 +3,8 @@ package kireev.ftshw.project.Courses;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Message;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
@@ -24,6 +26,8 @@ import static kireev.ftshw.project.Courses.GradesFragment.viewAvatarThree;
 public class CoursesFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener{
 
     public static SwipeRefreshLayout mSwipeRefreshLayout;
+    LooperThread looperThread;
+    private static final String BUNDLE_KEY = "handlerMsgBundle";
 
     public CoursesFragment() {
         // Required empty public constructor
@@ -43,13 +47,9 @@ public class CoursesFragment extends Fragment implements SwipeRefreshLayout.OnRe
         View v = inflater.inflate(R.layout.fragment_courses, container, false);
         mSwipeRefreshLayout = v.findViewById(R.id.swipe_container);
         mSwipeRefreshLayout.setOnRefreshListener(this);
-
+        looperThread = new LooperThread(this);
+        looperThread.start();
         return v;
-
-        /*ArrayList<CoursesItems> exampleList = new ArrayList<>();
-        exampleList.add(new CoursesItems(R.drawable.ic_courses_black_24dp, "Line 1", "Line 2"));
-        exampleList.add(new CoursesItems(R.drawable.ic_events_black_24dp, "Line 3", "Line 4"));
-        */
     }
 
     @Override
@@ -64,6 +64,8 @@ public class CoursesFragment extends Fragment implements SwipeRefreshLayout.OnRe
 
     @Override
     public void onRefresh() {
+        Message message = createMessage(String.valueOf(SetRandom.SetRandomInt()));
+        looperThread.send(message);
         pointsBadge1.setText(String.valueOf(SetRandom.SetRandomInt()));
         pointsBadge2.setText(String.valueOf(SetRandom.SetRandomInt()));
         pointsBadge3.setText(String.valueOf(SetRandom.SetRandomInt()));
@@ -71,6 +73,15 @@ public class CoursesFragment extends Fragment implements SwipeRefreshLayout.OnRe
         viewAvatarTwo.setBackgroundColor(SetRandom.SetRandomColor());
         viewAvatarThree.setBackgroundColor(SetRandom.SetRandomColor());
         mSwipeRefreshLayout.setRefreshing(false);
+    }
+
+    @NonNull
+    private Message createMessage(String value) {
+        Message message = new Message();
+        Bundle bundle = new Bundle();
+        bundle.putString(BUNDLE_KEY, value);
+        message.setData(bundle);
+        return message;
     }
 
     public interface OnFragmentInteractionListener {
