@@ -32,6 +32,7 @@ public class GradesListFragment extends Fragment {
     LoadContacts lc;
     GradesListActivity context;
     ProgressDialog pd;
+    List<ContactVO> contactVOList;
 
 
     public static GradesListFragment newInstance() {
@@ -51,9 +52,12 @@ public class GradesListFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        lc = new LoadContacts();
-        lc.subscribe(this);
-        lc.execute();
+        if (contactVOList == null){
+            lc = new LoadContacts();
+            lc.subscribe(this);
+            lc.execute();
+            Log.d("onViewCreated","contactVOList == null");
+        }
     }
 
     @Override
@@ -61,18 +65,6 @@ public class GradesListFragment extends Fragment {
         lc.unsubscribe();
         super.onDestroyView();
     }
-
-//    @Override
-//    public void onStop() {
-//        super.onStop();
-//        lc.unsubscribe();
-//    }
-//
-//    @Override
-//    public void onDestroy() {
-//        super.onDestroy();
-//        lc.unsubscribe();
-//    }
 
 
     public void showProgress() {
@@ -88,7 +80,7 @@ public class GradesListFragment extends Fragment {
     }
 
     public void showList(ArrayList<ContactVO> contacts) {
-        List<ContactVO> contactVOList = contacts;
+        contactVOList = contacts;
         contactAdapter = new AllContactsAdapter(contactVOList);
         rvGrades.setAdapter(contactAdapter);
         rvGrades.setLayoutManager(new LinearLayoutManager(getContext()));
