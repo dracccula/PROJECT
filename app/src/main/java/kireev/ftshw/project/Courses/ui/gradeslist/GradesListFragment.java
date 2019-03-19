@@ -58,17 +58,42 @@ public class GradesListFragment extends Fragment {
 
     @Override
     public void onDestroyView() {
-        super.onDestroyView();
         lc.unsubscribe();
+        super.onDestroyView();
     }
 
-    public void prepareContactsList() throws ExecutionException, InterruptedException {
+//    @Override
+//    public void onStop() {
+//        super.onStop();
+//        lc.unsubscribe();
+//    }
+//
+//    @Override
+//    public void onDestroy() {
+//        super.onDestroy();
+//        lc.unsubscribe();
+//    }
 
+
+    public void showProgress() {
+        pd = new ProgressDialog(getActivity());
+        pd.setTitle("Loading Contacts");
+        pd.setMessage("Please Wait..");
+        pd.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        pd.show();
     }
 
-    private void showContacts() throws ExecutionException, InterruptedException {
-        prepareContactsList();
+    public void hideProgress() {
+        pd.dismiss();
     }
+
+    public void showList(ArrayList<ContactVO> contacts) {
+        List<ContactVO> contactVOList = contacts;
+        contactAdapter = new AllContactsAdapter(contactVOList);
+        rvGrades.setAdapter(contactAdapter);
+        rvGrades.setLayoutManager(new LinearLayoutManager(getContext()));
+    }
+
 
     private List<ContactVO> getAllContacts() {
         final ArrayList<ContactVO> contactVOList = new ArrayList<>();
@@ -144,21 +169,5 @@ public class GradesListFragment extends Fragment {
         contactVOList.add(new ContactVO("Another Filomena Mclelland"));
         contactVOList.add(new ContactVO("Another Fumiko Bylsma"));
         return contactVOList;
-    }
-
-    public void showProgress() {
-//        pd = ProgressDialog.show(context, "Loading Contacts", "");
-//        Log.d("pd","show");
-    }
-
-    public void hideProgress() {
-        pd.cancel();
-    }
-
-    public void showList(ArrayList<ContactVO> contacts) {
-        List<ContactVO> contactVOList = contacts;
-        contactAdapter = new AllContactsAdapter(contactVOList);
-        rvGrades.setAdapter(contactAdapter);
-        rvGrades.setLayoutManager(new LinearLayoutManager(getContext()));
     }
 }

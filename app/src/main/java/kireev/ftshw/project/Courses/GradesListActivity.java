@@ -26,6 +26,7 @@ public class GradesListActivity extends AppCompatActivity {
     public static boolean mGridMode;
     private static final int REQUEST_CODE_READ_CONTACTS = 1;
     private boolean READ_CONTACTS_GRANTED = false;
+    LoadContacts lc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +36,7 @@ public class GradesListActivity extends AppCompatActivity {
         assert getSupportActionBar() != null;   //null check
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         mGridMode = false;
+        lc = new LoadContacts();
     }
 
     @Override
@@ -43,6 +45,12 @@ public class GradesListActivity extends AppCompatActivity {
         showPermissionRequest();
 //        LoadContacts lc = new LoadContacts();
 //        lc.execute();
+    }
+
+    @Override
+    protected void onDestroy() {
+        lc.unsubscribe();
+        super.onDestroy();
     }
 
     @Override

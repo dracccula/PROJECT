@@ -27,11 +27,7 @@ public class LoadContacts extends AsyncTask<Void, Void, ArrayList<ContactVO>> {
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-        pd = new ProgressDialog(fragment.getContext());
-        pd.setTitle("Loading Contacts");
-        pd.setMessage("Please Wait..");
-        pd.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        pd.show();
+        fragment.showProgress();
     }
 
     @Override
@@ -65,7 +61,7 @@ public class LoadContacts extends AsyncTask<Void, Void, ArrayList<ContactVO>> {
     protected void onPostExecute(ArrayList<ContactVO> contacts) {
         // TODO Auto-generated method stub
         super.onPostExecute(contacts);
-        pd.dismiss();
+        fragment.hideProgress();
         fragment.showList(contacts);
     }
 
