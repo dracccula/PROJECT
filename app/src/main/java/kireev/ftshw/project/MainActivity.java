@@ -15,6 +15,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import kireev.ftshw.project.Courses.CoursesFragment;
 import kireev.ftshw.project.Courses.GradesListActivity;
@@ -23,15 +24,12 @@ import kireev.ftshw.project.Profile.ProfileEditFragment;
 import kireev.ftshw.project.Profile.ProfileFragment;
 
 
-
 public class MainActivity extends AppCompatActivity
         implements ProfileFragment.OnProfileFragmentListener {
 
     public AlertDialog.Builder ad;
     public AlertDialog.Builder adEmptyFields;
-
-
-
+    private static long back_pressed;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,12 +106,18 @@ public class MainActivity extends AppCompatActivity
                 .commit();
     }
 
-    public void gradesButtonClick(View view)
-    {
+    public void gradesButtonClick(View view) {
         Log.d("gradesButtonClick", "clicked!");
         Intent intent = new Intent(this, GradesListActivity.class);
-        startActivityForResult(intent,1);
+        startActivityForResult(intent, 1);
         Log.d("gradesButtonClick", "GradesListActivity opened!");
     }
 
+    @Override
+    public void onBackPressed()
+    {
+        if (back_pressed + 2000 > System.currentTimeMillis()) super.onBackPressed();
+        else Toast.makeText(getBaseContext(), "Нажмите еще раз для выхода", Toast.LENGTH_SHORT).show();
+        back_pressed = System.currentTimeMillis();
+    }
 }

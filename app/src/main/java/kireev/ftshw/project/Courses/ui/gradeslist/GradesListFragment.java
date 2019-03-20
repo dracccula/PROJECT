@@ -69,8 +69,8 @@ public class GradesListFragment extends Fragment {
 
     public void showProgress() {
         pd = new ProgressDialog(getActivity());
-        pd.setTitle("Loading Contacts");
-        pd.setMessage("Please Wait..");
+        pd.setTitle("Загрузка контактов");
+        pd.setMessage("Ожидайте..");
         pd.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         pd.show();
     }
