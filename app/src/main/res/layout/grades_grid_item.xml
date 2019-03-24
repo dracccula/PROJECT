@@ -19,7 +19,7 @@
 
         <view
             android:id="@+id/itvIcon"
-            class="kireev.ftshw.project.InitialsRoundView"
+            class="kireev.ftshw.project.Tools.InitialsRoundView"
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:gravity="center"

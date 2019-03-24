@@ -15,4 +15,9 @@
         <item name="android:padding">50dp</item>
     </style>
 
+    <style name="TransparentActionBar" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@android:color/transparent</item>
+        <item name="windowActionBarOverlay">true</item>
+    </style>
+
 </resources>

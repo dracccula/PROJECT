@@ -8,7 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import kireev.ftshw.project.InitialsRoundView;
+import kireev.ftshw.project.Tools.InitialsRoundView;
 import kireev.ftshw.project.R;
 
 public class GradesFragment extends Fragment {

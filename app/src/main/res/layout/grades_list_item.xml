@@ -12,7 +12,7 @@
         android:layout_gravity="center"
         android:padding="8dp">
 
-        <kireev.ftshw.project.InitialsRoundView
+        <kireev.ftshw.project.Tools.InitialsRoundView
             android:id="@+id/itvIcon"
             android:layout_width="0dp"
             android:layout_height="60dp"

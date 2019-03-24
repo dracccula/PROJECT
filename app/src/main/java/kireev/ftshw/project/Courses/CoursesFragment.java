@@ -28,8 +28,6 @@ public class CoursesFragment extends Fragment implements SwipeRefreshLayout.OnRe
 
     private SwipeRefreshLayout mSwipeRefreshLayout;
 
-    private LooperThread looperThread;
-
     public CoursesFragment() {
         // Required empty public constructor
     }
@@ -37,14 +35,11 @@ public class CoursesFragment extends Fragment implements SwipeRefreshLayout.OnRe
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         ((MainActivity) getActivity())
                 .setActionBarTitle(getString(R.string.title_courses));
         View v = inflater.inflate(R.layout.fragment_courses, container, false);
         mSwipeRefreshLayout = v.findViewById(R.id.swipe_container);
         mSwipeRefreshLayout.setOnRefreshListener(this);
-//        looperThread = new LooperThread();
-//        looperThread.start();
         return v;
     }
 
@@ -55,11 +50,6 @@ public class CoursesFragment extends Fragment implements SwipeRefreshLayout.OnRe
 
     private void postRunnable(final int id1, final int id2, final int id3) {
         tryToSleepForTwoSecondsInNewThread(id1, id2, id3);
-//        looperThread.post(new Runnable() {
-//            @Override
-//            public void run() {
-//            }
-//        });
     }
 
     private void tryToSleepForTwoSecondsInNewThread(final int id1, final int id2, final int id3) {
@@ -92,26 +82,7 @@ public class CoursesFragment extends Fragment implements SwipeRefreshLayout.OnRe
                 messages.add(String.valueOf(SetRandom.SetRandomInt()));
                 Message message = handler.obtainMessage(42, messages);
                 handler.sendMessage(message);
-//                logMessageInUiThread(id1, id2, id3);
             }
         }).start();
-    }
-
-    private void logMessageInUiThread(final int id1, final int id2, final int id3) {
-        final String message1 = String.valueOf(id1);
-        final String message2 = String.valueOf(id2);
-        final String message3 = String.valueOf(id3);
-        getActivity().runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                pointsBadge1.setText(message1);
-                pointsBadge2.setText(message2);
-                pointsBadge3.setText(message3);
-                viewAvatarOne.setBackgroundColor(SetRandom.SetRandomColor());
-                viewAvatarTwo.setBackgroundColor(SetRandom.SetRandomColor());
-                viewAvatarThree.setBackgroundColor(SetRandom.SetRandomColor());
-                mSwipeRefreshLayout.setRefreshing(false);
-            }
-        });
     }
 }

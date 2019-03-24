@@ -1,25 +1,23 @@
 package kireev.ftshw.project;
 
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import kireev.ftshw.project.Courses.CoursesFragment;
 import kireev.ftshw.project.Courses.GradesListActivity;
 import kireev.ftshw.project.Events.EventsFragment;
+import kireev.ftshw.project.Profile.AnonimProfileFragment;
+import kireev.ftshw.project.Profile.LoginActivity;
 import kireev.ftshw.project.Profile.ProfileEditFragment;
 import kireev.ftshw.project.Profile.ProfileFragment;
 
@@ -31,6 +29,8 @@ public class MainActivity extends AppCompatActivity
     public AlertDialog.Builder adEmptyFields;
     private static long back_pressed;
 
+    boolean IS_AUTORIZED = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,9 +41,14 @@ public class MainActivity extends AppCompatActivity
 
         //I added this if statement to keep the selected fragment when rotating the device
         if (savedInstanceState == null) {
-            navigation.getMenu().getItem(1).setChecked(true);
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                    new CoursesFragment()).commitNow();
+            navigation.getMenu().getItem(2).setChecked(true);
+            if (IS_AUTORIZED) {
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new ProfileFragment()).commitNow();
+            } else {
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new AnonimProfileFragment()).commitNow();
+            }
         }
 
         ad = new AlertDialog.Builder(this);
@@ -84,8 +89,13 @@ public class MainActivity extends AppCompatActivity
                     selectedFragment = new CoursesFragment();
                     break;
                 case R.id.navigation_profile:
-                    selectedFragment = new ProfileFragment();
-                    break;
+                    if (IS_AUTORIZED) {
+                        selectedFragment = new ProfileFragment();
+                        break;
+                    } else {
+                        selectedFragment = new AnonimProfileFragment();
+                        break;
+                    }
             }
 
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
@@ -108,16 +118,20 @@ public class MainActivity extends AppCompatActivity
 
     public void gradesButtonClick(View view) {
         Log.d("gradesButtonClick", "clicked!");
-        Intent intent = new Intent(this, GradesListActivity.class);
-        startActivityForResult(intent, 1);
+        startActivityForResult(new Intent(this, GradesListActivity.class), 1);
         Log.d("gradesButtonClick", "GradesListActivity opened!");
     }
 
+    public void openLoginActivity(View view) {
+        Log.d("openLoginActivity", "clicked!");
+        startActivity(new Intent(this, LoginActivity.class));
+    }
+
     @Override
-    public void onBackPressed()
-    {
+    public void onBackPressed() {
         if (back_pressed + 2000 > System.currentTimeMillis()) super.onBackPressed();
-        else Toast.makeText(getBaseContext(), "Нажмите еще раз для выхода", Toast.LENGTH_SHORT).show();
+        else
+            Toast.makeText(getBaseContext(), "Нажмите еще раз для выхода", Toast.LENGTH_SHORT).show();
         back_pressed = System.currentTimeMillis();
     }
 }

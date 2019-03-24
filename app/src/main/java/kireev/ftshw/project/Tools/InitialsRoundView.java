@@ -1,4 +1,4 @@
-package kireev.ftshw.project;
+package kireev.ftshw.project.Tools;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -11,6 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.TextView;
+
+import kireev.ftshw.project.R;
 
 
 public class InitialsRoundView extends FrameLayout {

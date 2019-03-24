@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import kireev.ftshw.project.InitialsRoundView;
+import kireev.ftshw.project.Tools.InitialsRoundView;
 import kireev.ftshw.project.R;
 import kireev.ftshw.project.TempTools.SetRandom;
 

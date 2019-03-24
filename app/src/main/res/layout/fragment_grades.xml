@@ -62,7 +62,7 @@
 
                 <view
                     android:id="@+id/viewAvatarOne"
-                    class="kireev.ftshw.project.InitialsRoundView"
+                    class="kireev.ftshw.project.Tools.InitialsRoundView"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:gravity="center"
@@ -103,7 +103,7 @@
 
                 <view
                     android:id="@+id/viewAvatarTwo"
-                    class="kireev.ftshw.project.InitialsRoundView"
+                    class="kireev.ftshw.project.Tools.InitialsRoundView"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:gravity="center"
@@ -144,7 +144,7 @@
 
                 <view
                     android:id="@+id/viewAvatarThree"
-                    class="kireev.ftshw.project.InitialsRoundView"
+                    class="kireev.ftshw.project.Tools.InitialsRoundView"
                     android:layout_width="80dp"
                     android:layout_height="80dp"
                     android:gravity="center"
