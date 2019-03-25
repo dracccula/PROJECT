@@ -16,6 +16,7 @@
         android:layout_margin="50dp"
         android:background="@color/colorPrimaryDark"
         android:text="@string/profile_not_autorized_button"
+        android:onClick="autorization"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -5,11 +5,14 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
 public class Connector {
-    static Context mContext;
 
-    public static boolean isOnline() {
+    public Connector() {
+    }
+
+
+    public static boolean isOnline(Context context) {
         ConnectivityManager cm =
-                (ConnectivityManager) mContext.getSystemService(Context.CONNECTIVITY_SERVICE);
+                (ConnectivityManager) context.getSystemService(context.CONNECTIVITY_SERVICE);
         NetworkInfo netInfo = cm.getActiveNetworkInfo();
         return netInfo != null && netInfo.isConnectedOrConnecting();
     }
