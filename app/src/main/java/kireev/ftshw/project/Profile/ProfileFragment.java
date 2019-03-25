@@ -7,13 +7,15 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 
 import kireev.ftshw.project.MainActivity;
-import kireev.ftshw.project.Profile.ProfileEditFragment;
 import kireev.ftshw.project.R;
 
 import static kireev.ftshw.project.Profile.ProfileEditFragment.STUDENT_NAME;
@@ -30,6 +32,12 @@ public class ProfileFragment extends Fragment {
 
     public ProfileFragment() {
         // Required empty public constructor
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
     }
 
     @Override
@@ -79,6 +87,13 @@ public class ProfileFragment extends Fragment {
     public void onResume() {
         super.onResume();
         loadText();
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.profile_menu, menu);
+        MenuItem item = menu.findItem(R.id.logout);
+        item.setVisible(true);
     }
 
     public interface OnProfileFragmentListener {

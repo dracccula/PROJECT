@@ -10,11 +10,60 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="eb2a1b0b-2cc6-4107-91bc-d2d5583a2741" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_exit_to_app_black_24dp.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/menu/profile_menu.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Network/Ser/SignIn.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Network/Ser/SignInAPI.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Network/Ser/SignInResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Network/Urls.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__android_arch_core_runtime_1_1_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__android_arch_core_runtime_1_1_1_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__android_arch_lifecycle_extensions_1_1_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__android_arch_lifecycle_extensions_1_1_1_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__android_arch_lifecycle_livedata_1_1_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__android_arch_lifecycle_livedata_1_1_1_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__android_arch_lifecycle_livedata_core_1_1_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__android_arch_lifecycle_livedata_core_1_1_1_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__android_arch_lifecycle_runtime_1_1_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__android_arch_lifecycle_runtime_1_1_1_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__android_arch_lifecycle_viewmodel_1_1_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__android_arch_lifecycle_viewmodel_1_1_1_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_animated_vector_drawable_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_animated_vector_drawable_28_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_appcompat_v7_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_appcompat_v7_28_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_asynclayoutinflater_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_asynclayoutinflater_28_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_cardview_v7_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_cardview_v7_28_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_constraint_constraint_layout_1_1_3_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_constraint_constraint_layout_1_1_3_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_coordinatorlayout_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_coordinatorlayout_28_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_cursoradapter_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_cursoradapter_28_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_customview_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_customview_28_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_design_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_design_28_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_documentfile_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_documentfile_28_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_drawerlayout_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_drawerlayout_28_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_interpolator_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_interpolator_28_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_loader_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_loader_28_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_localbroadcastmanager_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_localbroadcastmanager_28_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_print_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_print_28_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_recyclerview_v7_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_recyclerview_v7_28_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_slidingpanelayout_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_slidingpanelayout_28_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_support_compat_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_support_compat_28_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_support_core_ui_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_support_core_ui_28_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_support_core_utils_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_support_core_utils_28_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_support_fragment_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_support_fragment_28_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_support_media_compat_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_support_media_compat_28_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_support_v4_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_support_v4_28_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_support_vector_drawable_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_support_vector_drawable_28_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_swiperefreshlayout_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_swiperefreshlayout_28_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_test_espresso_espresso_core_3_0_2_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_test_espresso_espresso_core_3_0_2_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_test_espresso_espresso_idling_resource_3_0_2_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_test_espresso_espresso_idling_resource_3_0_2_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_test_monitor_1_0_2_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_test_monitor_1_0_2_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_test_runner_1_0_2_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_test_runner_1_0_2_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_transition_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_transition_28_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_versionedparcelable_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_versionedparcelable_28_0_0_aar.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_viewpager_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_viewpager_28_0_0_aar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Courses/CoursesFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Courses/CoursesFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Events/EventsFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Events/EventsFragment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Network/Connector.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Network/Connector.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Profile/AnonimProfileFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Profile/AnonimProfileFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Profile/LoginActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Profile/LoginActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Profile/ProfileEditFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Profile/ProfileEditFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Profile/ProfileFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Profile/ProfileFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/local.properties" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -68,41 +117,43 @@
     <session id="1222489501">
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
+          <entry key="dummy" value="7" />
           <entry key="gradle" value="1" />
-          <entry key="java" value="649" />
+          <entry key="java" value="1210" />
           <entry key="txt" value="57" />
-          <entry key="xml" value="771" />
+          <entry key="xml" value="833" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Groovy" value="1" />
-          <entry key="JAVA" value="649" />
-          <entry key="PLAIN_TEXT" value="57" />
-          <entry key="XML" value="771" />
+          <entry key="JAVA" value="1210" />
+          <entry key="PLAIN_TEXT" value="64" />
+          <entry key="XML" value="833" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="1" />
+          <entry key="project.closed" value="2" />
           <entry key="project.open.time.6" value="1" />
-          <entry key="project.opened" value="1" />
+          <entry key="project.open.time.8" value="1" />
+          <entry key="project.opened" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="class" value="2" />
           <entry key="gradle" value="1" />
-          <entry key="java" value="16" />
-          <entry key="xml" value="22" />
+          <entry key="java" value="34" />
+          <entry key="xml" value="24" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CLASS" value="2" />
           <entry key="Groovy" value="1" />
-          <entry key="JAVA" value="16" />
-          <entry key="XML" value="22" />
+          <entry key="JAVA" value="34" />
+          <entry key="XML" value="24" />
         </counts>
       </usages-collector>
     </session>
@@ -110,97 +161,190 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Courses/GradesListActivity.java">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Network/Connector.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="71">
-              <caret line="55" column="4" selection-start-line="55" selection-start-column="4" selection-end-line="66" selection-end-column="5" />
+            <state relative-caret-position="346">
+              <caret line="35" column="33" selection-start-line="35" selection-start-column="33" selection-end-line="35" selection-end-column="33" />
               <folding>
-                <element signature="e#3162#3163#0" expanded="true" />
-                <element signature="e#3201#3202#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/MainActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="34" column="32" selection-start-line="34" selection-start-column="32" selection-end-line="34" selection-end-column="32" />
-              <folding>
-                <element signature="e#5152#5153#0" expanded="true" />
-                <element signature="e#5205#5206#0" expanded="true" />
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/profile_menu.xml">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="29" selection-start-line="8" selection-start-column="29" selection-end-line="8" selection-end-column="29" />
+            <state relative-caret-position="180">
+              <caret line="34" column="32" selection-start-line="34" selection-start-column="32" selection-end-line="34" selection-end-column="32" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Network/Ser/SignInAPI.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="150">
+              <caret line="10" column="32" selection-start-line="10" selection-start-column="32" selection-end-line="10" selection-end-column="32" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Network/Ser/SignIn.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="270">
+              <caret line="18" column="1" selection-start-line="18" selection-start-column="1" selection-end-line="18" selection-end-column="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Network/Urls.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="45">
+              <caret line="3" column="60" selection-start-line="3" selection-start-column="60" selection-end-line="3" selection-end-column="60" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_login_old.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="165">
+              <caret line="11" column="19" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="19" />
+            </state>
+          </provider>
+          <provider editor-type-id="android-designer2" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Profile/LoginActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-507">
+              <caret line="53" column="57" selection-start-line="53" selection-start-column="57" selection-end-line="53" selection-end-column="57" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-102">
+              <caret line="36" column="41" selection-start-line="36" selection-start-column="41" selection-end-line="36" selection-end-column="41" />
             </state>
           </provider>
           <provider editor-type-id="android-designer2" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Profile/ProfileFragment.java">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Network/Ser/SignInResponse.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="40" column="70" selection-start-line="40" selection-start-column="70" selection-end-line="40" selection-end-column="70" />
-              <folding>
-                <element signature="e#1369#1402#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Network/Connector.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="17" column="5" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
+            <state relative-caret-position="-2029">
+              <caret column="41" selection-start-column="41" selection-end-column="41" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#2160#2161#0" expanded="true" />
+                <element signature="e#2191#2192#0" expanded="true" />
+                <element signature="e#2239#2240#0" expanded="true" />
+                <element signature="e#2279#2280#0" expanded="true" />
+                <element signature="e#2311#2312#0" expanded="true" />
+                <element signature="e#2339#2340#0" expanded="true" />
+                <element signature="e#2381#2382#0" expanded="true" />
+                <element signature="e#2415#2416#0" expanded="true" />
+                <element signature="e#2451#2452#0" expanded="true" />
+                <element signature="e#2483#2484#0" expanded="true" />
+                <element signature="e#2533#2534#0" expanded="true" />
+                <element signature="e#2575#2576#0" expanded="true" />
+                <element signature="e#2610#2611#0" expanded="true" />
+                <element signature="e#2641#2642#0" expanded="true" />
+                <element signature="e#2689#2690#0" expanded="true" />
+                <element signature="e#2729#2730#0" expanded="true" />
+                <element signature="e#2766#2767#0" expanded="true" />
+                <element signature="e#2799#2800#0" expanded="true" />
+                <element signature="e#2851#2852#0" expanded="true" />
+                <element signature="e#2895#2896#0" expanded="true" />
+                <element signature="e#2933#2934#0" expanded="true" />
+                <element signature="e#2967#2968#0" expanded="true" />
+                <element signature="e#3021#3022#0" expanded="true" />
+                <element signature="e#3067#3068#0" expanded="true" />
+                <element signature="e#3104#3105#0" expanded="true" />
+                <element signature="e#3137#3138#0" expanded="true" />
+                <element signature="e#3189#3190#0" expanded="true" />
+                <element signature="e#3233#3234#0" expanded="true" />
+                <element signature="e#3269#3270#0" expanded="true" />
+                <element signature="e#3300#3301#0" expanded="true" />
+                <element signature="e#3349#3350#0" expanded="true" />
+                <element signature="e#3389#3390#0" expanded="true" />
+                <element signature="e#3426#3427#0" expanded="true" />
+                <element signature="e#3459#3460#0" expanded="true" />
+                <element signature="e#3511#3512#0" expanded="true" />
+                <element signature="e#3555#3556#0" expanded="true" />
+                <element signature="e#3593#3594#0" expanded="true" />
+                <element signature="e#3627#3628#0" expanded="true" />
+                <element signature="e#3681#3682#0" expanded="true" />
+                <element signature="e#3727#3728#0" expanded="true" />
+                <element signature="e#3760#3761#0" expanded="true" />
+                <element signature="e#3789#3790#0" expanded="true" />
+                <element signature="e#3833#3834#0" expanded="true" />
+                <element signature="e#3869#3870#0" expanded="true" />
+                <element signature="e#3902#3903#0" expanded="true" />
+                <element signature="e#3931#3932#0" expanded="true" />
+                <element signature="e#3975#3976#0" expanded="true" />
+                <element signature="e#4011#4012#0" expanded="true" />
+                <element signature="e#4055#4056#0" expanded="true" />
+                <element signature="e#4094#4095#0" expanded="true" />
+                <element signature="e#4252#4253#0" expanded="true" />
+                <element signature="e#4285#4286#0" expanded="true" />
+                <element signature="e#4337#4338#0" expanded="true" />
+                <element signature="e#4381#4382#0" expanded="true" />
+                <element signature="e#4415#4416#0" expanded="true" />
+                <element signature="e#4445#4446#0" expanded="true" />
+                <element signature="e#4491#4492#0" expanded="true" />
+                <element signature="e#4529#4530#0" expanded="true" />
+                <element signature="e#4577#4578#0" expanded="true" />
+                <element signature="e#4620#4621#0" expanded="true" />
+                <element signature="e#4789#4790#0" expanded="true" />
+                <element signature="e#4817#4818#0" expanded="true" />
+                <element signature="e#4859#4860#0" expanded="true" />
+                <element signature="e#4893#4894#0" expanded="true" />
+                <element signature="e#4930#4931#0" expanded="true" />
+                <element signature="e#4963#4964#0" expanded="true" />
+                <element signature="e#5015#5016#0" expanded="true" />
+                <element signature="e#5059#5060#0" expanded="true" />
+                <element signature="e#5097#5098#0" expanded="true" />
+                <element signature="e#5131#5132#0" expanded="true" />
+                <element signature="e#5185#5186#0" expanded="true" />
+                <element signature="e#5231#5232#0" expanded="true" />
+                <element signature="e#5264#5265#0" expanded="true" />
+                <element signature="e#5293#5294#0" expanded="true" />
+                <element signature="e#5337#5338#0" expanded="true" />
+                <element signature="e#5373#5374#0" expanded="true" />
+                <element signature="e#5419#5420#0" expanded="true" />
+                <element signature="e#5455#5456#0" expanded="true" />
+                <element signature="e#5519#5520#0" expanded="true" />
+                <element signature="e#5569#5570#0" expanded="true" />
+                <element signature="e#5599#5600#0" expanded="true" />
+                <element signature="e#5624#5625#0" expanded="true" />
+                <element signature="e#5661#5662#0" expanded="true" />
+                <element signature="e#5689#5690#0" expanded="true" />
+                <element signature="e#5722#5723#0" expanded="true" />
+                <element signature="e#5750#5751#0" expanded="true" />
+                <element signature="e#5793#5794#0" expanded="true" />
+                <element signature="e#5827#5828#0" expanded="true" />
+                <element signature="e#5860#5861#0" expanded="true" />
+                <element signature="e#5889#5890#0" expanded="true" />
+                <element signature="e#5933#5934#0" expanded="true" />
+                <element signature="e#5969#5970#0" expanded="true" />
               </folding>
             </state>
           </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Profile/AnonimProfileFragment.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="435">
-              <caret line="29" column="70" selection-start-line="29" selection-start-column="70" selection-end-line="29" selection-end-column="70" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Profile/LoginActivity.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="242">
-              <caret line="38" column="24" selection-start-line="38" selection-start-column="24" selection-end-line="38" selection-end-column="24" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="465">
-              <caret line="31" column="12" selection-start-line="31" selection-start-column="12" selection-end-line="31" selection-end-column="44" />
-            </state>
-          </provider>
-          <provider editor-type-id="android-manifest" />
         </entry>
       </file>
     </leaf>
@@ -219,38 +363,42 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Courses/ui/gradeslist/GradesListFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Courses/CoursesFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_anonim_profile.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/LoginActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/styles.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/app/build.gradle" />
-        <option value="$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Profile/AnonimProfileFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Network/Connector.java" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Profile/LoginActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/drawable/ic_exit_to_app_black_24dp.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/menu/profile_menu.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Tools/Constants.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Network/Constants.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Events/EventsFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Courses/CoursesFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Profile/ProfileEditFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Profile/ProfileFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Network/FintechApi.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Profile/AnonimProfileFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Network/Ser/SignIn.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Network/Connector.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Network/Ser/SignInAPI.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Network/Ser/SignInResponse.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/MainActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Network/Urls.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Profile/LoginActivity.java" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1920" />
-    <option name="y" value="23" />
-    <option name="width" value="1920" />
-    <option name="height" value="1177" />
+  <component name="ProjectFrameBounds" fullScreen="true">
+    <option name="width" value="1440" />
+    <option name="height" value="900" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane" />
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="AndroidView">
         <subPane>
           <expand>
@@ -274,7 +422,15 @@
               <item name="app" type="feadf853:AndroidModuleNode" />
               <item name="java" type="edd41e36:AndroidSourceTypeNode" />
               <item name="project" type="cbb59c9e:AndroidPsiDirectoryNode" />
-              <item name="Courses" type="462c0819:PsiDirectoryNode" />
+              <item name="Network" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="PROJECT" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="project" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="Network" type="462c0819:PsiDirectoryNode" />
+              <item name="Ser" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="PROJECT" type="1abcf292:AndroidViewProjectNode" />
@@ -286,24 +442,28 @@
             <path>
               <item name="PROJECT" type="1abcf292:AndroidViewProjectNode" />
               <item name="app" type="feadf853:AndroidModuleNode" />
+              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
+              <item name="project" type="cbb59c9e:AndroidPsiDirectoryNode" />
+              <item name="Tools" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="PROJECT" type="1abcf292:AndroidViewProjectNode" />
+              <item name="app" type="feadf853:AndroidModuleNode" />
               <item name="res" type="d4f16f75:AndroidResFolderNode" />
             </path>
             <path>
               <item name="PROJECT" type="1abcf292:AndroidViewProjectNode" />
               <item name="app" type="feadf853:AndroidModuleNode" />
               <item name="res" type="d4f16f75:AndroidResFolderNode" />
-              <item name="drawable" type="ddeffd01:AndroidResFolderTypeNode" />
-            </path>
-            <path>
-              <item name="PROJECT" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="res" type="d4f16f75:AndroidResFolderNode" />
-              <item name="menu" type="ddeffd01:AndroidResFolderTypeNode" />
+              <item name="layout" type="ddeffd01:AndroidResFolderTypeNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="ProjectPane" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -318,6 +478,11 @@
     </key>
     <key name="android.template.parentActivityClass">
       <recent name="" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="kireev.ftshw.project.Network.Ser" />
+      <recent name="kireev.ftshw.project.Tools" />
+      <recent name="kireev.ftshw.project.Network" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/app/src/main/res/menu" />
@@ -411,25 +576,24 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="1920" y="23" width="1920" height="1177" extended-state="6" />
-    <editor active="true" />
+    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <layout>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
       <window_info id="Capture Tool" order="1" />
-      <window_info content_ui="combo" id="Project" order="2" sideWeight="0.49551168" visible="true" weight="0.328541" />
+      <window_info content_ui="combo" id="Project" order="2" sideWeight="0.49551168" visible="true" weight="0.32761088" />
       <window_info id="Structure" order="3" side_tool="true" />
       <window_info id="Build Variants" order="4" side_tool="true" />
       <window_info id="Image Layers" order="5" />
       <window_info id="Designer" order="6" />
       <window_info id="Favorites" order="7" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Logcat" order="0" visible="true" weight="0.3281106" />
+      <window_info active="true" anchor="bottom" id="Logcat" order="0" visible="true" weight="0.32650602" />
       <window_info anchor="bottom" id="TODO" order="1" />
       <window_info anchor="bottom" id="Android Profiler" order="2" weight="0.3299539" />
       <window_info anchor="bottom" id="Debug" order="3" />
       <window_info anchor="bottom" id="Run" order="4" />
       <window_info anchor="bottom" id="Event Log" order="5" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="6" />
-      <window_info anchor="bottom" id="Build" order="7" weight="0.3281106" />
+      <window_info anchor="bottom" id="Build" order="7" weight="0.29036143" />
       <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info anchor="bottom" id="Find" order="9" weight="0.32891566" />
       <window_info anchor="right" id="Device File Explorer" order="0" side_tool="true" />
@@ -483,14 +647,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_login_old.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="19" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="19" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_anonim_profile.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="347">
@@ -501,16 +657,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/LoginActivity.java" />
     <entry file="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/appcompat-v7-28.0.0.aar/9d507ed3b23b5ad5e76029f78d296ad9/jars/classes.jar!/android/support/v7/app/ActionBar.class" />
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Profile/ProfileEditFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="44" column="73" selection-start-line="44" selection-start-column="35" selection-end-line="44" selection-end-column="73" />
-          <folding>
-            <element signature="e#1369#1407#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/values/styles.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -539,70 +685,21 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Courses/CoursesFragment.java">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/ic_exit_to_app_black_24dp.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-39">
-          <caret line="16" column="52" selection-start-line="16" selection-start-column="52" selection-end-line="16" selection-end-column="52" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Profile/AnonimProfileFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="29" column="70" selection-start-line="29" selection-start-column="70" selection-end-line="29" selection-end-column="70" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="31" column="12" selection-start-line="31" selection-start-column="12" selection-end-line="31" selection-end-column="44" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-manifest" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Profile/LoginActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="242">
-          <caret line="38" column="24" selection-start-line="38" selection-start-column="24" selection-end-line="38" selection-end-column="24" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Network/Connector.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="5" selection-start-line="17" selection-start-column="5" selection-end-line="17" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="90">
+          <caret line="6" column="34" selection-start-line="6" selection-start-column="34" selection-end-line="6" selection-end-column="34" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Courses/GradesListActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="71">
+        <state relative-caret-position="555">
           <caret line="55" column="4" selection-start-line="55" selection-start-column="4" selection-end-line="66" selection-end-column="5" />
           <folding>
             <element signature="e#3162#3163#0" expanded="true" />
             <element signature="e#3201#3202#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/ic_exit_to_app_black_24dp.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="34" selection-start-line="6" selection-start-column="34" selection-end-line="6" selection-end-column="34" />
         </state>
       </provider>
     </entry>
@@ -614,12 +711,185 @@
       </provider>
       <provider editor-type-id="android-designer2" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider editor-type-id="android-manifest" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="31" column="12" selection-start-line="31" selection-start-column="12" selection-end-line="31" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.12.0/2647551116856a6403d1a21e236837a7501c08a8/okhttp-3.12.0-sources.jar!/okhttp3/OkHttpClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="305" column="13" selection-start-line="305" selection-start-column="13" selection-end-line="305" selection-end-column="13" />
+          <folding>
+            <element signature="e#11485#11486#0" expanded="true" />
+            <element signature="e#11516#11517#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Courses/CoursesFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="431">
+          <caret line="60" column="5" selection-start-line="60" selection-start-column="5" selection-end-line="60" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Events/EventsFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="106">
+          <caret line="28" column="33" lean-forward="true" selection-start-line="28" selection-start-column="33" selection-end-line="28" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Profile/ProfileEditFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1099">
+          <caret line="101" column="5" selection-start-line="101" selection-start-column="5" selection-end-line="101" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Profile/ProfileFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="40" column="70" selection-start-line="40" selection-start-column="70" selection-end-line="40" selection-end-column="70" />
+        <state relative-caret-position="1065">
+          <caret line="95" column="28" selection-start-line="95" selection-start-column="28" selection-end-line="95" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Profile/AnonimProfileFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="86">
+          <caret line="21" column="53" selection-start-line="21" selection-start-column="53" selection-end-line="21" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Network/Ser/SignIn.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="1" selection-start-line="18" selection-start-column="1" selection-end-line="18" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Network/FintechApi.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
           <folding>
-            <element signature="e#1369#1402#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Network/Ser/SignInAPI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="32" selection-start-line="10" selection-start-column="32" selection-end-line="10" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Network/Ser/SignInResponse.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2029">
+          <caret column="41" selection-start-column="41" selection-end-column="41" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2160#2161#0" expanded="true" />
+            <element signature="e#2191#2192#0" expanded="true" />
+            <element signature="e#2239#2240#0" expanded="true" />
+            <element signature="e#2279#2280#0" expanded="true" />
+            <element signature="e#2311#2312#0" expanded="true" />
+            <element signature="e#2339#2340#0" expanded="true" />
+            <element signature="e#2381#2382#0" expanded="true" />
+            <element signature="e#2415#2416#0" expanded="true" />
+            <element signature="e#2451#2452#0" expanded="true" />
+            <element signature="e#2483#2484#0" expanded="true" />
+            <element signature="e#2533#2534#0" expanded="true" />
+            <element signature="e#2575#2576#0" expanded="true" />
+            <element signature="e#2610#2611#0" expanded="true" />
+            <element signature="e#2641#2642#0" expanded="true" />
+            <element signature="e#2689#2690#0" expanded="true" />
+            <element signature="e#2729#2730#0" expanded="true" />
+            <element signature="e#2766#2767#0" expanded="true" />
+            <element signature="e#2799#2800#0" expanded="true" />
+            <element signature="e#2851#2852#0" expanded="true" />
+            <element signature="e#2895#2896#0" expanded="true" />
+            <element signature="e#2933#2934#0" expanded="true" />
+            <element signature="e#2967#2968#0" expanded="true" />
+            <element signature="e#3021#3022#0" expanded="true" />
+            <element signature="e#3067#3068#0" expanded="true" />
+            <element signature="e#3104#3105#0" expanded="true" />
+            <element signature="e#3137#3138#0" expanded="true" />
+            <element signature="e#3189#3190#0" expanded="true" />
+            <element signature="e#3233#3234#0" expanded="true" />
+            <element signature="e#3269#3270#0" expanded="true" />
+            <element signature="e#3300#3301#0" expanded="true" />
+            <element signature="e#3349#3350#0" expanded="true" />
+            <element signature="e#3389#3390#0" expanded="true" />
+            <element signature="e#3426#3427#0" expanded="true" />
+            <element signature="e#3459#3460#0" expanded="true" />
+            <element signature="e#3511#3512#0" expanded="true" />
+            <element signature="e#3555#3556#0" expanded="true" />
+            <element signature="e#3593#3594#0" expanded="true" />
+            <element signature="e#3627#3628#0" expanded="true" />
+            <element signature="e#3681#3682#0" expanded="true" />
+            <element signature="e#3727#3728#0" expanded="true" />
+            <element signature="e#3760#3761#0" expanded="true" />
+            <element signature="e#3789#3790#0" expanded="true" />
+            <element signature="e#3833#3834#0" expanded="true" />
+            <element signature="e#3869#3870#0" expanded="true" />
+            <element signature="e#3902#3903#0" expanded="true" />
+            <element signature="e#3931#3932#0" expanded="true" />
+            <element signature="e#3975#3976#0" expanded="true" />
+            <element signature="e#4011#4012#0" expanded="true" />
+            <element signature="e#4055#4056#0" expanded="true" />
+            <element signature="e#4094#4095#0" expanded="true" />
+            <element signature="e#4252#4253#0" expanded="true" />
+            <element signature="e#4285#4286#0" expanded="true" />
+            <element signature="e#4337#4338#0" expanded="true" />
+            <element signature="e#4381#4382#0" expanded="true" />
+            <element signature="e#4415#4416#0" expanded="true" />
+            <element signature="e#4445#4446#0" expanded="true" />
+            <element signature="e#4491#4492#0" expanded="true" />
+            <element signature="e#4529#4530#0" expanded="true" />
+            <element signature="e#4577#4578#0" expanded="true" />
+            <element signature="e#4620#4621#0" expanded="true" />
+            <element signature="e#4789#4790#0" expanded="true" />
+            <element signature="e#4817#4818#0" expanded="true" />
+            <element signature="e#4859#4860#0" expanded="true" />
+            <element signature="e#4893#4894#0" expanded="true" />
+            <element signature="e#4930#4931#0" expanded="true" />
+            <element signature="e#4963#4964#0" expanded="true" />
+            <element signature="e#5015#5016#0" expanded="true" />
+            <element signature="e#5059#5060#0" expanded="true" />
+            <element signature="e#5097#5098#0" expanded="true" />
+            <element signature="e#5131#5132#0" expanded="true" />
+            <element signature="e#5185#5186#0" expanded="true" />
+            <element signature="e#5231#5232#0" expanded="true" />
+            <element signature="e#5264#5265#0" expanded="true" />
+            <element signature="e#5293#5294#0" expanded="true" />
+            <element signature="e#5337#5338#0" expanded="true" />
+            <element signature="e#5373#5374#0" expanded="true" />
+            <element signature="e#5419#5420#0" expanded="true" />
+            <element signature="e#5455#5456#0" expanded="true" />
+            <element signature="e#5519#5520#0" expanded="true" />
+            <element signature="e#5569#5570#0" expanded="true" />
+            <element signature="e#5599#5600#0" expanded="true" />
+            <element signature="e#5624#5625#0" expanded="true" />
+            <element signature="e#5661#5662#0" expanded="true" />
+            <element signature="e#5689#5690#0" expanded="true" />
+            <element signature="e#5722#5723#0" expanded="true" />
+            <element signature="e#5750#5751#0" expanded="true" />
+            <element signature="e#5793#5794#0" expanded="true" />
+            <element signature="e#5827#5828#0" expanded="true" />
+            <element signature="e#5860#5861#0" expanded="true" />
+            <element signature="e#5889#5890#0" expanded="true" />
+            <element signature="e#5933#5934#0" expanded="true" />
+            <element signature="e#5969#5970#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -628,9 +898,48 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="34" column="32" selection-start-line="34" selection-start-column="32" selection-end-line="34" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Network/Connector.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="346">
+          <caret line="35" column="33" selection-start-line="35" selection-start-column="33" selection-end-line="35" selection-end-column="33" />
           <folding>
-            <element signature="e#5152#5153#0" expanded="true" />
-            <element signature="e#5205#5206#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Network/Urls.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="60" selection-start-line="3" selection-start-column="60" selection-end-line="3" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_login_old.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="19" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="19" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-102">
+          <caret line="36" column="41" selection-start-line="36" selection-start-column="41" selection-end-line="36" selection-end-column="41" />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Profile/LoginActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-507">
+          <caret line="53" column="57" selection-start-line="53" selection-start-column="57" selection-end-line="53" selection-end-column="57" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

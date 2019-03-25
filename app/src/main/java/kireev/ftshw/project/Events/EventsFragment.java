@@ -5,6 +5,9 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -23,6 +26,7 @@ public class EventsFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setHasOptionsMenu(false);
     }
 
     @Override
@@ -42,6 +46,13 @@ public class EventsFragment extends Fragment {
     @Override
     public void onDetach() {
         super.onDetach();
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.profile_menu, menu);
+        MenuItem item = menu.findItem(R.id.logout);
+        item.setVisible(false);
     }
 
     public interface OnFragmentInteractionListener {

@@ -3,9 +3,13 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -33,6 +37,12 @@ public class CoursesFragment extends Fragment implements SwipeRefreshLayout.OnRe
     }
 
     @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(false);
+    }
+
+    @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         ((MainActivity) getActivity())
@@ -41,6 +51,13 @@ public class CoursesFragment extends Fragment implements SwipeRefreshLayout.OnRe
         mSwipeRefreshLayout = v.findViewById(R.id.swipe_container);
         mSwipeRefreshLayout.setOnRefreshListener(this);
         return v;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.profile_menu, menu);
+        MenuItem item = menu.findItem(R.id.logout);
+        item.setVisible(false);
     }
 
     @Override

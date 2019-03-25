@@ -77,18 +77,6 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.profile_menu, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onPrepareOptionsMenu(Menu menu) {
-        MenuItem item = menu.findItem(R.id.logout);
-        item.setVisible(IS_AUTORIZED);
-        return true;
-    }
 
     private final BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {

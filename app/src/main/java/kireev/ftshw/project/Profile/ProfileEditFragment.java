@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -34,7 +37,7 @@ public class ProfileEditFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        setHasOptionsMenu(false);
     }
 
     @Override
@@ -49,14 +52,14 @@ public class ProfileEditFragment extends Fragment {
         surname = v.findViewById(R.id.editTextSurname);
         patronymic = v.findViewById(R.id.editTextPatronymic);
 
-        name.setText(sPref.getString(STUDENT_NAME,""));
-        surname.setText(sPref.getString(STUDENT_SURNAME,""));
-        patronymic.setText(sPref.getString(STUDENT_PATRONYMIC,""));
+        name.setText(sPref.getString(STUDENT_NAME, ""));
+        surname.setText(sPref.getString(STUDENT_SURNAME, ""));
+        patronymic.setText(sPref.getString(STUDENT_PATRONYMIC, ""));
 
         saveButton = v.findViewById(R.id.saveButton);
         saveButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                if ((name.getText().toString().equals("")) | (surname.getText().toString().equals("")) | (patronymic.getText().toString().equals(""))){
+                if ((name.getText().toString().equals("")) | (surname.getText().toString().equals("")) | (patronymic.getText().toString().equals(""))) {
                     //Toast.makeText(v.getContext(),"Поля ФИО не должны быть пустыми",Toast.LENGTH_LONG);
                     ((MainActivity) getActivity()).adEmptyFields.show();
                 } else {
@@ -91,6 +94,13 @@ public class ProfileEditFragment extends Fragment {
         super.onDetach();
     }
 
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.profile_menu, menu);
+        MenuItem item = menu.findItem(R.id.logout);
+        item.setVisible(false);
+    }
+
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
@@ -112,9 +122,9 @@ public class ProfileEditFragment extends Fragment {
 
     void loadText() {
         sPref = this.getActivity().getPreferences(Context.MODE_PRIVATE);
-        String savedName = sPref.getString(STUDENT_NAME,"");
-        String savedSurname = sPref.getString(STUDENT_SURNAME,"");
-        String savedPatronymic = sPref.getString(STUDENT_PATRONYMIC,"");
+        String savedName = sPref.getString(STUDENT_NAME, "");
+        String savedSurname = sPref.getString(STUDENT_SURNAME, "");
+        String savedPatronymic = sPref.getString(STUDENT_PATRONYMIC, "");
         name.setText(savedName);
         surname.setText(savedSurname);
         patronymic.setText(savedPatronymic);
