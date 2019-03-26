@@ -14,6 +14,7 @@ import org.w3c.dom.Text;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import kireev.ftshw.project.Network.Ser.SignIn;
 import kireev.ftshw.project.Network.Ser.SignInAPI;
 import kireev.ftshw.project.Network.Ser.SignInResponse;
 import kireev.ftshw.project.R;
@@ -88,11 +89,13 @@ public class LoginActivity extends AppCompatActivity {
         /*
         Invoke the method corresponding to the HTTP request which will return a Call object. This Call object will used to send the actual network request with the specified parameters
         */
-        Call call = signInAPI.postCredentials(etLogin.getText().toString(),etPassword.getText().toString());
+        SignIn signIn = new SignIn(etLogin.getText().toString(),etPassword.getText().toString());
+        Call<SignIn> call = signInAPI.postCredentials(signIn);
+        //Call call = signInAPI.postCredentials(etLogin.getText().toString(),etPassword.getText().toString());
         /*
         This is the line which actually sends a network request. Calling enqueue() executes a call asynchronously. It has two callback listeners which will invoked on the main thread
         */
-        call.enqueue(new Callback() {
+        call.enqueue(new Callback<SignIn>() {
             @Override
             public void onResponse(Call call, Response response) {
                 /*This is the success callback. Though the response type is JSON, with Retrofit we get the response in the form of WResponse POJO class

@@ -10,10 +10,32 @@ public class SignIn {
     @SerializedName("password")
     public String password;
 
+    public String getEmail() {
+        return email;
+    }
 
-    public SignIn(String email, String password) {
+    public String getPassword() {
+        return password;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public SignIn(String email, String password){
         this.email = email;
         this.password = password;
     }
 
+    @Override
+    public String toString(){
+        return "Post{" +
+                "email='" + email + '\'' +
+                ", password='" + password  +
+                '}';
+    }
 }
