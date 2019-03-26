@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity
     public AlertDialog.Builder adEmptyFields;
     private static long back_pressed;
 
-    boolean IS_AUTORIZED = false;
+    boolean IS_AUTORIZED = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

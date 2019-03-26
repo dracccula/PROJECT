@@ -9,8 +9,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
