@@ -101,6 +101,7 @@
         android:layout_margin="20dp"
         android:onClick="openLoginActivity"
         android:text="@string/profile_not_autorized_button"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         />

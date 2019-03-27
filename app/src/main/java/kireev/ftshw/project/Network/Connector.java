@@ -38,12 +38,12 @@ public class Connector {
     public static Retrofit getRetrofitClient() {
         //If condition to ensure we don't create multiple retrofit instances in a single application
         if (retrofit == null) {
-            OkHttpClient client = new OkHttpClient.Builder().cookieJar(CookieJar.NO_COOKIES).build();
+            //OkHttpClient client = new OkHttpClient.Builder().cookieJar(CookieJar.NO_COOKIES).build();
 
             //Defining the Retrofit using Builder
             retrofit = new Retrofit.Builder()
                     .baseUrl(BASE_URL) //This is the only mandatory call on Builder object.
-                    .client(client)
+//                    .client(client)
                     .addConverterFactory(GsonConverterFactory.create()) // Convertor library used to convert response into POJO
                     .build();
         }

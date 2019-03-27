@@ -1,5 +1,6 @@
 package kireev.ftshw.project.Profile;
 
+import android.annotation.SuppressLint;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -33,6 +34,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         getSupportActionBar().setTitle(getString(R.string.title_activity_login));
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        textView = findViewById(R.id.tv_temp);
         etLogin = findViewById(R.id.et_login);
         etPassword = findViewById(R.id.et_password);
     }
@@ -79,6 +81,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void signIn() {
+        textView.setText("");
         //Obtain an instance of Retrofit by calling the static method.
         Retrofit retrofit = Connector.getRetrofitClient();
         /*
@@ -98,18 +101,21 @@ public class LoginActivity extends AppCompatActivity {
             public void onResponse(Call call, Response response) {
                 /*This is the success callback. Though the response type is JSON, with Retrofit we get the response in the form of WResponse POJO class
                  */
+                SignInResponse signInResponse = (SignInResponse) response.body();
+                String headers = response.headers().toString();
                 if(response.isSuccessful()) {
                     //showResponse(response.body().toString());
-                    Log.i("Response", "post submitted to API. " + response.body());
+                    Log.i("Response", "body: " + signInResponse);
+                    Log.i("Response", "headers: " + headers);
+                    Log.i("Response", "headers: " + headers);
                     MainActivity.IS_AUTORIZED = true;
-                    finish();
+                    //finish();
                 }
-//                if (response.body() != null) {
-//                    SignInResponse signInResponse = (SignInResponse) response.body();
-//                    textView.setText("firstName: " + signInResponse.getFirstName() + "\n " +
-//                            "lastName: " + signInResponse.getLastName() + "\n" +
-//                            "email: " + signInResponse.getEmail());
-//                }
+                if (signInResponse != null) {
+                    textView.setText("firstName: " + signInResponse.getFirstName() + "\n" +
+                            "lastName: " + signInResponse.getLastName() + "\n" +
+                            "email: " + signInResponse.getEmail());
+                }
             }
 
             @Override
