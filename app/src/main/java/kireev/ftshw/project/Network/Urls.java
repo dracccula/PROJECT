@@ -2,5 +2,5 @@ package kireev.ftshw.project.Network;
 
 public interface Urls {
     String BASE_URL = "https://fintech.tinkoff.ru/api/";
-    String SIGNIN = "signin/";
+    String SIGNIN = "signin";
 }

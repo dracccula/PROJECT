@@ -8,8 +8,7 @@ import static kireev.ftshw.project.Network.Urls.SIGNIN;
 
 public interface SignInAPI {
     @POST(SIGNIN)
-    Call<SignIn> postCredentials(
+    Call<SignInResponse> postCredentials(
             @Body SignIn signIn
-
     );
 }

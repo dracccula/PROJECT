@@ -10,6 +10,8 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -18,6 +20,7 @@ import android.widget.Toast;
 
 import kireev.ftshw.project.Courses.CoursesFragment;
 import kireev.ftshw.project.Courses.GradesListActivity;
+import kireev.ftshw.project.Courses.ui.gradeslist.GradesListFragment;
 import kireev.ftshw.project.Events.EventsFragment;
 import kireev.ftshw.project.Profile.AnonimProfileFragment;
 import kireev.ftshw.project.Profile.LoginActivity;
@@ -32,7 +35,7 @@ public class MainActivity extends AppCompatActivity
     public AlertDialog.Builder adEmptyFields;
     private static long back_pressed;
 
-    boolean IS_AUTORIZED = true;
+    public static boolean IS_AUTORIZED = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +80,28 @@ public class MainActivity extends AppCompatActivity
 
     }
 
+    @Override
+    protected void onResume() {
+        if (IS_AUTORIZED) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                    new ProfileFragment()).commitNow();
+        } else {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                    new AnonimProfileFragment()).commitNow();
+        }
+        super.onResume();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        if (item.getItemId() == R.id.logout) {
+            IS_AUTORIZED = false;
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                    new AnonimProfileFragment()).commitNow();
+        }
+        return true;
+    }
 
     private final BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
