@@ -28,7 +28,7 @@ public class ProfileEditFragment extends Fragment {
     private ProfileEditFragment.OnProfileEditFragmentListener listener;
     Button saveButton, cancelButton;
     static EditText name, surname, patronymic;
-    static SharedPreferences sPref;
+    static SharedPreferences sPrefProfile;
 
     public ProfileEditFragment() {
         // Required empty public constructor
@@ -52,9 +52,9 @@ public class ProfileEditFragment extends Fragment {
         surname = v.findViewById(R.id.editTextSurname);
         patronymic = v.findViewById(R.id.editTextPatronymic);
 
-        name.setText(sPref.getString(STUDENT_NAME, ""));
-        surname.setText(sPref.getString(STUDENT_SURNAME, ""));
-        patronymic.setText(sPref.getString(STUDENT_PATRONYMIC, ""));
+        name.setText(sPrefProfile.getString(STUDENT_NAME, ""));
+        surname.setText(sPrefProfile.getString(STUDENT_SURNAME, ""));
+        patronymic.setText(sPrefProfile.getString(STUDENT_PATRONYMIC, ""));
 
         saveButton = v.findViewById(R.id.saveButton);
         saveButton.setOnClickListener(new View.OnClickListener() {
@@ -66,9 +66,6 @@ public class ProfileEditFragment extends Fragment {
                     saveText();
                     getActivity().getSupportFragmentManager().popBackStack();
                 }
-                /*getFragmentManager().beginTransaction()
-                        .replace(R.id.fragment_container, new ProfileFragment())
-                        .commit();*/
             }
         });
 
@@ -111,8 +108,8 @@ public class ProfileEditFragment extends Fragment {
     }
 
     void saveText() {
-        sPref = this.getActivity().getPreferences(Context.MODE_PRIVATE);
-        SharedPreferences.Editor ed = sPref.edit();
+        sPrefProfile = this.getActivity().getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences.Editor ed = sPrefProfile.edit();
         ed.putString(STUDENT_NAME, name.getText().toString());
         ed.putString(STUDENT_SURNAME, surname.getText().toString());
         ed.putString(STUDENT_PATRONYMIC, patronymic.getText().toString());
@@ -121,10 +118,10 @@ public class ProfileEditFragment extends Fragment {
     }
 
     void loadText() {
-        sPref = this.getActivity().getPreferences(Context.MODE_PRIVATE);
-        String savedName = sPref.getString(STUDENT_NAME, "");
-        String savedSurname = sPref.getString(STUDENT_SURNAME, "");
-        String savedPatronymic = sPref.getString(STUDENT_PATRONYMIC, "");
+        sPrefProfile = this.getActivity().getPreferences(Context.MODE_PRIVATE);
+        String savedName = sPrefProfile.getString(STUDENT_NAME, "");
+        String savedSurname = sPrefProfile.getString(STUDENT_SURNAME, "");
+        String savedPatronymic = sPrefProfile.getString(STUDENT_PATRONYMIC, "");
         name.setText(savedName);
         surname.setText(savedSurname);
         patronymic.setText(savedPatronymic);

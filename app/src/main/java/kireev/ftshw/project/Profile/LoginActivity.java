@@ -1,6 +1,7 @@
 package kireev.ftshw.project.Profile;
 
-import android.annotation.SuppressLint;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,7 +16,7 @@ import java.util.regex.Pattern;
 
 import kireev.ftshw.project.MainActivity;
 import kireev.ftshw.project.Network.Ser.SignIn;
-import kireev.ftshw.project.Network.Ser.SignInAPI;
+import kireev.ftshw.project.Network.FintechAPI;
 import kireev.ftshw.project.Network.Ser.SignInResponse;
 import kireev.ftshw.project.R;
 import kireev.ftshw.project.Network.Connector;
@@ -27,6 +28,8 @@ import retrofit2.Retrofit;
 public class LoginActivity extends AppCompatActivity {
     EditText etLogin, etPassword;
     TextView textView;
+    static SharedPreferences sPrefCookie;
+    static final String COOKIE = "Cookie";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,47 +84,39 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void signIn() {
+        sPrefCookie = this.getPreferences(Context.MODE_PRIVATE);
         textView.setText("");
-        //Obtain an instance of Retrofit by calling the static method.
         Retrofit retrofit = Connector.getRetrofitClient();
-        /*
-        The main purpose of Retrofit is to create HTTP calls from the Java interface based on the annotation associated with each method. This is achieved by just passing the interface class as parameter to the create method
-        */
-        SignInAPI signInAPI = retrofit.create(SignInAPI.class);
-        /*
-        Invoke the method corresponding to the HTTP request which will return a Call object. This Call object will used to send the actual network request with the specified parameters
-        */
-        SignIn signIn = new SignIn(etLogin.getText().toString(),etPassword.getText().toString());
-        Call<SignInResponse> call = signInAPI.postCredentials(signIn);
-        /*
-        This is the line which actually sends a network request. Calling enqueue() executes a call asynchronously. It has two callback listeners which will invoked on the main thread
-        */
+        FintechAPI fintechAPI = retrofit.create(FintechAPI.class);
+        SignIn signIn = new SignIn(etLogin.getText().toString(), etPassword.getText().toString());
+        Call<SignInResponse> call = fintechAPI.postCredentials(signIn);
         call.enqueue(new Callback<SignInResponse>() {
             @Override
             public void onResponse(Call call, Response response) {
-                /*This is the success callback. Though the response type is JSON, with Retrofit we get the response in the form of WResponse POJO class
-                 */
                 SignInResponse signInResponse = (SignInResponse) response.body();
                 String headers = response.headers().toString();
-                if(response.isSuccessful()) {
-                    //showResponse(response.body().toString());
+                String cookie = response.headers().get("Set-Cookie");
+                if (response.isSuccessful()) {
                     Log.i("Response", "body: " + signInResponse);
                     Log.i("Response", "headers: " + headers);
-                    Log.i("Response", "headers: " + headers);
+                    Log.i("Response", "cookie: " + cookie);
                     MainActivity.IS_AUTORIZED = true;
-                    //finish();
+                    finish();
                 }
-                if (signInResponse != null) {
-                    textView.setText("firstName: " + signInResponse.getFirstName() + "\n" +
-                            "lastName: " + signInResponse.getLastName() + "\n" +
-                            "email: " + signInResponse.getEmail());
-                }
+//                if (signInResponse != null) {
+//                    textView.setText("firstName: " + signInResponse.getFirstName() + "\n" +
+//                            "lastName: " + signInResponse.getLastName() + "\n" +
+//                            "email: " + signInResponse.getEmail());
+//                }
+                SharedPreferences.Editor ed = sPrefCookie.edit();
+                ed.putString(COOKIE,cookie);
+                ed.commit();
             }
 
             @Override
             public void onFailure(Call call, Throwable t) {
-                Log.e("onFailure","ooops!");
-                Toast.makeText(getBaseContext(), "Fail!", Toast.LENGTH_SHORT).show();
+                Log.e("onFailure", "ooops!");
+                Toast.makeText(getBaseContext(), "Something went wrong!", Toast.LENGTH_SHORT).show();
             }
 
 

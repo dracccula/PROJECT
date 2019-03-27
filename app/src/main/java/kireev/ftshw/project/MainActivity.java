@@ -1,8 +1,10 @@
 package kireev.ftshw.project;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -22,10 +24,19 @@ import kireev.ftshw.project.Courses.CoursesFragment;
 import kireev.ftshw.project.Courses.GradesListActivity;
 import kireev.ftshw.project.Courses.ui.gradeslist.GradesListFragment;
 import kireev.ftshw.project.Events.EventsFragment;
+import kireev.ftshw.project.Network.Connector;
+import kireev.ftshw.project.Network.FintechAPI;
+import kireev.ftshw.project.Network.Ser.SignIn;
+import kireev.ftshw.project.Network.Ser.SignInResponse;
+import kireev.ftshw.project.Network.Ser.UserResponse;
 import kireev.ftshw.project.Profile.AnonimProfileFragment;
 import kireev.ftshw.project.Profile.LoginActivity;
 import kireev.ftshw.project.Profile.ProfileEditFragment;
 import kireev.ftshw.project.Profile.ProfileFragment;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 
 public class MainActivity extends AppCompatActivity
@@ -34,18 +45,14 @@ public class MainActivity extends AppCompatActivity
     public AlertDialog.Builder ad;
     public AlertDialog.Builder adEmptyFields;
     private static long back_pressed;
-
     public static boolean IS_AUTORIZED = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-
-        //I added this if statement to keep the selected fragment when rotating the device
         if (savedInstanceState == null) {
             navigation.getMenu().getItem(2).setChecked(true);
             if (IS_AUTORIZED) {
@@ -82,12 +89,15 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     protected void onResume() {
-        if (IS_AUTORIZED) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                    new ProfileFragment()).commitNow();
-        } else {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                    new AnonimProfileFragment()).commitNow();
+        BottomNavigationView navigation = findViewById(R.id.navigation);
+        if ((navigation.getSelectedItemId()) == R.id.navigation_profile) {
+            if (IS_AUTORIZED) {
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new ProfileFragment()).commitNow();
+            } else {
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new AnonimProfileFragment()).commitNow();
+            }
         }
         super.onResume();
     }
@@ -141,7 +151,7 @@ public class MainActivity extends AppCompatActivity
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragment_container, new ProfileEditFragment())
                 .addToBackStack(null)
-                .commit();
+                .commitNow();
     }
 
     public void gradesButtonClick(View view) {
