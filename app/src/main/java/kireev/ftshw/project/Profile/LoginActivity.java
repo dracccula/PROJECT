@@ -28,7 +28,7 @@ import retrofit2.Retrofit;
 public class LoginActivity extends AppCompatActivity {
     EditText etLogin, etPassword;
     TextView textView;
-    static SharedPreferences sPrefCookie;
+    public static SharedPreferences sPrefCookie;
     static final String COOKIE = "Cookie";
 
     @Override
@@ -97,9 +97,9 @@ public class LoginActivity extends AppCompatActivity {
                 String headers = response.headers().toString();
                 String cookie = response.headers().get("Set-Cookie");
                 if (response.isSuccessful()) {
-                    Log.i("Response", "body: " + signInResponse);
-                    Log.i("Response", "headers: " + headers);
-                    Log.i("Response", "cookie: " + cookie);
+                    Log.i("signIn Response", "body: " + signInResponse);
+                    Log.i("signIn Response", "headers: " + headers);
+                    Log.i("signIn Response", "cookie: " + cookie);
                     MainActivity.IS_AUTORIZED = true;
                     finish();
                 }
@@ -115,8 +115,8 @@ public class LoginActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call call, Throwable t) {
-                Log.e("onFailure", "ooops!");
-                Toast.makeText(getBaseContext(), "Something went wrong!", Toast.LENGTH_SHORT).show();
+                Log.e("signIn onFailure", "ooops!");
+                Toast.makeText(getBaseContext(), "signIn went wrong!", Toast.LENGTH_SHORT).show();
             }
 
 

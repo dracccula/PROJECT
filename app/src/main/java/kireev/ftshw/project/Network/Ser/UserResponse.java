@@ -8,7 +8,7 @@ public class UserResponse {
 
     @SerializedName("user")
     @Expose
-    private UserResponse userResponse;
+    private User user;
     @SerializedName("status")
     @Expose
     private String status;
@@ -16,12 +16,12 @@ public class UserResponse {
     @Expose
     private String message;
 
-    public UserResponse getUser() {
-        return userResponse;
+    public User getUser() {
+        return user;
     }
 
-    public void setUser(UserResponse userResponse) {
-        this.userResponse = userResponse;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getMessage() {

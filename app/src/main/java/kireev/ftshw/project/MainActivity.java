@@ -38,6 +38,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
+import static kireev.ftshw.project.Profile.LoginActivity.sPrefCookie;
+
 
 public class MainActivity extends AppCompatActivity
         implements ProfileFragment.OnProfileFragmentListener {
@@ -106,6 +108,10 @@ public class MainActivity extends AppCompatActivity
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
         if (item.getItemId() == R.id.logout) {
+            SharedPreferences.Editor ed = sPrefCookie.edit();
+            ed.clear();
+            signOut();
+            Toast.makeText(getBaseContext(), "signOut!", Toast.LENGTH_SHORT).show();
             IS_AUTORIZED = false;
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                     new AnonimProfileFragment()).commitNow();
@@ -150,7 +156,7 @@ public class MainActivity extends AppCompatActivity
     public void onOpenEditProfile() {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.fragment_container, new ProfileEditFragment())
-                .addToBackStack(null)
+//                .addToBackStack(null)
                 .commitNow();
     }
 
@@ -171,5 +177,30 @@ public class MainActivity extends AppCompatActivity
         else
             Toast.makeText(getBaseContext(), "Нажмите еще раз для выхода", Toast.LENGTH_SHORT).show();
         back_pressed = System.currentTimeMillis();
+    }
+
+    private void signOut(){
+        Retrofit retrofit = Connector.getRetrofitClient();
+        FintechAPI fintechAPI = retrofit.create(FintechAPI.class);
+        Call<SignInResponse> call = fintechAPI.postEmpty();
+        call.enqueue(new Callback<SignInResponse>() {
+            @Override
+            public void onResponse(Call call, Response response) {
+                String headers = response.headers().toString();
+                String cookie = response.headers().get("Set-Cookie");
+                if (response.isSuccessful()) {
+                    Log.i("signOut Response", "headers: " + headers);
+                    Log.i("signOut Response", "cookie: " + cookie);
+                }
+            }
+
+            @Override
+            public void onFailure(Call call, Throwable t) {
+                Log.e("signOut onFailure", "ooops!");
+                Toast.makeText(getBaseContext(), "signOut went wrong!", Toast.LENGTH_SHORT).show();
+            }
+
+
+        });
     }
 }

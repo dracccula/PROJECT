@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -16,9 +18,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import kireev.ftshw.project.Courses.ui.gradeslist.GradesListFragment;
 import kireev.ftshw.project.MainActivity;
 import kireev.ftshw.project.Network.Connector;
 import kireev.ftshw.project.Network.FintechAPI;
+import kireev.ftshw.project.Network.Ser.SignInResponse;
 import kireev.ftshw.project.Network.Ser.UserResponse;
 import kireev.ftshw.project.R;
 import retrofit2.Call;
@@ -127,20 +131,30 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onResponse(Call call, Response response) {
                 UserResponse userResponse = (UserResponse) response.body();
+                UserResponse.User user = userResponse.getUser();
                 String headers = response.headers().toString();
                 String cookie = response.headers().get("Set-Cookie");
                 if (response.isSuccessful()) {
-                    Log.i("Response", "body: " + userResponse);
-                    Log.i("Response", "headers: " + headers);
-                    Log.i("Response", "cookie: " + cookie);
-                    Toast.makeText(getContext(), "Status: " + userResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                    if (userResponse.getStatus().equals("Ok")){
+                        name.setText(user.getFirstName());
+                        surname.setText(user.getLastName());
+                        patronymic.setText(user.getMiddleName());
+                        Toast.makeText(getContext(), "Status: " + userResponse.getStatus(), Toast.LENGTH_SHORT).show();
+                    }
+                    Log.i("getUserData Response", "body: " + userResponse);
+                    Log.i("getUserData Response", "headers: " + headers);
+                    Log.i("getUserData Response", "cookie: " + cookie);
+                    if (userResponse.getStatus().equals("Error")){
+                        Toast.makeText(getContext(), "Message: " + userResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+
                 }
             }
 
             @Override
             public void onFailure(Call call, Throwable t) {
-                Log.e("onFailure", "ooops!");
-                Toast.makeText(getContext(), "Something went wrong!", Toast.LENGTH_SHORT).show();
+                Log.e("getUserData onFailure", "ooops!");
+                Toast.makeText(getContext(), "getUserData went wrong!", Toast.LENGTH_SHORT).show();
             }
 
 

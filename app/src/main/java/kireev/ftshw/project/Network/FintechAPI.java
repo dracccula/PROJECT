@@ -9,12 +9,17 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 
 import static kireev.ftshw.project.Network.Urls.SIGNIN;
+import static kireev.ftshw.project.Network.Urls.SIGNOUT;
 import static kireev.ftshw.project.Network.Urls.USER;
 
 public interface FintechAPI {
     @POST(SIGNIN)
     Call<SignInResponse> postCredentials(
             @Body SignIn signIn
+    );
+
+    @POST(SIGNOUT)
+    Call<SignInResponse> postEmpty(
     );
 
     @GET(USER)
