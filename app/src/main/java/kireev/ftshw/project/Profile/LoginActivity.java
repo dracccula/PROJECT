@@ -25,12 +25,12 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
+import static kireev.ftshw.project.MainActivity.*;
+
 public class LoginActivity extends AppCompatActivity {
     EditText etLogin, etPassword;
     TextView textView;
-    public static SharedPreferences sPrefCookie;
     static final String COOKIE = "Cookie";
-    public static String anygenCookie;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,7 +85,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void signIn() {
-        sPrefCookie = this.getPreferences(Context.MODE_PRIVATE);
         textView.setText("");
         Retrofit retrofit = Connector.getRetrofitClient();
         FintechAPI fintechAPI = retrofit.create(FintechAPI.class);
@@ -98,11 +97,13 @@ public class LoginActivity extends AppCompatActivity {
                 String headers = response.headers().toString();
                 String cookie = response.headers().get("Set-Cookie");
                 anygenCookie = cookie;
+                SharedPreferences.Editor ed = spStorage.edit();
                 if (response.isSuccessful()) {
                     Log.i("signIn Response", "body: " + signInResponse);
                     Log.i("signIn Response", "headers: " + headers);
                     Log.i("signIn Response", "cookie: " + cookie);
-                    MainActivity.IS_AUTORIZED = true;
+                    ed.putBoolean("IS_AUTORIZED", true);
+                    ed.putString("anygenCookie", anygenCookie);
                     finish();
                 }
 //                if (signInResponse != null) {
@@ -110,8 +111,6 @@ public class LoginActivity extends AppCompatActivity {
 //                            "lastName: " + signInResponse.getLastName() + "\n" +
 //                            "email: " + signInResponse.getEmail());
 //                }
-                SharedPreferences.Editor ed = sPrefCookie.edit();
-                ed.putString(COOKIE,cookie);
                 ed.commit();
             }
 

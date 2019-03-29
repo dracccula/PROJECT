@@ -34,6 +34,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
+import static kireev.ftshw.project.MainActivity.*;
 import static kireev.ftshw.project.Network.Urls.BASE_URL;
 import static kireev.ftshw.project.Profile.ProfileEditFragment.STUDENT_NAME;
 import static kireev.ftshw.project.Profile.ProfileEditFragment.STUDENT_PATRONYMIC;
@@ -121,7 +122,7 @@ public class ProfileFragment extends Fragment {
     }
 
     void loadText() {
-        sPrefProfile = this.getActivity().getPreferences(Context.MODE_PRIVATE);
+        spStorage = this.getActivity().getPreferences(Context.MODE_PRIVATE);
         String savedName = sPrefProfile.getString(STUDENT_NAME,"");
         String savedSurname = sPrefProfile.getString(STUDENT_SURNAME,"");
         String savedPatronymic = sPrefProfile.getString(STUDENT_PATRONYMIC,"");

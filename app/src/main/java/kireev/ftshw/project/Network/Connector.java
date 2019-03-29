@@ -16,7 +16,6 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 import static kireev.ftshw.project.Network.Urls.BASE_URL;
-import static kireev.ftshw.project.Profile.LoginActivity.anygenCookie;
 
 public class Connector {
 
@@ -32,6 +31,7 @@ public class Connector {
     }
 
     public static Retrofit retrofit;
+
     /*
     This public static method will return Retrofit client
     anywhere in the appplication
@@ -39,14 +39,14 @@ public class Connector {
     public static Retrofit getRetrofitClient() {
         if (retrofit == null) {
             HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-            AuthInterceptor authInterceptor = new AuthInterceptor();
+            //AuthInterceptor authInterceptor = new AuthInterceptor();
             interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
             //CookieHandler cookieHandler = new CookieManager();
             OkHttp3CookieHelper cookieHelper = new OkHttp3CookieHelper();
             //cookieHelper.setCookie(BASE_URL, "anygen", anygenCookie);
             OkHttpClient client = new OkHttpClient.Builder()
                     .addNetworkInterceptor(interceptor)
-                    .addInterceptor()
+                    //.addInterceptor(authInterceptor)
                     .cookieJar(cookieHelper.cookieJar())
                     .connectTimeout(10, TimeUnit.SECONDS)
                     .writeTimeout(10, TimeUnit.SECONDS)
