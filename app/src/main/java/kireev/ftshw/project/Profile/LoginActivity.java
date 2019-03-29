@@ -30,6 +30,7 @@ public class LoginActivity extends AppCompatActivity {
     TextView textView;
     public static SharedPreferences sPrefCookie;
     static final String COOKIE = "Cookie";
+    public static String anygenCookie;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,6 +97,7 @@ public class LoginActivity extends AppCompatActivity {
                 SignInResponse signInResponse = (SignInResponse) response.body();
                 String headers = response.headers().toString();
                 String cookie = response.headers().get("Set-Cookie");
+                anygenCookie = cookie;
                 if (response.isSuccessful()) {
                     Log.i("signIn Response", "body: " + signInResponse);
                     Log.i("signIn Response", "headers: " + headers);

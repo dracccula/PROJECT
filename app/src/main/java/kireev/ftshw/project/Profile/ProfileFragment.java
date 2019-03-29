@@ -16,7 +16,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 
 import kireev.ftshw.project.Courses.ui.gradeslist.GradesListFragment;
 import kireev.ftshw.project.MainActivity;
@@ -30,6 +34,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
+import static kireev.ftshw.project.Network.Urls.BASE_URL;
 import static kireev.ftshw.project.Profile.ProfileEditFragment.STUDENT_NAME;
 import static kireev.ftshw.project.Profile.ProfileEditFragment.STUDENT_PATRONYMIC;
 import static kireev.ftshw.project.Profile.ProfileEditFragment.STUDENT_SURNAME;
@@ -39,6 +44,7 @@ import static kireev.ftshw.project.Profile.ProfileEditFragment.sPrefProfile;
 public class ProfileFragment extends Fragment {
 
     Button editButton;
+    ImageView avatar;
     static EditText name, surname, patronymic;
     private OnProfileFragmentListener listener;
 
@@ -65,6 +71,7 @@ public class ProfileFragment extends Fragment {
         patronymic = v.findViewById(R.id.textPatronymic);
 //        loadText();
         editButton = v.findViewById(R.id.buttonEditFullname);
+        avatar = v.findViewById(R.id.ivAvatar);
         editButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -139,6 +146,10 @@ public class ProfileFragment extends Fragment {
                         name.setText(user.getFirstName());
                         surname.setText(user.getLastName());
                         patronymic.setText(user.getMiddleName());
+                        Glide.with(getContext())
+                                .load("https://fintech.tinkoff.ru" + user.getAvatar())
+                                .apply(RequestOptions.circleCropTransform())
+                                .into(avatar);
                         Toast.makeText(getContext(), "Status: " + userResponse.getStatus(), Toast.LENGTH_SHORT).show();
                     }
                     Log.i("getUserData Response", "body: " + userResponse);

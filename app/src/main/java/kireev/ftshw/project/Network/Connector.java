@@ -4,18 +4,19 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
-import java.net.CookieHandler;
-import java.net.CookieManager;
-import java.net.CookiePolicy;
+import org.riversun.okhttp3.OkHttp3CookieHelper;
 
-import okhttp3.CookieJar;
-import okhttp3.JavaNetCookieJar;
+
+import java.util.concurrent.TimeUnit;
+
+
 import okhttp3.OkHttpClient;
-import okhttp3.Request;
+import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 import static kireev.ftshw.project.Network.Urls.BASE_URL;
+import static kireev.ftshw.project.Profile.LoginActivity.anygenCookie;
 
 public class Connector {
 
@@ -36,15 +37,26 @@ public class Connector {
     anywhere in the appplication
     */
     public static Retrofit getRetrofitClient() {
-        //If condition to ensure we don't create multiple retrofit instances in a single application
         if (retrofit == null) {
-            //OkHttpClient client = new OkHttpClient.Builder().cookieJar(CookieJar.NO_COOKIES).build();
+            HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+            AuthInterceptor authInterceptor = new AuthInterceptor();
+            interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+            //CookieHandler cookieHandler = new CookieManager();
+            OkHttp3CookieHelper cookieHelper = new OkHttp3CookieHelper();
+            //cookieHelper.setCookie(BASE_URL, "anygen", anygenCookie);
+            OkHttpClient client = new OkHttpClient.Builder()
+                    .addNetworkInterceptor(interceptor)
+                    .addInterceptor()
+                    .cookieJar(cookieHelper.cookieJar())
+                    .connectTimeout(10, TimeUnit.SECONDS)
+                    .writeTimeout(10, TimeUnit.SECONDS)
+                    .readTimeout(30, TimeUnit.SECONDS)
+                    .build();
 
-            //Defining the Retrofit using Builder
             retrofit = new Retrofit.Builder()
-                    .baseUrl(BASE_URL) //This is the only mandatory call on Builder object.
-//                    .client(client)
-                    .addConverterFactory(GsonConverterFactory.create()) // Convertor library used to convert response into POJO
+                    .baseUrl(BASE_URL)
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .client(client)
                     .build();
         }
         return retrofit;

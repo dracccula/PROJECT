@@ -23,7 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="170dp"
         android:text="@string/student_name"
         app:layout_constraintStart_toStartOf="@+id/bottom_guideline"
         app:layout_constraintTop_toTopOf="parent" />
@@ -52,6 +52,7 @@
         android:layout_marginStart="10dp"
         android:ems="10"
         android:enabled="false"
+        android:background="@android:color/transparent"
         android:hint="Канье"
         android:inputType="textPersonName"
         app:layout_constraintStart_toStartOf="@+id/bottom_guideline"
@@ -64,6 +65,7 @@
         android:layout_marginStart="10dp"
         android:ems="10"
         android:enabled="false"
+        android:background="@android:color/transparent"
         android:hint="Вест"
         android:inputType="textPersonName"
         app:layout_constraintStart_toStartOf="@+id/bottom_guideline"
@@ -76,6 +78,7 @@
         android:layout_marginStart="10dp"
         android:ems="10"
         android:enabled="false"
+        android:background="@android:color/transparent"
         android:hint="Омари"
         android:inputType="textPersonName"
         app:layout_constraintStart_toStartOf="@+id/bottom_guideline"
@@ -88,6 +91,7 @@
         android:layout_height="35dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
+        android:visibility="invisible"
         android:text="@string/student_fullname_edit_button"
         android:textSize="10sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -105,5 +109,16 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         />
+
+    <ImageView
+        android:id="@+id/ivAvatar"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="20dp"
+        android:src="@drawable/ic_profile_black_24dp"
+        app:layout_constraintBottom_toTopOf="@+id/textName"
+        app:layout_constraintEnd_toEndOf="parent" />
+
 
 </android.support.constraint.ConstraintLayout>

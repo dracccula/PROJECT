@@ -113,7 +113,7 @@ public class UserResponse {
         private Boolean admin;
         @SerializedName("avatar")
         @Expose
-        private Object avatar;
+        private String avatar;
 
         public String getBirthday() {
             return birthday;
@@ -299,11 +299,11 @@ public class UserResponse {
             this.admin = admin;
         }
 
-        public Object getAvatar() {
+        public String getAvatar() {
             return avatar;
         }
 
-        public void setAvatar(Object avatar) {
+        public void setAvatar(String avatar) {
             this.avatar = avatar;
         }
 
