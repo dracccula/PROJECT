@@ -1,5 +1,6 @@
 package kireev.ftshw.project.Network;
 
+
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
@@ -14,6 +15,7 @@ import okhttp3.Response;
 public class AuthInterceptor implements Interceptor {
 
     private SharedPreferences preferences;
+    MainActivity context;
 
     public AuthInterceptor(SharedPreferences preferences) {
         this.preferences = preferences;
@@ -26,9 +28,9 @@ public class AuthInterceptor implements Interceptor {
         if (preferences == null) {
             return chain.proceed(request);
         } else {
-            //preferences = getBaseContext().getPreferences(Context.MODE_PRIVATE);
-            //Request newRequest = request.newBuilder().addHeader().build();
-            return chain.proceed(request);
+            String anygen = preferences.getString("anygenCookie", "");
+            Request newRequest = request.newBuilder().addHeader("Cookie", anygen).build();
+            return chain.proceed(newRequest);
         }
     }
 }

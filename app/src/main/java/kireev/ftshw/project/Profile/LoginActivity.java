@@ -30,7 +30,6 @@ import static kireev.ftshw.project.MainActivity.*;
 public class LoginActivity extends AppCompatActivity {
     EditText etLogin, etPassword;
     TextView textView;
-    static final String COOKIE = "Cookie";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,7 +110,7 @@ public class LoginActivity extends AppCompatActivity {
 //                            "lastName: " + signInResponse.getLastName() + "\n" +
 //                            "email: " + signInResponse.getEmail());
 //                }
-                ed.commit();
+                ed.apply();
             }
 
             @Override

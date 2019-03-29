@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity
             SharedPreferences.Editor ed = spStorage.edit();
             ed.remove("anygenCookie");
             ed.remove("IS_AUTORIZED");
-            ed.commit();
+            ed.apply();
             //signOut();
             Toast.makeText(getBaseContext(), "signOut!", Toast.LENGTH_SHORT).show();
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
