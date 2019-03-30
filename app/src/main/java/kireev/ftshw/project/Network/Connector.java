@@ -42,13 +42,9 @@ public class Connector {
             HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
             AuthInterceptor authInterceptor = new AuthInterceptor(spStorage);
             interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
-            //CookieHandler cookieHandler = new CookieManager();
-            OkHttp3CookieHelper cookieHelper = new OkHttp3CookieHelper();
-            //cookieHelper.setCookie(BASE_URL, "anygen", anygenCookie);
             OkHttpClient client = new OkHttpClient.Builder()
                     .addNetworkInterceptor(interceptor)
                     .addInterceptor(authInterceptor)
-                    .cookieJar(cookieHelper.cookieJar())
                     .connectTimeout(10, TimeUnit.SECONDS)
                     .writeTimeout(10, TimeUnit.SECONDS)
                     .readTimeout(30, TimeUnit.SECONDS)
