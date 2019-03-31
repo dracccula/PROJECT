@@ -1,4 +1,4 @@
-package kireev.ftshw.project.Courses.ui.gradeslist;
+package kireev.ftshw.project.Courses.GradesList;
 
 public class ContactVO {
     private String ContactName;

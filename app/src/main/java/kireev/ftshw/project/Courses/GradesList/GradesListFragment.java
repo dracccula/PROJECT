@@ -1,4 +1,4 @@
-package kireev.ftshw.project.Courses.ui.gradeslist;
+package kireev.ftshw.project.Courses.GradesList;
 
 import android.app.ProgressDialog;
 import android.content.ContentResolver;
@@ -17,9 +17,7 @@ import android.view.ViewGroup;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
-import kireev.ftshw.project.Courses.GradesListActivity;
 import kireev.ftshw.project.R;
 
 

@@ -39,11 +39,11 @@ public class Connector {
     */
     public static Retrofit getRetrofitClient() {
         if (retrofit == null) {
-            HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+            //HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
             AuthInterceptor authInterceptor = new AuthInterceptor(spStorage);
-            interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+            //interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
             OkHttpClient client = new OkHttpClient.Builder()
-                    .addNetworkInterceptor(interceptor)
+                    //.addNetworkInterceptor(interceptor)
                     .addInterceptor(authInterceptor)
                     .connectTimeout(10, TimeUnit.SECONDS)
                     .writeTimeout(10, TimeUnit.SECONDS)

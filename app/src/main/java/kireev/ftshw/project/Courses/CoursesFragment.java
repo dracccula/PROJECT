@@ -20,12 +20,12 @@ import kireev.ftshw.project.MainActivity;
 import kireev.ftshw.project.R;
 import kireev.ftshw.project.TempTools.SetRandom;
 
-import static kireev.ftshw.project.Courses.GradesFragment.pointsBadge1;
-import static kireev.ftshw.project.Courses.GradesFragment.pointsBadge2;
-import static kireev.ftshw.project.Courses.GradesFragment.pointsBadge3;
-import static kireev.ftshw.project.Courses.GradesFragment.viewAvatarOne;
-import static kireev.ftshw.project.Courses.GradesFragment.viewAvatarTwo;
-import static kireev.ftshw.project.Courses.GradesFragment.viewAvatarThree;
+import static kireev.ftshw.project.Courses.GradesSectionFragment.pointsBadge1;
+import static kireev.ftshw.project.Courses.GradesSectionFragment.pointsBadge2;
+import static kireev.ftshw.project.Courses.GradesSectionFragment.pointsBadge3;
+import static kireev.ftshw.project.Courses.GradesSectionFragment.viewAvatarOne;
+import static kireev.ftshw.project.Courses.GradesSectionFragment.viewAvatarTwo;
+import static kireev.ftshw.project.Courses.GradesSectionFragment.viewAvatarThree;
 
 
 public class CoursesFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {

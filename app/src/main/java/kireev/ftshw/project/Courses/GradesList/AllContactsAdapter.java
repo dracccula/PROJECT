@@ -1,4 +1,4 @@
-package kireev.ftshw.project.Courses.ui.gradeslist;
+package kireev.ftshw.project.Courses.GradesList;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -12,7 +12,7 @@ import kireev.ftshw.project.Tools.InitialsRoundView;
 import kireev.ftshw.project.R;
 import kireev.ftshw.project.TempTools.SetRandom;
 
-import static kireev.ftshw.project.Courses.GradesListActivity.mGridMode;
+import static kireev.ftshw.project.Courses.GradesList.GradesListActivity.mGridMode;
 
 public class AllContactsAdapter extends RecyclerView.Adapter<AllContactsAdapter.ContactViewHolder> {
 

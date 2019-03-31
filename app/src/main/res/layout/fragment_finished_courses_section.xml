@@ -8,7 +8,7 @@
     android:divider="@drawable/divider"
     android:showDividers="middle"
     android:dividerPadding="3dp"
-    tools:context=".Courses.FinishedCoursesFragment">
+    tools:context=".Courses.FinishedCoursesSectionFragment">
 
     <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"

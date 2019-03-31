@@ -1,7 +1,6 @@
-package kireev.ftshw.project.Courses;
+package kireev.ftshw.project.Courses.GradesList;
 
 import android.Manifest;
-import android.app.Activity;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
@@ -15,9 +14,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
-import kireev.ftshw.project.Courses.ui.gradeslist.GradesListFragment;
-import kireev.ftshw.project.Courses.ui.gradeslist.GradesNoContactsAccessFragment;
-import kireev.ftshw.project.Courses.ui.gradeslist.LoadContacts;
 import kireev.ftshw.project.R;
 
 
@@ -32,7 +28,7 @@ public class GradesListActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.grades_list_activity);
-        setTitle(getString(R.string.title_grades_list));
+        setTitle(getString(R.string.title_grades));
         assert getSupportActionBar() != null;   //null check
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         mGridMode = false;

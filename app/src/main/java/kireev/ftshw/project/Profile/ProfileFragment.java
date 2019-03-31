@@ -5,8 +5,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -22,11 +20,9 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 
-import kireev.ftshw.project.Courses.ui.gradeslist.GradesListFragment;
 import kireev.ftshw.project.MainActivity;
 import kireev.ftshw.project.Network.Connector;
 import kireev.ftshw.project.Network.FintechAPI;
-import kireev.ftshw.project.Network.Ser.SignInResponse;
 import kireev.ftshw.project.Network.Ser.UserResponse;
 import kireev.ftshw.project.R;
 import retrofit2.Call;
@@ -35,7 +31,6 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 
 import static kireev.ftshw.project.MainActivity.*;
-import static kireev.ftshw.project.Network.Urls.BASE_URL;
 import static kireev.ftshw.project.Profile.ProfileEditFragment.STUDENT_NAME;
 import static kireev.ftshw.project.Profile.ProfileEditFragment.STUDENT_PATRONYMIC;
 import static kireev.ftshw.project.Profile.ProfileEditFragment.STUDENT_SURNAME;

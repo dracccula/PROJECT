@@ -4,7 +4,6 @@
     <string name="title_courses">Мои курсы</string>
     <string name="title_profile">Профиль</string>
     <string name="title_edit_profile">Редактирование</string>
-    <string name="title_grades_list">Успеваемость</string>
 
     <string name="events_text_actionbar">Мероприятия</string>
     <string name="courses_text_actionbar">Курсы</string>
@@ -24,9 +23,9 @@
 Войдите, чтобы получить доступ."</string>
     <string name="profile_not_autorized_button">Войти</string>
 
-    <string name="title_grades_fragment">Успеваемость</string>
-    <string name="details_grades_fragment">ДЕТАЛИ</string>
-
+    <string name="title_grades">Успеваемость</string>
+    <string name="title_rating">Рейтинг</string>
+    <string name="details_button">ДЕТАЛИ</string>
 
     <string name="title_activity_login">Авторизация</string>
     <string name="login_hint_activity_login">Логин</string>

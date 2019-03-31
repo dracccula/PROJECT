@@ -20,14 +20,14 @@
 
             <fragment
                 android:id="@+id/fragment3"
-                android:name="kireev.ftshw.project.Courses.GradesFragment"
+                android:name="kireev.ftshw.project.Courses.GradesSectionFragment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp" />
 
             <fragment
                 android:id="@+id/fragment2"
-                android:name="kireev.ftshw.project.Courses.RatingFragment"
+                android:name="kireev.ftshw.project.Courses.RatingSectionFragment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
@@ -37,7 +37,7 @@
 
             <fragment
                 android:id="@+id/fragment"
-                android:name="kireev.ftshw.project.Courses.FinishedCoursesFragment"
+                android:name="kireev.ftshw.project.Courses.FinishedCoursesSectionFragment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="35" />

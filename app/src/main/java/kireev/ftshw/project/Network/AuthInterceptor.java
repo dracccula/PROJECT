@@ -1,7 +1,6 @@
 package kireev.ftshw.project.Network;
 
 
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 
@@ -15,7 +14,6 @@ import okhttp3.Response;
 public class AuthInterceptor implements Interceptor {
 
     private SharedPreferences preferences;
-    MainActivity context;
 
     public AuthInterceptor(SharedPreferences preferences) {
         this.preferences = preferences;
@@ -24,6 +22,8 @@ public class AuthInterceptor implements Interceptor {
     @NonNull
     @Override
     public Response intercept(@NonNull Chain chain) throws IOException {
+        //        Задержка запроса на 2 секунды
+        //        SystemClock.sleep(2000);
         Request request = chain.request();
         if (preferences == null) {
             return chain.proceed(request);

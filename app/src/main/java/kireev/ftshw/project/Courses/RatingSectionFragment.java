@@ -12,10 +12,10 @@ import kireev.ftshw.project.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class RatingFragment extends Fragment {
+public class RatingSectionFragment extends Fragment {
 
 
-    public RatingFragment() {
+    public RatingSectionFragment() {
         // Required empty public constructor
     }
 
@@ -24,7 +24,7 @@ public class RatingFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_rating, container, false);
+        return inflater.inflate(R.layout.fragment_rating_section, container, false);
     }
 
 }

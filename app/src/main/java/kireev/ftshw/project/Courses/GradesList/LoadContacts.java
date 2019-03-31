@@ -1,4 +1,4 @@
-package kireev.ftshw.project.Courses.ui.gradeslist;
+package kireev.ftshw.project.Courses.GradesList;
 
 import android.app.ProgressDialog;
 import android.content.ContentResolver;

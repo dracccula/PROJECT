@@ -16,7 +16,8 @@ import android.view.View;
 import android.widget.Toast;
 
 import kireev.ftshw.project.Courses.CoursesFragment;
-import kireev.ftshw.project.Courses.GradesListActivity;
+import kireev.ftshw.project.Courses.GradesList.GradesListActivity;
+import kireev.ftshw.project.Courses.Rating.RatingActivity;
 import kireev.ftshw.project.Events.EventsFragment;
 import kireev.ftshw.project.Network.Connector;
 import kireev.ftshw.project.Network.FintechAPI;
@@ -156,6 +157,12 @@ public class MainActivity extends AppCompatActivity
     public void gradesButtonClick(View view) {
         Log.d("gradesButtonClick", "clicked!");
         startActivityForResult(new Intent(this, GradesListActivity.class), 1);
+        Log.d("gradesButtonClick", "GradesListActivity opened!");
+    }
+
+    public void ratingButtonClick(View view) {
+        Log.d("gradesButtonClick", "clicked!");
+        startActivityForResult(new Intent(this, RatingActivity.class), 1);
         Log.d("gradesButtonClick", "GradesListActivity opened!");
     }
 
