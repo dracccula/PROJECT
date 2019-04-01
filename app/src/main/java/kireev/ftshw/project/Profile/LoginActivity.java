@@ -1,6 +1,5 @@
 package kireev.ftshw.project.Profile;
 
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,10 +13,9 @@ import android.widget.Toast;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import kireev.ftshw.project.MainActivity;
-import kireev.ftshw.project.Network.Ser.SignIn;
+import kireev.ftshw.project.Network.Model.SignIn;
 import kireev.ftshw.project.Network.FintechAPI;
-import kireev.ftshw.project.Network.Ser.SignInResponse;
+import kireev.ftshw.project.Network.Model.SignInResponse;
 import kireev.ftshw.project.R;
 import kireev.ftshw.project.Network.Connector;
 import retrofit2.Call;

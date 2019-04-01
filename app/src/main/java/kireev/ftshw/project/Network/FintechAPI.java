@@ -1,9 +1,9 @@
 package kireev.ftshw.project.Network;
 
-import kireev.ftshw.project.Network.Ser.HomeworksResponse;
-import kireev.ftshw.project.Network.Ser.SignIn;
-import kireev.ftshw.project.Network.Ser.SignInResponse;
-import kireev.ftshw.project.Network.Ser.UserResponse;
+import kireev.ftshw.project.Network.Model.HomeworksResponse;
+import kireev.ftshw.project.Network.Model.SignIn;
+import kireev.ftshw.project.Network.Model.SignInResponse;
+import kireev.ftshw.project.Network.Model.UserResponse;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;

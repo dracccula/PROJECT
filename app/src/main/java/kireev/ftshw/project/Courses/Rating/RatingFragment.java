@@ -10,7 +10,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -18,7 +17,7 @@ import java.util.List;
 
 import kireev.ftshw.project.Network.Connector;
 import kireev.ftshw.project.Network.FintechAPI;
-import kireev.ftshw.project.Network.Ser.HomeworksResponse;
+import kireev.ftshw.project.Network.Model.HomeworksResponse;
 import kireev.ftshw.project.R;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -38,18 +37,18 @@ public class RatingFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_rating, container, false);
-        initRV();
-        //getHomeworksData();
-        return v;
-    }
-
-    private void initRV() {
         rvHomeworks = new RecyclerView(getContext());
-        homeworksAdapter = new HomeworksAdapter();
+        rvHomeworks.findViewById(R.id.rvHomeworks);
+        homeworksAdapter = new HomeworksAdapter(initRV());
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getContext());
         rvHomeworks.setLayoutManager(mLayoutManager);
         rvHomeworks.setItemAnimator(new DefaultItemAnimator());
         rvHomeworks.setAdapter(homeworksAdapter);
+        getHomeworksData();
+        return rvHomeworks;
+    }
+
+    private List initRV() {
         final List<HomeworkVO> homeworkList = new ArrayList<HomeworkVO>();
         homeworkList.add(new HomeworkVO("Лекция 1. Основные компоненты Android"));
         homeworkList.add(new HomeworkVO("Лекция 2. Фрагменты"));
@@ -57,6 +56,7 @@ public class RatingFragment extends Fragment {
         homeworkList.add(new HomeworkVO("Лекция 4. Recycler View"));
         homeworkList.add(new HomeworkVO("Лекция 5. Аcинхронное взаимодействие"));
         homeworkList.add(new HomeworkVO("Лекция 6. Работа с сетью"));
+        return homeworkList;
     }
 
     private void getHomeworksData() {

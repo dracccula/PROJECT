@@ -21,7 +21,7 @@ import kireev.ftshw.project.Courses.Rating.RatingActivity;
 import kireev.ftshw.project.Events.EventsFragment;
 import kireev.ftshw.project.Network.Connector;
 import kireev.ftshw.project.Network.FintechAPI;
-import kireev.ftshw.project.Network.Ser.SignInResponse;
+import kireev.ftshw.project.Network.Model.SignInResponse;
 import kireev.ftshw.project.Profile.AnonimProfileFragment;
 import kireev.ftshw.project.Profile.LoginActivity;
 import kireev.ftshw.project.Profile.ProfileEditFragment;

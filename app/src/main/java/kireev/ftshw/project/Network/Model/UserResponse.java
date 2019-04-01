@@ -1,4 +1,4 @@
-package kireev.ftshw.project.Network.Ser;
+package kireev.ftshw.project.Network.Model;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

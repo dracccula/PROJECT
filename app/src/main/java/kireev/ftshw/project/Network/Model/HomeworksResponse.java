@@ -1,4 +1,4 @@
-package kireev.ftshw.project.Network.Ser;
+package kireev.ftshw.project.Network.Model;
 
 import java.util.List;
 
@@ -19,7 +19,7 @@ public class HomeworksResponse {
         this.homeworks = homeworks;
     }
 
-    public class Homework {
+    public static class Homework {
 
         @SerializedName("id")
         @Expose
@@ -57,7 +57,7 @@ public class HomeworksResponse {
 
     }
 
-    public class Tasks {
+    public static class Tasks {
 
         @SerializedName("id")
         @Expose
@@ -106,7 +106,7 @@ public class HomeworksResponse {
 
     }
 
-    public class Task {
+    public static class Task {
 
         @SerializedName("id")
         @Expose

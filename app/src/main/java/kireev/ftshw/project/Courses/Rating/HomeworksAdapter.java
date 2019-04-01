@@ -9,12 +9,15 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import kireev.ftshw.project.Network.Ser.HomeworksResponse;
 import kireev.ftshw.project.R;
 
 public class HomeworksAdapter extends RecyclerView.Adapter<HomeworksAdapter.HomeworkViewHolder> {
     private List<HomeworkVO> homeworkList;
     private HomeworkViewHolder homeworkViewHolder;
+
+    public HomeworksAdapter(List<HomeworkVO> homeworkList) {
+        this.homeworkList = homeworkList;
+    }
 
     @NonNull
     @Override

@@ -2,6 +2,7 @@ package kireev.ftshw.project.Network;
 
 
 import android.content.SharedPreferences;
+import android.os.SystemClock;
 import android.support.annotation.NonNull;
 
 import java.io.IOException;
@@ -23,7 +24,7 @@ public class AuthInterceptor implements Interceptor {
     @Override
     public Response intercept(@NonNull Chain chain) throws IOException {
         //        Задержка запроса на 2 секунды
-        //        SystemClock.sleep(2000);
+        //       SystemClock.sleep(2000);
         Request request = chain.request();
         if (preferences == null) {
             return chain.proceed(request);
