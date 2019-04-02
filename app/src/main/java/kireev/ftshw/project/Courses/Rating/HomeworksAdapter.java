@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.Collection;
 import java.util.List;
 
 import kireev.ftshw.project.R;
@@ -14,6 +15,7 @@ import kireev.ftshw.project.R;
 public class HomeworksAdapter extends RecyclerView.Adapter<HomeworksAdapter.HomeworkViewHolder> {
     private List<HomeworkVO> homeworkList;
     private HomeworkViewHolder homeworkViewHolder;
+    private OnUserClickListener onUserClickListener;
 
     public HomeworksAdapter(List<HomeworkVO> homeworkList) {
         this.homeworkList = homeworkList;
@@ -33,6 +35,19 @@ public class HomeworksAdapter extends RecyclerView.Adapter<HomeworksAdapter.Home
         holder.tvHomeworkTitle.setText(homeworkVO.getHomeworkTitle());
     }
 
+    public HomeworksAdapter(OnUserClickListener onUserClickListener) {
+        this.onUserClickListener = onUserClickListener;
+    }
+
+    public interface OnUserClickListener {
+        void onUserClick(HomeworkVO homeworkVO);
+    }
+
+    public void setItems(Collection<HomeworkVO> homeworks) {
+        homeworkList.addAll(homeworks);
+        notifyDataSetChanged();
+    }
+
     @Override
     public int getItemCount() {
         return homeworkList.size();
@@ -44,6 +59,13 @@ public class HomeworksAdapter extends RecyclerView.Adapter<HomeworksAdapter.Home
         public HomeworkViewHolder(@NonNull View itemView) {
             super(itemView);
             tvHomeworkTitle = itemView.findViewById(R.id.tvHomeworkTitle);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    HomeworkVO user = homeworkList.get(getLayoutPosition());
+                    onUserClickListener.onUserClick(user);
+                }
+            });
         }
     }
 }

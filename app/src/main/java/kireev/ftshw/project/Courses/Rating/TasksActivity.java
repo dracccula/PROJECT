@@ -7,17 +7,17 @@ import android.view.MenuItem;
 
 import kireev.ftshw.project.R;
 
-public class RatingActivity extends AppCompatActivity {
+public class TasksActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_rating);
-        setTitle(getString(R.string.title_rating));
+        setContentView(R.layout.activity_tasks);
+        setTitle(R.string.title_tasks);
         assert getSupportActionBar() != null;   //null check
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.container, new RatingFragment())
+                .replace(R.id.container, new TasksFragment())
                 .commitNow();
     }
 
@@ -31,3 +31,4 @@ public class RatingActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 }
+

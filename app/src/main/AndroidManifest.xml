@@ -18,7 +18,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:targetApi="n">
-        <activity android:name=".Courses.Rating.RatingActivity"></activity>
+        <activity android:name=".Courses.Rating.TasksActivity"></activity>
+        <activity android:name=".Courses.Rating.RatingActivity" />
         <activity
             android:name=".Profile.LoginActivity"
             android:configChanges="orientation"

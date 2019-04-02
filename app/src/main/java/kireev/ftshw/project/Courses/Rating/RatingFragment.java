@@ -36,8 +36,6 @@ public class RatingFragment extends Fragment implements SwipeRefreshLayout.OnRef
     SwipeRefreshLayout mSwipeRefreshLayout;
     RecyclerView rvHomeworks;
     HomeworksAdapter homeworksAdapter;
-    LoadHomeworks lh;
-    List<HomeworkVO> homeworkList;
     ProgressDialog pd;
     final List<HomeworkVO> homeworkVOList = new ArrayList<>();
 
@@ -50,6 +48,12 @@ public class RatingFragment extends Fragment implements SwipeRefreshLayout.OnRef
         rvHomeworks.findViewById(R.id.rvHomeworks);
         mSwipeRefreshLayout = v.findViewById(R.id.refreshRV);
         mSwipeRefreshLayout.setOnRefreshListener(this);
+        v.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(),homeworkVOList.get(1).getHomeworkId(),Toast.LENGTH_LONG);
+            }
+        });
         return rvHomeworks;
     }
 
@@ -61,18 +65,7 @@ public class RatingFragment extends Fragment implements SwipeRefreshLayout.OnRef
 
     @Override
     public void onDestroyView() {
-        //lh.unsubscribe();
         super.onDestroyView();
-    }
-
-    private List initRV() {
-        homeworkList.add(new HomeworkVO("Лекция 1. Основные компоненты Android"));
-        homeworkList.add(new HomeworkVO("Лекция 2. Фрагменты"));
-        homeworkList.add(new HomeworkVO("Лекция 3. View и viewgroup"));
-        homeworkList.add(new HomeworkVO("Лекция 4. Recycler View"));
-        homeworkList.add(new HomeworkVO("Лекция 5. Аcинхронное взаимодействие"));
-        homeworkList.add(new HomeworkVO("Лекция 6. Работа с сетью"));
-        return homeworkList;
     }
 
     private List<HomeworkVO> getHomeworksData() {
@@ -87,6 +80,7 @@ public class RatingFragment extends Fragment implements SwipeRefreshLayout.OnRef
                 List<HomeworksResponse.Homework> homeworkList = homeworksResponse.getHomeworks();
                 for (int i = 0; i < homeworkList.size(); i++) {
                     HomeworkVO homeworkVO = new HomeworkVO();
+                    homeworkVO.setHomeworkId(homeworkList.get(i).getId());
                     homeworkVO.setHomeworkTitle(homeworkList.get(i).getTitle());
                     homeworkVOList.add(homeworkVO);
                 }
@@ -97,6 +91,12 @@ public class RatingFragment extends Fragment implements SwipeRefreshLayout.OnRef
                 }
                 Log.i("homeworkVOList[3]", homeworkVOList.get(3).getHomeworkTitle());
                 Collections.reverse(homeworkVOList);
+                HomeworksAdapter.OnUserClickListener onUserClickListener = new HomeworksAdapter.OnUserClickListener() {
+                    @Override
+                    public void onUserClick(HomeworkVO homeworkVO) {
+                        Toast.makeText(getContext(), "id " + homeworkVO.getHomeworkId(), Toast.LENGTH_SHORT).show();
+                    }
+                };
                 homeworksAdapter = new HomeworksAdapter(homeworkVOList);
                 rvHomeworks.setAdapter(homeworksAdapter);
                 rvHomeworks.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -121,10 +121,6 @@ public class RatingFragment extends Fragment implements SwipeRefreshLayout.OnRef
 
     public void hideProgress() {
         pd.dismiss();
-    }
-
-    public void showList(List<HomeworkVO> homeworkVOList) {
-
     }
 
     @Override

@@ -25,6 +25,7 @@
 
     <string name="title_grades">Успеваемость</string>
     <string name="title_rating">Рейтинг</string>
+    <string name="title_tasks">Задания</string>
     <string name="details_button">ДЕТАЛИ</string>
 
     <string name="title_activity_login">Авторизация</string>
