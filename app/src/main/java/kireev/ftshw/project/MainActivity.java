@@ -49,10 +49,10 @@ public class MainActivity extends AppCompatActivity
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         spStorage = this.getPreferences(Context.MODE_PRIVATE);
         if (savedInstanceState == null) {
-            navigation.getMenu().getItem(2).setChecked(true);
+            navigation.getMenu().getItem(1).setChecked(true);
             if (spStorage.getBoolean("IS_AUTORIZED",false)) {
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new ProfileFragment()).commitNow();
+                        new CoursesFragment()).commitNow();
             } else {
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new AnonimProfileFragment()).commitNow();

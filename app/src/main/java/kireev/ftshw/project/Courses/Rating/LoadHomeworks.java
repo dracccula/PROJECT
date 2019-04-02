@@ -18,11 +18,10 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-public class LoadHomeworks extends AsyncTask<Void, Void, List<HomeworkVO>> {
+public class LoadHomeworks extends AsyncTask<Void, Void, ArrayList<HomeworkVO>> {
     HomeworkVO homeworkVO;
     private RatingFragment fragment;
-    List<String> homeworkTitles = new ArrayList<>();
-    final List<HomeworkVO> homeworkVOList = new ArrayList<>();
+    final ArrayList<HomeworkVO> homeworkVOList = new ArrayList<>();
 
     public void subscribe(RatingFragment fragment) {
         this.fragment = fragment;
@@ -35,56 +34,32 @@ public class LoadHomeworks extends AsyncTask<Void, Void, List<HomeworkVO>> {
     @Override
     protected void onPreExecute() {
         super.onPreExecute();
-        //fragment.showProgress();
+        fragment.showProgress();
     }
 
     @Override
-    protected List<HomeworkVO> doInBackground(Void... params) {
+    protected ArrayList<HomeworkVO> doInBackground(Void... params) {
 //        try {
 //            TimeUnit.SECONDS.sleep(1);
 //        } catch (InterruptedException e) {
 //            e.printStackTrace();
 //        }
-        Retrofit retrofit = Connector.getRetrofitClient();
-        FintechAPI fintechAPI = retrofit.create(FintechAPI.class);
-        Call<HomeworksResponse> call = fintechAPI.getHomeworks();
-        call.enqueue(new Callback<HomeworksResponse>() {
-            @Override
-            public void onResponse(Call call, Response response) {
-                HomeworksResponse homeworksResponse = (HomeworksResponse) response.body();
-                List<HomeworksResponse.Homework> homeworkList = homeworksResponse.getHomeworks();
-                for (int i = 0; i < homeworkList.size(); i++) {
-                    homeworkVO = new HomeworkVO();
-                    homeworkVO.setHomeworkTitle(homeworkList.get(i).getTitle());
-                    homeworkVOList.add(homeworkVO);
-                }
-                String headers = response.headers().toString();
-                String cookie = response.headers().get("Set-Cookie");
-                if (response.isSuccessful()) {
-                    Log.i("getHomeworks Response", "body: " + homeworkList.toString());
-                    Log.i("getHomeworks Response", "headers: " + headers);
-                    Log.i("getHomeworks Response", "cookie: " + cookie);
-                }
-            }
 
-            @Override
-            public void onFailure(Call call, Throwable t) {
-                Log.e("getHomeworks onFailure", "ooops!");
-                Toast.makeText(fragment.getContext(), "getHomeworks went wrong!", Toast.LENGTH_SHORT).show();
-            }
-
-
-        });
 
         return homeworkVOList;
     }
 
     @Override
-    protected void onPostExecute(List<HomeworkVO> homeworkVOList) {
+    protected void onPostExecute(ArrayList<HomeworkVO> homeworkVOList) {
         // TODO Auto-generated method stub
         super.onPostExecute(homeworkVOList);
-        //fragment.hideProgress();
-        fragment.showList(homeworkVOList);
+        if (homeworkVOList.size() != 0) {
+            Log.d("homeworkVOList[3]:", homeworkVOList.get(3).getHomeworkTitle());
+        }
+        fragment.hideProgress();
+        //fragment.showList(homeworkVOList);
+
+//        Toast.makeText(fragment.getContext(),homeworkVOList.get(3).getHomeworkTitle(),Toast.LENGTH_LONG);
     }
 
 }

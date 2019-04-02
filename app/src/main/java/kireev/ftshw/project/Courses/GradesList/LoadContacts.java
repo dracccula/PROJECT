@@ -1,6 +1,5 @@
 package kireev.ftshw.project.Courses.GradesList;
 
-import android.app.ProgressDialog;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.database.Cursor;
