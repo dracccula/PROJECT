@@ -11,11 +11,11 @@ public class HomeworkVO {
 
     }
 
-    public String getContactName() {
+    public String getHomeworkTitle() {
         return HomeworkTitle;
     }
 
-    public void setContactName(String sTitle) {
+    public void setHomeworkTitle(String sTitle) {
         HomeworkTitle = sTitle;
     }
 

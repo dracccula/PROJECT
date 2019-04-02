@@ -13,7 +13,6 @@ import java.util.concurrent.TimeUnit;
 
 public class LoadContacts extends AsyncTask<Void, Void, ArrayList<ContactVO>> {
     ContactVO contactVO;
-    ProgressDialog pd;
     private GradesListFragment fragment;
 
     public void subscribe(GradesListFragment fragment) {
