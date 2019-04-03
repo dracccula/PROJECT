@@ -2,12 +2,12 @@ package kireev.ftshw.project.Courses.Rating;
 
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -44,18 +44,27 @@ public class RatingFragment extends Fragment implements SwipeRefreshLayout.OnRef
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_rating, container, false);
-        rvHomeworks = new RecyclerView(getContext());
-        rvHomeworks.findViewById(R.id.rvHomeworks);
+        rvHomeworks = v.findViewById(R.id.rvHomeworks);
         rvHomeworks.setLayoutManager(new LinearLayoutManager(getContext()));
         mSwipeRefreshLayout = v.findViewById(R.id.refreshRV);
         mSwipeRefreshLayout.setOnRefreshListener(this);
-        v.setOnClickListener(new View.OnClickListener() {
+        HomeworksAdapter.OnClickListener onClickListener = new HomeworksAdapter.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Toast.makeText(getContext(),homeworkVOList.get(1).getHomeworkId(),Toast.LENGTH_LONG).show();
+            public void onClick(HomeworkVO homeworkVO) {
+                Intent intent = new Intent(getActivity(),TasksActivity.class);
+                intent.putExtra(TasksActivity.HOMEWORK_TITLE, homeworkVO.getHomeworkTitle());
+                startActivity(intent);
+                Toast.makeText(getContext(), "id " + homeworkVO.getHomeworkId(), Toast.LENGTH_SHORT).show();
             }
-        });
-        return rvHomeworks;
+        };
+        homeworksAdapter = new HomeworksAdapter(onClickListener, getContext());
+//        v.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Toast.makeText(getContext(),homeworkVOList.get(1).getHomeworkId(),Toast.LENGTH_LONG).show();
+//            }
+//        });
+        return v;
     }
 
     @Override
@@ -92,13 +101,6 @@ public class RatingFragment extends Fragment implements SwipeRefreshLayout.OnRef
                 }
                 Log.i("homeworkVOList[3]", homeworkVOList.get(3).getHomeworkTitle());
                 Collections.reverse(homeworkVOList);
-                HomeworksAdapter.OnUserClickListener onUserClickListener = new HomeworksAdapter.OnUserClickListener() {
-                    @Override
-                    public void onUserClick(HomeworkVO homeworkVO) {
-                        Toast.makeText(getContext(), "id " + homeworkVO.getHomeworkId(), Toast.LENGTH_SHORT).show();
-                    }
-                };
-                homeworksAdapter = new HomeworksAdapter(onUserClickListener);
                 homeworksAdapter.setItems(homeworkVOList);
                 rvHomeworks.setAdapter(homeworksAdapter);
                 hideProgress();
@@ -126,6 +128,8 @@ public class RatingFragment extends Fragment implements SwipeRefreshLayout.OnRef
 
     @Override
     public void onRefresh() {
+        getHomeworksData();
+        mSwipeRefreshLayout.setRefreshing(false);
         Log.d("onRefresh", "refreshed!");
     }
 }

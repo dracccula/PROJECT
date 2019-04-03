@@ -1,5 +1,6 @@
 package kireev.ftshw.project.Courses.Rating;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -7,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.util.Collection;
 import java.util.List;
 
 import kireev.ftshw.project.R;
@@ -15,7 +15,8 @@ import kireev.ftshw.project.R;
 public class HomeworksAdapter extends RecyclerView.Adapter<HomeworksAdapter.HomeworkViewHolder> {
     private List<HomeworkVO> homeworkList;
     private HomeworkViewHolder homeworkViewHolder;
-    private OnUserClickListener onUserClickListener;
+    private OnClickListener onClickListener;
+    private Context context;
 
 //    public HomeworksAdapter(List<HomeworkVO> homeworkList) {
 //        this.homeworkList = homeworkList;
@@ -35,17 +36,17 @@ public class HomeworksAdapter extends RecyclerView.Adapter<HomeworksAdapter.Home
         holder.tvHomeworkTitle.setText(homeworkVO.getHomeworkTitle());
     }
 
-    public HomeworksAdapter(OnUserClickListener onUserClickListener) {
-        this.onUserClickListener = onUserClickListener;
+    public HomeworksAdapter(OnClickListener onClickListener, Context context) {
+        this.onClickListener = onClickListener;
+        this.context = context;
     }
 
-    public interface OnUserClickListener {
-        void onUserClick(HomeworkVO homeworkVO);
+    public interface OnClickListener {
+        void onClick(HomeworkVO homeworkVO);
     }
 
     public void setItems(List<HomeworkVO> homeworks) {
         this.homeworkList = homeworks;
-        //homeworkList.addAll(homeworks);
         notifyDataSetChanged();
     }
 
@@ -59,12 +60,13 @@ public class HomeworksAdapter extends RecyclerView.Adapter<HomeworksAdapter.Home
 
         public HomeworkViewHolder(@NonNull View itemView) {
             super(itemView);
+            context = itemView.getContext();
             tvHomeworkTitle = itemView.findViewById(R.id.tvHomeworkTitle);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    HomeworkVO user = homeworkList.get(getLayoutPosition());
-                    onUserClickListener.onUserClick(user);
+                    HomeworkVO homeworkVO = homeworkList.get(getLayoutPosition());
+                    onClickListener.onClick(homeworkVO);
                 }
             });
         }

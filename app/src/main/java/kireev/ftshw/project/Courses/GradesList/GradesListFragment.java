@@ -41,7 +41,7 @@ public class GradesListFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        //View v = inflater.inflate(R.layout.grades_list_fragment, container, false);
+        View v = inflater.inflate(R.layout.grades_list_fragment, container, false);
         rvGrades = new RecyclerView(getContext());
         rvGrades.findViewById(R.id.gradeslist);
         return rvGrades;

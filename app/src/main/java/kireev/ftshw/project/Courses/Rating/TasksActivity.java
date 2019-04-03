@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import kireev.ftshw.project.R;
 
 public class TasksActivity extends AppCompatActivity {
+    public static final String HOMEWORK_TITLE = "title";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,8 +18,14 @@ public class TasksActivity extends AppCompatActivity {
         assert getSupportActionBar() != null;   //null check
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportFragmentManager().beginTransaction()
+                //.add(new TasksFragment(),HOMEWORK_TITLE)
                 .replace(R.id.container, new TasksFragment())
-                .commitNow();
+                .commit();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
     }
 
     @Override
