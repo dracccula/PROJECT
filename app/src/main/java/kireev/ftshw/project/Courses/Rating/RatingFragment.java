@@ -46,12 +46,13 @@ public class RatingFragment extends Fragment implements SwipeRefreshLayout.OnRef
         View v = inflater.inflate(R.layout.fragment_rating, container, false);
         rvHomeworks = new RecyclerView(getContext());
         rvHomeworks.findViewById(R.id.rvHomeworks);
+        rvHomeworks.setLayoutManager(new LinearLayoutManager(getContext()));
         mSwipeRefreshLayout = v.findViewById(R.id.refreshRV);
         mSwipeRefreshLayout.setOnRefreshListener(this);
         v.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(),homeworkVOList.get(1).getHomeworkId(),Toast.LENGTH_LONG);
+                Toast.makeText(getContext(),homeworkVOList.get(1).getHomeworkId(),Toast.LENGTH_LONG).show();
             }
         });
         return rvHomeworks;
@@ -97,9 +98,9 @@ public class RatingFragment extends Fragment implements SwipeRefreshLayout.OnRef
                         Toast.makeText(getContext(), "id " + homeworkVO.getHomeworkId(), Toast.LENGTH_SHORT).show();
                     }
                 };
-                homeworksAdapter = new HomeworksAdapter(homeworkVOList);
+                homeworksAdapter = new HomeworksAdapter(onUserClickListener);
+                homeworksAdapter.setItems(homeworkVOList);
                 rvHomeworks.setAdapter(homeworksAdapter);
-                rvHomeworks.setLayoutManager(new LinearLayoutManager(getContext()));
                 hideProgress();
             }
 

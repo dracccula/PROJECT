@@ -17,9 +17,9 @@ public class HomeworksAdapter extends RecyclerView.Adapter<HomeworksAdapter.Home
     private HomeworkViewHolder homeworkViewHolder;
     private OnUserClickListener onUserClickListener;
 
-    public HomeworksAdapter(List<HomeworkVO> homeworkList) {
-        this.homeworkList = homeworkList;
-    }
+//    public HomeworksAdapter(List<HomeworkVO> homeworkList) {
+//        this.homeworkList = homeworkList;
+//    }
 
     @NonNull
     @Override
@@ -43,8 +43,9 @@ public class HomeworksAdapter extends RecyclerView.Adapter<HomeworksAdapter.Home
         void onUserClick(HomeworkVO homeworkVO);
     }
 
-    public void setItems(Collection<HomeworkVO> homeworks) {
-        homeworkList.addAll(homeworks);
+    public void setItems(List<HomeworkVO> homeworks) {
+        this.homeworkList = homeworks;
+        //homeworkList.addAll(homeworks);
         notifyDataSetChanged();
     }
 

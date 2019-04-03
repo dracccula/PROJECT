@@ -10,18 +10,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="eb2a1b0b-2cc6-4107-91bc-d2d5583a2741" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Courses/Rating/TasksActivity.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Courses/Rating/TasksFragment.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_tasks.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_tasks.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Courses/Rating/HomeworkVO.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Courses/Rating/HomeworkVO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Courses/Rating/HomeworksAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Courses/Rating/HomeworksAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Courses/Rating/RatingActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Courses/Rating/RatingActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Courses/Rating/RatingFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Courses/Rating/RatingFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -91,7 +82,7 @@
         <counts>
           <entry key="dummy" value="36" />
           <entry key="gradle" value="1" />
-          <entry key="java" value="3913" />
+          <entry key="java" value="3943" />
           <entry key="txt" value="84" />
           <entry key="xml" value="1100" />
         </counts>
@@ -99,26 +90,26 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="Groovy" value="1" />
-          <entry key="JAVA" value="3913" />
+          <entry key="JAVA" value="3943" />
           <entry key="PLAIN_TEXT" value="120" />
           <entry key="XML" value="1100" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="10" />
+          <entry key="project.closed" value="11" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.2" value="1" />
           <entry key="project.open.time.6" value="4" />
-          <entry key="project.open.time.7" value="1" />
+          <entry key="project.open.time.7" value="2" />
           <entry key="project.open.time.8" value="1" />
           <entry key="project.open.time.9" value="2" />
-          <entry key="project.opened" value="10" />
+          <entry key="project.opened" value="11" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="class" value="6" />
+          <entry key="class" value="7" />
           <entry key="gradle" value="1" />
           <entry key="java" value="117" />
           <entry key="xml" value="72" />
@@ -126,7 +117,7 @@
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="CLASS" value="6" />
+          <entry key="CLASS" value="7" />
           <entry key="Groovy" value="1" />
           <entry key="JAVA" value="117" />
           <entry key="XML" value="72" />
@@ -139,14 +130,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Courses/Rating/HomeworksAdapter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="52" selection-start-line="52" selection-end-line="52" />
+            <state relative-caret-position="270">
+              <caret line="48" column="31" selection-start-line="48" selection-start-column="31" selection-end-line="48" selection-end-column="31" />
               <folding>
-                <element signature="e#570#571#0" expanded="true" />
-                <element signature="e#618#619#0" expanded="true" />
-                <element signature="e#1279#1280#0" expanded="true" />
-                <element signature="e#2237#2505#0" expanded="true" />
-                <element signature="e#2504#2505#0" expanded="true" />
+                <element signature="e#1692#1693#0" expanded="true" />
+                <element signature="e#1734#1735#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -155,19 +143,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Courses/Rating/RatingFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="165">
-              <caret line="99" column="70" selection-start-line="99" selection-start-column="70" selection-end-line="99" selection-end-column="70" />
+            <state relative-caret-position="401">
+              <caret line="97" column="99" lean-forward="true" selection-start-line="97" selection-start-column="99" selection-end-line="97" selection-end-column="99" />
               <folding>
-                <element signature="e#1787#2005#0" expanded="true" />
-                <element signature="e#2004#2005#0" expanded="true" />
-                <element signature="e#2284#2285#0" expanded="true" />
-                <element signature="e#2321#2322#0" expanded="true" />
-                <element signature="e#3936#4236#0" expanded="true" />
-                <element signature="e#4235#4236#0" expanded="true" />
-                <element signature="e#4897#4898#0" expanded="true" />
-                <element signature="e#4925#4926#0" expanded="true" />
-                <element signature="e#4970#4971#0" expanded="true" />
-                <element signature="e#5018#5019#0" expanded="true" />
+                <element signature="e#3776#4076#0" expanded="true" />
+                <element signature="e#4075#4076#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -175,8 +155,8 @@
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_tasks.xml">
-          <provider editor-type-id="android-designer2" />
           <provider selected="true" editor-type-id="text-editor" />
+          <provider editor-type-id="android-designer2" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -191,12 +171,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Courses/Rating/HomeworkVO.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
+            <state relative-caret-position="285">
               <caret line="22" column="25" selection-start-line="22" selection-start-column="25" selection-end-line="22" selection-end-column="25" />
               <folding>
-                <element signature="e#378#379#0" expanded="true" />
-                <element signature="e#410#411#0" expanded="true" />
-                <element signature="e#449#450#0" expanded="true" />
+                <element signature="e#448#449#0" expanded="true" />
                 <element signature="e#480#481#0" expanded="true" />
               </folding>
             </state>
@@ -206,7 +184,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Network/Model/HomeworksResponse.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="999">
+            <state relative-caret-position="1155">
               <caret line="189" column="1" selection-start-line="189" selection-start-column="1" selection-end-line="189" selection-end-column="1" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -292,8 +270,8 @@
         <option value="$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Courses/Rating/TasksActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_tasks.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Courses/Rating/HomeworkVO.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Courses/Rating/HomeworksAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Courses/Rating/RatingFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Courses/Rating/HomeworksAdapter.java" />
       </list>
     </option>
   </component>
@@ -306,9 +284,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane" />
-      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="AndroidView">
         <subPane>
           <expand>
@@ -386,6 +363,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="ProjectPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -601,45 +579,45 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Courses/Rating/RatingFragment.java</url>
-          <line>79</line>
-          <properties />
-          <option name="timeStamp" value="52" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Courses/Rating/RatingFragment.java</url>
-          <line>83</line>
-          <properties />
-          <option name="timeStamp" value="57" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Courses/Rating/RatingFragment.java</url>
-          <line>102</line>
+          <line>103</line>
           <properties />
           <option name="timeStamp" value="58" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Courses/Rating/RatingFragment.java</url>
-          <line>101</line>
-          <properties />
-          <option name="timeStamp" value="60" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Courses/Rating/RatingFragment.java</url>
-          <line>100</line>
+          <line>102</line>
           <properties />
           <option name="timeStamp" value="61" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Courses/Rating/RatingFragment.java</url>
-          <line>99</line>
+          <line>100</line>
           <properties />
           <option name="timeStamp" value="62" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Courses/Rating/RatingFragment.java</url>
-          <line>86</line>
+          <line>87</line>
           <properties />
           <option name="timeStamp" value="64" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Courses/Rating/HomeworksAdapter.java</url>
+          <line>48</line>
+          <properties />
+          <option name="timeStamp" value="65" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Courses/Rating/RatingFragment.java</url>
+          <line>80</line>
+          <properties />
+          <option name="timeStamp" value="66" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Courses/Rating/RatingFragment.java</url>
+          <line>101</line>
+          <properties />
+          <option name="timeStamp" value="67" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -650,13 +628,6 @@
     </watches-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.squareup.okhttp3/okhttp/3.12.0/2647551116856a6403d1a21e236837a7501c08a8/okhttp-3.12.0-sources.jar!/okhttp3/Request.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="177">
-          <caret line="194" column="19" selection-start-line="194" selection-start-column="19" selection-end-line="194" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Profile/LoginActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="540">
@@ -769,10 +740,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="375">
           <caret line="56" column="18" selection-start-line="56" selection-start-column="18" selection-end-line="56" selection-end-column="18" />
-          <folding>
-            <element signature="e#723#724#0" expanded="true" />
-            <element signature="e#769#770#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -780,9 +747,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="128">
           <caret line="131" column="14" selection-start-line="131" selection-start-column="14" selection-end-line="131" selection-end-column="14" />
-          <folding>
-            <element signature="method#loadText#0;class#ProfileFragment#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -937,16 +901,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
           <caret line="26" column="34" selection-start-line="26" selection-start-column="34" selection-end-line="26" selection-end-column="34" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="27" column="29" selection-start-line="27" selection-start-column="18" selection-end-line="27" selection-end-column="29" />
         </state>
       </provider>
     </entry>
@@ -954,15 +908,8 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
           <caret line="19" column="50" selection-start-line="19" selection-start-column="50" selection-end-line="19" selection-end-column="50" />
-          <folding>
-            <element signature="e#446#466#0" expanded="true" />
-          </folding>
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_tasks.xml">
-      <provider selected="true" editor-type-id="text-editor" />
-      <provider editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Courses/Rating/TasksFragment.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -972,12 +919,12 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_tasks.xml">
-      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
           <caret line="19" column="46" lean-forward="true" selection-start-line="19" selection-start-column="46" selection-end-line="19" selection-end-column="46" />
         </state>
       </provider>
+      <provider editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Courses/GradesList/GradesListActivity.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -993,17 +940,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Network/Model/HomeworksResponse.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="999">
-          <caret line="189" column="1" selection-start-line="189" selection-start-column="1" selection-end-line="189" selection-end-column="1" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="class#Task#0;class#HomeworksResponse#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Courses/Rating/RatingActivity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
@@ -1014,48 +950,64 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Courses/Rating/HomeworksAdapter.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_tasks.xml">
+      <provider selected="true" editor-type-id="text-editor" />
+      <provider editor-type-id="android-designer2" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="52" selection-start-line="52" selection-end-line="52" />
-          <folding>
-            <element signature="e#570#571#0" expanded="true" />
-            <element signature="e#618#619#0" expanded="true" />
-            <element signature="e#1279#1280#0" expanded="true" />
-            <element signature="e#2237#2505#0" expanded="true" />
-            <element signature="e#2504#2505#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="405">
+          <caret line="27" column="29" selection-start-line="27" selection-start-column="18" selection-end-line="27" selection-end-column="29" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Courses/Rating/HomeworkVO.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
+        <state relative-caret-position="285">
           <caret line="22" column="25" selection-start-line="22" selection-start-column="25" selection-end-line="22" selection-end-column="25" />
           <folding>
-            <element signature="e#378#379#0" expanded="true" />
-            <element signature="e#410#411#0" expanded="true" />
-            <element signature="e#449#450#0" expanded="true" />
+            <element signature="e#448#449#0" expanded="true" />
             <element signature="e#480#481#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Network/Model/HomeworksResponse.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1155">
+          <caret line="189" column="1" selection-start-line="189" selection-start-column="1" selection-end-line="189" selection-end-column="1" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="class#Task#0;class#HomeworksResponse#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/jre/jdk/Contents/Home/jre/lib/rt.jar!/java/lang/ThreadGroup.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="571" column="16" selection-start-line="571" selection-start-column="16" selection-end-line="571" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Courses/Rating/HomeworksAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="48" column="31" selection-start-line="48" selection-start-column="31" selection-end-line="48" selection-end-column="31" />
+          <folding>
+            <element signature="e#1692#1693#0" expanded="true" />
+            <element signature="e#1734#1735#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Courses/Rating/RatingFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="99" column="70" selection-start-line="99" selection-start-column="70" selection-end-line="99" selection-end-column="70" />
+        <state relative-caret-position="401">
+          <caret line="97" column="99" lean-forward="true" selection-start-line="97" selection-start-column="99" selection-end-line="97" selection-end-column="99" />
           <folding>
-            <element signature="e#1787#2005#0" expanded="true" />
-            <element signature="e#2004#2005#0" expanded="true" />
-            <element signature="e#2284#2285#0" expanded="true" />
-            <element signature="e#2321#2322#0" expanded="true" />
-            <element signature="e#3936#4236#0" expanded="true" />
-            <element signature="e#4235#4236#0" expanded="true" />
-            <element signature="e#4897#4898#0" expanded="true" />
-            <element signature="e#4925#4926#0" expanded="true" />
-            <element signature="e#4970#4971#0" expanded="true" />
-            <element signature="e#5018#5019#0" expanded="true" />
+            <element signature="e#3776#4076#0" expanded="true" />
+            <element signature="e#4075#4076#0" expanded="true" />
           </folding>
         </state>
       </provider>
