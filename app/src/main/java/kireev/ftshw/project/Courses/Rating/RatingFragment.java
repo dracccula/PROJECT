@@ -20,6 +20,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import kireev.ftshw.project.App;
+import kireev.ftshw.project.Database.Dao.HomeworksDao;
+import kireev.ftshw.project.Database.Entity.Homeworks;
+import kireev.ftshw.project.Database.ProjectDatabase;
 import kireev.ftshw.project.Network.Connector;
 import kireev.ftshw.project.Network.FintechAPI;
 import kireev.ftshw.project.Network.Model.HomeworksResponse;
@@ -58,12 +62,6 @@ public class RatingFragment extends Fragment implements SwipeRefreshLayout.OnRef
             }
         };
         homeworksAdapter = new HomeworksAdapter(onClickListener, getContext());
-//        v.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Toast.makeText(getContext(),homeworkVOList.get(1).getHomeworkId(),Toast.LENGTH_LONG).show();
-//            }
-//        });
         return v;
     }
 
@@ -80,6 +78,7 @@ public class RatingFragment extends Fragment implements SwipeRefreshLayout.OnRef
 
     private List<HomeworkVO> getHomeworksData() {
         showProgress();
+        homeworkVOList.clear();
         Retrofit retrofit = Connector.getRetrofitClient();
         FintechAPI fintechAPI = retrofit.create(FintechAPI.class);
         Call<HomeworksResponse> call = fintechAPI.getHomeworks();
@@ -103,6 +102,7 @@ public class RatingFragment extends Fragment implements SwipeRefreshLayout.OnRef
                 Collections.reverse(homeworkVOList);
                 homeworksAdapter.setItems(homeworkVOList);
                 rvHomeworks.setAdapter(homeworksAdapter);
+                updateDB(homeworkList);
                 hideProgress();
             }
 
@@ -110,9 +110,25 @@ public class RatingFragment extends Fragment implements SwipeRefreshLayout.OnRef
             public void onFailure(Call call, Throwable t) {
                 Log.e("getHomeworks onFailure", "ooops!");
                 Toast.makeText(getContext(), "getHomeworks went wrong!", Toast.LENGTH_SHORT).show();
+                hideProgress();
             }
         });
         return homeworkVOList;
+    }
+
+    public void updateDB(List<HomeworksResponse.Homework> homeworkList){
+        ProjectDatabase db = App.getInstance().getDatabase();
+        HomeworksDao homeworksDao = db.homeworksDao();
+        Homeworks homeworks = new Homeworks();
+        if (homeworksDao.getAll().equals(homeworkList)){
+            homeworksDao.delete(homeworks);
+        } else {
+        for (int i = 0; i < homeworkList.size(); i++) {
+            homeworks.id = homeworkList.get(i).getId();
+            homeworks.title = homeworkList.get(i).getTitle();
+            homeworksDao.insert(homeworks);
+        }
+        }
     }
 
     public void showProgress() {

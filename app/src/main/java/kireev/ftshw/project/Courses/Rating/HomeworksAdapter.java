@@ -50,6 +50,13 @@ public class HomeworksAdapter extends RecyclerView.Adapter<HomeworksAdapter.Home
         notifyDataSetChanged();
     }
 
+    public void clearList(List<HomeworkVO> homeworks) {
+        if (homeworks == null){
+            homeworks.clear();
+            notifyDataSetChanged();
+        }
+    }
+
     @Override
     public int getItemCount() {
         return homeworkList.size();

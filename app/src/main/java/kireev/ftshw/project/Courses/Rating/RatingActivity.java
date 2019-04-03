@@ -5,7 +5,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 
+import kireev.ftshw.project.Profile.AnonimProfileFragment;
 import kireev.ftshw.project.R;
+
+import static kireev.ftshw.project.MainActivity.spStorage;
 
 public class RatingActivity extends AppCompatActivity {
 
@@ -16,9 +19,15 @@ public class RatingActivity extends AppCompatActivity {
         setTitle(getString(R.string.title_rating));
         assert getSupportActionBar() != null;   //null check
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.container, new RatingFragment())
-                .commitNow();
+        getSupportFragmentManager().beginTransaction().replace(R.id.container,
+                new RatingFragment()).commitNow();
+//        if (spStorage.getBoolean("IS_AUTORIZED", false)) {
+//            getSupportFragmentManager().beginTransaction().replace(R.id.container,
+//                    new RatingFragment()).commitNow();
+//        } else {
+//            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+//                    new AnonimProfileFragment()).commitNow();
+//        }
     }
 
     @Override

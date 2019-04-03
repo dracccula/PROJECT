@@ -50,12 +50,22 @@ public class MainActivity extends AppCompatActivity
         spStorage = this.getPreferences(Context.MODE_PRIVATE);
         if (savedInstanceState == null) {
             navigation.getMenu().getItem(1).setChecked(true);
-            if (spStorage.getBoolean("IS_AUTORIZED",false)) {
+            if (navigation.getMenu().findItem(navigation.getSelectedItemId()) == navigation.getMenu().getItem(0)) {
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new EventsFragment()).commitNow();
+            }
+            if (navigation.getMenu().findItem(navigation.getSelectedItemId()) == navigation.getMenu().getItem(1)) {
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new CoursesFragment()).commitNow();
-            } else {
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new AnonimProfileFragment()).commitNow();
+            }
+            if (navigation.getMenu().findItem(navigation.getSelectedItemId()) == navigation.getMenu().getItem(2)) {
+                if (spStorage.getBoolean("IS_AUTORIZED", false)) {
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                            new ProfileFragment()).commitNow();
+                } else {
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                            new AnonimProfileFragment()).commitNow();
+                }
             }
         }
 
@@ -86,7 +96,7 @@ public class MainActivity extends AppCompatActivity
     protected void onResume() {
         BottomNavigationView navigation = findViewById(R.id.navigation);
         if ((navigation.getSelectedItemId()) == R.id.navigation_profile) {
-            if (spStorage.getBoolean("IS_AUTORIZED",false)) {
+            if (spStorage.getBoolean("IS_AUTORIZED", false)) {
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new ProfileFragment()).commitNow();
             } else {
@@ -127,7 +137,7 @@ public class MainActivity extends AppCompatActivity
                     selectedFragment = new CoursesFragment();
                     break;
                 case R.id.navigation_profile:
-                    if (spStorage.getBoolean("IS_AUTORIZED",false)) {
+                    if (spStorage.getBoolean("IS_AUTORIZED", false)) {
                         selectedFragment = new ProfileFragment();
                         break;
                     } else {
@@ -179,7 +189,7 @@ public class MainActivity extends AppCompatActivity
         back_pressed = System.currentTimeMillis();
     }
 
-    private void signOut(){
+    private void signOut() {
         Retrofit retrofit = Connector.getRetrofitClient();
         FintechAPI fintechAPI = retrofit.create(FintechAPI.class);
         Call<SignInResponse> call = fintechAPI.postEmpty();

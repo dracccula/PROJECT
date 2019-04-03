@@ -28,7 +28,7 @@ public class TasksFragment extends Fragment {
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_tasks, container, false);
         homeworkTitle = v.findViewById(R.id.tvHomeworkTitle);
-        homeworkTitle.setText(HOMEWORK_TITLE);
+        homeworkTitle.setText(getActivity().getIntent().getStringExtra(HOMEWORK_TITLE));
         return v;
     }
 

@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import kireev.ftshw.project.MainActivity;
 import kireev.ftshw.project.R;
@@ -45,7 +46,7 @@ public class CoursesFragment extends Fragment implements SwipeRefreshLayout.OnRe
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        ((MainActivity) getActivity())
+        ((MainActivity) Objects.requireNonNull(getActivity()))
                 .setActionBarTitle(getString(R.string.title_courses));
         View v = inflater.inflate(R.layout.fragment_courses, container, false);
         mSwipeRefreshLayout = v.findViewById(R.id.swipe_container);

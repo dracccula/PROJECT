@@ -14,11 +14,10 @@ public class TasksActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tasks);
-        setTitle(R.string.title_tasks);
+        setTitle(getIntent().getStringExtra(HOMEWORK_TITLE));
         assert getSupportActionBar() != null;   //null check
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportFragmentManager().beginTransaction()
-                //.add(new TasksFragment(),HOMEWORK_TITLE)
                 .replace(R.id.container, new TasksFragment())
                 .commit();
     }
