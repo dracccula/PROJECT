@@ -1,14 +1,12 @@
 package kireev.ftshw.project.Courses.Rating;
 
-import kireev.ftshw.project.Network.Model.HomeworksResponse;
-
 public class HomeworkVO {
-    private int HomeworkId;
-    private String HomeworkTitle;
+    private int id;
+    private String title;
 
     public HomeworkVO (int sId, String sTitle){
-        HomeworkId = sId;
-        HomeworkTitle = sTitle;
+        id = sId;
+        title = sTitle;
     }
 
     public HomeworkVO() {
@@ -16,19 +14,19 @@ public class HomeworkVO {
     }
 
     public int getHomeworkId(){
-        return HomeworkId;
+        return id;
     }
 
     public void setHomeworkId(int sId){
-        HomeworkId = sId;
+        id = sId;
     }
 
     public String getHomeworkTitle() {
-        return HomeworkTitle;
+        return title;
     }
 
     public void setHomeworkTitle(String sTitle) {
-        HomeworkTitle = sTitle;
+        title = sTitle;
     }
 
 }

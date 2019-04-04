@@ -41,6 +41,7 @@ public class RatingFragment extends Fragment implements SwipeRefreshLayout.OnRef
     RecyclerView rvHomeworks;
     HomeworksAdapter homeworksAdapter;
     ProgressDialog pd;
+    ProjectDatabase db;
     final List<HomeworkVO> homeworkVOList = new ArrayList<>();
 
 
@@ -62,6 +63,7 @@ public class RatingFragment extends Fragment implements SwipeRefreshLayout.OnRef
             }
         };
         homeworksAdapter = new HomeworksAdapter(onClickListener, getContext());
+
         return v;
     }
 
@@ -77,9 +79,46 @@ public class RatingFragment extends Fragment implements SwipeRefreshLayout.OnRef
     }
 
     private void checkDatabase() {
+        db = App.getInstance().getDatabase();
+        HomeworksDao homeworksDao = db.homeworksDao();
+        if (homeworksDao.getAll().isEmpty()) {
+            getHomeworksData();
+        } else {
+            getHomeworksFromDb();
+        }
+    }
+
+    private void getHomeworksFromDb() {
+        db = App.getInstance().getDatabase();
+        HomeworksDao homeworksDao = db.homeworksDao();
+        List<Homeworks> homeworksList = homeworksDao.getAll();
+        for (int i = 0; i < homeworksList.size(); i++) {
+            HomeworkVO homeworkVO = new HomeworkVO();
+            homeworkVO.setHomeworkId(homeworksList.get(i).id);
+            homeworkVO.setHomeworkTitle(homeworksList.get(i).title);
+            homeworkVOList.add(homeworkVO);
+        }
+        homeworksAdapter.setItems(homeworkVOList);
+        rvHomeworks.setAdapter(homeworksAdapter);
+    }
+
+    public void updateDB(List<HomeworksResponse.Homework> homeworkList) {
         ProjectDatabase db = App.getInstance().getDatabase();
-        if (db != null){
-                getHomeworksData();
+        HomeworksDao homeworksDao = db.homeworksDao();
+        Homeworks homeworks = new Homeworks();
+        if (homeworksDao.getAll().isEmpty()) {
+            for (int i = 0; i < homeworkList.size(); i++) {
+                homeworks.id = homeworkList.get(i).getId();
+                homeworks.title = homeworkList.get(i).getTitle();
+                homeworksDao.insert(homeworks);
+            }
+
+        } else {
+            for (int i = 0; i < homeworkList.size(); i++) {
+                homeworks.id = homeworkList.get(i).getId();
+                homeworks.title = homeworkList.get(i).getTitle();
+                homeworksDao.update(homeworks);
+            }
         }
     }
 
@@ -126,25 +165,6 @@ public class RatingFragment extends Fragment implements SwipeRefreshLayout.OnRef
             }
         });
         return homeworkVOList;
-    }
-
-    public void updateDB(List<HomeworksResponse.Homework> homeworkList) {
-        ProjectDatabase db = App.getInstance().getDatabase();
-        HomeworksDao homeworksDao = db.homeworksDao();
-        Homeworks homeworks = new Homeworks();
-        if (homeworksDao.getAll() != null) {
-            for (int i = 0; i < homeworkList.size(); i++) {
-                homeworks.id = homeworkList.get(i).getId();
-                homeworks.title = homeworkList.get(i).getTitle();
-                homeworksDao.update(homeworks);
-            }
-        } else {
-            for (int i = 0; i < homeworkList.size(); i++) {
-                homeworks.id = homeworkList.get(i).getId();
-                homeworks.title = homeworkList.get(i).getTitle();
-                homeworksDao.insert(homeworks);
-            }
-        }
     }
 
     public void showProgress() {
