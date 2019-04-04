@@ -64,7 +64,7 @@ public class HomeworksResponse {
         private Integer id;
         @SerializedName("task")
         @Expose
-        private Task task;
+        private List<Task> task;
         @SerializedName("status")
         @Expose
         private String status;
@@ -80,11 +80,11 @@ public class HomeworksResponse {
             this.id = id;
         }
 
-        public Task getTask() {
+        public List<Task> getTask() {
             return task;
         }
 
-        public void setTask(Task task) {
+        public void setTask(List<Task> task) {
             this.task = task;
         }
 
@@ -123,9 +123,7 @@ public class HomeworksResponse {
         @SerializedName("deadline_date")
         @Expose
         private String deadlineDate;
-        @SerializedName("contest_info")
-        @Expose
-        private Object contestInfo;
+
         @SerializedName("short_name")
         @Expose
         private String shortName;
@@ -170,13 +168,6 @@ public class HomeworksResponse {
             this.deadlineDate = deadlineDate;
         }
 
-        public Object getContestInfo() {
-            return contestInfo;
-        }
-
-        public void setContestInfo(Object contestInfo) {
-            this.contestInfo = contestInfo;
-        }
 
         public String getShortName() {
             return shortName;

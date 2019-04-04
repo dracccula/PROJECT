@@ -22,7 +22,9 @@ import java.util.List;
 
 import kireev.ftshw.project.App;
 import kireev.ftshw.project.Database.Dao.HomeworksDao;
+import kireev.ftshw.project.Database.Dao.TasksDao;
 import kireev.ftshw.project.Database.Entity.Homeworks;
+import kireev.ftshw.project.Database.Entity.Tasks;
 import kireev.ftshw.project.Database.ProjectDatabase;
 import kireev.ftshw.project.Network.Connector;
 import kireev.ftshw.project.Network.FintechAPI;
@@ -42,7 +44,9 @@ public class RatingFragment extends Fragment implements SwipeRefreshLayout.OnRef
     HomeworksAdapter homeworksAdapter;
     ProgressDialog pd;
     ProjectDatabase db;
-    final List<HomeworkVO> homeworkVOList = new ArrayList<>();
+    public final List<HomeworkVO> homeworkVOList = new ArrayList<>();
+    public final List<TasksVO> tasksVOList = new ArrayList<>();
+    public final List<TaskVO> taskVOList = new ArrayList<>();
 
 
     @Override
@@ -63,7 +67,6 @@ public class RatingFragment extends Fragment implements SwipeRefreshLayout.OnRef
             }
         };
         homeworksAdapter = new HomeworksAdapter(onClickListener, getContext());
-
         return v;
     }
 
@@ -102,15 +105,23 @@ public class RatingFragment extends Fragment implements SwipeRefreshLayout.OnRef
         rvHomeworks.setAdapter(homeworksAdapter);
     }
 
-    public void updateDB(List<HomeworksResponse.Homework> homeworkList) {
+    public void updateDB(List<HomeworksResponse.Homework> homeworkList, List<HomeworksResponse.Tasks> tasksList) {
         ProjectDatabase db = App.getInstance().getDatabase();
         HomeworksDao homeworksDao = db.homeworksDao();
         Homeworks homeworks = new Homeworks();
+        TasksDao tasksDao = db.tasksDao();
+        Tasks tasks = new Tasks();
         if (homeworksDao.getAll().isEmpty()) {
             for (int i = 0; i < homeworkList.size(); i++) {
                 homeworks.id = homeworkList.get(i).getId();
                 homeworks.title = homeworkList.get(i).getTitle();
                 homeworksDao.insert(homeworks);
+            }
+            for (int i = 0; i < tasksList.size(); i++) {
+                tasks.id = tasksList.get(i).getId();
+                tasks.status = tasksList.get(i).getStatus();
+                tasks.mark = tasksList.get(i).getMark();
+                tasksDao.insert(tasks);
             }
 
         } else {
@@ -119,10 +130,16 @@ public class RatingFragment extends Fragment implements SwipeRefreshLayout.OnRef
                 homeworks.title = homeworkList.get(i).getTitle();
                 homeworksDao.update(homeworks);
             }
+            for (int i = 0; i < tasksList.size(); i++) {
+                tasks.id = tasksList.get(i).getId();
+                tasks.status = tasksList.get(i).getStatus();
+                tasks.mark = tasksList.get(i).getMark();
+                tasksDao.update(tasks);
+            }
         }
     }
 
-    private List<HomeworkVO> getHomeworksData() {
+    private void getHomeworksData() {
         showProgress();
         homeworkVOList.clear();
         Retrofit retrofit = Connector.getRetrofitClient();
@@ -132,15 +149,36 @@ public class RatingFragment extends Fragment implements SwipeRefreshLayout.OnRef
             @Override
             public void onResponse(Call call, Response response) {
                 HomeworksResponse homeworksResponse = (HomeworksResponse) response.body();
-                if (response.code() == 403) {
-                    //Toast.makeText(getContext(), homeworksResponse.toString(), Toast.LENGTH_SHORT).show();
+                int code = response.code();
+                if (code == 403) {
+                    Toast.makeText(getContext(), String.valueOf(code), Toast.LENGTH_SHORT).show();
                     hideProgress();
-                } else {
+                }
+                if (code == 200) {
                     List<HomeworksResponse.Homework> homeworkList = homeworksResponse.getHomeworks();
+                    List<HomeworksResponse.Tasks> tasksList = new ArrayList<>();
+                    List<HomeworksResponse.Task> taskList = new ArrayList<>();
                     for (int i = 0; i < homeworkList.size(); i++) {
                         HomeworkVO homeworkVO = new HomeworkVO();
                         homeworkVO.setHomeworkId(homeworkList.get(i).getId());
                         homeworkVO.setHomeworkTitle(homeworkList.get(i).getTitle());
+                        for (int j = 0; j < homeworkList.size(); j++) {
+                            TasksVO tasksVO = new TasksVO();
+                            tasksVO.setTasksId(tasksList.get(j).getId());
+                            tasksVO.setTasksStatus(tasksList.get(j).getStatus());
+                            tasksVO.setTasksMark(tasksList.get(j).getMark());
+                            for (int k = 0; k < homeworkList.size(); k++) {
+                                TaskVO taskVO = new TaskVO();
+                                taskVO.setTaskId(taskList.get(k).getId());
+                                taskVO.setTaskTitle(taskList.get(k).getTitle());
+                                taskVO.setTaskTask_type(taskList.get(k).getTaskType());
+                                taskVO.setTaskMax_score(taskList.get(k).getMaxScore());
+                                taskVO.setTaskDeadline_date(taskList.get(k).getDeadlineDate());
+                                taskVO.setTaskShort_name(taskList.get(k).getShortName());
+                                taskVOList.add(taskVO);
+                            }
+                            tasksVOList.add(tasksVO);
+                        }
                         homeworkVOList.add(homeworkVO);
                     }
                     String headers = response.headers().toString();
@@ -152,8 +190,11 @@ public class RatingFragment extends Fragment implements SwipeRefreshLayout.OnRef
                     Collections.reverse(homeworkVOList);
                     homeworksAdapter.setItems(homeworkVOList);
                     rvHomeworks.setAdapter(homeworksAdapter);
-                    updateDB(homeworkList);
+                    updateDB(homeworkList, tasksList);
                     hideProgress();
+                } else {
+                    Toast.makeText(getContext(), String.valueOf(code), Toast.LENGTH_SHORT).show();
+
                 }
             }
 
@@ -161,10 +202,10 @@ public class RatingFragment extends Fragment implements SwipeRefreshLayout.OnRef
             public void onFailure(Call call, Throwable t) {
                 Log.e("getHomeworks onFailure", "ooops!");
                 Toast.makeText(getContext(), "getHomeworks went wrong!", Toast.LENGTH_SHORT).show();
+                getHomeworksFromDb();
                 hideProgress();
             }
         });
-        return homeworkVOList;
     }
 
     public void showProgress() {
