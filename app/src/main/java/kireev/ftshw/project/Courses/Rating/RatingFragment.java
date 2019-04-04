@@ -55,7 +55,7 @@ public class RatingFragment extends Fragment implements SwipeRefreshLayout.OnRef
         HomeworksAdapter.OnClickListener onClickListener = new HomeworksAdapter.OnClickListener() {
             @Override
             public void onClick(HomeworkVO homeworkVO) {
-                Intent intent = new Intent(getActivity(),TasksActivity.class);
+                Intent intent = new Intent(getActivity(), TasksActivity.class);
                 intent.putExtra(TasksActivity.HOMEWORK_TITLE, homeworkVO.getHomeworkTitle());
                 startActivity(intent);
                 Toast.makeText(getContext(), "id " + homeworkVO.getHomeworkId(), Toast.LENGTH_SHORT).show();
@@ -68,12 +68,19 @@ public class RatingFragment extends Fragment implements SwipeRefreshLayout.OnRef
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        getHomeworksData();
+        checkDatabase();
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+    }
+
+    private void checkDatabase() {
+        ProjectDatabase db = App.getInstance().getDatabase();
+        if (db != null){
+                getHomeworksData();
+        }
     }
 
     private List<HomeworkVO> getHomeworksData() {
@@ -86,24 +93,29 @@ public class RatingFragment extends Fragment implements SwipeRefreshLayout.OnRef
             @Override
             public void onResponse(Call call, Response response) {
                 HomeworksResponse homeworksResponse = (HomeworksResponse) response.body();
-                List<HomeworksResponse.Homework> homeworkList = homeworksResponse.getHomeworks();
-                for (int i = 0; i < homeworkList.size(); i++) {
-                    HomeworkVO homeworkVO = new HomeworkVO();
-                    homeworkVO.setHomeworkId(homeworkList.get(i).getId());
-                    homeworkVO.setHomeworkTitle(homeworkList.get(i).getTitle());
-                    homeworkVOList.add(homeworkVO);
+                if (response.code() == 403) {
+                    //Toast.makeText(getContext(), homeworksResponse.toString(), Toast.LENGTH_SHORT).show();
+                    hideProgress();
+                } else {
+                    List<HomeworksResponse.Homework> homeworkList = homeworksResponse.getHomeworks();
+                    for (int i = 0; i < homeworkList.size(); i++) {
+                        HomeworkVO homeworkVO = new HomeworkVO();
+                        homeworkVO.setHomeworkId(homeworkList.get(i).getId());
+                        homeworkVO.setHomeworkTitle(homeworkList.get(i).getTitle());
+                        homeworkVOList.add(homeworkVO);
+                    }
+                    String headers = response.headers().toString();
+                    String cookie = response.headers().get("Set-Cookie");
+                    if (response.isSuccessful()) {
+                        Log.i("getHomeworks Response", "body: " + homeworkList.toString());
+                    }
+                    Log.i("homeworkVOList[3]", homeworkVOList.get(3).getHomeworkTitle());
+                    Collections.reverse(homeworkVOList);
+                    homeworksAdapter.setItems(homeworkVOList);
+                    rvHomeworks.setAdapter(homeworksAdapter);
+                    updateDB(homeworkList);
+                    hideProgress();
                 }
-                String headers = response.headers().toString();
-                String cookie = response.headers().get("Set-Cookie");
-                if (response.isSuccessful()) {
-                    Log.i("getHomeworks Response", "body: " + homeworkList.toString());
-                }
-                Log.i("homeworkVOList[3]", homeworkVOList.get(3).getHomeworkTitle());
-                Collections.reverse(homeworkVOList);
-                homeworksAdapter.setItems(homeworkVOList);
-                rvHomeworks.setAdapter(homeworksAdapter);
-                updateDB(homeworkList);
-                hideProgress();
             }
 
             @Override
@@ -116,18 +128,22 @@ public class RatingFragment extends Fragment implements SwipeRefreshLayout.OnRef
         return homeworkVOList;
     }
 
-    public void updateDB(List<HomeworksResponse.Homework> homeworkList){
+    public void updateDB(List<HomeworksResponse.Homework> homeworkList) {
         ProjectDatabase db = App.getInstance().getDatabase();
         HomeworksDao homeworksDao = db.homeworksDao();
         Homeworks homeworks = new Homeworks();
-        if (homeworksDao.getAll().equals(homeworkList)){
-            homeworksDao.delete(homeworks);
+        if (homeworksDao.getAll() != null) {
+            for (int i = 0; i < homeworkList.size(); i++) {
+                homeworks.id = homeworkList.get(i).getId();
+                homeworks.title = homeworkList.get(i).getTitle();
+                homeworksDao.update(homeworks);
+            }
         } else {
-        for (int i = 0; i < homeworkList.size(); i++) {
-            homeworks.id = homeworkList.get(i).getId();
-            homeworks.title = homeworkList.get(i).getTitle();
-            homeworksDao.insert(homeworks);
-        }
+            for (int i = 0; i < homeworkList.size(); i++) {
+                homeworks.id = homeworkList.get(i).getId();
+                homeworks.title = homeworkList.get(i).getTitle();
+                homeworksDao.insert(homeworks);
+            }
         }
     }
 
