@@ -22,8 +22,10 @@ import java.util.List;
 
 import kireev.ftshw.project.App;
 import kireev.ftshw.project.Database.Dao.HomeworksDao;
+import kireev.ftshw.project.Database.Dao.TaskDao;
 import kireev.ftshw.project.Database.Dao.TasksDao;
 import kireev.ftshw.project.Database.Entity.Homeworks;
+import kireev.ftshw.project.Database.Entity.Task;
 import kireev.ftshw.project.Database.Entity.Tasks;
 import kireev.ftshw.project.Database.ProjectDatabase;
 import kireev.ftshw.project.Network.Connector;
@@ -105,38 +107,36 @@ public class RatingFragment extends Fragment implements SwipeRefreshLayout.OnRef
         rvHomeworks.setAdapter(homeworksAdapter);
     }
 
-    public void updateDB(List<HomeworksResponse.Homework> homeworkList, List<HomeworksResponse.Tasks> tasksList) {
-        ProjectDatabase db = App.getInstance().getDatabase();
+    public void updateHomeworksDB(List<HomeworksResponse.Homework> homeworkList) {
+        db = App.getInstance().getDatabase();
         HomeworksDao homeworksDao = db.homeworksDao();
         Homeworks homeworks = new Homeworks();
+        for (int i = 0; i < homeworkList.size(); i++) {
+            homeworks.id = homeworkList.get(i).getId();
+            homeworks.title = homeworkList.get(i).getTitle();
+            homeworksDao.insert(homeworks);
+        }
+
+
+    }
+
+    public void updateTasksDB(List<HomeworksResponse.Tasks> tasksList) {
+        db = App.getInstance().getDatabase();
         TasksDao tasksDao = db.tasksDao();
         Tasks tasks = new Tasks();
-        if (homeworksDao.getAll().isEmpty()) {
-            for (int i = 0; i < homeworkList.size(); i++) {
-                homeworks.id = homeworkList.get(i).getId();
-                homeworks.title = homeworkList.get(i).getTitle();
-                homeworksDao.insert(homeworks);
-            }
-            for (int i = 0; i < tasksList.size(); i++) {
-                tasks.id = tasksList.get(i).getId();
-                tasks.status = tasksList.get(i).getStatus();
-                tasks.mark = tasksList.get(i).getMark();
-                tasksDao.insert(tasks);
-            }
-
-        } else {
-            for (int i = 0; i < homeworkList.size(); i++) {
-                homeworks.id = homeworkList.get(i).getId();
-                homeworks.title = homeworkList.get(i).getTitle();
-                homeworksDao.update(homeworks);
-            }
-            for (int i = 0; i < tasksList.size(); i++) {
-                tasks.id = tasksList.get(i).getId();
-                tasks.status = tasksList.get(i).getStatus();
-                tasks.mark = tasksList.get(i).getMark();
-                tasksDao.update(tasks);
-            }
+        for (int i = 0; i < tasksList.size(); i++) {
+            tasks.id = tasksList.get(i).getId();
+            tasks.status = tasksList.get(i).getStatus();
+            tasks.mark = tasksList.get(i).getMark();
+            tasksDao.insert(tasks);
         }
+    }
+
+    public void updateTaskDB(HomeworksResponse.Task taskresponse) {
+        db = App.getInstance().getDatabase();
+        TaskDao taskDao = db.taskDao();
+        Task task = new Task(taskresponse.getId(), 0, taskresponse.getTitle(), taskresponse.getTaskType(), taskresponse.getMaxScore(), taskresponse.getDeadlineDate(), taskresponse.getShortName());
+        taskDao.insert(task);
     }
 
     private void getHomeworksData() {
@@ -169,6 +169,7 @@ public class RatingFragment extends Fragment implements SwipeRefreshLayout.OnRef
                             tasksVO.setTasksStatus(tasksList.get(j).getStatus());
                             tasksVO.setTasksMark(tasksList.get(j).getMark());
                             task = tasksList.get(j).getTask();
+                            updateTasksDB(tasksList);
                             for (int k = 0; k < 2; k++) {
                                 TaskVO taskVO = new TaskVO();
                                 taskVO.setTaskId(task.getId());
@@ -177,12 +178,14 @@ public class RatingFragment extends Fragment implements SwipeRefreshLayout.OnRef
                                 taskVO.setTaskMax_score(task.getMaxScore());
                                 taskVO.setTaskDeadline_date(task.getDeadlineDate());
                                 taskVO.setTaskShort_name(task.getShortName());
+                                updateTaskDB(task);
                                 taskVOList.add(taskVO);
                             }
                             tasksVOList.add(tasksVO);
                         }
                         homeworkVOList.add(homeworkVO);
                     }
+                    updateHomeworksDB(homeworkList);
                     String headers = response.headers().toString();
                     String cookie = response.headers().get("Set-Cookie");
                     if (response.isSuccessful()) {
@@ -192,7 +195,6 @@ public class RatingFragment extends Fragment implements SwipeRefreshLayout.OnRef
                     Collections.reverse(homeworkVOList);
                     homeworksAdapter.setItems(homeworkVOList);
                     rvHomeworks.setAdapter(homeworksAdapter);
-                    updateDB(homeworkList, tasksList);
                     hideProgress();
                 } else {
                     Toast.makeText(getContext(), String.valueOf(code), Toast.LENGTH_SHORT).show();

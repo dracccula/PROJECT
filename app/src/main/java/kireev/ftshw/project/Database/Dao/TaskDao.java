@@ -9,24 +9,24 @@ import android.arch.persistence.room.Update;
 
 import java.util.List;
 
-import kireev.ftshw.project.Database.Entity.Tasks;
+import kireev.ftshw.project.Database.Entity.Task;
 
 @Dao
-public interface TasksDao {
+public interface TaskDao {
 
-    @Query("SELECT * FROM tasks")
-    List<Tasks> getAll();
+    @Query("SELECT * FROM task")
+    List<Task> getAll();
 
-    @Query("SELECT * FROM tasks WHERE id = :id")
-    Tasks getById(long id);
+    @Query("SELECT * FROM task WHERE id = :id")
+    Task getById(long id);
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insert(Tasks tasks);
+    void insert(Task task);
 
     @Update
-    void update(Tasks tasks);
+    void update(Task task);
 
     @Delete
-    void delete(Tasks tasks);
+    void delete(Task task);
 
 }
