@@ -1,4 +1,4 @@
-package kireev.ftshw.project.Courses.Rating;
+package kireev.ftshw.project.Courses.Rating.Tasks;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

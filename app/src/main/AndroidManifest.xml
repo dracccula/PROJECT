@@ -20,7 +20,7 @@
         android:theme="@style/AppTheme"
         tools:targetApi="n">
         <activity
-            android:name=".Courses.Rating.TasksActivity"
+            android:name=".Courses.Rating.Tasks.TasksActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait" />
         <activity

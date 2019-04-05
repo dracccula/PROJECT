@@ -1,4 +1,4 @@
-package kireev.ftshw.project.Courses.Rating;
+package kireev.ftshw.project.Courses.Rating.Adapters;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -25,7 +25,7 @@ public class HomeworksAdapter extends RecyclerView.Adapter<HomeworksAdapter.Home
     @NonNull
     @Override
     public HomeworkViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.homeworks_list_item, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.homeworks_item, parent, false);
         homeworkViewHolder = new HomeworkViewHolder(view);
         return homeworkViewHolder;
     }

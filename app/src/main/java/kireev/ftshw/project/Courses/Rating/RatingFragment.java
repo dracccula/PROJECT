@@ -21,6 +21,11 @@ import java.util.Collections;
 import java.util.List;
 
 import kireev.ftshw.project.App;
+import kireev.ftshw.project.Courses.Rating.Adapters.HomeworkVO;
+import kireev.ftshw.project.Courses.Rating.Adapters.HomeworksAdapter;
+import kireev.ftshw.project.Courses.Rating.Adapters.TaskVO;
+import kireev.ftshw.project.Courses.Rating.Adapters.TasksVO;
+import kireev.ftshw.project.Courses.Rating.Tasks.TasksActivity;
 import kireev.ftshw.project.Database.Dao.HomeworksDao;
 import kireev.ftshw.project.Database.Dao.TaskDao;
 import kireev.ftshw.project.Database.Dao.TasksDao;
@@ -37,9 +42,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class RatingFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
     SwipeRefreshLayout mSwipeRefreshLayout;
     RecyclerView rvHomeworks;
@@ -57,7 +59,7 @@ public class RatingFragment extends Fragment implements SwipeRefreshLayout.OnRef
         View v = inflater.inflate(R.layout.fragment_rating, container, false);
         rvHomeworks = v.findViewById(R.id.rvHomeworks);
         rvHomeworks.setLayoutManager(new LinearLayoutManager(getContext()));
-        mSwipeRefreshLayout = v.findViewById(R.id.refreshRV);
+        mSwipeRefreshLayout = v.findViewById(R.id.refreshHomeworksRV);
         mSwipeRefreshLayout.setOnRefreshListener(this);
         HomeworksAdapter.OnClickListener onClickListener = new HomeworksAdapter.OnClickListener() {
             @Override
@@ -170,7 +172,7 @@ public class RatingFragment extends Fragment implements SwipeRefreshLayout.OnRef
                             tasksVO.setTasksMark(tasksList.get(j).getMark());
                             task = tasksList.get(j).getTask();
                             updateTasksDB(tasksList);
-                            for (int k = 0; k < 2; k++) {
+                            for (int k = 0; k < 2 ; k++) {
                                 TaskVO taskVO = new TaskVO();
                                 taskVO.setTaskId(task.getId());
                                 taskVO.setTaskTitle(task.getTitle());
