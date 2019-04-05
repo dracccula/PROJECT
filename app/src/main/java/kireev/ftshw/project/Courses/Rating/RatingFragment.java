@@ -157,24 +157,26 @@ public class RatingFragment extends Fragment implements SwipeRefreshLayout.OnRef
                 if (code == 200) {
                     List<HomeworksResponse.Homework> homeworkList = homeworksResponse.getHomeworks();
                     List<HomeworksResponse.Tasks> tasksList = new ArrayList<>();
-                    List<HomeworksResponse.Task> taskList = new ArrayList<>();
+                    HomeworksResponse.Task task = new HomeworksResponse.Task();
                     for (int i = 0; i < homeworkList.size(); i++) {
                         HomeworkVO homeworkVO = new HomeworkVO();
                         homeworkVO.setHomeworkId(homeworkList.get(i).getId());
                         homeworkVO.setHomeworkTitle(homeworkList.get(i).getTitle());
-                        for (int j = 0; j < homeworkList.size(); j++) {
+                        tasksList = homeworkList.get(i).getTasks();
+                        for (int j = 0; j < tasksList.size(); j++) {
                             TasksVO tasksVO = new TasksVO();
                             tasksVO.setTasksId(tasksList.get(j).getId());
                             tasksVO.setTasksStatus(tasksList.get(j).getStatus());
                             tasksVO.setTasksMark(tasksList.get(j).getMark());
-                            for (int k = 0; k < homeworkList.size(); k++) {
+                            task = tasksList.get(j).getTask();
+                            for (int k = 0; k < 2; k++) {
                                 TaskVO taskVO = new TaskVO();
-                                taskVO.setTaskId(taskList.get(k).getId());
-                                taskVO.setTaskTitle(taskList.get(k).getTitle());
-                                taskVO.setTaskTask_type(taskList.get(k).getTaskType());
-                                taskVO.setTaskMax_score(taskList.get(k).getMaxScore());
-                                taskVO.setTaskDeadline_date(taskList.get(k).getDeadlineDate());
-                                taskVO.setTaskShort_name(taskList.get(k).getShortName());
+                                taskVO.setTaskId(task.getId());
+                                taskVO.setTaskTitle(task.getTitle());
+                                taskVO.setTaskTask_type(task.getTaskType());
+                                taskVO.setTaskMax_score(task.getMaxScore());
+                                taskVO.setTaskDeadline_date(task.getDeadlineDate());
+                                taskVO.setTaskShort_name(task.getShortName());
                                 taskVOList.add(taskVO);
                             }
                             tasksVOList.add(tasksVO);

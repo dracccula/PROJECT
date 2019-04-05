@@ -64,7 +64,7 @@ public class HomeworksResponse {
         private Integer id;
         @SerializedName("task")
         @Expose
-        private List<Task> task;
+        private Task task;
         @SerializedName("status")
         @Expose
         private String status;
@@ -80,11 +80,11 @@ public class HomeworksResponse {
             this.id = id;
         }
 
-        public List<Task> getTask() {
+        public Task getTask() {
             return task;
         }
 
-        public void setTask(List<Task> task) {
+        public void setTask(Task task) {
             this.task = task;
         }
 
