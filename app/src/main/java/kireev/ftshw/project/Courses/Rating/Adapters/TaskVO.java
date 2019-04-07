@@ -2,15 +2,20 @@ package kireev.ftshw.project.Courses.Rating.Adapters;
 
 public class TaskVO {
     private int id;
+    private int tasksId;
+    private String tasksStatus;
+    private String tasksMark;
     private String title;
     private String task_type;
     private String max_score;
     private String deadline_date;
     private String short_name;
 
-
-    public TaskVO(int sId, String sTitle, String sTask_type, String sMax_score, String sDeadline_date, String sShort_name){
+    public TaskVO(int sId, int sTasksId, String sTasksStatus, String sTasksMark, String sTitle, String sTask_type, String sMax_score, String sDeadline_date, String sShort_name){
         id = sId;
+        tasksId = sTasksId;
+        tasksStatus = sTasksStatus;
+        tasksMark = sTasksMark;
         title = sTitle;
         task_type = sTask_type;
         max_score = sMax_score;
@@ -28,6 +33,30 @@ public class TaskVO {
 
     public void setTaskId(int id) {
         this.id = id;
+    }
+
+    public int getTasksId() {
+        return tasksId;
+    }
+
+    public void setTasksId(int tasksId) {
+        this.tasksId = tasksId;
+    }
+
+    public String getTasksStatus() {
+        return tasksStatus;
+    }
+
+    public void setTasksStatus(String tasksStatus) {
+        this.tasksStatus = tasksStatus;
+    }
+
+    public String getTasksMark() {
+        return tasksMark;
+    }
+
+    public void setTasksMark(String tasksMark) {
+        this.tasksMark = tasksMark;
     }
 
     public String getTaskTitle() {

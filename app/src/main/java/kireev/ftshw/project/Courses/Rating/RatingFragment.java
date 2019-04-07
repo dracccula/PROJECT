@@ -66,6 +66,7 @@ public class RatingFragment extends Fragment implements SwipeRefreshLayout.OnRef
             public void onClick(HomeworkVO homeworkVO) {
                 Intent intent = new Intent(getActivity(), TasksActivity.class);
                 intent.putExtra(TasksActivity.HOMEWORK_TITLE, homeworkVO.getHomeworkTitle());
+                intent.putExtra(String.valueOf(TasksActivity.HOMEWORK_ID), homeworkVO.getHomeworkId());
                 startActivity(intent);
                 Toast.makeText(getContext(), "id " + homeworkVO.getHomeworkId(), Toast.LENGTH_SHORT).show();
             }
@@ -122,23 +123,26 @@ public class RatingFragment extends Fragment implements SwipeRefreshLayout.OnRef
 
     }
 
-    public void updateTasksDB(List<HomeworksResponse.Tasks> tasksList) {
+    public void updateTasksDB(List<HomeworksResponse.Tasks> tasksList, int homeworkId) {
         db = App.getInstance().getDatabase();
         TasksDao tasksDao = db.tasksDao();
         Tasks tasks = new Tasks();
         for (int i = 0; i < tasksList.size(); i++) {
             tasks.id = tasksList.get(i).getId();
+            tasks.homeworkId = homeworkId;
             tasks.status = tasksList.get(i).getStatus();
             tasks.mark = tasksList.get(i).getMark();
             tasksDao.insert(tasks);
+            Log.i("to Tasks inserted", "id:" + tasksList.get(i).getId().toString() + " homeworksId:" + homeworkId);
         }
     }
 
-    public void updateTaskDB(HomeworksResponse.Task taskresponse) {
+    public void updateTaskDB(HomeworksResponse.Task taskresponse, int tasksId) {
         db = App.getInstance().getDatabase();
         TaskDao taskDao = db.taskDao();
-        Task task = new Task(taskresponse.getId(), 0, taskresponse.getTitle(), taskresponse.getTaskType(), taskresponse.getMaxScore(), taskresponse.getDeadlineDate(), taskresponse.getShortName());
+        Task task = new Task(taskresponse.getId(), tasksId, taskresponse.getTitle(), taskresponse.getTaskType(), taskresponse.getMaxScore(), taskresponse.getDeadlineDate(), taskresponse.getShortName());
         taskDao.insert(task);
+        Log.i("to Task inserted", "id:" + taskresponse.getId().toString() + " tasksId:" + tasksId);
     }
 
     private void getHomeworksData() {
@@ -165,29 +169,32 @@ public class RatingFragment extends Fragment implements SwipeRefreshLayout.OnRef
                         homeworkVO.setHomeworkId(homeworkList.get(i).getId());
                         homeworkVO.setHomeworkTitle(homeworkList.get(i).getTitle());
                         tasksList = homeworkList.get(i).getTasks();
+                        updateHomeworksDB(homeworkList);
                         for (int j = 0; j < tasksList.size(); j++) {
-                            TasksVO tasksVO = new TasksVO();
-                            tasksVO.setTasksId(tasksList.get(j).getId());
-                            tasksVO.setTasksStatus(tasksList.get(j).getStatus());
-                            tasksVO.setTasksMark(tasksList.get(j).getMark());
-                            task = tasksList.get(j).getTask();
-                            updateTasksDB(tasksList);
-                            for (int k = 0; k < 2 ; k++) {
+//                            TasksVO tasksVO = new TasksVO();
+//                            tasksVO.setTasksId(tasksList.get(j).getId());
+//                            tasksVO.setTasksStatus(tasksList.get(j).getStatus());
+//                            tasksVO.setTasksMark(tasksList.get(j).getMark());
+//                            task = tasksList.get(j).getTask();
+                            updateTasksDB(tasksList, homeworkList.get(i).getId());
+                            for (int k = 0; k < tasksList.size(); k++) {
                                 TaskVO taskVO = new TaskVO();
                                 taskVO.setTaskId(task.getId());
+                                taskVO.setTasksId(tasksList.get(j).getId());
+                                taskVO.setTasksStatus(tasksList.get(j).getStatus());
+                                taskVO.setTasksMark(tasksList.get(j).getMark());
                                 taskVO.setTaskTitle(task.getTitle());
                                 taskVO.setTaskTask_type(task.getTaskType());
                                 taskVO.setTaskMax_score(task.getMaxScore());
                                 taskVO.setTaskDeadline_date(task.getDeadlineDate());
                                 taskVO.setTaskShort_name(task.getShortName());
-                                updateTaskDB(task);
+                                updateTaskDB(task, tasksList.get(j).getId());
                                 taskVOList.add(taskVO);
                             }
-                            tasksVOList.add(tasksVO);
+//                            tasksVOList.add(tasksVO);
                         }
                         homeworkVOList.add(homeworkVO);
                     }
-                    updateHomeworksDB(homeworkList);
                     String headers = response.headers().toString();
                     String cookie = response.headers().get("Set-Cookie");
                     if (response.isSuccessful()) {

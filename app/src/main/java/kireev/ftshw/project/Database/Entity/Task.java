@@ -1,9 +1,12 @@
 package kireev.ftshw.project.Database.Entity;
 
 import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.ForeignKey;
 import android.arch.persistence.room.PrimaryKey;
 
-@Entity
+import static android.arch.persistence.room.ForeignKey.CASCADE;
+
+@Entity(foreignKeys = @ForeignKey(entity = Tasks.class, parentColumns = "id", childColumns = "tasksId", onDelete = CASCADE, onUpdate = CASCADE, deferred = true))
 public class Task {
 
     @PrimaryKey

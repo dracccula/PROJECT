@@ -20,7 +20,10 @@ public interface TasksDao {
     @Query("SELECT * FROM tasks WHERE id = :id")
     Tasks getById(long id);
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Query("SELECT * FROM tasks WHERE homeworkId = :homeworkId")
+    List<Tasks> getByHomeworkId(long homeworkId);
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insert(Tasks tasks);
 
     @Update

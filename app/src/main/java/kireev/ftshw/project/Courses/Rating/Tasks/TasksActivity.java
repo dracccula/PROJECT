@@ -9,6 +9,7 @@ import kireev.ftshw.project.R;
 
 public class TasksActivity extends AppCompatActivity {
     public static final String HOMEWORK_TITLE = "title";
+    public static final int HOMEWORK_ID = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
