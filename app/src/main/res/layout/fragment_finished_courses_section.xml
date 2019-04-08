@@ -182,7 +182,7 @@
             android:layout_margin="8dp"
             android:padding="6dp"
 
-            android:background="#F44336"
+            android:background="#DD4B42"
             android:text="Не сдан"
             android:textAlignment="center"
             android:textColor="#FFFFFF"

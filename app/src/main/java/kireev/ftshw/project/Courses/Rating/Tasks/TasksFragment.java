@@ -49,7 +49,7 @@ public class TasksFragment extends Fragment implements SwipeRefreshLayout.OnRefr
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_tasks, container, false);
         homeworkTitle = v.findViewById(R.id.tvHomeworkTitle);
-        homeworkTitle.setText(getActivity().getIntent().getStringExtra(HOMEWORK_TITLE));
+        homeworkTitle.setText(getActivity().getIntent().getStringExtra(HOMEWORK_TITLE).toUpperCase());
         homeworkId = getActivity().getIntent().getIntExtra(String.valueOf(TasksActivity.HOMEWORK_ID), HOMEWORK_ID);
         rvTasks = v.findViewById(R.id.rvTasks);
         rvTasks.setLayoutManager(new LinearLayoutManager(getContext()));

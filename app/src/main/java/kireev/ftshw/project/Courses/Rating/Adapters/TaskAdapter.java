@@ -1,6 +1,7 @@
 package kireev.ftshw.project.Courses.Rating.Adapters;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -34,11 +35,17 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         TaskVO taskVO = taskList.get(position);
         holder.tvTitle.setText(taskVO.getTaskTitle());
         holder.tvMark.setText(taskVO.getTasksMark());
-        if (taskVO.getTasksStatus().equals("accepted")) {
-            holder.irvStatus.setBackgroundColor(Color.GREEN);
-        }
-        if (taskVO.getTasksStatus().equals("failed")) {
-            holder.irvStatus.setBackgroundColor(Color.RED);
+
+        switch(taskVO.getTasksStatus())
+        {
+            case "accepted":
+                holder.irvStatus.setBackgroundColor(context.getResources().getColor(R.color.colorAcceptedStatus));
+                break;
+            case "failed":
+                holder.irvStatus.setBackgroundColor(context.getResources().getColor(R.color.colorFailedStatus));
+                break;
+            default:
+                holder.irvStatus.setBackgroundColor(context.getResources().getColor(R.color.colorNewStatus));
         }
     }
 

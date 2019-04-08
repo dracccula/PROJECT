@@ -9,4 +9,7 @@
     <color name="colorCourses">#92BEFF</color>
     <color name="colorProfile">#BED0FF</color>
     <color name="colorProfileEdit">#E6E6E6</color>
+    <color name="colorAcceptedStatus">#7AAE40</color>
+    <color name="colorFailedStatus">#C0421E</color>
+    <color name="colorNewStatus">#9B9B9B</color>
 </resources>
