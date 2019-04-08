@@ -98,6 +98,7 @@ public class TasksFragment extends Fragment implements SwipeRefreshLayout.OnRefr
         }
         taskAdapter.setItems(taskVOList);
         rvTasks.setAdapter(taskAdapter);
+        Log.i("taskAdapter", "attached! " + taskVOList.toString());
     }
 
     @Override

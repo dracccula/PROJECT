@@ -65,7 +65,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         public TaskViewHolder(@NonNull View itemView) {
             super(itemView);
             context = itemView.getContext();
-            tvTitle = itemView.findViewById(R.id.tvHomeworkTitle);
+            tvTitle = itemView.findViewById(R.id.tvTitle);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
