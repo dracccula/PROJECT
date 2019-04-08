@@ -12,7 +12,7 @@
         android:padding="8dp">
 
         <kireev.ftshw.project.Tools.InitialsRoundView
-            android:id="@+id/itvStatus"
+            android:id="@+id/irvStatus"
             android:layout_width="0dp"
             android:layout_height="16dp"
             android:layout_margin="5dp"
@@ -34,7 +34,7 @@
             android:text="tvContactName"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@id/itvStatus"
+            app:layout_constraintStart_toEndOf="@id/irvStatus"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView

@@ -12,6 +12,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import kireev.ftshw.project.R;
+import kireev.ftshw.project.Tools.InitialsRoundView;
 
 public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder> {
     private List<TaskVO> taskList;
@@ -33,8 +34,11 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         TaskVO taskVO = taskList.get(position);
         holder.tvTitle.setText(taskVO.getTaskTitle());
         holder.tvMark.setText(taskVO.getTasksMark());
-        if (taskVO.getTasksStatus().equals("accepted")){
-            holder.tvMark.setBackgroundColor(Color.GREEN);
+        if (taskVO.getTasksStatus().equals("accepted")) {
+            holder.irvStatus.setBackgroundColor(Color.GREEN);
+        }
+        if (taskVO.getTasksStatus().equals("failed")) {
+            holder.irvStatus.setBackgroundColor(Color.RED);
         }
     }
 
@@ -53,7 +57,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
     }
 
     public void clearList(List<TaskVO> tasks) {
-        if (tasks == null){
+        if (tasks == null) {
             tasks.clear();
             notifyDataSetChanged();
         }
@@ -66,12 +70,14 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
 
     public class TaskViewHolder extends RecyclerView.ViewHolder {
         TextView tvTitle, tvMark;
+        InitialsRoundView irvStatus;
 
         public TaskViewHolder(@NonNull View itemView) {
             super(itemView);
             context = itemView.getContext();
             tvTitle = itemView.findViewById(R.id.tvTitle);
             tvMark = itemView.findViewById(R.id.tvMark);
+            irvStatus = itemView.findViewById(R.id.irvStatus);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
