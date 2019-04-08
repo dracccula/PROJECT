@@ -1,6 +1,7 @@
 package kireev.ftshw.project.Courses.Rating.Adapters;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -31,6 +32,10 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
     public void onBindViewHolder(@NonNull TaskViewHolder holder, int position) {
         TaskVO taskVO = taskList.get(position);
         holder.tvTitle.setText(taskVO.getTaskTitle());
+        holder.tvMark.setText(taskVO.getTasksMark());
+        if (taskVO.getTasksStatus().equals("accepted")){
+            holder.tvMark.setBackgroundColor(Color.GREEN);
+        }
     }
 
     public TaskAdapter(OnClickListener onClickListener, Context context) {
@@ -60,12 +65,13 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
     }
 
     public class TaskViewHolder extends RecyclerView.ViewHolder {
-        TextView tvTitle;
+        TextView tvTitle, tvMark;
 
         public TaskViewHolder(@NonNull View itemView) {
             super(itemView);
             context = itemView.getContext();
             tvTitle = itemView.findViewById(R.id.tvTitle);
+            tvMark = itemView.findViewById(R.id.tvMark);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

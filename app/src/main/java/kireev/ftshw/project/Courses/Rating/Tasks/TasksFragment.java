@@ -19,19 +19,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import kireev.ftshw.project.App;
-import kireev.ftshw.project.Courses.Rating.Adapters.HomeworkVO;
 import kireev.ftshw.project.Courses.Rating.Adapters.TaskAdapter;
 import kireev.ftshw.project.Courses.Rating.Adapters.TaskVO;
-import kireev.ftshw.project.Courses.Rating.Adapters.TasksVO;
-import kireev.ftshw.project.Database.Dao.HomeworksDao;
 import kireev.ftshw.project.Database.Dao.TaskDao;
 import kireev.ftshw.project.Database.Dao.TasksDao;
-import kireev.ftshw.project.Database.Entity.Homeworks;
 import kireev.ftshw.project.Database.Entity.Task;
 import kireev.ftshw.project.Database.Entity.Tasks;
 import kireev.ftshw.project.Database.ProjectDatabase;
 import kireev.ftshw.project.R;
 
+import static kireev.ftshw.project.Courses.Rating.Tasks.TasksActivity.HOMEWORK_ID;
 import static kireev.ftshw.project.Courses.Rating.Tasks.TasksActivity.HOMEWORK_TITLE;
 
 public class TasksFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
@@ -40,6 +37,7 @@ public class TasksFragment extends Fragment implements SwipeRefreshLayout.OnRefr
     TaskAdapter taskAdapter;
     TextView homeworkTitle;
     ProjectDatabase db;
+    int homeworkId;
     public final List<TaskVO> taskVOList = new ArrayList<>();
 
     public TasksFragment() {
@@ -52,7 +50,7 @@ public class TasksFragment extends Fragment implements SwipeRefreshLayout.OnRefr
         View v = inflater.inflate(R.layout.fragment_tasks, container, false);
         homeworkTitle = v.findViewById(R.id.tvHomeworkTitle);
         homeworkTitle.setText(getActivity().getIntent().getStringExtra(HOMEWORK_TITLE));
-
+        homeworkId = getActivity().getIntent().getIntExtra(String.valueOf(TasksActivity.HOMEWORK_ID), HOMEWORK_ID);
         rvTasks = v.findViewById(R.id.rvTasks);
         rvTasks.setLayoutManager(new LinearLayoutManager(getContext()));
         mSwipeRefreshLayout = v.findViewById(R.id.refreshTasksRV);
@@ -79,7 +77,7 @@ public class TasksFragment extends Fragment implements SwipeRefreshLayout.OnRefr
         TaskDao taskDao = db.taskDao();
         List<Tasks> tasksList;
         List<Task> taskList;
-        tasksList = tasksDao.getByHomeworkId(TasksActivity.HOMEWORK_ID);
+        tasksList = tasksDao.getByHomeworkId(homeworkId);
         for (int i = 0; i < tasksList.size(); i++) {
             taskList = taskDao.getByTasksId(tasksList.get(i).id);
             for (int j = 0; j < taskList.size(); j++) {
