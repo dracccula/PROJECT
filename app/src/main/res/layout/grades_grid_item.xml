@@ -47,7 +47,6 @@
             android:gravity="center"
             android:padding="5dp"
             android:text="111"
-            android:textColor="#FFF"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="@id/itvIcon"
             app:layout_constraintTop_toTopOf="@id/itvIcon" />

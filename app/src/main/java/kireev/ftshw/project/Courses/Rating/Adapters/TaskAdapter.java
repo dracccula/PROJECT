@@ -1,16 +1,20 @@
 package kireev.ftshw.project.Courses.Rating.Adapters;
 
 import android.content.Context;
-import android.content.res.Resources;
-import android.graphics.Color;
+import android.os.Build;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Locale;
 
 import kireev.ftshw.project.R;
 import kireev.ftshw.project.Tools.InitialsRoundView;
@@ -34,7 +38,8 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
     public void onBindViewHolder(@NonNull TaskViewHolder holder, int position) {
         TaskVO taskVO = taskList.get(position);
         holder.tvTitle.setText(taskVO.getTaskTitle());
-        holder.tvMark.setText(taskVO.getTasksMark());
+        holder.tvMark.setText(taskVO.getTasksMark() + "/" + taskVO.getTaskMax_score());
+        holder.tvDeadline.setText(taskVO.getTaskDeadline_date());
 
         switch(taskVO.getTasksStatus())
         {
@@ -76,7 +81,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
     }
 
     public class TaskViewHolder extends RecyclerView.ViewHolder {
-        TextView tvTitle, tvMark;
+        TextView tvTitle, tvMark, tvDeadline;
         InitialsRoundView irvStatus;
 
         public TaskViewHolder(@NonNull View itemView) {
@@ -84,6 +89,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
             context = itemView.getContext();
             tvTitle = itemView.findViewById(R.id.tvTitle);
             tvMark = itemView.findViewById(R.id.tvMark);
+            tvDeadline = itemView.findViewById(R.id.tvDeadline);
             irvStatus = itemView.findViewById(R.id.irvStatus);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
