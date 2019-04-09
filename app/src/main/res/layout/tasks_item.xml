@@ -16,14 +16,13 @@
             android:layout_width="0dp"
             android:layout_height="16dp"
             android:layout_margin="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintDimensionRatio="W,1:1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tvTitle"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
@@ -32,13 +31,12 @@
             android:maxLines="5"
             android:padding="5dp"
             android:scrollHorizontally="false"
-            android:text="tvContactName"
+            android:text="tvContactName bbvbvbvvbbvbvb vbvbv vvbbv bvbvb"
             android:textStyle="bold"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/guideline"
+            app:layout_constraintHorizontal_bias="0"
             app:layout_constraintStart_toEndOf="@+id/irvStatus"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintHorizontal_bias="0"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tvDeadline"
@@ -51,10 +49,10 @@
             android:maxLines="5"
             android:padding="5dp"
             android:scrollHorizontally="false"
-            android:text="tvContactName"
+            android:text=""
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/guideline"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1"
             app:layout_constraintStart_toEndOf="@+id/irvStatus"
             app:layout_constraintTop_toBottomOf="@id/tvTitle"
@@ -64,17 +62,15 @@
             android:id="@+id/tvMark"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
             android:background="@drawable/point_rectangle"
             android:gravity="center"
             android:paddingStart="8dp"
+            android:paddingTop="8dp"
             android:paddingEnd="8dp"
             android:paddingBottom="8dp"
-            android:paddingTop="8dp"
             android:text="tvMark"
-            android:textStyle="bold"
             android:textColor="@color/colorPrimaryDark"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

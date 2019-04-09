@@ -1,20 +1,21 @@
 package kireev.ftshw.project.Courses.Rating.Adapters;
 
 import android.content.Context;
-import android.os.Build;
 import android.support.annotation.NonNull;
-import android.support.annotation.RequiresApi;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-
+import java.text.DateFormat;
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
+import java.util.TimeZone;
 
 import kireev.ftshw.project.R;
 import kireev.ftshw.project.Tools.InitialsRoundView;
@@ -38,11 +39,24 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
     public void onBindViewHolder(@NonNull TaskViewHolder holder, int position) {
         TaskVO taskVO = taskList.get(position);
         holder.tvTitle.setText(taskVO.getTaskTitle());
-        holder.tvMark.setText(taskVO.getTasksMark() + "/" + taskVO.getTaskMax_score());
-        holder.tvDeadline.setText(taskVO.getTaskDeadline_date());
+        Double dMark =Double.valueOf(taskVO.getTasksMark());
+        Double dMaxMark =Double.valueOf(taskVO.getTaskMax_score());
+        String mark = new DecimalFormat("##.#").format(dMark);
+        String maxMark = new DecimalFormat("##.#").format(dMaxMark);
+        holder.tvMark.setText(mark + "/" + maxMark);
+//        holder.tvDeadline.setText(taskVO.getTaskDeadline_date());
+//        String deadline = taskVO.getTaskDeadline_date();
+//        DateFormat df = new SimpleDateFormat("E, dd MMM yyyy HH:mm:ss.000z", Locale.getDefault());
+//        df.setTimeZone(TimeZone.getTimeZone("GMT"));
+//        Date today = null;
+//        try {
+//            today = df.parse(deadline);
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
+//        holder.tvDeadline.setText(today.toString());
 
-        switch(taskVO.getTasksStatus())
-        {
+        switch (taskVO.getTasksStatus()) {
             case "accepted":
                 holder.irvStatus.setBackgroundColor(context.getResources().getColor(R.color.colorAcceptedStatus));
                 break;
