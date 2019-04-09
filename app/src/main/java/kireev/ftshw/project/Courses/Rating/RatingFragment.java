@@ -177,21 +177,7 @@ public class RatingFragment extends Fragment implements SwipeRefreshLayout.OnRef
 //                            tasksVO.setTasksMark(tasksList.get(j).getMark());
                             task = tasksList.get(j).getTask();
                             updateTasksDB(tasksList, homeworkList.get(i).getId());
-                            for (int k = 0; k < tasksList.size(); k++) {
-                                TaskVO taskVO = new TaskVO();
-                                taskVO.setTaskId(task.getId());
-                                taskVO.setTasksId(tasksList.get(j).getId());
-                                taskVO.setTasksStatus(tasksList.get(j).getStatus());
-                                taskVO.setTasksMark(tasksList.get(j).getMark());
-                                taskVO.setTaskTitle(task.getTitle());
-                                taskVO.setTaskTask_type(task.getTaskType());
-                                taskVO.setTaskMax_score(task.getMaxScore());
-                                taskVO.setTaskDeadline_date(task.getDeadlineDate());
-                                taskVO.setTaskShort_name(task.getShortName());
-                                updateTaskDB(task, tasksList.get(j).getId());
-                                taskVOList.add(taskVO);
-                            }
-//                            tasksVOList.add(tasksVO);
+                            updateTaskDB(task, tasksList.get(j).getId());
                         }
                         homeworkVOList.add(homeworkVO);
                     }

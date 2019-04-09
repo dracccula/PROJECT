@@ -39,22 +39,14 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
     public void onBindViewHolder(@NonNull TaskViewHolder holder, int position) {
         TaskVO taskVO = taskList.get(position);
         holder.tvTitle.setText(taskVO.getTaskTitle());
-        Double dMark =Double.valueOf(taskVO.getTasksMark());
-        Double dMaxMark =Double.valueOf(taskVO.getTaskMax_score());
-        String mark = new DecimalFormat("##.#").format(dMark);
-        String maxMark = new DecimalFormat("##.#").format(dMaxMark);
+        Double dMark = Double.valueOf(taskVO.getTasksMark());
+        Double dMaxMark = Double.valueOf(taskVO.getTaskMax_score());
+        String mark = new DecimalFormat("##.##").format(dMark);
+        String maxMark = new DecimalFormat("##.##").format(dMaxMark);
         holder.tvMark.setText(mark + "/" + maxMark);
-//        holder.tvDeadline.setText(taskVO.getTaskDeadline_date());
-//        String deadline = taskVO.getTaskDeadline_date();
-//        DateFormat df = new SimpleDateFormat("E, dd MMM yyyy HH:mm:ss.000z", Locale.getDefault());
-//        df.setTimeZone(TimeZone.getTimeZone("GMT"));
-//        Date today = null;
-//        try {
-//            today = df.parse(deadline);
-//        } catch (ParseException e) {
-//            e.printStackTrace();
-//        }
-//        holder.tvDeadline.setText(today.toString());
+
+        String deadlineDate = taskVO.getTaskDeadline_date();
+        holder.tvDeadline.setText(deadlineDate);
 
         switch (taskVO.getTasksStatus()) {
             case "accepted":
