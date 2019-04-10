@@ -35,8 +35,7 @@ import retrofit2.Retrofit;
 public class MainActivity extends AppCompatActivity
         implements ProfileFragment.OnProfileFragmentListener {
 
-    public AlertDialog.Builder ad;
-    public AlertDialog.Builder adEmptyFields;
+    public AlertDialog.Builder ad, adEmptyFields, adLogout;
     private static long back_pressed;
     public static SharedPreferences spStorage;
     public static String anygenCookie;
@@ -90,6 +89,31 @@ public class MainActivity extends AppCompatActivity
         adEmptyFields.setMessage(R.string.edit_profile_alert_empty_text);
         adEmptyFields.setCancelable(true);
 
+        adLogout = new AlertDialog.Builder(this);
+        adLogout.setMessage(getString(R.string.profile_logout_text)); // сообщение
+        adLogout.setPositiveButton(getString(R.string.profile_logout_yes), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int arg1) {
+                SharedPreferences.Editor ed = spStorage.edit();
+                ed.remove("anygenCookie");
+                ed.remove("IS_AUTORIZED");
+                ed.apply();
+                //signOut();
+                Toast.makeText(getBaseContext(), "signOut!", Toast.LENGTH_SHORT).show();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        new AnonimProfileFragment()).commitNow();
+            }
+        });
+        adLogout.setNegativeButton(getString(R.string.profile_logout_no), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int arg1) {
+                getSupportFragmentManager().popBackStack();
+            }
+        });
+        adLogout.setCancelable(true);
+        adLogout.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            public void onCancel(DialogInterface dialog) {
+            }
+        });
+
     }
 
     @Override
@@ -111,14 +135,7 @@ public class MainActivity extends AppCompatActivity
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
         if (item.getItemId() == R.id.logout) {
-            SharedPreferences.Editor ed = spStorage.edit();
-            ed.remove("anygenCookie");
-            ed.remove("IS_AUTORIZED");
-            ed.apply();
-            //signOut();
-            Toast.makeText(getBaseContext(), "signOut!", Toast.LENGTH_SHORT).show();
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                    new AnonimProfileFragment()).commitNow();
+            adLogout.show();
         }
         return true;
     }
