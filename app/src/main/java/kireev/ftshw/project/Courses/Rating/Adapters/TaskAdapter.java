@@ -8,14 +8,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import org.threeten.bp.ZonedDateTime;
+import org.threeten.bp.format.DateTimeFormatter;
+
 import java.text.DateFormat;
 import java.text.DecimalFormat;
-import java.text.ParseException;
+import java.text.FieldPosition;
+import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-import java.util.TimeZone;
 
 import kireev.ftshw.project.R;
 import kireev.ftshw.project.Tools.InitialsRoundView;
@@ -44,10 +48,12 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         String mark = new DecimalFormat("##.##").format(dMark);
         String maxMark = new DecimalFormat("##.##").format(dMaxMark);
         holder.tvMark.setText(mark + "/" + maxMark);
-
         String deadlineDate = taskVO.getTaskDeadline_date();
-        holder.tvDeadline.setText(deadlineDate);
-
+        if (deadlineDate != null) {
+            holder.tvDeadline.setText(deadlineDate);
+        } else {
+            holder.tvDeadline.setVisibility(View.INVISIBLE);
+        }
         switch (taskVO.getTasksStatus()) {
             case "accepted":
                 holder.irvStatus.setBackgroundColor(context.getResources().getColor(R.color.colorAcceptedStatus));

@@ -21,9 +21,7 @@ import java.util.List;
 import kireev.ftshw.project.App;
 import kireev.ftshw.project.Courses.Rating.Adapters.TaskAdapter;
 import kireev.ftshw.project.Courses.Rating.Adapters.TaskVO;
-import kireev.ftshw.project.Database.Dao.TaskDao;
 import kireev.ftshw.project.Database.Dao.TasksDao;
-import kireev.ftshw.project.Database.Entity.Task;
 import kireev.ftshw.project.Database.Entity.Tasks;
 import kireev.ftshw.project.Database.ProjectDatabase;
 import kireev.ftshw.project.R;
@@ -58,7 +56,6 @@ public class TasksFragment extends Fragment implements SwipeRefreshLayout.OnRefr
         TaskAdapter.OnClickListener onClickListener = new TaskAdapter.OnClickListener() {
             @Override
             public void onClick(TaskVO taskVO) {
-                Toast.makeText(getContext(), "id " + taskVO.getTaskId(), Toast.LENGTH_SHORT).show();
             }
         };
         taskAdapter = new TaskAdapter(onClickListener, getContext());
@@ -74,25 +71,20 @@ public class TasksFragment extends Fragment implements SwipeRefreshLayout.OnRefr
     private void showFromDatabase() {
         db = App.getInstance().getDatabase();
         TasksDao tasksDao = db.tasksDao();
-        TaskDao taskDao = db.taskDao();
         List<Tasks> tasksList;
-        List<Task> taskList;
         tasksList = tasksDao.getByHomeworkId(homeworkId);
         for (int i = 0; i < tasksList.size(); i++) {
-            taskList = taskDao.getByTasksId(tasksList.get(i).id);
-            for (int j = 0; j < taskList.size(); j++) {
-                TaskVO taskVO = new TaskVO();
-                taskVO.setTaskId((int) taskList.get(j).getId());
-                taskVO.setTasksId((int) tasksList.get(i).id);
-                taskVO.setTasksStatus(tasksList.get(i).status);
-                taskVO.setTasksMark(tasksList.get(i).mark);
-                taskVO.setTaskTitle(taskList.get(j).getTitle());
-                taskVO.setTaskTask_type(taskList.get(j).getTask_type());
-                taskVO.setTaskMax_score(taskList.get(j).getMax_score());
-                taskVO.setTaskDeadline_date(taskList.get(j).getDeadline_date());
-                taskVO.setTaskShort_name(taskList.get(j).getShort_name());
-                taskVOList.add(taskVO);
-            }
+            TaskVO taskVO = new TaskVO();
+            taskVO.setTaskId((int) tasksList.get(i).getId());
+            taskVO.setTasksId((int) tasksList.get(i).getTasksId());
+            taskVO.setTasksStatus(tasksList.get(i).status);
+            taskVO.setTasksMark(tasksList.get(i).mark);
+            taskVO.setTaskTitle(tasksList.get(i).getTitle());
+            taskVO.setTaskTask_type(tasksList.get(i).getTask_type());
+            taskVO.setTaskMax_score(tasksList.get(i).getMax_score());
+            taskVO.setTaskDeadline_date(tasksList.get(i).getDeadline_date());
+            taskVO.setTaskShort_name(tasksList.get(i).getShort_name());
+            taskVOList.add(taskVO);
         }
         taskAdapter.setItems(taskVOList);
         rvTasks.setAdapter(taskAdapter);

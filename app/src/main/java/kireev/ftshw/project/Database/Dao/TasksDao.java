@@ -20,16 +20,19 @@ public interface TasksDao {
     @Query("SELECT * FROM tasks WHERE id = :id")
     Tasks getById(long id);
 
+    @Query("SELECT * FROM tasks WHERE tasksId = :tasksId")
+    List<Tasks> getByTasksId(long tasksId);
+
     @Query("SELECT * FROM tasks WHERE homeworkId = :homeworkId")
     List<Tasks> getByHomeworkId(long homeworkId);
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    void insert(Tasks tasks);
+    void insert(Tasks task);
 
     @Update
-    void update(Tasks tasks);
+    void update(Tasks task);
 
     @Delete
-    void delete(Tasks tasks);
+    void delete(Tasks task);
 
 }
