@@ -21,7 +21,7 @@ public interface HomeworksDao {
     @Query("SELECT * FROM homeworks WHERE id = :id")
     Homeworks getById(long id);
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(Homeworks homeworks);
 
     @Update

@@ -69,6 +69,7 @@ public class RatingFragment extends Fragment implements SwipeRefreshLayout.OnRef
             }
         };
         homeworksAdapter = new HomeworksAdapter(onClickListener, getContext());
+        db = App.getInstance().getDatabase();
         return v;
     }
 
@@ -84,7 +85,6 @@ public class RatingFragment extends Fragment implements SwipeRefreshLayout.OnRef
     }
 
     private void checkDatabase() {
-        db = App.getInstance().getDatabase();
         HomeworksDao homeworksDao = db.homeworksDao();
         if (homeworksDao.getAll().isEmpty()) {
             getHomeworksData();
@@ -94,7 +94,6 @@ public class RatingFragment extends Fragment implements SwipeRefreshLayout.OnRef
     }
 
     private void getHomeworksFromDb() {
-        db = App.getInstance().getDatabase();
         HomeworksDao homeworksDao = db.homeworksDao();
         List<Homeworks> homeworksList = homeworksDao.getAll();
         for (int i = 0; i < homeworksList.size(); i++) {
@@ -108,13 +107,13 @@ public class RatingFragment extends Fragment implements SwipeRefreshLayout.OnRef
     }
 
     public void updateHomeworksDB(List<HomeworksResponse.Homework> homeworkList) {
-        db = App.getInstance().getDatabase();
         HomeworksDao homeworksDao = db.homeworksDao();
         Homeworks homeworks = new Homeworks();
         for (int i = 0; i < homeworkList.size(); i++) {
             homeworks.id = homeworkList.get(i).getId();
             homeworks.title = homeworkList.get(i).getTitle();
             homeworksDao.insert(homeworks);
+            Log.i("to Homeworks inserted", "id:" + homeworkList.get(i).getId().toString() + " title:" + homeworkList.get(i).getTitle());
         }
 
 
@@ -136,10 +135,10 @@ public class RatingFragment extends Fragment implements SwipeRefreshLayout.OnRef
 
     public void updateTaskDB(HomeworksResponse.Task taskresponse, int tasksId, int homeworkId, String status, String mark) {
         db = App.getInstance().getDatabase();
-        TasksDao taskDao = db.tasksDao();
+        TasksDao tasksDao = db.tasksDao();
         Tasks tasks = new Tasks(taskresponse.getId(), tasksId, homeworkId, status, mark, taskresponse.getTitle(), taskresponse.getTaskType(), taskresponse.getMaxScore(), taskresponse.getDeadlineDate(), taskresponse.getShortName());
-        taskDao.insert(tasks);
-        Log.i("to Task inserted", "id:" + taskresponse.getId().toString() + " tasksId:" + tasksId);
+        tasksDao.insert(tasks);
+        Log.i("to Tasks inserted", "homeworkId:" + homeworkId + " id:" + taskresponse.getId().toString() + " tasksId:" + tasksId + " title:" + taskresponse.getTitle());
     }
 
     private void getHomeworksData() {

@@ -39,7 +39,7 @@ import static kireev.ftshw.project.Profile.ProfileEditFragment.sPrefProfile;
 
 public class ProfileFragment extends Fragment {
 
-    Button editButton;
+    Button editButton, refreshButton;
     ImageView avatar;
     static EditText name, surname, patronymic;
     private OnProfileFragmentListener listener;
@@ -67,6 +67,7 @@ public class ProfileFragment extends Fragment {
         patronymic = v.findViewById(R.id.textPatronymic);
 //        loadText();
         editButton = v.findViewById(R.id.buttonEditFullname);
+        refreshButton = v.findViewById(R.id.btnRefresh);
         avatar = v.findViewById(R.id.ivAvatar);
         editButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,6 +79,13 @@ public class ProfileFragment extends Fragment {
                         .commitNow();
             }
         });
+        refreshButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getUserData();
+            }
+        });
+
         return v;
     }
 

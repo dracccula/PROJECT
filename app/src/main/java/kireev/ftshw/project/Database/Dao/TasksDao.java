@@ -26,7 +26,7 @@ public interface TasksDao {
     @Query("SELECT * FROM tasks WHERE homeworkId = :homeworkId")
     List<Tasks> getByHomeworkId(long homeworkId);
 
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(Tasks task);
 
     @Update
