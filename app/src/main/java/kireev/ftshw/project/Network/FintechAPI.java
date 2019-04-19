@@ -1,11 +1,9 @@
 package kireev.ftshw.project.Network;
 
-import java.util.List;
-
 import kireev.ftshw.project.Network.Model.HomeworksResponse;
 import kireev.ftshw.project.Network.Model.SignIn;
 import kireev.ftshw.project.Network.Model.SignInResponse;
-import kireev.ftshw.project.Network.Model.UserResponse;
+import kireev.ftshw.project.Profile.MVP.ProfileData;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -26,7 +24,7 @@ public interface FintechAPI {
     Call<SignInResponse> postEmpty();
 
     @GET(USER)
-    Call<UserResponse> getUser();
+    Call<ProfileData> getUser();
 
     @GET(HOMEWORKS)
     Call<HomeworksResponse> getHomeworks();

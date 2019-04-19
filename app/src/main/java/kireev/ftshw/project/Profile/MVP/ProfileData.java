@@ -1,10 +1,10 @@
-package kireev.ftshw.project.Network.Model;
+package kireev.ftshw.project.Profile.MVP;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
-public class UserResponse {
+public class ProfileData {
 
     @SerializedName("user")
     @Expose
@@ -40,7 +40,7 @@ public class UserResponse {
         this.status = status;
     }
 
-    public class User {
+    public static class User {
 
         @SerializedName("birthday")
         @Expose

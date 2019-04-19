@@ -23,7 +23,7 @@ import com.bumptech.glide.request.RequestOptions;
 import kireev.ftshw.project.MainActivity;
 import kireev.ftshw.project.Network.Connector;
 import kireev.ftshw.project.Network.FintechAPI;
-import kireev.ftshw.project.Network.Model.UserResponse;
+import kireev.ftshw.project.Profile.MVP.ProfileData;
 import kireev.ftshw.project.R;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -138,16 +138,16 @@ public class ProfileFragment extends Fragment {
         Retrofit retrofit = Connector.getRetrofitClient();
         FintechAPI fintechAPI = retrofit.create(FintechAPI.class);
         if (isAdded()) {
-            Call<UserResponse> call = fintechAPI.getUser();
-            call.enqueue(new Callback<UserResponse>() {
+            Call<ProfileData> call = fintechAPI.getUser();
+            call.enqueue(new Callback<ProfileData>() {
                 @Override
                 public void onResponse(Call call, Response response) {
-                    UserResponse userResponse = (UserResponse) response.body();
-                    UserResponse.User user = userResponse.getUser();
+                    ProfileData profileData = (ProfileData) response.body();
+                    ProfileData.User user = profileData.getUser();
                     String headers = response.headers().toString();
                     String cookie = response.headers().get("Set-Cookie");
                     if (response.isSuccessful()) {
-                        if (userResponse.getStatus().equals("Ok")) {
+                        if (profileData.getStatus().equals("Ok")) {
                             name.setText(user.getFirstName());
                             surname.setText(user.getLastName());
                             patronymic.setText(user.getMiddleName());
@@ -155,13 +155,13 @@ public class ProfileFragment extends Fragment {
                                     .load("https://fintech.tinkoff.ru" + user.getAvatar())
                                     .apply(RequestOptions.circleCropTransform())
                                     .into(avatar);
-                            Toast.makeText(getContext(), "Status: " + userResponse.getStatus(), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), "Status: " + profileData.getStatus(), Toast.LENGTH_SHORT).show();
                         }
-                        Log.i("getUserData Response", "body: " + userResponse);
+                        Log.i("getUserData Response", "body: " + profileData);
                         Log.i("getUserData Response", "headers: " + headers);
                         Log.i("getUserData Response", "cookie: " + cookie);
-                        if (userResponse.getStatus().equals("Error")) {
-                            Toast.makeText(getContext(), "Message: " + userResponse.getMessage(), Toast.LENGTH_SHORT).show();
+                        if (profileData.getStatus().equals("Error")) {
+                            Toast.makeText(getContext(), "Message: " + profileData.getMessage(), Toast.LENGTH_SHORT).show();
                         }
 
                     }
