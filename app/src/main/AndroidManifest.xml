@@ -28,7 +28,7 @@
             android:configChanges="orientation"
              />
         <activity
-            android:name=".Profile.LoginActivity"
+            android:name=".Profile.Login.LoginActivity"
             android:configChanges="orientation"
              />
         <activity

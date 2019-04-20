@@ -22,17 +22,24 @@ public class ProfilePresenter {
     }
 
     public void refresh() {
-        model.getUserData(new Callback<ProfileData>() {
-            @Override
-            public void onResponse(Call<ProfileData> call, Response<ProfileData> response) {
-                ProfileData profileData = response.body();
-                view.showUser(profileData.getUser());
-            }
+        if (view != null) {
+            model.getUserData(new Callback<ProfileData>() {
+                @Override
+                public void onResponse(Call<ProfileData> call, Response<ProfileData> response) {
+                    ProfileData profileData = response.body();
+                    view.showProfile(profileData.getUser(), profileData.getStatus());
+                }
 
-            @Override
-            public void onFailure(Call<ProfileData> call, Throwable t) {
-                view.showError(t.getMessage());
-            }
-        });
+                @Override
+                public void onFailure(Call<ProfileData> call, Throwable t) {
+                    view.showError(t.getMessage());
+                }
+            });
+        }
+
+    }
+
+    public void viewIsReady() {
+        refresh();
     }
 }

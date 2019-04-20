@@ -23,7 +23,8 @@ import kireev.ftshw.project.Network.Connector;
 import kireev.ftshw.project.Network.FintechAPI;
 import kireev.ftshw.project.Network.Model.SignInResponse;
 import kireev.ftshw.project.Profile.AnonimProfileFragment;
-import kireev.ftshw.project.Profile.LoginActivity;
+import kireev.ftshw.project.Profile.Login.LoginActivity;
+import kireev.ftshw.project.Profile.MVP.ProfileViewFragment;
 import kireev.ftshw.project.Profile.ProfileEditFragment;
 import kireev.ftshw.project.Profile.ProfileFragment;
 import retrofit2.Call;
@@ -60,7 +61,7 @@ public class MainActivity extends AppCompatActivity
             if (navigation.getMenu().findItem(navigation.getSelectedItemId()) == navigation.getMenu().getItem(2)) {
                 if (spStorage.getBoolean("IS_AUTORIZED", false)) {
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                            new ProfileFragment()).commitNow();
+                            new ProfileViewFragment()).commitNow();
                 } else {
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                             new AnonimProfileFragment()).commitNow();
@@ -122,7 +123,7 @@ public class MainActivity extends AppCompatActivity
         if ((navigation.getSelectedItemId()) == R.id.navigation_profile) {
             if (spStorage.getBoolean("IS_AUTORIZED", false)) {
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new ProfileFragment()).commitNow();
+                        new ProfileViewFragment()).commitNow();
             } else {
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                         new AnonimProfileFragment()).commitNow();
@@ -155,7 +156,7 @@ public class MainActivity extends AppCompatActivity
                     break;
                 case R.id.navigation_profile:
                     if (spStorage.getBoolean("IS_AUTORIZED", false)) {
-                        selectedFragment = new ProfileFragment();
+                        selectedFragment = new ProfileViewFragment();
                         break;
                     } else {
                         selectedFragment = new AnonimProfileFragment();

@@ -1,4 +1,4 @@
-package kireev.ftshw.project.Profile;
+package kireev.ftshw.project.Profile.Login;
 
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;

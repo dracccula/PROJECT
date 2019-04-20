@@ -12,7 +12,6 @@ public class ProfileModel {
         Retrofit retrofit = Connector.getRetrofitClient();
         FintechAPI fintechAPI = retrofit.create(FintechAPI.class);
         Call<ProfileData> call = fintechAPI.getUser();
-
         call.enqueue(callback);
     }
 

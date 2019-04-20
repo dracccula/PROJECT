@@ -24,7 +24,7 @@ public class AuthInterceptor implements Interceptor {
     @Override
     public Response intercept(@NonNull Chain chain) throws IOException {
         //        Задержка запроса на 2 секунды
-        //       SystemClock.sleep(1000);
+               SystemClock.sleep(3000);
         Request request = chain.request();
         if (preferences == null) {
             return chain.proceed(request);
