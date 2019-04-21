@@ -1,8 +1,8 @@
 package kireev.ftshw.project.Network;
 
 import kireev.ftshw.project.Network.Model.HomeworksResponse;
-import kireev.ftshw.project.Network.Model.SignIn;
-import kireev.ftshw.project.Network.Model.SignInResponse;
+import kireev.ftshw.project.Profile.Login.LoginData;
+import kireev.ftshw.project.Profile.Login.SignInResponse;
 import kireev.ftshw.project.Profile.MVP.ProfileData;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -17,7 +17,7 @@ import static kireev.ftshw.project.Network.Urls.USER;
 public interface FintechAPI {
     @POST(SIGNIN)
     Call<SignInResponse> postCredentials(
-            @Body SignIn signIn
+            @Body LoginData logIn
     );
 
     @POST(SIGNOUT)

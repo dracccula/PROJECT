@@ -1,12 +1,12 @@
 package kireev.ftshw.project.Profile.Login;
 
-import android.content.SharedPreferences;
 import android.content.res.Configuration;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -15,21 +15,16 @@ import android.widget.Toast;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import kireev.ftshw.project.Network.FintechAPI;
-import kireev.ftshw.project.R;
 import kireev.ftshw.project.Network.Connector;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
+import kireev.ftshw.project.R;
 
-import static kireev.ftshw.project.MainActivity.*;
-
-public class LoginActivity extends AppCompatActivity {
+public class LoginViewActivity extends AppCompatActivity implements LoginView {
     EditText etLogin, etPassword;
     TextView textView;
-    ImageView logo;
+    ImageView ivLogo;
+    Button bLogin;
 
+    LoginPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,10 +35,22 @@ public class LoginActivity extends AppCompatActivity {
         textView = findViewById(R.id.tv_temp);
         etLogin = findViewById(R.id.et_login);
         etPassword = findViewById(R.id.et_password);
-        logo = findViewById(R.id.iv_logo);
+        ivLogo = findViewById(R.id.iv_logo);
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            logo.setVisibility(View.GONE);
+            ivLogo.setVisibility(View.GONE);
         }
+        bLogin = findViewById(R.id.btn_login);
+        bLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                presenter.signIn(etLogin.getText().toString(), etPassword.getText().toString());
+                Log.e("Login onClick", "clicked");
+            }
+        });
+        LoginModel loginModel = new LoginModel();
+        presenter = new LoginPresenter(loginModel);
+        presenter.attachView(this);
+        Log.e("Login onCreate", "view attached");
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -61,7 +68,7 @@ public class LoginActivity extends AppCompatActivity {
             Toast.makeText(getBaseContext(), "Offline", Toast.LENGTH_SHORT).show();
         }
         if (isEmailValid(etLogin.getText().toString())) {
-            signIn();
+            presenter.signIn(etLogin.getText().toString(), etPassword.getText().toString());
         } else {
             Toast.makeText(getBaseContext(), "Email is not valid", Toast.LENGTH_SHORT).show();
         }
@@ -87,43 +94,23 @@ public class LoginActivity extends AppCompatActivity {
             return false;
     }
 
-    private void signIn() {
-        textView.setText("");
-        Retrofit retrofit = Connector.getRetrofitClient();
-        FintechAPI fintechAPI = retrofit.create(FintechAPI.class);
-        LoginData signIn = new LoginData(etLogin.getText().toString(), etPassword.getText().toString());
-        Call<SignInResponse> call = fintechAPI.postCredentials(signIn);
-        call.enqueue(new Callback<SignInResponse>() {
-            @Override
-            public void onResponse(Call call, Response response) {
-                SignInResponse signInResponse = (SignInResponse) response.body();
-                String headers = response.headers().toString();
-                String cookie = response.headers().get("Set-Cookie");
-                anygenCookie = cookie;
-                SharedPreferences.Editor ed = spStorage.edit();
-                if (response.isSuccessful()) {
-                    Log.i("signIn Response", "body: " + signInResponse);
-                    Log.i("signIn Response", "headers: " + headers);
-                    Log.i("signIn Response", "cookie: " + cookie);
-                    ed.putBoolean("IS_AUTORIZED", true);
-                    ed.putString("anygenCookie", anygenCookie);
-                    finish();
-                }
-//                if (signInResponse != null) {
-//                    textView.setText("firstName: " + signInResponse.getFirstName() + "\n" +
-//                            "lastName: " + signInResponse.getLastName() + "\n" +
-//                            "email: " + signInResponse.getEmail());
-//                }
-                ed.apply();
-            }
+    @Override
+    public void authorize(SignInResponse signInResponse) {
+        textView.setText("firstName: " + signInResponse.getFirstName() + "\n" +
+                "lastName: " + signInResponse.getLastName() + "\n" +
+                "email: " + signInResponse.getEmail());
+    }
 
-            @Override
-            public void onFailure(Call call, Throwable t) {
-                Log.e("signIn onFailure", "ooops!");
-                Toast.makeText(getBaseContext(), "signIn went wrong!", Toast.LENGTH_SHORT).show();
-            }
+    @Override
+    public void showError(String message) {
+        Log.e("signIn onFailure", "ooops!");
+        Toast.makeText(getBaseContext(), "signIn went wrong!", Toast.LENGTH_SHORT).show();
+    }
 
-
-        });
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        presenter.detachView();
+        Log.e("Login onDestroy", "view detached");
     }
 }

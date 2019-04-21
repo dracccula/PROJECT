@@ -5,6 +5,9 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -51,7 +54,7 @@ public class ProfileViewFragment extends Fragment implements ProfileView {
         ProfileModel profileModel = new ProfileModel();
         presenter = new ProfilePresenter(profileModel);
         presenter.attachView(this);
-        Log.e("onCreateView", "view attached");
+        Log.e("Profile onCreateView", "view attached");
         //presenter.viewIsReady();
         return v;
     }
@@ -74,6 +77,13 @@ public class ProfileViewFragment extends Fragment implements ProfileView {
         Toast.makeText(getContext(), "getUserData went wrong!", Toast.LENGTH_SHORT).show();
     }
 
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.profile_menu, menu);
+        MenuItem item = menu.findItem(R.id.logout);
+        item.setVisible(true);
+    }
+
 //    @Override
 //    public void onStart() {
 //        super.onStart();
@@ -90,6 +100,6 @@ public class ProfileViewFragment extends Fragment implements ProfileView {
     public void onDestroyView() {
         super.onDestroyView();
         presenter.detachView();
-        Log.e("onDestroyView", "view detached");
+        Log.e("Profile onDestroyView", "view detached");
     }
 }

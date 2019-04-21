@@ -21,7 +21,8 @@ import kireev.ftshw.project.Courses.Rating.RatingActivity;
 import kireev.ftshw.project.Events.EventsFragment;
 import kireev.ftshw.project.Network.Connector;
 import kireev.ftshw.project.Network.FintechAPI;
-import kireev.ftshw.project.Network.Model.SignInResponse;
+import kireev.ftshw.project.Profile.Login.LoginViewActivity;
+import kireev.ftshw.project.Profile.Login.SignInResponse;
 import kireev.ftshw.project.Profile.AnonimProfileFragment;
 import kireev.ftshw.project.Profile.Login.LoginActivity;
 import kireev.ftshw.project.Profile.MVP.ProfileViewFragment;
@@ -196,7 +197,7 @@ public class MainActivity extends AppCompatActivity
 
     public void openLoginActivity(View view) {
         Log.d("openLoginActivity", "clicked!");
-        startActivity(new Intent(this, LoginActivity.class));
+        startActivity(new Intent(this, LoginViewActivity.class));
     }
 
     @Override

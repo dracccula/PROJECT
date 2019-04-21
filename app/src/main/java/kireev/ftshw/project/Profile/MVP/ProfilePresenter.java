@@ -42,4 +42,5 @@ public class ProfilePresenter {
     public void viewIsReady() {
         refresh();
     }
+
 }

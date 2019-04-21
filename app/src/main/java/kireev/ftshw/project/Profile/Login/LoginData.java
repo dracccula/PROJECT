@@ -1,9 +1,9 @@
-package kireev.ftshw.project.Network.Model;
+package kireev.ftshw.project.Profile.Login;
 
 
 import com.google.gson.annotations.SerializedName;
 
-public class SignIn {
+public class LoginData {
 
     @SerializedName("email")
     public String email;
@@ -26,7 +26,7 @@ public class SignIn {
         this.password = password;
     }
 
-    public SignIn(String email, String password){
+    public LoginData(String email, String password){
         this.email = email;
         this.password = password;
     }

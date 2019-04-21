@@ -19,27 +19,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:targetApi="n">
-        <activity
-            android:name=".Courses.Rating.Tasks.TasksActivity"
-            android:configChanges="orientation"
-             />
-        <activity
-            android:name=".Courses.Rating.RatingActivity"
-            android:configChanges="orientation"
-             />
-        <activity
-            android:name=".Profile.Login.LoginActivity"
-            android:configChanges="orientation"
-             />
-        <activity
-            android:name=".Courses.GradesList.GradesListActivity"
-            android:configChanges="orientation"
-             />
+        <activity android:name=".Courses.Rating.Tasks.TasksActivity" />
+        <activity android:name=".Courses.Rating.RatingActivity" />
+        <activity android:name=".Profile.Login.LoginActivity" />
+        <activity android:name=".Profile.Login.LoginViewActivity" />
+        <activity android:name=".Courses.GradesList.GradesListActivity" />
         <activity
             android:name=".MainActivity"
-            android:configChanges="orientation"
-            android:label="@string/app_name"
-            >
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
