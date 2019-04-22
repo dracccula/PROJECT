@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 
+import kireev.ftshw.project.Courses.Rating.Tasks.MVP.TasksViewFragment;
 import kireev.ftshw.project.R;
 
 public class TasksActivity extends AppCompatActivity {
@@ -19,7 +20,7 @@ public class TasksActivity extends AppCompatActivity {
         assert getSupportActionBar() != null;   //null check
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportFragmentManager().beginTransaction()
-                .replace(R.id.container, new TasksFragment())
+                .replace(R.id.container, new TasksViewFragment())
                 .commit();
     }
 

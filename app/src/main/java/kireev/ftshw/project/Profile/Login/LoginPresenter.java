@@ -10,24 +10,24 @@ import retrofit2.Response;
 import static kireev.ftshw.project.MainActivity.anygenCookie;
 import static kireev.ftshw.project.MainActivity.spStorage;
 
-public class LoginPresenter {
+class LoginPresenter {
 
     private LoginView view;
     private final LoginModel model;
 
-    public LoginPresenter(LoginModel model) {
+    LoginPresenter(LoginModel model) {
         this.model = model;
     }
 
-    public void attachView(LoginView profileView) {
+    void attachView(LoginView profileView) {
         view = profileView;
     }
 
-    public void detachView() {
+    void detachView() {
         view = null;
     }
 
-    public void signIn(String login, String password) {
+    void signIn(String login, String password) {
         if (view != null) {
             model.signIn(new Callback<SignInResponse>() {
                 @Override

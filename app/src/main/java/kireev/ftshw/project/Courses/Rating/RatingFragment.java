@@ -24,7 +24,6 @@ import kireev.ftshw.project.App;
 import kireev.ftshw.project.Courses.Rating.Adapters.HomeworkVO;
 import kireev.ftshw.project.Courses.Rating.Adapters.HomeworksAdapter;
 import kireev.ftshw.project.Courses.Rating.Adapters.TaskVO;
-import kireev.ftshw.project.Courses.Rating.Adapters.TasksVO;
 import kireev.ftshw.project.Courses.Rating.Tasks.TasksActivity;
 import kireev.ftshw.project.Database.Dao.HomeworksDao;
 import kireev.ftshw.project.Database.Dao.TasksDao;
@@ -47,7 +46,6 @@ public class RatingFragment extends Fragment implements SwipeRefreshLayout.OnRef
     ProgressDialog pd;
     ProjectDatabase db;
     public final List<HomeworkVO> homeworkVOList = new ArrayList<>();
-    public final List<TasksVO> tasksVOList = new ArrayList<>();
     public final List<TaskVO> taskVOList = new ArrayList<>();
 
 
@@ -119,20 +117,6 @@ public class RatingFragment extends Fragment implements SwipeRefreshLayout.OnRef
 
     }
 
-//    public void updateTasksDB(List<HomeworksResponse.Tasks> tasksList, int homeworkId) {
-//        db = App.getInstance().getDatabase();
-//        TasksDao tasksDao = db.tasksDao();
-//        Tasks tasks = new Tasks();
-//        for (int i = 0; i < tasksList.size(); i++) {
-//            tasks.getTasksId() = tasksList.get(i).getId();
-//            tasks.homeworkId = homeworkId;
-//            tasks.status = tasksList.get(i).getStatus();
-//            tasks.mark = tasksList.get(i).getMark();
-//            tasksDao.insert(tasks);
-//            Log.i("to Tasks inserted", "id:" + tasksList.get(i).getId().toString() + " homeworksId:" + homeworkId);
-//        }
-//    }
-
     public void updateTaskDB(HomeworksResponse.Task taskresponse, int tasksId, int homeworkId, String status, String mark) {
         db = App.getInstance().getDatabase();
         TasksDao tasksDao = db.tasksDao();
@@ -167,10 +151,6 @@ public class RatingFragment extends Fragment implements SwipeRefreshLayout.OnRef
                         tasksList = homeworkList.get(i).getTasks();
                         updateHomeworksDB(homeworkList);
                         for (int j = 0; j < tasksList.size(); j++) {
-//                            TasksVO tasksVO = new TasksVO();
-//                            tasksVO.setTasksId(tasksList.get(j).getId());
-//                            tasksVO.setTasksStatus(tasksList.get(j).getStatus());
-//                            tasksVO.setTasksMark(tasksList.get(j).getMark());
                             task = tasksList.get(j).getTask();
                             updateTaskDB(task, tasksList.get(j).getId(), homeworkList.get(i).getId(), tasksList.get(j).getStatus(), tasksList.get(j).getMark());
                         }

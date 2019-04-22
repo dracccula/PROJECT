@@ -18,13 +18,15 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 
+import java.util.Objects;
+
 import kireev.ftshw.project.MainActivity;
 import kireev.ftshw.project.R;
 
 public class ProfileViewFragment extends Fragment implements ProfileView {
 
     ImageView avatar;
-    static EditText name, surname, patronymic;
+    EditText name, surname, patronymic;
     Button refreshButton;
 
     ProfilePresenter presenter;
@@ -37,7 +39,7 @@ public class ProfileViewFragment extends Fragment implements ProfileView {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        ((MainActivity) getActivity())
+        ((MainActivity) Objects.requireNonNull(getActivity()))
                 .setActionBarTitle(getString(R.string.title_profile));
         View v = inflater.inflate(R.layout.fragment_profile, container, false);
         name = v.findViewById(R.id.textName);

@@ -9,19 +9,19 @@ public class ProfilePresenter {
     private ProfileView view;
     private final ProfileModel model;
 
-    public ProfilePresenter(ProfileModel model) {
+    ProfilePresenter(ProfileModel model) {
         this.model = model;
     }
 
-    public void attachView(ProfileView profileView) {
+    void attachView(ProfileView profileView) {
         view = profileView;
     }
 
-    public void detachView() {
+    void detachView() {
         view = null;
     }
 
-    public void refresh() {
+    void refresh() {
         if (view != null) {
             model.getUserData(new Callback<ProfileData>() {
                 @Override

@@ -9,7 +9,6 @@ import kireev.ftshw.project.Database.ProjectDatabase;
 public class App extends Application {
 
     public static App instance;
-
     private ProjectDatabase database;
 
     @Override
