@@ -21,6 +21,7 @@ class LoginPresenter {
 
     void attachView(LoginView profileView) {
         view = profileView;
+        Log.i("presenter", "presenter=" + this);
     }
 
     void detachView() {

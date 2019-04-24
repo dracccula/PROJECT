@@ -8,18 +8,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import org.threeten.bp.ZonedDateTime;
-import org.threeten.bp.format.DateTimeFormatter;
-
-import java.text.DateFormat;
 import java.text.DecimalFormat;
-import java.text.FieldPosition;
-import java.text.ParsePosition;
-import java.text.SimpleDateFormat;
-import java.time.Instant;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 import kireev.ftshw.project.R;
 import kireev.ftshw.project.Tools.InitialsRoundView;

@@ -48,9 +48,19 @@ public class LoginViewActivity extends AppCompatActivity implements LoginView {
             }
         });
         LoginModel loginModel = new LoginModel();
-        presenter = new LoginPresenter(loginModel);
+        presenter = (LoginPresenter) getLastCustomNonConfigurationInstance();
+
+        if (presenter == null) {
+            presenter = new LoginPresenter(loginModel);
+        }
         presenter.attachView(this);
         Log.e("Login onCreate", "view attached");
+
+    }
+
+    @Override
+    public Object onRetainCustomNonConfigurationInstance() {
+        return presenter;
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
