@@ -12,58 +12,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="eb2a1b0b-2cc6-4107-91bc-d2d5583a2741" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_hannesdorfmann_mosby_mvp_2_0_1_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_hannesdorfmann_mosby_mvp_common_2_0_1_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_hannesdorfmann_mosby_viewstate_2_0_1_aar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Profile/MVP/ProfilePresenterImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/build_file_checksums.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/caches/gradle_models.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__android_arch_core_runtime_1_1_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__android_arch_core_runtime_1_1_1_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__android_arch_lifecycle_extensions_1_1_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__android_arch_lifecycle_extensions_1_1_1_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__android_arch_lifecycle_livedata_1_1_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__android_arch_lifecycle_livedata_1_1_1_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__android_arch_lifecycle_livedata_core_1_1_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__android_arch_lifecycle_livedata_core_1_1_1_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__android_arch_lifecycle_runtime_1_1_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__android_arch_lifecycle_runtime_1_1_1_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__android_arch_lifecycle_viewmodel_1_1_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__android_arch_lifecycle_viewmodel_1_1_1_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__android_arch_persistence_db_1_1_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__android_arch_persistence_db_1_1_1_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__android_arch_persistence_db_framework_1_1_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__android_arch_persistence_db_framework_1_1_1_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__android_arch_persistence_room_runtime_1_1_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__android_arch_persistence_room_runtime_1_1_1_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_animated_vector_drawable_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_animated_vector_drawable_28_0_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_appcompat_v7_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_appcompat_v7_28_0_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_asynclayoutinflater_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_asynclayoutinflater_28_0_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_cardview_v7_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_cardview_v7_28_0_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_constraint_constraint_layout_1_1_3_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_constraint_constraint_layout_1_1_3_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_coordinatorlayout_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_coordinatorlayout_28_0_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_cursoradapter_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_cursoradapter_28_0_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_customview_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_customview_28_0_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_design_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_design_28_0_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_documentfile_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_documentfile_28_0_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_drawerlayout_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_drawerlayout_28_0_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_interpolator_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_interpolator_28_0_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_loader_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_loader_28_0_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_localbroadcastmanager_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_localbroadcastmanager_28_0_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_print_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_print_28_0_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_recyclerview_v7_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_recyclerview_v7_28_0_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_slidingpanelayout_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_slidingpanelayout_28_0_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_support_compat_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_support_compat_28_0_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_support_core_ui_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_support_core_ui_28_0_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_support_core_utils_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_support_core_utils_28_0_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_support_fragment_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_support_fragment_28_0_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_support_media_compat_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_support_media_compat_28_0_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_support_v4_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_support_v4_28_0_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_support_vector_drawable_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_support_vector_drawable_28_0_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_swiperefreshlayout_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_swiperefreshlayout_28_0_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_test_espresso_espresso_core_3_0_2_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_test_espresso_espresso_core_3_0_2_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_test_espresso_espresso_idling_resource_3_0_2_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_test_espresso_espresso_idling_resource_3_0_2_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_test_monitor_1_0_2_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_test_monitor_1_0_2_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_test_runner_1_0_2_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_test_runner_1_0_2_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_transition_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_transition_28_0_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_versionedparcelable_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_versionedparcelable_28_0_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_viewpager_28_0_0_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_android_support_viewpager_28_0_0_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_bumptech_glide_gifdecoder_4_6_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_bumptech_glide_gifdecoder_4_6_1_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_bumptech_glide_glide_4_6_1_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_github_bumptech_glide_glide_4_6_1_aar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Gradle__com_jakewharton_threetenabp_threetenabp_1_0_3_aar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Gradle__com_jakewharton_threetenabp_threetenabp_1_0_3_aar.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/app.iml" beforeDir="false" afterPath="$PROJECT_DIR$/app/app.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Courses/Rating/Adapters/TaskAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Courses/Rating/Adapters/TaskAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Profile/Login/LoginPresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Profile/Login/LoginPresenter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Profile/Login/LoginViewActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Profile/Login/LoginViewActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Profile/MVP/ProfilePresenter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Profile/MVP/ProfilePresenter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Profile/MVP/ProfileView.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Profile/MVP/ProfileView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Profile/MVP/ProfileViewFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Profile/MVP/ProfileViewFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/local.properties" beforeDir="false" afterPath="$PROJECT_DIR$/local.properties" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -82,8 +42,9 @@
     <session id="-1818302764">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="22" />
+          <entry key="project.closed" value="23" />
           <entry key="project.open.time.1" value="5" />
+          <entry key="project.open.time.13" value="1" />
           <entry key="project.open.time.15" value="1" />
           <entry key="project.open.time.2" value="6" />
           <entry key="project.open.time.20" value="1" />
@@ -93,14 +54,14 @@
           <entry key="project.open.time.5" value="1" />
           <entry key="project.open.time.7" value="2" />
           <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="23" />
+          <entry key="project.opened" value="24" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="class" value="13" />
-          <entry key="gradle" value="6" />
-          <entry key="java" value="231" />
+          <entry key="class" value="14" />
+          <entry key="gradle" value="7" />
+          <entry key="java" value="232" />
           <entry key="png" value="2" />
           <entry key="properties" value="1" />
           <entry key="xml" value="68" />
@@ -108,10 +69,10 @@
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="CLASS" value="13" />
-          <entry key="Groovy" value="6" />
+          <entry key="CLASS" value="14" />
+          <entry key="Groovy" value="7" />
           <entry key="Image" value="2" />
-          <entry key="JAVA" value="231" />
+          <entry key="JAVA" value="232" />
           <entry key="Properties" value="1" />
           <entry key="XML" value="68" />
         </counts>
@@ -119,15 +80,15 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="14" />
-          <entry key="gradle" value="22" />
-          <entry key="java" value="5108" />
+          <entry key="gradle" value="23" />
+          <entry key="java" value="5217" />
           <entry key="xml" value="579" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Groovy" value="22" />
-          <entry key="JAVA" value="5108" />
+          <entry key="Groovy" value="23" />
+          <entry key="JAVA" value="5217" />
           <entry key="PLAIN_TEXT" value="14" />
           <entry key="XML" value="579" />
         </counts>
@@ -199,20 +160,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Profile/MVP/ProfileModel.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="150">
-                  <caret line="10" column="4" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="4" />
-                  <folding>
-                    <element signature="imports" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Profile/MVP/ProfileViewFragment.java">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-1">
-                  <caret line="33" column="31" selection-start-line="33" selection-start-column="31" selection-end-line="33" selection-end-column="31" />
+                <state relative-caret-position="120">
+                  <caret line="8" column="19" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -221,10 +170,51 @@
             </entry>
           </file>
           <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Profile/MVP/ProfilePresenterImpl.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="150">
+                  <caret line="10" column="26" selection-start-line="10" selection-start-column="26" selection-end-line="10" selection-end-column="26" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                    <element signature="e#387#388#0" expanded="true" />
+                    <element signature="e#421#422#0" expanded="true" />
+                    <element signature="e#1188#1189#0" expanded="true" />
+                    <element signature="e#1213#1214#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Profile/MVP/ProfileViewFragment.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="306">
+                  <caret line="59" selection-start-line="59" selection-end-line="59" />
+                  <folding>
+                    <element signature="imports" expanded="true" />
+                    <element signature="e#1787#1940#0" expanded="true" />
+                    <element signature="e#1939#1940#0" expanded="true" />
+                    <element signature="e#3467#3468#0" expanded="true" />
+                    <element signature="e#3494#3495#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/support-fragment-28.0.0.aar/801866a04342aafdc2c12106713a8b43/jars/classes.jar!/android/support/v4/app/FragmentManagerImpl.class">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="241">
+                  <caret line="1104" selection-start-line="1104" selection-end-line="1104" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Profile/MVP/ProfilePresenter.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="195">
-                  <caret line="15" selection-start-line="15" selection-end-line="21" selection-end-column="5" />
+                <state relative-caret-position="165">
+                  <caret line="11" column="12" selection-start-line="11" selection-start-column="12" selection-end-line="11" selection-end-column="12" />
                   <folding>
                     <element signature="imports" expanded="true" />
                   </folding>
@@ -245,7 +235,7 @@
             <entry file="file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Profile/MVP/ProfileView.java">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="60">
-                  <caret line="4" selection-start-line="4" selection-end-line="6" selection-end-column="35" />
+                  <caret line="4" column="44" selection-start-line="4" selection-start-column="44" selection-end-line="4" selection-end-column="44" />
                 </state>
               </provider>
             </entry>
@@ -261,12 +251,12 @@
           </file>
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml">
+              <provider editor-type-id="android-designer2" />
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="270">
                   <caret line="18" column="31" selection-start-line="18" selection-start-column="31" selection-end-line="18" selection-end-column="31" />
                 </state>
               </provider>
-              <provider editor-type-id="android-designer2" />
             </entry>
           </file>
         </leaf>
@@ -294,7 +284,7 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Courses/Rating/Tasks/MVP/TasksModel.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="225">
+                <state relative-caret-position="60">
                   <caret line="15" selection-start-line="15" selection-end-line="15" />
                   <folding>
                     <element signature="imports" expanded="true" />
@@ -315,7 +305,7 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Profile/Login/LoginModel.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="225">
+                <state relative-caret-position="165">
                   <caret line="15" selection-start-line="15" selection-end-line="15" />
                   <folding>
                     <element signature="imports" expanded="true" />
@@ -327,12 +317,10 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Profile/Login/LoginPresenter.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="246">
+                <state relative-caret-position="195">
                   <caret line="23" column="38" selection-start-line="23" selection-start-column="38" selection-end-line="23" selection-end-column="38" />
                   <folding>
                     <element signature="imports" expanded="true" />
-                    <element signature="e#578#579#0" expanded="true" />
-                    <element signature="e#605#606#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -341,12 +329,10 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Profile/Login/LoginViewActivity.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="441">
-                  <caret line="61" column="56" selection-start-line="61" selection-start-column="18" selection-end-line="61" selection-end-column="56" />
+                <state relative-caret-position="92">
+                  <caret line="50" column="77" selection-start-line="50" selection-start-column="77" selection-end-line="50" selection-end-column="77" />
                   <folding>
                     <element signature="imports" expanded="true" />
-                    <element signature="e#2147#2148#0" expanded="true" />
-                    <element signature="e#2179#2180#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -355,12 +341,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/support-fragment-28.0.0.aar/801866a04342aafdc2c12106713a8b43/jars/classes.jar!/android/support/v4/app/FragmentActivity.class">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="267">
+                <state relative-caret-position="5040">
                   <caret line="382" column="18" selection-start-line="382" selection-start-column="18" selection-end-line="382" selection-end-column="18" />
-                  <folding>
-                    <element signature="e#14760#14761#0" expanded="true" />
-                    <element signature="e#14787#14788#0" expanded="true" />
-                  </folding>
                 </state>
               </provider>
             </entry>
@@ -404,7 +386,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Courses/Rating/TasksAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Courses/Rating/Adapters/TasksAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Courses/Rating/Adapters/TaskVO.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_finished_courses_section.xml" />
@@ -417,7 +398,6 @@
         <option value="$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Database/Dao/TaskDao.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Database/Entity/Task.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Database/ProjectDatabase.java" />
-        <option value="$PROJECT_DIR$/app/build.gradle" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/tasks_item.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/strings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/homeworks_item.xml" />
@@ -427,7 +407,6 @@
         <option value="$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Database/Entity/Tasks.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Profile/MVP/ProfileData.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Profile/ProfileFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Profile/MVP/ProfileView.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Network/AuthInterceptor.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Profile/MVP/eee.kt" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
@@ -439,8 +418,6 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_profile.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_rating.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Courses/Rating/Tasks/MVP/CoursesModel.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Profile/MVP/ProfilePresenter.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Profile/MVP/ProfileModel.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Courses/CoursesFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Courses/Rating/RatingFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Courses/Rating/Tasks/TasksFragment.java" />
@@ -454,7 +431,12 @@
         <option value="$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Courses/Rating/Adapters/TaskAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Profile/Login/LoginPresenter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Profile/Login/LoginViewActivity.java" />
+        <option value="$PROJECT_DIR$/app/build.gradle" />
+        <option value="$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Profile/MVP/ProfileView.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Profile/MVP/ProfileModel.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Profile/MVP/ProfileViewFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Profile/MVP/ProfilePresenter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Profile/MVP/ProfilePresenterImpl.java" />
       </list>
     </option>
   </component>
@@ -482,11 +464,6 @@
             <path>
               <item name="PROJECT" type="1abcf292:AndroidViewProjectNode" />
               <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="manifests" type="f94875db:AndroidManifestsGroupNode" />
-            </path>
-            <path>
-              <item name="PROJECT" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
               <item name="java" type="edd41e36:AndroidSourceTypeNode" />
             </path>
             <path>
@@ -494,64 +471,6 @@
               <item name="app" type="feadf853:AndroidModuleNode" />
               <item name="java" type="edd41e36:AndroidSourceTypeNode" />
               <item name="project" type="cbb59c9e:AndroidPsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="PROJECT" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="project" type="cbb59c9e:AndroidPsiDirectoryNode" />
-              <item name="Courses" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="PROJECT" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="project" type="cbb59c9e:AndroidPsiDirectoryNode" />
-              <item name="Courses" type="462c0819:PsiDirectoryNode" />
-              <item name="Rating" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="PROJECT" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="project" type="cbb59c9e:AndroidPsiDirectoryNode" />
-              <item name="Courses" type="462c0819:PsiDirectoryNode" />
-              <item name="Rating" type="462c0819:PsiDirectoryNode" />
-              <item name="Adapters" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="PROJECT" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="project" type="cbb59c9e:AndroidPsiDirectoryNode" />
-              <item name="Courses" type="462c0819:PsiDirectoryNode" />
-              <item name="Rating" type="462c0819:PsiDirectoryNode" />
-              <item name="Tasks" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="PROJECT" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="project" type="cbb59c9e:AndroidPsiDirectoryNode" />
-              <item name="Courses" type="462c0819:PsiDirectoryNode" />
-              <item name="Rating" type="462c0819:PsiDirectoryNode" />
-              <item name="Tasks" type="462c0819:PsiDirectoryNode" />
-              <item name="MVP" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="PROJECT" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="project" type="cbb59c9e:AndroidPsiDirectoryNode" />
-              <item name="Network" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="PROJECT" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="project" type="cbb59c9e:AndroidPsiDirectoryNode" />
-              <item name="Network" type="462c0819:PsiDirectoryNode" />
-              <item name="Model" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="PROJECT" type="1abcf292:AndroidViewProjectNode" />
@@ -559,14 +478,6 @@
               <item name="java" type="edd41e36:AndroidSourceTypeNode" />
               <item name="project" type="cbb59c9e:AndroidPsiDirectoryNode" />
               <item name="Profile" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="PROJECT" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="java" type="edd41e36:AndroidSourceTypeNode" />
-              <item name="project" type="cbb59c9e:AndroidPsiDirectoryNode" />
-              <item name="Profile" type="462c0819:PsiDirectoryNode" />
-              <item name="Login" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="PROJECT" type="1abcf292:AndroidViewProjectNode" />
@@ -575,17 +486,6 @@
               <item name="project" type="cbb59c9e:AndroidPsiDirectoryNode" />
               <item name="Profile" type="462c0819:PsiDirectoryNode" />
               <item name="MVP" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="PROJECT" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="res" type="d4f16f75:AndroidResFolderNode" />
-            </path>
-            <path>
-              <item name="PROJECT" type="1abcf292:AndroidViewProjectNode" />
-              <item name="app" type="feadf853:AndroidModuleNode" />
-              <item name="res" type="d4f16f75:AndroidResFolderNode" />
-              <item name="layout" type="ddeffd01:AndroidResFolderTypeNode" />
             </path>
             <path>
               <item name="PROJECT" type="1abcf292:AndroidViewProjectNode" />
@@ -599,7 +499,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="DEBUGGABLE_DEVICE" value="lge-nexus_5x-00dafb388d3620a1" />
+    <property name="DEBUGGABLE_DEVICE" value="meizu-m3s-Y15HKCP4238SS" />
     <property name="DEBUGGABLE_PROCESS" value="kireev.ftshw.project" />
     <property name="DEBUGGER_ID" value="Auto" />
     <property name="SHOW_ALL_PROCESSES" value="false" />
@@ -753,7 +653,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1920" height="1200" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info id="Captures" order="0" sideWeight="0.50843376" side_tool="true" weight="0.32188842" />
       <window_info id="Capture Tool" order="1" />
@@ -772,7 +671,7 @@
       <window_info anchor="bottom" id="Build" order="6" weight="0.24778761" />
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info anchor="bottom" id="Find" order="8" weight="0.327551" />
-      <window_info active="true" anchor="bottom" x="11" y="191" width="1398" height="461" id="Logcat" order="9" sideWeight="0.49928468" visible="true" weight="0.32123893" />
+      <window_info active="true" anchor="bottom" x="11" y="191" width="1398" height="461" id="Logcat" order="9" sideWeight="0.49928468" visible="true" weight="0.4539823" />
       <window_info anchor="right" x="807" y="63" width="586" height="594" id="Device File Explorer" order="0" side_tool="true" type="WINDOWED" weight="0.46964857" />
       <window_info anchor="right" id="Capture Analysis" order="1" />
       <window_info anchor="right" id="Gradle" order="2" />
@@ -889,37 +788,19 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Profile/MVP/ProfilePresenter.java</url>
-          <line>29</line>
+          <line>9</line>
           <properties />
           <option name="timeStamp" value="147" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Profile/MVP/ProfilePresenter.java</url>
-          <line>34</line>
-          <properties />
-          <option name="timeStamp" value="148" />
-        </line-breakpoint>
-        <line-breakpoint type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Profile/MVP/ProfilePresenter.java</url>
-          <line>16</line>
-          <properties />
-          <option name="timeStamp" value="151" />
-        </line-breakpoint>
-        <line-breakpoint type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Profile/MVP/ProfilePresenter.java</url>
-          <line>20</line>
-          <properties />
-          <option name="timeStamp" value="152" />
-        </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Profile/MVP/ProfileViewFragment.java</url>
-          <line>43</line>
+          <line>42</line>
           <properties />
           <option name="timeStamp" value="154" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Profile/MVP/ProfileViewFragment.java</url>
-          <line>105</line>
+          <line>112</line>
           <properties />
           <option name="timeStamp" value="155" />
         </line-breakpoint>
@@ -946,6 +827,18 @@
           <line>22</line>
           <properties />
           <option name="timeStamp" value="160" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Profile/MVP/ProfileViewFragment.java</url>
+          <line>59</line>
+          <properties />
+          <option name="timeStamp" value="161" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Profile/MVP/ProfilePresenterImpl.java</url>
+          <line>27</line>
+          <properties />
+          <option name="timeStamp" value="162" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
@@ -978,27 +871,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Database/Entity/Tasks.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="8" column="9" selection-start-line="8" selection-start-column="9" selection-end-line="8" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Database/Entity/Homeworks.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="6" column="20" selection-start-line="6" selection-start-column="20" selection-end-line="6" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Network/AuthInterceptor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="26" column="34" selection-start-line="26" selection-start-column="34" selection-end-line="26" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/support-fragment-28.0.0.aar/396c4d4590984bcc536b0b59fc8d226c/jars/classes.jar!/android/support/v4/app/Fragment.class" />
     <entry file="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/support-fragment-28.0.0.aar/396c4d4590984bcc536b0b59fc8d226c/jars/classes.jar!/android/support/v4/app/FragmentManagerImpl.class" />
     <entry file="file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Profile/AnonimProfileFragment.java">
@@ -1025,17 +897,13 @@
       <provider editor-type-id="android-manifest" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/menu/profile_menu.xml">
-      <provider editor-type-id="text-editor" />
       <provider selected="true" editor-type-id="android-designer2" />
+      <provider editor-type-id="text-editor" />
     </entry>
     <entry file="file://$USER_HOME$/Library/Android/sdk/sources/android-28/android/app/Activity.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="268">
           <caret line="5629" column="16" selection-start-line="5629" selection-start-column="16" selection-end-line="5629" selection-end-column="16" />
-          <folding>
-            <element signature="e#239888#239889#0" expanded="true" />
-            <element signature="e#239942#239943#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1092,32 +960,32 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_courses.xml">
-      <provider selected="true" editor-type-id="text-editor" />
       <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_profile.xml">
+      <provider selected="true" editor-type-id="android-designer2" />
       <provider editor-type-id="text-editor">
         <state relative-caret-position="300">
           <caret line="30" selection-start-line="30" selection-end-line="30" />
         </state>
       </provider>
-      <provider selected="true" editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/homeworks_item.xml">
+      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
           <caret line="19" column="34" selection-start-line="19" selection-start-column="34" selection-end-line="19" selection-end-column="34" />
         </state>
       </provider>
-      <provider editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_rating.xml">
+      <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
           <caret line="5" column="40" selection-start-line="5" selection-start-column="40" selection-end-line="5" selection-end-column="40" />
         </state>
       </provider>
-      <provider editor-type-id="android-designer2" />
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Profile/Login/LoginView.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -1193,10 +1061,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Profile/MVP/ProfilePresenter.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Courses/Rating/Tasks/MVP/TasksView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="15" selection-start-line="15" selection-end-line="21" selection-end-column="5" />
+        <state relative-caret-position="150">
+          <caret line="12" column="24" selection-start-line="12" selection-start-column="24" selection-end-line="12" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Courses/Rating/Adapters/TaskAdapter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" column="21" selection-start-line="11" selection-start-column="21" selection-end-line="11" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Courses/Rating/Tasks/MVP/TasksViewFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="642">
+          <caret line="96" column="8" selection-start-line="96" selection-start-column="8" selection-end-line="96" selection-end-column="54" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1210,17 +1092,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Profile/MVP/ProfileView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" selection-start-line="4" selection-end-line="6" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Courses/Rating/RatingFragment.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1215">
           <caret line="119" selection-start-line="119" selection-end-line="125" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="31" selection-start-line="18" selection-start-column="31" selection-end-line="18" selection-end-column="31" />
         </state>
       </provider>
     </entry>
@@ -1238,19 +1121,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Courses/Rating/Tasks/MVP/TasksView.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="12" column="24" selection-start-line="12" selection-start-column="24" selection-end-line="12" selection-end-column="24" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Courses/Rating/Tasks/MVP/TasksModel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
+        <state relative-caret-position="60">
           <caret line="15" selection-start-line="15" selection-end-line="15" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1265,35 +1138,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Courses/Rating/Adapters/TaskAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="21" selection-start-line="11" selection-start-column="21" selection-end-line="11" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="31" selection-start-line="18" selection-start-column="31" selection-end-line="18" selection-end-column="31" />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer2" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Profile/Login/LoginModel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
+        <state relative-caret-position="165">
           <caret line="15" selection-start-line="15" selection-end-line="15" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Courses/Rating/Tasks/MVP/TasksViewFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="642">
-          <caret line="96" column="8" selection-start-line="96" selection-start-column="8" selection-end-line="96" selection-end-column="54" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1302,55 +1150,96 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Profile/Login/LoginPresenter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="246">
+        <state relative-caret-position="195">
           <caret line="23" column="38" selection-start-line="23" selection-start-column="38" selection-end-line="23" selection-end-column="38" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#578#579#0" expanded="true" />
-            <element signature="e#605#606#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/support-fragment-28.0.0.aar/801866a04342aafdc2c12106713a8b43/jars/classes.jar!/android/support/v4/app/FragmentActivity.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="267">
+        <state relative-caret-position="5040">
           <caret line="382" column="18" selection-start-line="382" selection-start-column="18" selection-end-line="382" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/build.gradle">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="555">
+          <caret line="37" column="18" selection-start-line="37" selection-start-column="18" selection-end-line="37" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Profile/MVP/ProfileView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="44" selection-start-line="4" selection-start-column="44" selection-end-line="4" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Profile/Login/LoginViewActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="92">
+          <caret line="50" column="77" selection-start-line="50" selection-start-column="77" selection-end-line="50" selection-end-column="77" />
           <folding>
-            <element signature="e#14760#14761#0" expanded="true" />
-            <element signature="e#14787#14788#0" expanded="true" />
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Profile/MVP/ProfileModel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="10" column="4" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="4" />
+        <state relative-caret-position="120">
+          <caret line="8" column="19" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Profile/Login/LoginViewActivity.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Profile/MVP/ProfilePresenter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="441">
-          <caret line="61" column="56" selection-start-line="61" selection-start-column="18" selection-end-line="61" selection-end-column="56" />
+        <state relative-caret-position="165">
+          <caret line="11" column="12" selection-start-line="11" selection-start-column="12" selection-end-line="11" selection-end-column="12" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2147#2148#0" expanded="true" />
-            <element signature="e#2179#2180#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Profile/MVP/ProfilePresenterImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="26" selection-start-line="10" selection-start-column="26" selection-end-line="10" selection-end-column="26" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#387#388#0" expanded="true" />
+            <element signature="e#421#422#0" expanded="true" />
+            <element signature="e#1188#1189#0" expanded="true" />
+            <element signature="e#1213#1214#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/support-fragment-28.0.0.aar/801866a04342aafdc2c12106713a8b43/jars/classes.jar!/android/support/v4/app/FragmentManagerImpl.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="241">
+          <caret line="1104" selection-start-line="1104" selection-end-line="1104" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/kireev/ftshw/project/Profile/MVP/ProfileViewFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1">
-          <caret line="33" column="31" selection-start-line="33" selection-start-column="31" selection-end-line="33" selection-end-column="31" />
+        <state relative-caret-position="306">
+          <caret line="59" selection-start-line="59" selection-end-line="59" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#1787#1940#0" expanded="true" />
+            <element signature="e#1939#1940#0" expanded="true" />
+            <element signature="e#3467#3468#0" expanded="true" />
+            <element signature="e#3494#3495#0" expanded="true" />
           </folding>
         </state>
       </provider>

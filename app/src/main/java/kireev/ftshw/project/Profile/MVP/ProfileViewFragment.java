@@ -1,10 +1,7 @@
 package kireev.ftshw.project.Profile.MVP;
 
 import android.os.Bundle;
-import android.os.Parcelable;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -19,13 +16,15 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.hannesdorfmann.mosby.mvp.MvpFragment;
 
 import java.util.Objects;
 
 import kireev.ftshw.project.MainActivity;
+//import kireev.ftshw.project.Profile.Login.LoginPresenter;
 import kireev.ftshw.project.R;
 
-public class ProfileViewFragment extends Fragment implements ProfileView {
+public class ProfileViewFragment extends MvpFragment<ProfileView, ProfilePresenter> implements ProfileView {
 
     ImageView avatar;
     EditText name, surname, patronymic;
@@ -56,8 +55,11 @@ public class ProfileViewFragment extends Fragment implements ProfileView {
             }
         });
         ProfileModel profileModel = new ProfileModel();
-        presenter = new ProfilePresenter(profileModel);
-        presenter.attachView(this);
+        presenter = (ProfilePresenter) createPresenter();
+        if (presenter == null) {
+            presenter = new ProfilePresenterImpl(profileModel);
+        }
+        //presenter.attachView(this);
         Log.e("Profile onCreateView", "view attached");
         //presenter.viewIsReady();
         return v;
@@ -101,9 +103,14 @@ public class ProfileViewFragment extends Fragment implements ProfileView {
 //    }
 
     @Override
+    public ProfilePresenter createPresenter() {
+        return presenter;
+    }
+
+    @Override
     public void onDestroyView() {
         super.onDestroyView();
-        presenter.detachView();
+        //presenter.detachView();
         Log.e("Profile onDestroyView", "view detached");
     }
 }

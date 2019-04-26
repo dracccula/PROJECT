@@ -1,6 +1,8 @@
 package kireev.ftshw.project.Profile.MVP;
 
-public interface ProfileView {
+import com.hannesdorfmann.mosby.mvp.MvpView;
+
+public interface ProfileView extends MvpView {
 
     void showProfile(ProfileData.User user, String status);
 
