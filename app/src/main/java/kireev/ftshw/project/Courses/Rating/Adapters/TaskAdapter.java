@@ -9,7 +9,11 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.text.DecimalFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import kireev.ftshw.project.R;
 import kireev.ftshw.project.Tools.InitialsRoundView;
@@ -39,8 +43,21 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         String maxMark = new DecimalFormat("##.##").format(dMaxMark);
         holder.tvMark.setText(mark + "/" + maxMark);
         String deadlineDate = taskVO.getTaskDeadline_date();
+
         if (deadlineDate != null) {
-            holder.tvDeadline.setText(deadlineDate);
+            Date myDate = null;
+            Date formattedDeadline = new Date();
+            SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ");
+            try {
+                myDate = inputFormat.parse(deadlineDate);
+                SimpleDateFormat outputFormat = new SimpleDateFormat("MMM d, HH:mm");
+                deadlineDate = outputFormat.format(myDate);
+                myDate = inputFormat.parse(deadlineDate);
+                formattedDeadline = outputFormat.parse(myDate.toString());
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            holder.tvDeadline.setText(deadlineDate + " | " + myDate + " | " + formattedDeadline);
         } else {
             holder.tvDeadline.setVisibility(View.INVISIBLE);
         }
