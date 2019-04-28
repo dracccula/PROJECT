@@ -6,141 +6,140 @@
     android:layout_height="match_parent"
     >
 
-    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/constraintLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorBackground"
-        tools:context=".Profile.ProfileFragment"
-        >
-
-        <TextView
-            android:id="@+id/labelPatronymic"
-            android:layout_width="wrap_content"
+        <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/constraintLayout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="50dp"
-            android:layout_marginBottom="50dp"
-            android:text="@string/student_patronymic"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/bottom_guideline"
-            app:layout_constraintTop_toBottomOf="@+id/labelSurname"
-            app:layout_constraintVertical_bias="0"/>
+            android:background="@color/colorBackground"
+            tools:context=".Profile.ProfileFragment">
 
-        <TextView
-            android:id="@+id/labelName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="170dp"
-            android:text="@string/student_name"
-            app:layout_constraintStart_toStartOf="@+id/bottom_guideline"
-            app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/labelPatronymic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginBottom="50dp"
+                android:text="@string/student_patronymic"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/bottom_guideline"
+                app:layout_constraintTop_toBottomOf="@+id/labelSurname"
+                app:layout_constraintVertical_bias="0" />
 
-        <TextView
-            android:id="@+id/labelSurname"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="50dp"
-            android:text="@string/student_surname"
-            app:layout_constraintStart_toStartOf="@+id/bottom_guideline"
-            app:layout_constraintTop_toBottomOf="@+id/labelName" />
+            <TextView
+                android:id="@+id/labelName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="170dp"
+                android:text="@string/student_name"
+                app:layout_constraintStart_toStartOf="@+id/bottom_guideline"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <android.support.constraint.Guideline
-            android:id="@+id/bottom_guideline"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_begin="40dp" />
+            <TextView
+                android:id="@+id/labelSurname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="50dp"
+                android:text="@string/student_surname"
+                app:layout_constraintStart_toStartOf="@+id/bottom_guideline"
+                app:layout_constraintTop_toBottomOf="@+id/labelName" />
 
-        <EditText
-            android:id="@+id/textName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:background="@android:color/transparent"
-            android:ems="10"
-            android:enabled="false"
-            android:focusable="false"
-            android:hint=""
-            android:inputType="textPersonName"
-            app:layout_constraintStart_toStartOf="@+id/bottom_guideline"
-            app:layout_constraintTop_toBottomOf="@+id/labelName" />
+            <android.support.constraint.Guideline
+                android:id="@+id/bottom_guideline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="40dp" />
 
-        <EditText
-            android:id="@+id/textSurname"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:background="@android:color/transparent"
-            android:ems="10"
-            android:enabled="false"
-            android:focusable="false"
-            android:hint=""
-            android:inputType="textPersonName"
-            app:layout_constraintStart_toStartOf="@+id/bottom_guideline"
-            app:layout_constraintTop_toBottomOf="@+id/labelSurname" />
+            <EditText
+                android:id="@+id/textName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:background="@android:color/transparent"
+                android:ems="10"
+                android:enabled="false"
+                android:focusable="false"
+                android:hint=""
+                android:inputType="textPersonName"
+                app:layout_constraintStart_toStartOf="@+id/bottom_guideline"
+                app:layout_constraintTop_toBottomOf="@+id/labelName" />
 
-        <EditText
-            android:id="@+id/textPatronymic"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:background="@android:color/transparent"
-            android:ems="10"
-            android:enabled="false"
-            android:focusable="false"
-            android:hint=""
-            android:inputType="textPersonName"
-            app:layout_constraintStart_toStartOf="@+id/bottom_guideline"
-            app:layout_constraintTop_toBottomOf="@+id/labelPatronymic" />
+            <EditText
+                android:id="@+id/textSurname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:background="@android:color/transparent"
+                android:ems="10"
+                android:enabled="false"
+                android:focusable="false"
+                android:hint=""
+                android:inputType="textPersonName"
+                app:layout_constraintStart_toStartOf="@+id/bottom_guideline"
+                app:layout_constraintTop_toBottomOf="@+id/labelSurname" />
 
-        <Button
-            android:id="@+id/buttonEditFullname"
-            style="@style/Widget.AppCompat.Button.Borderless"
-            android:layout_width="120dp"
-            android:layout_height="35dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            android:text="@string/student_fullname_edit_button"
-            android:textSize="10sp"
-            android:visibility="invisible"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            <EditText
+                android:id="@+id/textPatronymic"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:background="@android:color/transparent"
+                android:ems="10"
+                android:enabled="false"
+                android:focusable="false"
+                android:hint=""
+                android:inputType="textPersonName"
+                app:layout_constraintStart_toStartOf="@+id/bottom_guideline"
+                app:layout_constraintTop_toBottomOf="@+id/labelPatronymic" />
 
-        <Button
-            android:id="@+id/btn_show_autorization"
-            style="@style/Widget.AppCompat.Button.Colored"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:text="@string/profile_not_autorized_button"
-            android:visibility="invisible"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            <Button
+                android:id="@+id/buttonEditFullname"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:layout_width="120dp"
+                android:layout_height="35dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:text="@string/student_fullname_edit_button"
+                android:textSize="10sp"
+                android:visibility="invisible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
-            android:id="@+id/ivAvatar"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginBottom="20dp"
-            android:src="@drawable/ic_profile_black_24dp"
-            app:layout_constraintBottom_toTopOf="@+id/textName"
-            app:layout_constraintEnd_toEndOf="parent" />
+            <Button
+                android:id="@+id/btn_show_autorization"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:text="@string/profile_not_autorized_button"
+                android:visibility="invisible"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
 
-        <Button
-            android:id="@+id/btnRefresh"
-            style="@style/Widget.AppCompat.Button.Colored"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:text="Обновить"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            <ImageView
+                android:id="@+id/ivAvatar"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="20dp"
+                android:src="@drawable/ic_profile_black_24dp"
+                app:layout_constraintBottom_toTopOf="@+id/textName"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <Button
+                android:id="@+id/btnRefresh"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                android:text="Обновить"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
 
     </android.support.constraint.ConstraintLayout>

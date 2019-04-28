@@ -1,6 +1,7 @@
 package kireev.ftshw.project.Profile.MVP;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,14 +18,16 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.hannesdorfmann.mosby.mvp.MvpFragment;
+import com.hannesdorfmann.mosby.mvp.delegate.BaseMvpDelegateCallback;
+import com.hannesdorfmann.mosby.mvp.delegate.FragmentMvpDelegate;
+import com.hannesdorfmann.mosby.mvp.delegate.FragmentMvpDelegateImpl;
 
 import java.util.Objects;
 
 import kireev.ftshw.project.MainActivity;
-//import kireev.ftshw.project.Profile.Login.LoginPresenter;
 import kireev.ftshw.project.R;
 
-public class ProfileViewFragment extends MvpFragment<ProfileView, ProfilePresenter> implements ProfileView {
+public class ProfileViewFragment extends MvpFragment<ProfileView, ProfilePresenter> implements ProfileView{
 
     ImageView avatar;
     EditText name, surname, patronymic;
@@ -37,7 +40,7 @@ public class ProfileViewFragment extends MvpFragment<ProfileView, ProfilePresent
         setHasOptionsMenu(true);
     }
 
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         ((MainActivity) Objects.requireNonNull(getActivity()))
@@ -54,10 +57,12 @@ public class ProfileViewFragment extends MvpFragment<ProfileView, ProfilePresent
                 presenter.refresh();
             }
         });
-        ProfileModel profileModel = new ProfileModel();
-        presenter = (ProfilePresenter) createPresenter();
-        if (presenter == null) {
-            presenter = new ProfilePresenterImpl(profileModel);
+        if (presenter == null){
+            presenter = createPresenter();
+            presenter.setView(getMvpView());
+            setPresenter(presenter);
+        } else {
+            presenter = getPresenter();
         }
         //presenter.attachView(this);
         Log.e("Profile onCreateView", "view attached");
@@ -70,7 +75,7 @@ public class ProfileViewFragment extends MvpFragment<ProfileView, ProfilePresent
         name.setText(user.getFirstName());
         surname.setText(user.getLastName());
         patronymic.setText(user.getMiddleName());
-        Glide.with(getContext())
+        Glide.with(Objects.requireNonNull(getContext()))
                 .load("https://fintech.tinkoff.ru" + user.getAvatar())
                 .apply(RequestOptions.circleCropTransform())
                 .into(avatar);
@@ -102,9 +107,29 @@ public class ProfileViewFragment extends MvpFragment<ProfileView, ProfilePresent
 //        presenter.refresh();
 //    }
 
+    @NonNull
     @Override
     public ProfilePresenter createPresenter() {
+        ProfileModel profileModel = new ProfileModel();
+        presenter = new ProfilePresenter(profileModel);
         return presenter;
+    }
+
+    @NonNull
+    @Override
+    public ProfilePresenter getPresenter() {
+        return presenter;
+    }
+
+    @Override
+    public void setPresenter(@NonNull ProfilePresenter presenter) {
+        this.presenter = presenter;
+    }
+
+    @NonNull
+    @Override
+    public ProfileView getMvpView() {
+        return this;
     }
 
     @Override

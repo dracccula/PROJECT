@@ -14,20 +14,14 @@ import kireev.ftshw.project.R;
 
 public class HomeworksAdapter extends RecyclerView.Adapter<HomeworksAdapter.HomeworkViewHolder> {
     private List<HomeworkVO> homeworkList;
-    private HomeworkViewHolder homeworkViewHolder;
     private OnClickListener onClickListener;
     private Context context;
-
-//    public HomeworksAdapter(List<HomeworkVO> homeworkList) {
-//        this.homeworkList = homeworkList;
-//    }
 
     @NonNull
     @Override
     public HomeworkViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.homeworks_item, parent, false);
-        homeworkViewHolder = new HomeworkViewHolder(view);
-        return homeworkViewHolder;
+        return new HomeworkViewHolder(view);
     }
 
     @Override

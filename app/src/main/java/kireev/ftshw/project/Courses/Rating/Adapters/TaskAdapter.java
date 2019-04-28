@@ -3,6 +3,7 @@ package kireev.ftshw.project.Courses.Rating.Adapters;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,7 +21,6 @@ import kireev.ftshw.project.Tools.InitialsRoundView;
 
 public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder> {
     private List<TaskVO> taskList;
-    private TaskViewHolder taskViewHolder;
     private OnClickListener onClickListener;
     private Context context;
 
@@ -29,8 +29,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
     @Override
     public TaskViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.tasks_item, parent, false);
-        taskViewHolder = new TaskViewHolder(view);
-        return taskViewHolder;
+        return new TaskViewHolder(view);
     }
 
     @Override
@@ -39,25 +38,26 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         holder.tvTitle.setText(taskVO.getTaskTitle());
         Double dMark = Double.valueOf(taskVO.getTasksMark());
         Double dMaxMark = Double.valueOf(taskVO.getTaskMax_score());
-        String mark = new DecimalFormat("##.##").format(dMark);
-        String maxMark = new DecimalFormat("##.##").format(dMaxMark);
-        holder.tvMark.setText(mark + "/" + maxMark);
+//        String mark = new DecimalFormat("##.##").format(dMark);
+//        String maxMark = new DecimalFormat("##.##").format(dMaxMark);
+        if (dMark == 0.0){
+            holder.tvMark.setText(String.valueOf(dMark));
+        } else {
+            holder.tvMark.setText(dMark + "/" + dMaxMark);
+        }
         String deadlineDate = taskVO.getTaskDeadline_date();
-
+        String formattedDeadlineDate = "XXX";
         if (deadlineDate != null) {
-            Date myDate = null;
-            Date formattedDeadline = new Date();
-            SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ");
+            SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'",Locale.getDefault());
             try {
-                myDate = inputFormat.parse(deadlineDate);
-                SimpleDateFormat outputFormat = new SimpleDateFormat("MMM d, HH:mm");
-                deadlineDate = outputFormat.format(myDate);
-                myDate = inputFormat.parse(deadlineDate);
-                formattedDeadline = outputFormat.parse(myDate.toString());
+                Date date = inputFormat.parse(deadlineDate);
+//                Log.e("Parse deadline","date: " + date);
+                SimpleDateFormat newDate = new SimpleDateFormat("dd MMM YYYY, HH:mm", Locale.getDefault());//set format of new date
+                formattedDeadlineDate = newDate.format(date);
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-            holder.tvDeadline.setText(deadlineDate + " | " + myDate + " | " + formattedDeadline);
+            holder.tvDeadline.setText("Сдать до " + formattedDeadlineDate);
         } else {
             holder.tvDeadline.setVisibility(View.INVISIBLE);
         }
