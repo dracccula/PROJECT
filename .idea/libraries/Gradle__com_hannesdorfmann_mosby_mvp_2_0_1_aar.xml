@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="Gradle: com.hannesdorfmann.mosby:mvp:2.0.1@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/mvp-2.0.1.aar/b9063316a834476880b09e676d19d2d2/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/mvp-2.0.1.aar/b9063316a834476880b09e676d19d2d2/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/mvp-2.0.1.aar/46d7d95d69063fac11747c75f1c06921/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/mvp-2.0.1.aar/46d7d95d69063fac11747c75f1c06921/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

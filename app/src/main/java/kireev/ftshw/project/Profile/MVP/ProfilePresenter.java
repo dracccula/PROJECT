@@ -36,7 +36,9 @@ public class ProfilePresenter extends MvpBasePresenter<ProfileView> {
                 @Override
                 public void onResponse(Call<ProfileData> call, Response<ProfileData> response) {
                     ProfileData profileData = response.body();
-                    view.showProfile(profileData.getUser(), profileData.getStatus());
+                    if (view != null) {
+                        view.showProfile(profileData.getUser(), profileData.getStatus());
+                    }
                 }
 
                 @Override

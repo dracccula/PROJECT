@@ -27,13 +27,14 @@ import java.util.Objects;
 import kireev.ftshw.project.MainActivity;
 import kireev.ftshw.project.R;
 
-public class ProfileViewFragment extends MvpFragment<ProfileView, ProfilePresenter> implements ProfileView{
+public class ProfileViewFragment extends MvpFragment<ProfileView, ProfilePresenter> implements ProfileView {
 
-    ImageView avatar;
+    ImageView avatar, avatarTop;
     EditText name, surname, patronymic;
     Button refreshButton;
 
     ProfilePresenter presenter;
+    MainActivity activity;
 
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +51,7 @@ public class ProfileViewFragment extends MvpFragment<ProfileView, ProfilePresent
         surname = v.findViewById(R.id.textSurname);
         patronymic = v.findViewById(R.id.textPatronymic);
         avatar = v.findViewById(R.id.ivAvatar);
+        avatarTop = v.findViewById(R.id.ivAvatarTop);
         refreshButton = v.findViewById(R.id.btnRefresh);
         refreshButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,7 +59,7 @@ public class ProfileViewFragment extends MvpFragment<ProfileView, ProfilePresent
                 presenter.refresh();
             }
         });
-        if (presenter == null){
+        if (presenter == null) {
             presenter = createPresenter();
             presenter.setView(getMvpView());
             setPresenter(presenter);
@@ -66,7 +68,7 @@ public class ProfileViewFragment extends MvpFragment<ProfileView, ProfilePresent
         }
         //presenter.attachView(this);
         Log.e("Profile onCreateView", "view attached");
-        //presenter.viewIsReady();
+        presenter.viewIsReady();
         return v;
     }
 
@@ -75,11 +77,17 @@ public class ProfileViewFragment extends MvpFragment<ProfileView, ProfilePresent
         name.setText(user.getFirstName());
         surname.setText(user.getLastName());
         patronymic.setText(user.getMiddleName());
-        Glide.with(Objects.requireNonNull(getContext()))
-                .load("https://fintech.tinkoff.ru" + user.getAvatar())
-                .apply(RequestOptions.circleCropTransform())
-                .into(avatar);
-        Toast.makeText(getContext(), "Status: " + status, Toast.LENGTH_SHORT).show();
+        if (isAdded()) {
+            Glide.with(Objects.requireNonNull(this))
+                    .load("https://fintech.tinkoff.ru" + user.getAvatar())
+                    .apply(RequestOptions.circleCropTransform())
+                    .into(avatar);
+            Glide.with(Objects.requireNonNull(this))
+                    .load("https://fintech.tinkoff.ru" + user.getAvatar())
+                    .apply(RequestOptions.centerCropTransform())
+                    .into(avatarTop);
+            Toast.makeText(getContext(), "Status: " + status, Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override

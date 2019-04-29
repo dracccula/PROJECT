@@ -43,7 +43,9 @@ class LoginPresenter {
                     ed.putString("anygenCookie", anygenCookie);
                     //finish();
                     ed.apply();
-                    view.authorize(signInResponse);
+                    if (view != null) {
+                        view.authorize(signInResponse);
+                    }
                 }
 
                 @Override

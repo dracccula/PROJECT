@@ -52,7 +52,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
             try {
                 Date date = inputFormat.parse(deadlineDate);
 //                Log.e("Parse deadline","date: " + date);
-                SimpleDateFormat newDate = new SimpleDateFormat("dd MMM YYYY, HH:mm", Locale.getDefault());//set format of new date
+                SimpleDateFormat newDate = new SimpleDateFormat("dd MMM yyyy, HH:mm", Locale.getDefault());//set format of new date
                 formattedDeadlineDate = newDate.format(date);
             } catch (ParseException e) {
                 e.printStackTrace();
