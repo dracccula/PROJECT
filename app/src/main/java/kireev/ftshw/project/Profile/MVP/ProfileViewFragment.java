@@ -33,9 +33,6 @@ public class ProfileViewFragment extends MvpFragment<ProfileView, ProfilePresent
     EditText name, surname, patronymic;
     Button refreshButton;
 
-    ProfilePresenter presenter;
-    MainActivity activity;
-
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
@@ -59,17 +56,15 @@ public class ProfileViewFragment extends MvpFragment<ProfileView, ProfilePresent
                 presenter.refresh();
             }
         });
-        if (presenter == null) {
-            presenter = createPresenter();
-            presenter.setView(getMvpView());
-            setPresenter(presenter);
-        } else {
-            presenter = getPresenter();
-        }
-        //presenter.attachView(this);
+
         Log.e("Profile onCreateView", "view attached");
-        presenter.viewIsReady();
         return v;
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        //presenter.viewIsReady();
     }
 
     @Override
@@ -103,47 +98,11 @@ public class ProfileViewFragment extends MvpFragment<ProfileView, ProfilePresent
         item.setVisible(true);
     }
 
-//    @Override
-//    public void onStart() {
-//        super.onStart();
-//        presenter.refresh();
-//    }
-//
-//    @Override
-//    public void onResume() {
-//        super.onResume();
-//        presenter.refresh();
-//    }
-
     @NonNull
     @Override
     public ProfilePresenter createPresenter() {
         ProfileModel profileModel = new ProfileModel();
         presenter = new ProfilePresenter(profileModel);
         return presenter;
-    }
-
-    @NonNull
-    @Override
-    public ProfilePresenter getPresenter() {
-        return presenter;
-    }
-
-    @Override
-    public void setPresenter(@NonNull ProfilePresenter presenter) {
-        this.presenter = presenter;
-    }
-
-    @NonNull
-    @Override
-    public ProfileView getMvpView() {
-        return this;
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        //presenter.detachView();
-        Log.e("Profile onDestroyView", "view detached");
     }
 }
