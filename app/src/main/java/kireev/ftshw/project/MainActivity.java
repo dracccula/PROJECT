@@ -119,21 +119,6 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    protected void onResume() {
-        BottomNavigationView navigation = findViewById(R.id.navigation);
-        if ((navigation.getSelectedItemId()) == R.id.navigation_profile) {
-            if (spStorage.getBoolean("IS_AUTORIZED", false)) {
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new ProfileViewFragment()).commitNow();
-            } else {
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new AnonimProfileFragment()).commitNow();
-            }
-        }
-        super.onResume();
-    }
-
-    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
         if (item.getItemId() == R.id.logout) {

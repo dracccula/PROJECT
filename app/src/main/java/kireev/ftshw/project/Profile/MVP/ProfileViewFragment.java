@@ -3,6 +3,8 @@ package kireev.ftshw.project.Profile.MVP;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.constraint.ConstraintLayout;
+import android.support.v7.widget.CardView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -17,10 +19,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
-import com.hannesdorfmann.mosby.mvp.MvpFragment;
-import com.hannesdorfmann.mosby.mvp.delegate.BaseMvpDelegateCallback;
-import com.hannesdorfmann.mosby.mvp.delegate.FragmentMvpDelegate;
-import com.hannesdorfmann.mosby.mvp.delegate.FragmentMvpDelegateImpl;
+import com.hannesdorfmann.mosby3.mvp.MvpFragment;
 
 import java.util.Objects;
 
@@ -32,6 +31,8 @@ public class ProfileViewFragment extends MvpFragment<ProfileView, ProfilePresent
     ImageView avatar, avatarTop;
     EditText name, surname, patronymic;
     Button refreshButton;
+    CardView cardView;
+    ConstraintLayout constraintLayout;
 
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +48,10 @@ public class ProfileViewFragment extends MvpFragment<ProfileView, ProfilePresent
         name = v.findViewById(R.id.textName);
         surname = v.findViewById(R.id.textSurname);
         patronymic = v.findViewById(R.id.textPatronymic);
+        cardView = v.findViewById(R.id.cvPoints);
+        cardView.setVisibility(View.INVISIBLE);
+        constraintLayout = v.findViewById(R.id.clAvatar);
+        constraintLayout.setVisibility(View.INVISIBLE);
         avatar = v.findViewById(R.id.ivAvatar);
         avatarTop = v.findViewById(R.id.ivAvatarTop);
         refreshButton = v.findViewById(R.id.btnRefresh);
@@ -56,7 +61,6 @@ public class ProfileViewFragment extends MvpFragment<ProfileView, ProfilePresent
                 presenter.refresh();
             }
         });
-
         Log.e("Profile onCreateView", "view attached");
         return v;
     }
@@ -64,11 +68,13 @@ public class ProfileViewFragment extends MvpFragment<ProfileView, ProfilePresent
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        //presenter.viewIsReady();
+        presenter.viewIsReady();
     }
 
     @Override
     public void showProfile(ProfileData.User user, String status) {
+        cardView.setVisibility(View.VISIBLE);
+        constraintLayout.setVisibility(View.VISIBLE);
         name.setText(user.getFirstName());
         surname.setText(user.getLastName());
         patronymic.setText(user.getMiddleName());
