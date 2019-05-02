@@ -62,13 +62,7 @@ public class ProfileFragment extends Fragment {
         ((MainActivity) getActivity())
                 .setActionBarTitle(getString(R.string.title_profile));
         View v = inflater.inflate(R.layout.fragment_profile, container, false);
-        name = v.findViewById(R.id.textName);
-        surname = v.findViewById(R.id.textSurname);
-        patronymic = v.findViewById(R.id.textPatronymic);
 //        loadText();
-        editButton = v.findViewById(R.id.buttonEditFullname);
-        refreshButton = v.findViewById(R.id.btnRefresh);
-        avatar = v.findViewById(R.id.ivAvatar);
         editButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -6,9 +6,7 @@
     android:layout_height="match_parent"
     android:fillViewport="true">
 
-    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <android.support.constraint.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -19,13 +17,36 @@
             android:id="@+id/clAvatar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1">
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tvHeaderName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:textColor="#ffffff"
+                android:textSize="24sp"
+                android:textStyle="normal"
+                app:layout_constraintBottom_toTopOf="@+id/tvHeaderEmail"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/tvHeaderEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginBottom="8dp"
+                android:textColor="#ffffff"
+                android:textSize="14sp"
+                android:textStyle="normal"
+                app:layout_constraintBottom_toTopOf="@+id/cvPoints"
+                app:layout_constraintStart_toStartOf="parent" />
 
             <ImageView
                 android:id="@+id/ivAvatarTop"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="200dp"
+                android:contentDescription="Avatar"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -34,7 +55,7 @@
                 android:id="@+id/cvPoints"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="130dp"
+                android:layout_marginTop="170dp"
                 android:layout_marginBottom="4dp"
                 app:cardCornerRadius="4dp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -46,7 +67,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:divider="?android:dividerVertical"
-                    android:dividerPadding="4dp"
+                    android:dividerPadding="6dp"
                     android:gravity="center"
                     android:showDividers="middle">
 
@@ -65,8 +86,9 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
                             android:text="182"
-                            android:textStyle="bold"
+                            android:textColor="#000000"
                             android:textSize="18sp"
+                            android:textStyle="bold"
                             app:layout_constraintBottom_toTopOf="@id/labelPoints"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent" />
@@ -77,6 +99,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
                             android:text="Баллов"
+                            android:textColor="#333333"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/valuePoints" />
@@ -97,8 +120,9 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
                             android:text="12"
-                            android:textStyle="bold"
+                            android:textColor="#000000"
                             android:textSize="18sp"
+                            android:textStyle="bold"
                             app:layout_constraintBottom_toTopOf="@id/labelTests"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent" />
@@ -109,6 +133,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
                             android:text="Тестов"
+                            android:textColor="#333333"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/valueTests" />
@@ -127,9 +152,10 @@
                             android:id="@+id/valueCourses"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="1"
-                            android:textStyle="bold"
+                            android:text="2"
+                            android:textColor="#000000"
                             android:textSize="18sp"
+                            android:textStyle="bold"
                             app:layout_constraintBottom_toTopOf="@id/labelCourses"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent" />
@@ -140,6 +166,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
                             android:text="Курсов"
+                            android:textColor="#333333"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/valueCourses" />
@@ -149,135 +176,395 @@
         </android.support.constraint.ConstraintLayout>
 
         <android.support.constraint.ConstraintLayout
+            android:id="@+id/clAbout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/clAvatar">
 
             <TextView
-                android:id="@+id/labelPatronymic"
+                android:id="@+id/tvQuotesStart"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="50dp"
-                android:layout_marginBottom="50dp"
-                android:text="@string/student_patronymic"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/bottom_guideline"
-                app:layout_constraintTop_toBottomOf="@+id/labelSurname"
-                app:layout_constraintVertical_bias="0" />
-
-            <TextView
-                android:id="@+id/labelName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="170dp"
-                android:text="@string/student_name"
-                app:layout_constraintStart_toStartOf="@+id/bottom_guideline"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/labelSurname"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="50dp"
-                android:text="@string/student_surname"
-                app:layout_constraintStart_toStartOf="@+id/bottom_guideline"
-                app:layout_constraintTop_toBottomOf="@+id/labelName" />
-
-            <android.support.constraint.Guideline
-                android:id="@+id/bottom_guideline"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_begin="40dp" />
-
-            <EditText
-                android:id="@+id/textName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:background="@android:color/transparent"
-                android:ems="10"
-                android:enabled="false"
-                android:focusable="false"
-                android:hint=""
-                android:inputType="textPersonName"
-                app:layout_constraintStart_toStartOf="@+id/bottom_guideline"
-                app:layout_constraintTop_toBottomOf="@+id/labelName" />
-
-            <EditText
-                android:id="@+id/textSurname"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:background="@android:color/transparent"
-                android:ems="10"
-                android:enabled="false"
-                android:focusable="false"
-                android:hint=""
-                android:inputType="textPersonName"
-                app:layout_constraintStart_toStartOf="@+id/bottom_guideline"
-                app:layout_constraintTop_toBottomOf="@+id/labelSurname" />
-
-            <EditText
-                android:id="@+id/textPatronymic"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:background="@android:color/transparent"
-                android:ems="10"
-                android:enabled="false"
-                android:focusable="false"
-                android:hint=""
-                android:inputType="textPersonName"
-                app:layout_constraintStart_toStartOf="@+id/bottom_guideline"
-                app:layout_constraintTop_toBottomOf="@+id/labelPatronymic" />
-
-            <Button
-                android:id="@+id/buttonEditFullname"
-                style="@style/Widget.AppCompat.Button.Borderless"
-                android:layout_width="120dp"
-                android:layout_height="35dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
-                android:text="@string/student_fullname_edit_button"
-                android:textSize="10sp"
-                android:visibility="invisible"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <Button
-                android:id="@+id/btn_show_autorization"
-                style="@style/Widget.AppCompat.Button.Colored"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="20dp"
-                android:text="@string/profile_not_autorized_button"
-                android:visibility="invisible"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
-
-            <ImageView
-                android:id="@+id/ivAvatar"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginEnd="8dp"
-                android:layout_marginBottom="20dp"
-                android:src="@drawable/ic_profile_black_24dp"
-                app:layout_constraintBottom_toTopOf="@+id/textName"
-                app:layout_constraintEnd_toEndOf="parent" />
+                android:text="❝"
+                android:textColor="#d0d0d0"
+                android:textSize="44sp"
+                app:layout_constraintEnd_toStartOf="@+id/tvAbout"
+                app:layout_constraintTop_toTopOf="parent" />
 
-            <Button
-                android:id="@+id/btnRefresh"
-                style="@style/Widget.AppCompat.Button.Colored"
+            <TextView
+                android:id="@+id/tvAbout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="80dp"
+                android:layout_marginEnd="80dp"
+                android:text=""
+                android:textColor="#000000"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvAboutSignature"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:text="Обновить"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:layout_marginStart="60dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="24dp"
+                android:text=""
+                android:textColor="#9299a2"
+                android:textSize="12sp"
+                android:textStyle="normal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvAbout" />
+
+            <TextView
+                android:id="@+id/tvQuotesEnd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginBottom="16dp"
+                android:text="❞"
+                android:textColor="#d0d0d0"
+                android:textSize="30sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tvAbout" />
+
+        </android.support.constraint.ConstraintLayout>
+
+        <LinearLayout
+            android:id="@+id/llProfile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:divider="@drawable/divider"
+            android:orientation="vertical"
+            android:showDividers="middle"
+            app:layout_constraintTop_toBottomOf="@id/clAbout">
+
+            <LinearLayout
+                android:id="@+id/llProfileContacts"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#FFFFFF"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="16dp"
+                        android:drawableStart="@drawable/ic_contacts"
+                        android:text="@string/profile_contact_info_label"
+                        android:textColor="#333333"
+                        android:textSize="14sp"
+                        android:textStyle="normal"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </android.support.constraint.ConstraintLayout>
+
+                <LinearLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:divider="@drawable/divider"
+                    android:orientation="vertical"
+                    android:showDividers="middle">
+
+                    <android.support.constraint.ConstraintLayout
+                        android:id="@+id/clPhone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/tvPhoneLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:paddingStart="8dp"
+                            android:paddingTop="8dp"
+                            android:paddingEnd="8dp"
+                            android:paddingBottom="0dp"
+                            android:text="Мобильный телефон"
+                            android:textColor="#9299a2"
+                            android:textSize="12sp"
+                            android:textStyle="normal"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/tvPhoneValue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:paddingStart="8dp"
+                            android:paddingTop="0dp"
+                            android:paddingEnd="8dp"
+                            android:paddingBottom="8dp"
+                            android:textColor="#333333"
+                            android:textSize="16sp"
+                            android:textStyle="normal"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tvPhoneLabel" />
+
+                    </android.support.constraint.ConstraintLayout>
+
+                    <android.support.constraint.ConstraintLayout
+                        android:id="@+id/clMail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/tvEmailLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:paddingStart="8dp"
+                            android:paddingTop="8dp"
+                            android:paddingEnd="8dp"
+                            android:paddingBottom="0dp"
+                            android:text="Электронная почта"
+                            android:textColor="#9299a2"
+                            android:textSize="12sp"
+                            android:textStyle="normal"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/tvEmailValue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:paddingStart="8dp"
+                            android:paddingTop="0dp"
+                            android:paddingEnd="8dp"
+                            android:paddingBottom="8dp"
+                            android:textColor="#333333"
+                            android:textSize="16sp"
+                            android:textStyle="normal"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tvEmailLabel" />
+
+                    </android.support.constraint.ConstraintLayout>
+
+                    <android.support.constraint.ConstraintLayout
+                        android:id="@+id/clCity"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/tvCityLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:paddingStart="8dp"
+                            android:paddingTop="8dp"
+                            android:paddingEnd="8dp"
+                            android:paddingBottom="0dp"
+                            android:text="Город проживания"
+                            android:textColor="#9299a2"
+                            android:textSize="12sp"
+                            android:textStyle="normal"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/tvCityValue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:paddingStart="8dp"
+                            android:paddingTop="0dp"
+                            android:paddingEnd="8dp"
+                            android:paddingBottom="8dp"
+                            android:textColor="#333333"
+                            android:textSize="16sp"
+                            android:textStyle="normal"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tvCityLabel" />
+
+                    </android.support.constraint.ConstraintLayout>
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llProfileEducation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#FFFFFF"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="16dp"
+                        android:drawableStart="@drawable/ic_education"
+                        android:text="@string/profile_education_info_label"
+                        android:textColor="#000000"
+                        android:textSize="14sp"
+                        android:textStyle="normal"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </android.support.constraint.ConstraintLayout>
+
+                <LinearLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:divider="@drawable/divider"
+                    android:orientation="vertical"
+                    android:showDividers="middle">
+
+                    <android.support.constraint.ConstraintLayout
+                        android:id="@+id/clSchool"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/tvSchoolLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:paddingStart="8dp"
+                            android:paddingTop="8dp"
+                            android:paddingEnd="8dp"
+                            android:paddingBottom="0dp"
+                            android:text="Школа"
+                            android:textColor="#9299a2"
+                            android:textSize="12sp"
+                            android:textStyle="normal"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/tvSchoolValue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:paddingStart="8dp"
+                            android:paddingTop="0dp"
+                            android:paddingEnd="8dp"
+                            android:paddingBottom="8dp"
+                            android:text="Школа"
+                            android:textColor="#333333"
+                            android:textSize="16sp"
+                            android:textStyle="normal"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tvSchoolLabel" />
+
+                    </android.support.constraint.ConstraintLayout>
+
+                    <android.support.constraint.ConstraintLayout
+                        android:id="@+id/clSchoolFinishYear"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/tvSchoolFinishYearLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:paddingStart="8dp"
+                            android:paddingTop="8dp"
+                            android:paddingEnd="8dp"
+                            android:paddingBottom="0dp"
+                            android:text="Год окончания школы"
+                            android:textColor="#9299a2"
+                            android:textSize="12sp"
+                            android:textStyle="normal"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/tvSchoolFinishYearValue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:paddingStart="8dp"
+                            android:paddingTop="0dp"
+                            android:paddingEnd="8dp"
+                            android:paddingBottom="8dp"
+                            android:text="Год окончания школы"
+                            android:textColor="#333333"
+                            android:textSize="16sp"
+                            android:textStyle="normal"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tvSchoolFinishYearLabel" />
+
+                    </android.support.constraint.ConstraintLayout>
+
+                    <android.support.constraint.ConstraintLayout
+                        android:id="@+id/clUniversity"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/tvUniversityLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:paddingStart="8dp"
+                            android:paddingTop="8dp"
+                            android:paddingEnd="8dp"
+                            android:paddingBottom="0dp"
+                            android:text="ВУЗ"
+                            android:textColor="#9299a2"
+                            android:textSize="12sp"
+                            android:textStyle="normal"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/tvUniversityValue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:paddingStart="8dp"
+                            android:paddingTop="0dp"
+                            android:paddingEnd="8dp"
+                            android:paddingBottom="8dp"
+                            android:text="ВУЗ"
+                            android:textColor="#333333"
+                            android:textSize="16sp"
+                            android:textStyle="normal"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tvUniversityLabel" />
+
+                    </android.support.constraint.ConstraintLayout>
+
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <android.support.constraint.ConstraintLayout
+            android:id="@+id/clProfile2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/llProfile">
         </android.support.constraint.ConstraintLayout>
 
 

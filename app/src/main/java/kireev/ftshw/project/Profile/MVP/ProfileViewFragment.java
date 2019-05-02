@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -30,9 +31,11 @@ public class ProfileViewFragment extends MvpFragment<ProfileView, ProfilePresent
 
     ImageView avatar, avatarTop;
     EditText name, surname, patronymic;
+    TextView headerName, headerEmail,
+            about, aboutSignature, quotesStart, quotesEnd,
+            phoneValue, emailValue, cityValue;
     Button refreshButton;
     CardView cardView;
-    ConstraintLayout constraintLayout;
 
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,22 +48,29 @@ public class ProfileViewFragment extends MvpFragment<ProfileView, ProfilePresent
         ((MainActivity) Objects.requireNonNull(getActivity()))
                 .setActionBarTitle(getString(R.string.title_profile));
         View v = inflater.inflate(R.layout.fragment_profile, container, false);
-        name = v.findViewById(R.id.textName);
-        surname = v.findViewById(R.id.textSurname);
-        patronymic = v.findViewById(R.id.textPatronymic);
+//        name = v.findViewById(R.id.textName);
+//        surname = v.findViewById(R.id.textSurname);
+//        patronymic = v.findViewById(R.id.textPatronymic);
+
+        headerName = v.findViewById(R.id.tvHeaderName);
+        headerName.bringToFront();
+        headerEmail = v.findViewById(R.id.tvHeaderEmail);
+        headerEmail.bringToFront();
+
+        quotesStart = v.findViewById(R.id.tvQuotesStart);
+        quotesStart.setVisibility(View.INVISIBLE);
+        quotesEnd = v.findViewById(R.id.tvQuotesEnd);
+        quotesEnd.setVisibility(View.INVISIBLE);
+        about = v.findViewById(R.id.tvAbout);
+        aboutSignature = v.findViewById(R.id.tvAboutSignature);
+
+        phoneValue = v.findViewById(R.id.tvPhoneValue);
+        emailValue = v.findViewById(R.id.tvEmailValue);
+        cityValue = v.findViewById(R.id.tvCityValue);
+
         cardView = v.findViewById(R.id.cvPoints);
         cardView.setVisibility(View.INVISIBLE);
-        constraintLayout = v.findViewById(R.id.clAvatar);
-        constraintLayout.setVisibility(View.INVISIBLE);
-        avatar = v.findViewById(R.id.ivAvatar);
         avatarTop = v.findViewById(R.id.ivAvatarTop);
-        refreshButton = v.findViewById(R.id.btnRefresh);
-        refreshButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                presenter.refresh();
-            }
-        });
         Log.e("Profile onCreateView", "view attached");
         return v;
     }
@@ -74,20 +84,23 @@ public class ProfileViewFragment extends MvpFragment<ProfileView, ProfilePresent
     @Override
     public void showProfile(ProfileData.User user, String status) {
         cardView.setVisibility(View.VISIBLE);
-        constraintLayout.setVisibility(View.VISIBLE);
-        name.setText(user.getFirstName());
-        surname.setText(user.getLastName());
-        patronymic.setText(user.getMiddleName());
+        headerName.setText(user.getFirstName() + "\n" + user.getLastName());
+        headerEmail.setText(user.getEmail());
+
+        quotesStart.setVisibility(View.VISIBLE);
+        quotesEnd.setVisibility(View.VISIBLE);
+        about.setText(user.getDescription());
+        aboutSignature.setText(user.getFirstName() + " " + user.getLastName());
+
+        phoneValue.setText(user.getPhoneMobile());
+        emailValue.setText(user.getEmail());
+        cityValue.setText(user.getRegion());
+
         if (isAdded()) {
-            Glide.with(Objects.requireNonNull(this))
-                    .load("https://fintech.tinkoff.ru" + user.getAvatar())
-                    .apply(RequestOptions.circleCropTransform())
-                    .into(avatar);
             Glide.with(Objects.requireNonNull(this))
                     .load("https://fintech.tinkoff.ru" + user.getAvatar())
                     .apply(RequestOptions.centerCropTransform())
                     .into(avatarTop);
-            Toast.makeText(getContext(), "Status: " + status, Toast.LENGTH_SHORT).show();
         }
     }
 

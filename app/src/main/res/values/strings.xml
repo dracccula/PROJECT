@@ -50,4 +50,6 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+    <string name="profile_contact_info_label">&#160;&#160;&#160;&#160;Контактная информация</string>
+    <string name="profile_education_info_label">&#160;&#160;&#160;&#160;Образование</string>
 </resources>

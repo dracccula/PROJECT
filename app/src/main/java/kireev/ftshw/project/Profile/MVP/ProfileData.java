@@ -68,10 +68,10 @@ public class ProfileData {
         private Boolean isClient;
         @SerializedName("skype_login")
         @Expose
-        private Object skypeLogin;
+        private String skypeLogin;
         @SerializedName("description")
         @Expose
-        private Object description;
+        private String description;
         @SerializedName("region")
         @Expose
         private String region;
@@ -92,7 +92,7 @@ public class ProfileData {
         private Integer universityGraduation;
         @SerializedName("grade")
         @Expose
-        private Object grade;
+        private String grade;
         @SerializedName("department")
         @Expose
         private String department;
@@ -101,7 +101,7 @@ public class ProfileData {
         private String currentWork;
         @SerializedName("resume")
         @Expose
-        private Object resume;
+        private String resume;
         @SerializedName("notifications")
         @Expose
         private List<Object> notifications = null;
@@ -179,19 +179,19 @@ public class ProfileData {
             this.isClient = isClient;
         }
 
-        public Object getSkypeLogin() {
+        public String getSkypeLogin() {
             return skypeLogin;
         }
 
-        public void setSkypeLogin(Object skypeLogin) {
+        public void setSkypeLogin(String skypeLogin) {
             this.skypeLogin = skypeLogin;
         }
 
-        public Object getDescription() {
+        public String getDescription() {
             return description;
         }
 
-        public void setDescription(Object description) {
+        public void setDescription(String description) {
             this.description = description;
         }
 
@@ -243,11 +243,11 @@ public class ProfileData {
             this.universityGraduation = universityGraduation;
         }
 
-        public Object getGrade() {
+        public String getGrade() {
             return grade;
         }
 
-        public void setGrade(Object grade) {
+        public void setGrade(String grade) {
             this.grade = grade;
         }
 
@@ -267,11 +267,11 @@ public class ProfileData {
             this.currentWork = currentWork;
         }
 
-        public Object getResume() {
+        public String getResume() {
             return resume;
         }
 
-        public void setResume(Object resume) {
+        public void setResume(String resume) {
             this.resume = resume;
         }
 
