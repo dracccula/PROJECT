@@ -3,6 +3,7 @@ package kireev.ftshw.project.Profile.Login;
 import android.content.SharedPreferences;
 import android.util.Log;
 
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -34,17 +35,18 @@ class LoginPresenter {
                 @Override
                 public void onResponse(Call<SignInResponse> call, Response<SignInResponse> response) {
                     SignInResponse signInResponse = response.body();
-                    String cookie = response.headers().get("Set-Cookie");
-                    anygenCookie = cookie;
-                    SharedPreferences.Editor ed = spStorage.edit();
-                    Log.i("signIn Response", "body: " + signInResponse);
-                    Log.i("signIn Response", "cookie: " + cookie);
-                    ed.putBoolean("IS_AUTORIZED", true);
-                    ed.putString("anygenCookie", anygenCookie);
-                    //finish();
-                    ed.apply();
-                    if (view != null) {
-                        view.authorize(signInResponse);
+                    if (response.isSuccessful()){
+                        String cookie = response.headers().get("Set-Cookie");
+                        anygenCookie = cookie;
+                        SharedPreferences.Editor ed = spStorage.edit();
+                        Log.i("signIn Response", "body: " + signInResponse);
+                        Log.i("signIn Response", "cookie: " + cookie);
+                        ed.putBoolean("IS_AUTORIZED", true);
+                        ed.putString("anygenCookie", anygenCookie);
+                        ed.apply();
+                        view.closeActivity();
+                    } else {
+                        view.showError("Ошибка");
                     }
                 }
 

@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorBackground"
-        tools:context=".Profile.ProfileFragment">
+        tools:context=".Profile.ProfileViewFragment">
 
         <android.support.constraint.ConstraintLayout
             android:id="@+id/clAvatar"
@@ -433,7 +433,8 @@
                     android:layout_height="wrap_content"
                     android:divider="@drawable/divider"
                     android:orientation="vertical"
-                    android:showDividers="middle">
+                    android:showDividers="end"
+                    android:dividerPadding="4dp">
 
                     <android.support.constraint.ConstraintLayout
                         android:id="@+id/clSchool"
@@ -465,7 +466,6 @@
                             android:paddingTop="0dp"
                             android:paddingEnd="8dp"
                             android:paddingBottom="8dp"
-                            android:text="Школа"
                             android:textColor="#333333"
                             android:textSize="16sp"
                             android:textStyle="normal"
@@ -475,12 +475,12 @@
                     </android.support.constraint.ConstraintLayout>
 
                     <android.support.constraint.ConstraintLayout
-                        android:id="@+id/clSchoolFinishYear"
+                        android:id="@+id/clSchoolGraduation"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
                         <TextView
-                            android:id="@+id/tvSchoolFinishYearLabel"
+                            android:id="@+id/tvSchoolGraduationLabel"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="16dp"
@@ -496,7 +496,7 @@
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <TextView
-                            android:id="@+id/tvSchoolFinishYearValue"
+                            android:id="@+id/tvSchoolGraduationValue"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="16dp"
@@ -504,12 +504,11 @@
                             android:paddingTop="0dp"
                             android:paddingEnd="8dp"
                             android:paddingBottom="8dp"
-                            android:text="Год окончания школы"
                             android:textColor="#333333"
                             android:textSize="16sp"
                             android:textStyle="normal"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@id/tvSchoolFinishYearLabel" />
+                            app:layout_constraintTop_toBottomOf="@id/tvSchoolGraduationLabel" />
 
                     </android.support.constraint.ConstraintLayout>
 
@@ -543,7 +542,6 @@
                             android:paddingTop="0dp"
                             android:paddingEnd="8dp"
                             android:paddingBottom="8dp"
-                            android:text="ВУЗ"
                             android:textColor="#333333"
                             android:textSize="16sp"
                             android:textStyle="normal"
@@ -552,20 +550,209 @@
 
                     </android.support.constraint.ConstraintLayout>
 
+                    <android.support.constraint.ConstraintLayout
+                        android:id="@+id/clFaculty"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/tvFacultyLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:paddingStart="8dp"
+                            android:paddingTop="8dp"
+                            android:paddingEnd="8dp"
+                            android:paddingBottom="0dp"
+                            android:text="Факультет"
+                            android:textColor="#9299a2"
+                            android:textSize="12sp"
+                            android:textStyle="normal"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/tvFacultyValue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:paddingStart="8dp"
+                            android:paddingTop="0dp"
+                            android:paddingEnd="8dp"
+                            android:paddingBottom="8dp"
+                            android:textColor="#333333"
+                            android:textSize="16sp"
+                            android:textStyle="normal"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tvFacultyLabel" />
+
+                    </android.support.constraint.ConstraintLayout>
+
+                    <android.support.constraint.ConstraintLayout
+                        android:id="@+id/clDepartment"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/tvDepartmentLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:paddingStart="8dp"
+                            android:paddingTop="8dp"
+                            android:paddingEnd="8dp"
+                            android:paddingBottom="0dp"
+                            android:text="Кафедра"
+                            android:textColor="#9299a2"
+                            android:textSize="12sp"
+                            android:textStyle="normal"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/tvDepartmentValue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:paddingStart="8dp"
+                            android:paddingTop="0dp"
+                            android:paddingEnd="8dp"
+                            android:paddingBottom="8dp"
+                            android:textColor="#333333"
+                            android:textSize="16sp"
+                            android:textStyle="normal"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tvDepartmentLabel" />
+
+                    </android.support.constraint.ConstraintLayout>
+
+                    <android.support.constraint.ConstraintLayout
+                        android:id="@+id/clUniversityGraduation"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/tvUniversityGraduationLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:paddingStart="8dp"
+                            android:paddingTop="8dp"
+                            android:paddingEnd="8dp"
+                            android:paddingBottom="0dp"
+                            android:text="Год окончания ВУЗа"
+                            android:textColor="#9299a2"
+                            android:textSize="12sp"
+                            android:textStyle="normal"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/tvUniversityGraduationValue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:paddingStart="8dp"
+                            android:paddingTop="0dp"
+                            android:paddingEnd="8dp"
+                            android:paddingBottom="8dp"
+                            android:textColor="#333333"
+                            android:textSize="16sp"
+                            android:textStyle="normal"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tvUniversityGraduationLabel" />
+
+                    </android.support.constraint.ConstraintLayout>
+
 
                 </LinearLayout>
 
+
             </LinearLayout>
 
+            <LinearLayout
+                android:id="@+id/llProfileWork"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#FFFFFF"
+                android:divider="@drawable/divider"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:showDividers="end">
+
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="16dp"
+                        android:drawableStart="@drawable/ic_work"
+                        android:text="@string/profile_work_info_label"
+                        android:textColor="#000000"
+                        android:textSize="14sp"
+                        android:textStyle="normal"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </android.support.constraint.ConstraintLayout>
+
+                <LinearLayout
+
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:divider="@drawable/divider"
+                    android:orientation="vertical"
+                    android:showDividers="middle">
+
+                    <android.support.constraint.ConstraintLayout
+                        android:id="@+id/clWork"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/tvWorkLabel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:paddingStart="8dp"
+                            android:paddingTop="8dp"
+                            android:paddingEnd="8dp"
+                            android:paddingBottom="0dp"
+                            android:text="Текущее место работы"
+                            android:textColor="#9299a2"
+                            android:textSize="12sp"
+                            android:textStyle="normal"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/tvWorkValue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="16dp"
+                            android:paddingStart="8dp"
+                            android:paddingTop="0dp"
+                            android:paddingEnd="8dp"
+                            android:paddingBottom="8dp"
+                            android:textColor="#333333"
+                            android:textSize="16sp"
+                            android:textStyle="normal"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/tvWorkLabel" />
+
+                    </android.support.constraint.ConstraintLayout>
+
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+
         </LinearLayout>
-
-
-        <android.support.constraint.ConstraintLayout
-            android:id="@+id/clProfile2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/llProfile">
-        </android.support.constraint.ConstraintLayout>
 
 
     </android.support.constraint.ConstraintLayout>

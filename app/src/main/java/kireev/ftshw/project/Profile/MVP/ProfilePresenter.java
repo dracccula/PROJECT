@@ -31,38 +31,45 @@ public class ProfilePresenter extends MvpBasePresenter<ProfileView> {
         db = App.getInstance().getDatabase();
         ProfileDao profileDao = db.profileDao();
         if (profileDao.getAll().isEmpty()) {
-            updateProfileData();
+            refresh();
         } else {
             getProfileFromDb();
+            refresh();
         }
     }
 
     private void getProfileFromDb() {
         db = App.getInstance().getDatabase();
         ProfileDao profileDao = db.profileDao();
+        List<Profile> profileList = profileDao.getAll();
+        getView().showProfileFromDB(profileList);
     }
 
 
     private void updateProfileData(ProfileData.User user) {
         db = App.getInstance().getDatabase();
         ProfileDao profileDao = db.profileDao();
-        Profile profile = new Profile(user.getId(), user.getFirstName(), user.getLastName(), user.getMiddleName(), user.getEmail(),
-                user.getBirthday(), user.getPhoneMobile(), user.getDescription(), user.getRegion(), user.getSchool(), user.getSchoolGraduation(),
-                user.getUniversity(), user.getFaculty(), user.getUniversityGraduation(), user.getGrade(), user.getDepartment(),
-                user.getCurrentWork(), user.getAvatar(), user.getResume(), user.getSkypeLogin(), user.getIsClient(), user.getTShirtSize(), user.getAdmin());
-        profileDao.insert(profile);
+        if (user != null) {
+            Profile profile = new Profile(user.getId(), user.getFirstName(), user.getLastName(), user.getMiddleName(), user.getEmail(),
+                    user.getBirthday(), user.getPhoneMobile(), user.getDescription(), user.getRegion(), user.getSchool(), user.getSchoolGraduation(),
+                    user.getUniversity(), user.getFaculty(), user.getUniversityGraduation(), user.getGrade(), user.getDepartment(),
+                    user.getCurrentWork(), user.getAvatar(), user.getResume(), user.getSkypeLogin(), user.getIsClient(), user.getTShirtSize(), user.getAdmin());
+            profileDao.insert(profile);
+        }
 
     }
 
-    void updateProfileData() {
+    void refresh() {
         if (getView() != null) {
             model.getUserData(new Callback<ProfileData>() {
                 @Override
                 public void onResponse(@NonNull Call<ProfileData> call, @NonNull Response<ProfileData> response) {
                     ProfileData profileData = response.body();
                     updateProfileData(Objects.requireNonNull(profileData).getUser());
-                    if (getView() != null) {
-                        getView().showProfile(profileData.getUser(), profileData.getStatus());
+                    if (profileData.getUser() != null) {
+                        if (getView() != null) {
+                            getView().showProfileFromResponse(profileData.getUser(), profileData.getStatus());
+                        }
                     }
                 }
 
@@ -76,6 +83,6 @@ public class ProfilePresenter extends MvpBasePresenter<ProfileView> {
     }
 
     void viewIsReady() {
-        updateProfileData();
+        checkDatabase();
     }
 }

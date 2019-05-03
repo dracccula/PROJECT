@@ -22,19 +22,20 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.hannesdorfmann.mosby3.mvp.MvpFragment;
 
+import java.util.List;
 import java.util.Objects;
 
+import kireev.ftshw.project.Database.Entity.Profile;
 import kireev.ftshw.project.MainActivity;
 import kireev.ftshw.project.R;
 
 public class ProfileViewFragment extends MvpFragment<ProfileView, ProfilePresenter> implements ProfileView {
 
-    ImageView avatar, avatarTop;
-    EditText name, surname, patronymic;
+    ImageView avatarTop;
     TextView headerName, headerEmail,
-            about, aboutSignature, quotesStart, quotesEnd,
-            phoneValue, emailValue, cityValue;
-    Button refreshButton;
+            about, aboutSignature, quotesStart, quotesEnd, workValue,
+            phoneValue, emailValue, cityValue, schoolValue, schoolGraduationValue,
+            universityValue, facultyValue, departmentValue, universityGraduationValue;
     CardView cardView;
 
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -48,9 +49,6 @@ public class ProfileViewFragment extends MvpFragment<ProfileView, ProfilePresent
         ((MainActivity) Objects.requireNonNull(getActivity()))
                 .setActionBarTitle(getString(R.string.title_profile));
         View v = inflater.inflate(R.layout.fragment_profile, container, false);
-//        name = v.findViewById(R.id.textName);
-//        surname = v.findViewById(R.id.textSurname);
-//        patronymic = v.findViewById(R.id.textPatronymic);
 
         headerName = v.findViewById(R.id.tvHeaderName);
         headerName.bringToFront();
@@ -68,6 +66,14 @@ public class ProfileViewFragment extends MvpFragment<ProfileView, ProfilePresent
         emailValue = v.findViewById(R.id.tvEmailValue);
         cityValue = v.findViewById(R.id.tvCityValue);
 
+        schoolValue = v.findViewById(R.id.tvSchoolValue);
+        schoolGraduationValue = v.findViewById(R.id.tvSchoolGraduationValue);
+        universityValue = v.findViewById(R.id.tvUniversityValue);
+        facultyValue = v.findViewById(R.id.tvFacultyValue);
+        departmentValue = v.findViewById(R.id.tvDepartmentValue);
+        universityGraduationValue = v.findViewById(R.id.tvUniversityGraduationValue);
+        workValue = v.findViewById(R.id.tvWorkValue);
+
         cardView = v.findViewById(R.id.cvPoints);
         cardView.setVisibility(View.INVISIBLE);
         avatarTop = v.findViewById(R.id.ivAvatarTop);
@@ -82,7 +88,7 @@ public class ProfileViewFragment extends MvpFragment<ProfileView, ProfilePresent
     }
 
     @Override
-    public void showProfile(ProfileData.User user, String status) {
+    public void showProfileFromResponse(ProfileData.User user, String status) {
         cardView.setVisibility(View.VISIBLE);
         headerName.setText(user.getFirstName() + "\n" + user.getLastName());
         headerEmail.setText(user.getEmail());
@@ -96,9 +102,48 @@ public class ProfileViewFragment extends MvpFragment<ProfileView, ProfilePresent
         emailValue.setText(user.getEmail());
         cityValue.setText(user.getRegion());
 
+        schoolValue.setText(user.getSchool());
+        schoolGraduationValue.setText(user.getSchoolGraduation() + " г.");
+        universityValue.setText(user.getUniversity());
+        facultyValue.setText(user.getFaculty());
+        departmentValue.setText(user.getDepartment());
+        universityGraduationValue.setText(user.getUniversityGraduation() + " г.");
+        workValue.setText(user.getCurrentWork());
+
         if (isAdded()) {
-            Glide.with(Objects.requireNonNull(this))
+            Glide.with(this)
                     .load("https://fintech.tinkoff.ru" + user.getAvatar())
+                    .apply(RequestOptions.centerCropTransform())
+                    .into(avatarTop);
+        }
+    }
+
+    @Override
+    public void showProfileFromDB(List<Profile> profileList) {
+        cardView.setVisibility(View.VISIBLE);
+        headerName.setText(profileList.get(0).getFirstName() + "\n" + profileList.get(0).getLastName());
+        headerEmail.setText(profileList.get(0).getEmail());
+
+        quotesStart.setVisibility(View.VISIBLE);
+        quotesEnd.setVisibility(View.VISIBLE);
+        about.setText(profileList.get(0).getDescription());
+        aboutSignature.setText(profileList.get(0).getFirstName() + " " + profileList.get(0).getLastName());
+
+        phoneValue.setText(profileList.get(0).getPhoneMobile());
+        emailValue.setText(profileList.get(0).getEmail());
+        cityValue.setText(profileList.get(0).getRegion());
+
+        schoolValue.setText(profileList.get(0).getSchool());
+        schoolGraduationValue.setText(profileList.get(0).getSchoolGraduation() + " г.");
+        universityValue.setText(profileList.get(0).getUniversity());
+        facultyValue.setText(profileList.get(0).getFaculty());
+        departmentValue.setText(profileList.get(0).getDepartment());
+        universityGraduationValue.setText(profileList.get(0).getUniversityGraduation() + " г.");
+        workValue.setText(profileList.get(0).getCurrentWork());
+
+        if (isAdded()) {
+            Glide.with(this)
+                    .load("https://fintech.tinkoff.ru" + profileList.get(0).getAvatar())
                     .apply(RequestOptions.centerCropTransform())
                     .into(avatarTop);
         }

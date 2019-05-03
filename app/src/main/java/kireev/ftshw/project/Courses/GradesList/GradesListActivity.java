@@ -17,7 +17,7 @@ import android.widget.Toast;
 import kireev.ftshw.project.R;
 
 
-public class GradesListActivity extends AppCompatActivity {
+public class GradesListActivity extends AppCompatActivity{
 
     public static boolean mGridMode;
     private static final int REQUEST_CODE_READ_CONTACTS = 1;

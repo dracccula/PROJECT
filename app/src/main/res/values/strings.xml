@@ -32,8 +32,8 @@
     <string name="details_button">ДЕТАЛИ</string>
 
     <string name="title_activity_login">Авторизация</string>
-    <string name="login_hint_activity_login">Логин</string>
-    <string name="password_hint_activity_login">Пароль</string>
+    <string name="login_hint_activity_login">ЛОГИН</string>
+    <string name="password_hint_activity_login">ПАРОЛЬ</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -52,4 +52,5 @@
     </string>
     <string name="profile_contact_info_label">&#160;&#160;&#160;&#160;Контактная информация</string>
     <string name="profile_education_info_label">&#160;&#160;&#160;&#160;Образование</string>
+    <string name="profile_work_info_label">&#160;&#160;&#160;&#160;Работа</string>
 </resources>

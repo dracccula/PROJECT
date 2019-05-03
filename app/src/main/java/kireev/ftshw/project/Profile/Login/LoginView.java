@@ -2,7 +2,7 @@ package kireev.ftshw.project.Profile.Login;
 
 public interface LoginView {
 
-    void authorize(SignInResponse signInResponse);
+    void closeActivity();
 
     void showError(String message);
 }

@@ -5,80 +5,71 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
-    tools:context=".Profile.Login.LoginActivity">
+    tools:context=".Profile.Login.LoginViewActivity">
 
 
     <Button
         android:id="@+id/btn_login"
-        style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="50dp"
-        android:background="@color/colorPrimaryDark"
-        android:text="@string/profile_not_autorized_button"
+        android:layout_height="56dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="160dp"
+        android:background="@drawable/button_yellow_background"
         android:shadowRadius="4"
-        android:onClick="autorization"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:text="@string/profile_not_autorized_button"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/et_password"
-        />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/et_login"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@color/colorBackground"
+        android:layout_height="56dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/textedit_background"
         android:ems="10"
-        android:padding="8dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginEnd="50dp"
-        android:inputType="textEmailAddress"
         android:hint="@string/login_hint_activity_login"
+        android:textColorHint="#FFFFFF"
+        android:inputType="textEmailAddress"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
         android:text="v.kireev@tinkoff.ru"
-        app:layout_constraintBottom_toTopOf="@id/et_password"
+        app:layout_constraintBottom_toTopOf="@+id/et_password"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="packed" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/et_password"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@color/colorBackground"
+        android:layout_height="56dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/textedit_background"
         android:ems="10"
-        android:padding="8dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginEnd="50dp"
-        android:layout_marginTop="20dp"
-        android:inputType="textPassword"
         android:hint="@string/password_hint_activity_login"
-        android:text="W0rkpass"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/et_login"
-        app:layout_constraintBottom_toTopOf="@id/btn_login"/>
-
-    <TextView
-        android:id="@+id/tv_temp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:textColorHint="#FFFFFF"
+        android:inputType="textPassword"
+        android:textAlignment="center"
         android:textColor="#FFFFFF"
-        app:layout_constraintStart_toStartOf="parent"
+        android:text="W0rkpass"
+        app:layout_constraintBottom_toTopOf="@+id/btn_login"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn_login"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
         android:id="@+id/iv_logo"
         android:layout_width="wrap_content"
-        android:layout_height="100dp"
-        app:srcCompat="@drawable/tinkoff_logo"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_height="wrap_content"
+        android:padding="80dp"
+        app:layout_constraintBottom_toTopOf="@+id/et_login"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/et_login"
-         />
+        app:srcCompat="@drawable/fintech_logo" />
 
 </android.support.constraint.ConstraintLayout>

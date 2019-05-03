@@ -78,6 +78,7 @@ public class SignInResponse {
     @SerializedName("avatar")
     @Expose
     private Object avatar;
+    private String detail;
 
     public String getBirthday() {
         return birthday;
@@ -271,4 +272,11 @@ public class SignInResponse {
         this.avatar = avatar;
     }
 
+    public String getDetail() {
+        return detail;
+    }
+
+    public void setDetail(String detail) {
+        this.detail = detail;
+    }
 }

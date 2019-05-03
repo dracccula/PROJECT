@@ -19,23 +19,12 @@ import kireev.ftshw.project.Courses.CoursesFragment;
 import kireev.ftshw.project.Courses.GradesList.GradesListActivity;
 import kireev.ftshw.project.Courses.Rating.RatingActivity;
 import kireev.ftshw.project.Events.EventsFragment;
-import kireev.ftshw.project.Network.Connector;
-import kireev.ftshw.project.Network.FintechAPI;
 import kireev.ftshw.project.Profile.Login.LoginViewActivity;
-import kireev.ftshw.project.Profile.Login.SignInResponse;
 import kireev.ftshw.project.Profile.AnonimProfileFragment;
-import kireev.ftshw.project.Profile.Login.LoginActivity;
 import kireev.ftshw.project.Profile.MVP.ProfileViewFragment;
-import kireev.ftshw.project.Profile.ProfileEditFragment;
-import kireev.ftshw.project.Profile.ProfileFragment;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
 
 
-public class MainActivity extends AppCompatActivity
-        implements ProfileFragment.OnProfileFragmentListener {
+public class MainActivity extends AppCompatActivity {
 
     public AlertDialog.Builder ad, adEmptyFields, adLogout;
     private static long back_pressed;
@@ -49,23 +38,28 @@ public class MainActivity extends AppCompatActivity
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         spStorage = this.getPreferences(Context.MODE_PRIVATE);
-        if (savedInstanceState == null) {
-            navigation.getMenu().getItem(1).setChecked(true);
-            if (navigation.getMenu().findItem(navigation.getSelectedItemId()) == navigation.getMenu().getItem(0)) {
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new EventsFragment()).commitNow();
-            }
-            if (navigation.getMenu().findItem(navigation.getSelectedItemId()) == navigation.getMenu().getItem(1)) {
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new CoursesFragment()).commitNow();
-            }
-            if (navigation.getMenu().findItem(navigation.getSelectedItemId()) == navigation.getMenu().getItem(2)) {
-                if (spStorage.getBoolean("IS_AUTORIZED", false)) {
+        if (!spStorage.getBoolean("IS_AUTORIZED", false)) {
+            startActivity(new Intent(this, LoginViewActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+            finish();
+        } else {
+            if (savedInstanceState == null) {
+                navigation.getMenu().getItem(1).setChecked(true);
+                if (navigation.getMenu().findItem(navigation.getSelectedItemId()) == navigation.getMenu().getItem(0)) {
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                            new ProfileViewFragment()).commitNow();
-                } else {
+                            new EventsFragment()).commitNow();
+                }
+                if (navigation.getMenu().findItem(navigation.getSelectedItemId()) == navigation.getMenu().getItem(1)) {
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                            new AnonimProfileFragment()).commitNow();
+                            new CoursesFragment()).commitNow();
+                }
+                if (navigation.getMenu().findItem(navigation.getSelectedItemId()) == navigation.getMenu().getItem(2)) {
+                    if (spStorage.getBoolean("IS_AUTORIZED", false)) {
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                                new ProfileViewFragment()).commitNow();
+                    } else {
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                                new AnonimProfileFragment()).commitNow();
+                    }
                 }
             }
         }
@@ -99,10 +93,8 @@ public class MainActivity extends AppCompatActivity
                 ed.remove("anygenCookie");
                 ed.remove("IS_AUTORIZED");
                 ed.apply();
-                //signOut();
                 Toast.makeText(getBaseContext(), "signOut!", Toast.LENGTH_SHORT).show();
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                        new AnonimProfileFragment()).commitNow();
+                startActivity(new Intent(getBaseContext(), LoginViewActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
             }
         });
         adLogout.setNegativeButton(getString(R.string.profile_logout_no), new DialogInterface.OnClickListener() {
@@ -120,7 +112,6 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle item selection
         if (item.getItemId() == R.id.logout) {
             adLogout.show();
         }
@@ -160,14 +151,6 @@ public class MainActivity extends AppCompatActivity
         getSupportActionBar().setTitle(title);
     }
 
-    @Override
-    public void onOpenEditProfile() {
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.fragment_container, new ProfileEditFragment())
-//                .addToBackStack(null)
-                .commitNow();
-    }
-
     public void gradesButtonClick(View view) {
         Log.d("gradesButtonClick", "clicked!");
         startActivityForResult(new Intent(this, GradesListActivity.class), 1);
@@ -191,30 +174,5 @@ public class MainActivity extends AppCompatActivity
         else
             Toast.makeText(getBaseContext(), "Нажмите еще раз для выхода", Toast.LENGTH_SHORT).show();
         back_pressed = System.currentTimeMillis();
-    }
-
-    private void signOut() {
-        Retrofit retrofit = Connector.getRetrofitClient();
-        FintechAPI fintechAPI = retrofit.create(FintechAPI.class);
-        Call<SignInResponse> call = fintechAPI.postEmpty();
-        call.enqueue(new Callback<SignInResponse>() {
-            @Override
-            public void onResponse(Call call, Response response) {
-                String headers = response.headers().toString();
-                String cookie = response.headers().get("Set-Cookie");
-                if (response.isSuccessful()) {
-                    Log.i("signOut Response", "headers: " + headers);
-                    Log.i("signOut Response", "cookie: " + cookie);
-                }
-            }
-
-            @Override
-            public void onFailure(Call call, Throwable t) {
-                Log.e("signOut onFailure", "ooops!");
-                Toast.makeText(getBaseContext(), "signOut went wrong!", Toast.LENGTH_SHORT).show();
-            }
-
-
-        });
     }
 }

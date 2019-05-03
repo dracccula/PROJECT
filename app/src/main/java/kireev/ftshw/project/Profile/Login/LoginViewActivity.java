@@ -1,7 +1,9 @@
 package kireev.ftshw.project.Profile.Login;
 
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
@@ -15,14 +17,15 @@ import android.widget.Toast;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import kireev.ftshw.project.MainActivity;
 import kireev.ftshw.project.Network.Connector;
 import kireev.ftshw.project.R;
 
 public class LoginViewActivity extends AppCompatActivity implements LoginView {
     EditText etLogin, etPassword;
-    TextView textView;
     ImageView ivLogo;
     Button bLogin;
+    private static long back_pressed;
 
     LoginPresenter presenter;
 
@@ -30,9 +33,7 @@ public class LoginViewActivity extends AppCompatActivity implements LoginView {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        getSupportActionBar().setTitle(getString(R.string.title_activity_login));
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        textView = findViewById(R.id.tv_temp);
+        getWindow().setStatusBarColor(ContextCompat.getColor(this,R.color.colorPrimary));
         etLogin = findViewById(R.id.et_login);
         etPassword = findViewById(R.id.et_password);
         ivLogo = findViewById(R.id.iv_logo);
@@ -43,7 +44,8 @@ public class LoginViewActivity extends AppCompatActivity implements LoginView {
         bLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                presenter.signIn(etLogin.getText().toString(), etPassword.getText().toString());
+                autorization(v);
+                //presenter.signIn(etLogin.getText().toString(), etPassword.getText().toString());
                 Log.e("Login onClick", "clicked");
             }
         });
@@ -59,6 +61,17 @@ public class LoginViewActivity extends AppCompatActivity implements LoginView {
     }
 
     @Override
+    public void onBackPressed() {
+        if (back_pressed + 2000 > System.currentTimeMillis()) {
+            moveTaskToBack(true);
+            android.os.Process.killProcess(android.os.Process.myPid());
+            System.exit(1);
+        } else
+            Toast.makeText(getBaseContext(), "Нажмите еще раз для выхода", Toast.LENGTH_SHORT).show();
+        back_pressed = System.currentTimeMillis();
+    }
+
+    @Override
     public Object onRetainCustomNonConfigurationInstance() {
         return presenter;
     }
@@ -71,16 +84,14 @@ public class LoginViewActivity extends AppCompatActivity implements LoginView {
     }
 
     public void autorization(View view) {
-        Log.d("Login", "clicked");
         if (Connector.isOnline(this)) {
-            Log.d("Login", "online!");
         } else {
-            Toast.makeText(getBaseContext(), "Offline", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getBaseContext(), "Отсутствует подключению к интернету", Toast.LENGTH_SHORT).show();
         }
         if (isEmailValid(etLogin.getText().toString())) {
             presenter.signIn(etLogin.getText().toString(), etPassword.getText().toString());
         } else {
-            Toast.makeText(getBaseContext(), "Email is not valid", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getBaseContext(), "Невалидный email", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -105,22 +116,14 @@ public class LoginViewActivity extends AppCompatActivity implements LoginView {
     }
 
     @Override
-    public void authorize(SignInResponse signInResponse) {
-        textView.setText("firstName: " + signInResponse.getFirstName() + "\n" +
-                "lastName: " + signInResponse.getLastName() + "\n" +
-                "email: " + signInResponse.getEmail());
+    public void closeActivity() {
+        finish();
+        startActivity(new Intent(this, MainActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
     }
 
     @Override
     public void showError(String message) {
         Log.e("signIn onFailure", "ooops!");
-        Toast.makeText(getBaseContext(), "signIn went wrong!", Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        presenter.detachView();
-        Log.e("Login onDestroy", "view detached");
+        Toast.makeText(getBaseContext(), message, Toast.LENGTH_SHORT).show();
     }
 }
