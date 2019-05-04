@@ -56,10 +56,10 @@ public class HomeworksAdapter extends RecyclerView.Adapter<HomeworksAdapter.Home
         return homeworkList.size();
     }
 
-    public class HomeworkViewHolder extends RecyclerView.ViewHolder {
+    class HomeworkViewHolder extends RecyclerView.ViewHolder {
         TextView tvHomeworkTitle;
 
-        public HomeworkViewHolder(@NonNull View itemView) {
+        HomeworkViewHolder(@NonNull View itemView) {
             super(itemView);
             context = itemView.getContext();
             tvHomeworkTitle = itemView.findViewById(R.id.tvHomeworkTitle);

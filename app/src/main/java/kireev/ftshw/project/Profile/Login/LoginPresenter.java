@@ -46,7 +46,7 @@ class LoginPresenter {
                         ed.apply();
                         view.closeActivity();
                     } else {
-                        view.showError("Ошибка");
+                        view.showError("Неверно введены email и/или пароль");
                     }
                 }
 

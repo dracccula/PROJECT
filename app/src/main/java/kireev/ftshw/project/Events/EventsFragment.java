@@ -1,9 +1,11 @@
 package kireev.ftshw.project.Events;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -11,16 +13,25 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.hannesdorfmann.mosby3.mvp.MvpFragment;
+
 import kireev.ftshw.project.MainActivity;
 import kireev.ftshw.project.R;
 
 
-public class EventsFragment extends Fragment {
-
-
+public class EventsFragment extends MvpFragment<EventsView,EventsPresenter> implements EventsView{
+    RecyclerView rvEvents;
+    ActiveEventsAdapter activeEventsAdapter;
 
     public EventsFragment() {
         // Required empty public constructor
+    }
+
+    @Override
+    public EventsPresenter createPresenter() {
+        EventsModel eventsModel = new EventsModel();
+        presenter = new EventsPresenter(eventsModel);
+        return presenter;
     }
 
     @Override
@@ -30,12 +41,22 @@ public class EventsFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         ((MainActivity) getActivity())
                 .setActionBarTitle(getString(R.string.title_events));
-        return inflater.inflate(R.layout.fragment_events, container, false);
+        View v = inflater.inflate(R.layout.fragment_events, container, false);
+        rvEvents = v.findViewById(R.id.rvActiveEvents);
+        rvEvents.setLayoutManager(new LinearLayoutManager(getContext()));
+        activeEventsAdapter = new ActiveEventsAdapter(getContext());
+        return v;
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        presenter.viewIsReady();
     }
 
     @Override
@@ -53,10 +74,5 @@ public class EventsFragment extends Fragment {
         inflater.inflate(R.menu.profile_menu, menu);
         MenuItem item = menu.findItem(R.id.logout);
         item.setVisible(false);
-    }
-
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
     }
 }

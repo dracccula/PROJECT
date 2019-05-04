@@ -88,10 +88,14 @@ public class LoginViewActivity extends AppCompatActivity implements LoginView {
         } else {
             Toast.makeText(getBaseContext(), "Отсутствует подключению к интернету", Toast.LENGTH_SHORT).show();
         }
-        if (isEmailValid(etLogin.getText().toString())) {
-            presenter.signIn(etLogin.getText().toString(), etPassword.getText().toString());
+        if (etLogin.getText().length() != 0 && etPassword.getText().length() != 0){
+            if (isEmailValid(etLogin.getText().toString())) {
+                presenter.signIn(etLogin.getText().toString(), etPassword.getText().toString());
+            } else {
+                Toast.makeText(getBaseContext(), "Невалидный email", Toast.LENGTH_SHORT).show();
+            }
         } else {
-            Toast.makeText(getBaseContext(), "Невалидный email", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getBaseContext(), "Для авторизации необходимо заполнить поля Логин и Пароль", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -104,15 +108,10 @@ public class LoginViewActivity extends AppCompatActivity implements LoginView {
                         + "[0-9]{1,2}|25[0-5]|2[0-4][0-9])){1}|"
                         + "([a-zA-Z]+[\\w-]+\\.)+[a-zA-Z]{2,4})$";
 
-        CharSequence inputStr = email;
-
         Pattern pattern = Pattern.compile(regExpn, Pattern.CASE_INSENSITIVE);
-        Matcher matcher = pattern.matcher(inputStr);
+        Matcher matcher = pattern.matcher(email);
 
-        if (matcher.matches())
-            return true;
-        else
-            return false;
+        return matcher.matches();
     }
 
     @Override

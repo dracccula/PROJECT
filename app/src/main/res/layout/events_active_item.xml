@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="150dp"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:id="@+id/ivActiveEventImage"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@color/colorAcceptedStatus"/>
+
+    <TextView
+        android:id="@+id/tvActiveEventType"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="4dp"
+        android:layout_margin="8dp"
+        android:textSize="10sp"
+        android:fontFamily="sans-serif-medium"
+        android:textStyle="normal"
+        android:textColor="#ffffff"
+        android:letterSpacing="-0.02"
+        android:text="СПЕЦКУРС"
+        android:background="@drawable/button_yellow_background"
+        app:layout_constraintStart_toStartOf="@id/ivActiveEventImage"
+        app:layout_constraintBottom_toBottomOf="@id/ivActiveEventImage"
+        />
+
+    <TextView
+        android:id="@+id/tvActiveEventDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:textSize="11sp"
+        android:fontFamily="sans-serif"
+        android:textStyle="normal"
+        android:textColor="#9299a2"
+        android:lineSpacingExtra="4sp"
+        android:text="НОЯБ 2018 Г. "
+        app:layout_constraintTop_toBottomOf="@id/ivActiveEventImage"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/tvActiveEventTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:fontFamily="sans-serif-medium"
+        android:lineSpacingExtra="4sp"
+        android:text="Осенние стажировки"
+        android:textColor="#333333"
+        android:textSize="12sp"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvActiveEventDate" />
+
+</android.support.constraint.ConstraintLayout>

@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Objects;
 
 import kireev.ftshw.project.App;
-import kireev.ftshw.project.Database.Dao.HomeworksDao;
 import kireev.ftshw.project.Database.Dao.ProfileDao;
 import kireev.ftshw.project.Database.Entity.Profile;
 import kireev.ftshw.project.Database.ProjectDatabase;
@@ -18,14 +17,12 @@ import retrofit2.Response;
 
 public class ProfilePresenter extends MvpBasePresenter<ProfileView> {
 
-
     private final ProfileModel model;
-    ProjectDatabase db;
+    private ProjectDatabase db;
 
     ProfilePresenter(ProfileModel model) {
         this.model = model;
     }
-
 
     private void checkDatabase() {
         db = App.getInstance().getDatabase();
@@ -59,7 +56,7 @@ public class ProfilePresenter extends MvpBasePresenter<ProfileView> {
 
     }
 
-    void refresh() {
+    private void refresh() {
         if (getView() != null) {
             model.getUserData(new Callback<ProfileData>() {
                 @Override
@@ -74,7 +71,7 @@ public class ProfilePresenter extends MvpBasePresenter<ProfileView> {
                 }
 
                 @Override
-                public void onFailure(Call<ProfileData> call, Throwable t) {
+                public void onFailure(@NonNull Call<ProfileData> call, @NonNull Throwable t) {
                     getView().showError(t.getMessage());
                 }
             });
