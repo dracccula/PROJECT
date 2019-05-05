@@ -30,13 +30,13 @@ public class EventsResponse {
         this.archive = archive;
     }
 
-    private class EventType{
+    public class EventType{
         @SerializedName("name")
         @Expose
-        private String name;
+        public String name;
         @SerializedName("color")
         @Expose
-        private String color;
+        public String color;
     }
 
     public class Active {

@@ -5,7 +5,8 @@ public class ActiveEventsVO {
     private String title;
     private String dateStart;
     private String dateEnd;
-    private EventType eventType;
+    private String eventTypeName;
+    private String eventTypeColor;
     private String customDate;
     private String place;
     private String url;
@@ -38,13 +39,6 @@ public class ActiveEventsVO {
         this.dateEnd = dateEnd;
     }
 
-    public EventType getEventType() {
-        return eventType;
-    }
-
-    public void setEventType(EventType eventType) {
-        this.eventType = eventType;
-    }
 
     public String getCustomDate() {
         return customDate;
@@ -102,24 +96,19 @@ public class ActiveEventsVO {
         this.description = description;
     }
 
-    private class EventType{
-        private String name;
-        private String color;
+    public String getEventTypeName() {
+        return eventTypeName;
+    }
 
-        public String getName() {
-            return name;
-        }
+    public void setEventTypeName(String eventTypeName) {
+        this.eventTypeName = eventTypeName;
+    }
 
-        public void setName(String name) {
-            this.name = name;
-        }
+    public String getEventTypeColor() {
+        return eventTypeColor;
+    }
 
-        public String getColor() {
-            return color;
-        }
-
-        public void setColor(String color) {
-            this.color = color;
-        }
+    public void setEventTypeColor(String eventTypeColor) {
+        this.eventTypeColor = eventTypeColor;
     }
 }
