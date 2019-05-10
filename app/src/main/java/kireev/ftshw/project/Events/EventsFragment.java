@@ -4,7 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -13,6 +13,8 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.hannesdorfmann.mosby3.mvp.MvpFragment;
 
@@ -22,9 +24,12 @@ import kireev.ftshw.project.MainActivity;
 import kireev.ftshw.project.R;
 
 
-public class EventsFragment extends MvpFragment<EventsView,EventsPresenter> implements EventsView{
-    RecyclerView rvEvents;
+public class EventsFragment extends MvpFragment<EventsView, EventsPresenter> implements EventsView {
+    RecyclerView rvActiveEvents, rvArchiveEvents;
     ActiveEventsAdapter activeEventsAdapter;
+    ArchiveEventsAdapter archiveEventsAdapter;
+    ProgressBar pbActiveEvents, pbArchiveEvents;
+    TextView tvActiveEventsError, tvArchiveEventsError;
 
     public EventsFragment() {
         // Required empty public constructor
@@ -50,9 +55,19 @@ public class EventsFragment extends MvpFragment<EventsView,EventsPresenter> impl
         ((MainActivity) getActivity())
                 .setActionBarTitle(getString(R.string.title_events));
         View v = inflater.inflate(R.layout.fragment_events, container, false);
-        rvEvents = v.findViewById(R.id.rvActiveEvents);
-        rvEvents.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
+        rvActiveEvents = v.findViewById(R.id.rvActiveEvents);
+        pbActiveEvents = v.findViewById(R.id.pbActiveEvents);
+        tvActiveEventsError = v.findViewById(R.id.tvActiveEventsError);
+        rvActiveEvents.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         activeEventsAdapter = new ActiveEventsAdapter(getContext());
+
+        rvArchiveEvents = v.findViewById(R.id.rvArchiveEvents);
+        pbArchiveEvents = v.findViewById(R.id.pbArchiveEvents);
+        tvArchiveEventsError = v.findViewById(R.id.tvArchiveEventsError);
+        rvArchiveEvents.setLayoutManager(new LinearLayoutManager(getContext()));
+        archiveEventsAdapter = new ArchiveEventsAdapter(getContext());
+        rvArchiveEvents.setNestedScrollingEnabled(false);
+        rvArchiveEvents.addItemDecoration(new DividerItemDecoration(rvArchiveEvents.getContext(), DividerItemDecoration.VERTICAL));
         return v;
     }
 
@@ -81,7 +96,45 @@ public class EventsFragment extends MvpFragment<EventsView,EventsPresenter> impl
 
     @Override
     public void getActiveEventsList(List<ActiveEventsVO> activeEventsVO) {
-        activeEventsAdapter.setItems(activeEventsVO);
-        rvEvents.setAdapter(activeEventsAdapter);
+        if (isAdded()) {
+            activeEventsAdapter.setItems(activeEventsVO);
+            rvActiveEvents.setAdapter(activeEventsAdapter);
+        }
+    }
+
+    @Override
+    public void getArchiveEventsList(List<ArchiveEventsVO> archiveEventsVOList) {
+        if (isAdded()) {
+            archiveEventsAdapter.setItems(archiveEventsVOList);
+            rvArchiveEvents.setAdapter(archiveEventsAdapter);
+        }
+    }
+
+    @Override
+    public void hideActiveProgressbar() {
+        if (isAdded()) {
+            pbActiveEvents.setVisibility(View.GONE);
+        }
+    }
+
+    @Override
+    public void showActiveErrorText() {
+        if (isAdded()) {
+            tvActiveEventsError.setVisibility(View.VISIBLE);
+        }
+    }
+
+    @Override
+    public void hideArchiveProgressbar() {
+        if (isAdded()) {
+            pbArchiveEvents.setVisibility(View.GONE);
+        }
+    }
+
+    @Override
+    public void showArchiveErrorText() {
+        if (isAdded()) {
+            tvArchiveEventsError.setVisibility(View.VISIBLE);
+        }
     }
 }

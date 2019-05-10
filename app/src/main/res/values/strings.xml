@@ -55,4 +55,5 @@
     <string name="profile_work_info_label">&#160;&#160;&#160;&#160;Работа</string>
     <string name="events_active_label">Актуальное</string>
     <string name="events_archive_label">Прошедшие</string>
+    <string name="no_data_error">Данные отсутствуют</string>
 </resources>

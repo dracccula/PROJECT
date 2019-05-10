@@ -21,14 +21,13 @@ import java.util.List;
 import java.util.Locale;
 
 import kireev.ftshw.project.R;
-import kireev.ftshw.project.TempTools.SetRandom;
 
 public class ActiveEventsAdapter extends RecyclerView.Adapter<ActiveEventsAdapter.ActiveEventsViewHolder> {
 
     private List<ActiveEventsVO> activeEventsList;
     private Context context;
 
-    public ActiveEventsAdapter(Context context) {
+    ActiveEventsAdapter(Context context) {
         this.context = context;
     }
 
@@ -71,7 +70,7 @@ public class ActiveEventsAdapter extends RecyclerView.Adapter<ActiveEventsAdapte
         RequestOptions requestOptions = new RequestOptions();
         requestOptions = requestOptions.transforms(new CenterCrop(), new RoundedCorners(4)).error(R.drawable.ic_broken_image).placeholder(R.drawable.ic_placeholder_image);
         Glide.with(context)
-                .load("https://picsum.photos/id/" + SetRandom.SetRandomInt() + "/100/150")
+                .load("https://picsum.photos/id/" + activeEventsVO.getImageId() + "/100/150")
                 .apply(requestOptions)
                 .into(activeEventsViewHolder.ivActiveEventImage);
         if (activeEventsVO.getEventTypeName() != null) {

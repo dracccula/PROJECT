@@ -177,7 +177,7 @@ public class EventsResponse {
         private String dateEnd;
         @SerializedName("event_type")
         @Expose
-        private Object eventType;
+        private EventType eventType;
         @SerializedName("custom_date")
         @Expose
         private String customDate;
@@ -224,11 +224,11 @@ public class EventsResponse {
             this.dateEnd = dateEnd;
         }
 
-        public Object getEventType() {
+        public EventType getEventType() {
             return eventType;
         }
 
-        public void setEventType(Object eventType) {
+        public void setEventType(EventType eventType) {
             this.eventType = eventType;
         }
 

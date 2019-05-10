@@ -144,7 +144,7 @@ public class ProfileViewFragment extends MvpFragment<ProfileView, ProfilePresent
         if (isAdded()) {
             Glide.with(this)
                     .load("https://fintech.tinkoff.ru" + profileList.get(0).getAvatar())
-                    .apply(RequestOptions.centerCropTransform())
+                    .apply(RequestOptions.centerCropTransform().placeholder(R.drawable.ic_account_circle))
                     .into(avatarTop);
         }
     }

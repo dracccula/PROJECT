@@ -1,6 +1,6 @@
 package kireev.ftshw.project.Events;
 
-public class ActiveEventsVO {
+public class ArchiveEventsVO {
 
     private String title;
     private String dateStart;
@@ -14,7 +14,6 @@ public class ActiveEventsVO {
     private Boolean displayButton;
     private String urlText;
     private String description;
-    private int imageId;
 
     public String getTitle() {
         return title;
@@ -40,6 +39,21 @@ public class ActiveEventsVO {
         this.dateEnd = dateEnd;
     }
 
+    public String getEventTypeName() {
+        return eventTypeName;
+    }
+
+    public void setEventTypeName(String eventTypeName) {
+        this.eventTypeName = eventTypeName;
+    }
+
+    public String getEventTypeColor() {
+        return eventTypeColor;
+    }
+
+    public void setEventTypeColor(String eventTypeColor) {
+        this.eventTypeColor = eventTypeColor;
+    }
 
     public String getCustomDate() {
         return customDate;
@@ -95,29 +109,5 @@ public class ActiveEventsVO {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public String getEventTypeName() {
-        return eventTypeName;
-    }
-
-    public void setEventTypeName(String eventTypeName) {
-        this.eventTypeName = eventTypeName;
-    }
-
-    public String getEventTypeColor() {
-        return eventTypeColor;
-    }
-
-    public void setEventTypeColor(String eventTypeColor) {
-        this.eventTypeColor = eventTypeColor;
-    }
-
-    public int getImageId() {
-        return imageId;
-    }
-
-    public void setImageId(int imageId) {
-        this.imageId = imageId;
     }
 }
