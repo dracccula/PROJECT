@@ -19,6 +19,7 @@ import android.widget.TextView;
 import com.hannesdorfmann.mosby3.mvp.MvpFragment;
 
 import java.util.List;
+import java.util.Objects;
 
 import kireev.ftshw.project.MainActivity;
 import kireev.ftshw.project.R;
@@ -67,7 +68,8 @@ public class EventsFragment extends MvpFragment<EventsView, EventsPresenter> imp
         rvArchiveEvents.setLayoutManager(new LinearLayoutManager(getContext()));
         archiveEventsAdapter = new ArchiveEventsAdapter(getContext());
         rvArchiveEvents.setNestedScrollingEnabled(false);
-        rvArchiveEvents.addItemDecoration(new DividerItemDecoration(rvArchiveEvents.getContext(), DividerItemDecoration.VERTICAL));
+        rvArchiveEvents.addItemDecoration(new ArchiveEventsAdapter.DividerItemDecoration(getContext(),R.drawable.divider2));
+//        rvArchiveEvents.addItemDecoration(new DividerItemDecoration(rvArchiveEvents.getContext(), DividerItemDecoration.VERTICAL));
         return v;
     }
 
@@ -112,28 +114,28 @@ public class EventsFragment extends MvpFragment<EventsView, EventsPresenter> imp
 
     @Override
     public void hideActiveProgressbar() {
-        if (isAdded()) {
+        if (pbActiveEvents != null) {
             pbActiveEvents.setVisibility(View.GONE);
         }
     }
 
     @Override
     public void showActiveErrorText() {
-        if (isAdded()) {
+        if (tvActiveEventsError != null) {
             tvActiveEventsError.setVisibility(View.VISIBLE);
         }
     }
 
     @Override
     public void hideArchiveProgressbar() {
-        if (isAdded()) {
+        if (pbArchiveEvents != null) {
             pbArchiveEvents.setVisibility(View.GONE);
         }
     }
 
     @Override
     public void showArchiveErrorText() {
-        if (isAdded()) {
+        if (tvArchiveEventsError != null) {
             tvArchiveEventsError.setVisibility(View.VISIBLE);
         }
     }

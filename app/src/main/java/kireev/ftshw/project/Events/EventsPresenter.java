@@ -44,9 +44,9 @@ class EventsPresenter extends MvpBasePresenter<EventsView> {
                             }
                             activeEventsVO.setImageId(SetRandom.SetRandomInt());
                             activeEventsVOList.add(activeEventsVO);
-                            getView().getActiveEventsList(activeEventsVOList);
-                            getView().hideActiveProgressbar();
                         }
+                        getView().getActiveEventsList(activeEventsVOList);
+                        getView().hideActiveProgressbar();
                     } else {
                         getView().hideActiveProgressbar();
                         getView().showActiveErrorText();
@@ -61,9 +61,9 @@ class EventsPresenter extends MvpBasePresenter<EventsView> {
                                 archiveEventsVO.setEventTypeColor(archiveList.get(i).getEventType().color);
                             }
                             archiveEventsVOList.add(archiveEventsVO);
-                            getView().getArchiveEventsList(archiveEventsVOList);
-                            getView().hideArchiveProgressbar();
                         }
+                        getView().getArchiveEventsList(archiveEventsVOList);
+                        getView().hideArchiveProgressbar();
                     } else {
                         getView().hideArchiveProgressbar();
                         getView().showArchiveErrorText();
