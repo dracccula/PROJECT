@@ -26,6 +26,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import kireev.ftshw.project.App;
 import kireev.ftshw.project.R;
 
 public class ArchiveEventsAdapter extends RecyclerView.Adapter<ArchiveEventsAdapter.ArchiveEventsViewHolder> {
@@ -95,6 +96,7 @@ public class ArchiveEventsAdapter extends RecyclerView.Adapter<ArchiveEventsAdap
         private final int[] ATTRS = new int[]{android.R.attr.listDivider};
 
         private Drawable divider;
+        private int sizeInDp = 72;
 
         /**
          * Default divider will be used
@@ -108,17 +110,17 @@ public class ArchiveEventsAdapter extends RecyclerView.Adapter<ArchiveEventsAdap
         /**
          * Custom divider will be used
          */
-        public DividerItemDecoration(Context context, int resId) {
+        DividerItemDecoration(Context context, int resId) {
             divider = ContextCompat.getDrawable(context, resId);
         }
 
         @Override
         public void onDraw(Canvas c, RecyclerView parent, RecyclerView.State state) {
-//            Resources r = this.context.getResources();
-//            int px = Math.round(TypedValue.applyDimension(
-//                    TypedValue.COMPLEX_UNIT_DIP, 14,r.getDisplayMetrics()));
 
-            int left = parent.getPaddingLeft();
+            float scale = App.getContext().getResources().getDisplayMetrics().density;
+            int dpAsPixels = (int) (sizeInDp*scale + 0.5f);
+
+//            int left = parent.getPaddingLeft();
             int right = parent.getWidth() - parent.getPaddingRight();
 
             int childCount = parent.getChildCount();
@@ -130,7 +132,7 @@ public class ArchiveEventsAdapter extends RecyclerView.Adapter<ArchiveEventsAdap
                 int top = child.getBottom() + params.bottomMargin;
                 int bottom = top + divider.getIntrinsicHeight();
 
-                divider.setBounds(140, top, right, bottom);
+                divider.setBounds(dpAsPixels, top, right, bottom);
                 divider.draw(c);
             }
         }

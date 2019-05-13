@@ -25,6 +25,8 @@ class EventsPresenter extends MvpBasePresenter<EventsView> {
     }
 
     private void getEvents() {
+        activeEventsVOList.clear();
+        archiveEventsVOList.clear();
         if (getView() != null) {
             model.getEventList(new Callback<EventsResponse>() {
                 @Override

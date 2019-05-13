@@ -3,12 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingStart="8dp"
+    android:paddingStart="16dp"
     android:paddingTop="8dp"
     android:paddingEnd="8dp"
     android:paddingBottom="8dp">
 
-    <android.support.v7.widget.AppCompatImageView
+    <ImageView
         android:id="@+id/ivArchiveEventImage"
         android:layout_width="40dp"
         android:layout_height="40dp"

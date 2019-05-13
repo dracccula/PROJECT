@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -25,17 +26,19 @@ import kireev.ftshw.project.MainActivity;
 import kireev.ftshw.project.R;
 
 
-public class EventsFragment extends MvpFragment<EventsView, EventsPresenter> implements EventsView {
+public class EventsFragment extends MvpFragment<EventsView, EventsPresenter> implements EventsView, SwipeRefreshLayout.OnRefreshListener {
     RecyclerView rvActiveEvents, rvArchiveEvents;
     ActiveEventsAdapter activeEventsAdapter;
     ArchiveEventsAdapter archiveEventsAdapter;
     ProgressBar pbActiveEvents, pbArchiveEvents;
     TextView tvActiveEventsError, tvArchiveEventsError;
+    SwipeRefreshLayout swipeRefreshLayout;
 
     public EventsFragment() {
         // Required empty public constructor
     }
 
+    @NonNull
     @Override
     public EventsPresenter createPresenter() {
         EventsModel eventsModel = new EventsModel();
@@ -69,7 +72,9 @@ public class EventsFragment extends MvpFragment<EventsView, EventsPresenter> imp
         archiveEventsAdapter = new ArchiveEventsAdapter(getContext());
         rvArchiveEvents.setNestedScrollingEnabled(false);
         rvArchiveEvents.addItemDecoration(new ArchiveEventsAdapter.DividerItemDecoration(getContext(),R.drawable.divider2));
-//        rvArchiveEvents.addItemDecoration(new DividerItemDecoration(rvArchiveEvents.getContext(), DividerItemDecoration.VERTICAL));
+
+        swipeRefreshLayout = v.findViewById(R.id.swipe_events);
+        swipeRefreshLayout.setOnRefreshListener(this);
         return v;
     }
 
@@ -138,5 +143,11 @@ public class EventsFragment extends MvpFragment<EventsView, EventsPresenter> imp
         if (tvArchiveEventsError != null) {
             tvArchiveEventsError.setVisibility(View.VISIBLE);
         }
+    }
+
+    @Override
+    public void onRefresh() {
+        presenter.viewIsReady();
+        swipeRefreshLayout.setRefreshing(false);
     }
 }
