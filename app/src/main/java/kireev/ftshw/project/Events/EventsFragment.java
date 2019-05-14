@@ -147,7 +147,7 @@ public class EventsFragment extends MvpFragment<EventsView, EventsPresenter> imp
 
     @Override
     public void onRefresh() {
-        presenter.viewIsReady();
+        presenter.getEvents();
         swipeRefreshLayout.setRefreshing(false);
     }
 }
