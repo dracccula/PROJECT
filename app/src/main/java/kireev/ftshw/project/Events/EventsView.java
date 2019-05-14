@@ -11,4 +11,5 @@ interface EventsView extends MvpView {
     void getArchiveEventsList(List<ArchiveEventsVO> archiveEventsVOList);
     void hideArchiveProgressbar();
     void showArchiveErrorText();
+    void stopRefreshLayoutAnimation();
 }
