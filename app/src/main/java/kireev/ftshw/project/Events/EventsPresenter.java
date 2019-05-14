@@ -99,7 +99,9 @@ class EventsPresenter extends MvpBasePresenter<EventsView> {
                         }
                         model.updateActiveEventsDB(activeList, false);
                         getView().getActiveEventsList(activeEventsVOList);
+                        getView().hideActiveErrorText();
                         getView().hideActiveProgressbar();
+                        getView().showActiveRecyclerView();
                         getView().stopRefreshLayoutAnimation();
                     } else {
                         getView().hideActiveProgressbar();
@@ -119,7 +121,9 @@ class EventsPresenter extends MvpBasePresenter<EventsView> {
                         }
                         model.updateArchiveEventsDB(archiveList, true);
                         getView().getArchiveEventsList(archiveEventsVOList);
+                        getView().hideArchiveErrorText();
                         getView().hideArchiveProgressbar();
+                        getView().showArchiveRecyclerView();
                         getView().stopRefreshLayoutAnimation();
                     } else {
                         getView().hideArchiveProgressbar();
@@ -132,8 +136,10 @@ class EventsPresenter extends MvpBasePresenter<EventsView> {
                 @Override
                 public void onFailure(@NonNull Call<EventsResponse> call, @NonNull Throwable t) {
                     getView().hideActiveProgressbar();
+                    getView().hideActiveRecyclerView();
                     getView().showActiveErrorText();
                     getView().hideArchiveProgressbar();
+                    getView().hideArchiveRecyclerView();
                     getView().showArchiveErrorText();
                     getView().stopRefreshLayoutAnimation();
                 }

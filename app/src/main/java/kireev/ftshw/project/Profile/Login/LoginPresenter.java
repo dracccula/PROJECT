@@ -31,6 +31,7 @@ class LoginPresenter {
 
     void signIn(String login, String password) {
         if (view != null) {
+            view.showProgress();
             model.signIn(new Callback<SignInResponse>() {
                 @Override
                 public void onResponse(Call<SignInResponse> call, Response<SignInResponse> response) {
@@ -44,14 +45,17 @@ class LoginPresenter {
                         ed.putBoolean("IS_AUTORIZED", true);
                         ed.putString("anygenCookie", anygenCookie);
                         ed.apply();
+                        view.hideProgress();
                         view.closeActivity();
                     } else {
+                        view.hideProgress();
                         view.showError("Неверно введены email и/или пароль");
                     }
                 }
 
                 @Override
                 public void onFailure(Call<SignInResponse> call, Throwable t) {
+                    view.hideProgress();
                     view.showError(t.getMessage());
                 }
             }, login, password);

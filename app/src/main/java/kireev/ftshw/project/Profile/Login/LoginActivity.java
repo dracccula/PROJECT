@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,10 +22,11 @@ import kireev.ftshw.project.MainActivity;
 import kireev.ftshw.project.Network.Connector;
 import kireev.ftshw.project.R;
 
-public class LoginViewActivity extends AppCompatActivity implements LoginView {
+public class LoginActivity extends AppCompatActivity implements LoginView {
     EditText etLogin, etPassword;
     ImageView ivLogo;
     Button bLogin;
+    ProgressBar pbLogin;
     private static long back_pressed;
 
     LoginPresenter presenter;
@@ -37,6 +39,7 @@ public class LoginViewActivity extends AppCompatActivity implements LoginView {
         etLogin = findViewById(R.id.et_login);
         etPassword = findViewById(R.id.et_password);
         ivLogo = findViewById(R.id.iv_logo);
+        pbLogin = findViewById(R.id.pbLogin);
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
             ivLogo.setVisibility(View.GONE);
         }
@@ -124,5 +127,15 @@ public class LoginViewActivity extends AppCompatActivity implements LoginView {
     public void showError(String message) {
         Log.e("signIn onFailure", "ooops!");
         Toast.makeText(getBaseContext(), message, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showProgress() {
+        pbLogin.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideProgress() {
+        pbLogin.setVisibility(View.GONE);
     }
 }

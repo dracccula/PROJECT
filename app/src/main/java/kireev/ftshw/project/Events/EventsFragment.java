@@ -71,7 +71,7 @@ public class EventsFragment extends MvpFragment<EventsView, EventsPresenter> imp
         rvArchiveEvents.setLayoutManager(new LinearLayoutManager(getContext()));
         archiveEventsAdapter = new ArchiveEventsAdapter(getContext());
         rvArchiveEvents.setNestedScrollingEnabled(false);
-        rvArchiveEvents.addItemDecoration(new ArchiveEventsAdapter.DividerItemDecoration(getContext(),R.drawable.divider2));
+        rvArchiveEvents.addItemDecoration(new ArchiveEventsAdapter.DividerItemDecoration(getContext(), R.drawable.divider2));
 
         swipeRefreshLayout = v.findViewById(R.id.swipe_events);
         swipeRefreshLayout.setOnRefreshListener(this);
@@ -118,31 +118,63 @@ public class EventsFragment extends MvpFragment<EventsView, EventsPresenter> imp
     }
 
     @Override
+    public void showArchiveProgressbar() {
+
+    }
+
+    @Override
     public void hideActiveProgressbar() {
-        if (pbActiveEvents != null) {
-            pbActiveEvents.setVisibility(View.GONE);
-        }
+        pbActiveEvents.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void showActiveRecyclerView() {
+        rvActiveEvents.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideActiveRecyclerView() {
+        rvActiveEvents.setVisibility(View.GONE);
     }
 
     @Override
     public void showActiveErrorText() {
-        if (tvActiveEventsError != null) {
-            tvActiveEventsError.setVisibility(View.VISIBLE);
-        }
+        tvActiveEventsError.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideActiveErrorText() {
+        tvActiveEventsError.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void showActiveProgressbar() {
+        pbActiveEvents.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideArchiveProgressbar() {
-        if (pbArchiveEvents != null) {
-            pbArchiveEvents.setVisibility(View.GONE);
-        }
+        pbArchiveEvents.setVisibility(View.GONE);
     }
 
     @Override
     public void showArchiveErrorText() {
-        if (tvArchiveEventsError != null) {
-            tvArchiveEventsError.setVisibility(View.VISIBLE);
-        }
+        tvArchiveEventsError.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideArchiveErrorText() {
+        tvArchiveEventsError.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void showArchiveRecyclerView() {
+        rvArchiveEvents.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideArchiveRecyclerView() {
+        rvArchiveEvents.setVisibility(View.GONE);
     }
 
     @Override

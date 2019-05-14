@@ -19,7 +19,7 @@ import kireev.ftshw.project.Courses.CoursesFragment;
 import kireev.ftshw.project.Courses.GradesList.GradesListActivity;
 import kireev.ftshw.project.Courses.Rating.RatingActivity;
 import kireev.ftshw.project.Events.EventsFragment;
-import kireev.ftshw.project.Profile.Login.LoginViewActivity;
+import kireev.ftshw.project.Profile.Login.LoginActivity;
 import kireev.ftshw.project.Profile.AnonimProfileFragment;
 import kireev.ftshw.project.Profile.MVP.ProfileViewFragment;
 
@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         spStorage = this.getPreferences(Context.MODE_PRIVATE);
         if (!spStorage.getBoolean("IS_AUTORIZED", false)) {
-            startActivity(new Intent(this, LoginViewActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+            startActivity(new Intent(this, LoginActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
             finish();
         } else {
             if (savedInstanceState == null) {
@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
                 ed.remove("IS_AUTORIZED");
                 ed.apply();
                 Toast.makeText(getBaseContext(), "signOut!", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(getBaseContext(), LoginViewActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
+                startActivity(new Intent(getBaseContext(), LoginActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
             }
         });
         adLogout.setNegativeButton(getString(R.string.profile_logout_no), new DialogInterface.OnClickListener() {
@@ -165,7 +165,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void openLoginActivity(View view) {
         Log.d("openLoginActivity", "clicked!");
-        startActivity(new Intent(this, LoginViewActivity.class));
+        startActivity(new Intent(this, LoginActivity.class));
     }
 
     @Override
