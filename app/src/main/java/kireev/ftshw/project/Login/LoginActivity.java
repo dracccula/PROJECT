@@ -1,4 +1,4 @@
-package kireev.ftshw.project.Profile.Login;
+package kireev.ftshw.project.Login;
 
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -12,7 +12,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.regex.Matcher;

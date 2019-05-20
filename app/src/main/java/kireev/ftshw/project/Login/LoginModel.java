@@ -1,4 +1,4 @@
-package kireev.ftshw.project.Profile.Login;
+package kireev.ftshw.project.Login;
 
 import kireev.ftshw.project.Network.Connector;
 import kireev.ftshw.project.Network.FintechAPI;

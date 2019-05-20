@@ -2,8 +2,8 @@ package kireev.ftshw.project.Network;
 
 import kireev.ftshw.project.Network.Model.EventsResponse;
 import kireev.ftshw.project.Network.Model.HomeworksResponse;
-import kireev.ftshw.project.Profile.Login.LoginData;
-import kireev.ftshw.project.Profile.Login.SignInResponse;
+import kireev.ftshw.project.Login.LoginData;
+import kireev.ftshw.project.Login.SignInResponse;
 import kireev.ftshw.project.Profile.MVP.ProfileData;
 import retrofit2.Call;
 import retrofit2.http.Body;

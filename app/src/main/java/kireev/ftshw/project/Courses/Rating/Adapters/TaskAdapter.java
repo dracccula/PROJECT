@@ -40,11 +40,12 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         Double dMaxMark = Double.valueOf(taskVO.getTaskMax_score());
 //        String mark = new DecimalFormat("##.##").format(dMark);
 //        String maxMark = new DecimalFormat("##.##").format(dMaxMark);
-        if (dMark == 0.0){
-            holder.tvMark.setText(String.valueOf(dMark));
-        } else {
-            holder.tvMark.setText(dMark + "/" + dMaxMark);
-        }
+        holder.tvMark.setText(dMark + " / " + dMaxMark);
+//        if (dMark == 0.0){
+//            holder.tvMark.setText(String.valueOf(dMark));
+//        } else {
+//            holder.tvMark.setText(dMark + "/" + dMaxMark);
+//        }
         String deadlineDate = taskVO.getTaskDeadline_date();
         String formattedDeadlineDate = "XXX";
         if (deadlineDate != null) {

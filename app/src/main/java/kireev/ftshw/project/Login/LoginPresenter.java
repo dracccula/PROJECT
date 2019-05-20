@@ -1,9 +1,8 @@
-package kireev.ftshw.project.Profile.Login;
+package kireev.ftshw.project.Login;
 
 import android.content.SharedPreferences;
 import android.util.Log;
 
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;

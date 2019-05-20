@@ -9,22 +9,23 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.hannesdorfmann.mosby3.mvp.MvpActivity;
+
 import kireev.ftshw.project.Courses.CoursesFragment;
 import kireev.ftshw.project.Courses.GradesList.GradesListActivity;
 import kireev.ftshw.project.Courses.Rating.RatingActivity;
 import kireev.ftshw.project.Events.EventsFragment;
-import kireev.ftshw.project.Profile.Login.LoginActivity;
+import kireev.ftshw.project.Login.LoginActivity;
 import kireev.ftshw.project.Profile.AnonimProfileFragment;
 import kireev.ftshw.project.Profile.MVP.ProfileViewFragment;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends MvpActivity<MainView,MainPresenter> implements MainView {
 
     public AlertDialog.Builder ad, adEmptyFields, adLogout;
     private static long back_pressed;
@@ -110,6 +111,12 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @NonNull
+    @Override
+    public MainPresenter createPresenter() {
+        return new MainPresenter();
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.logout) {
@@ -147,22 +154,25 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
+    @Override
     public void setActionBarTitle(String title) {
         getSupportActionBar().setTitle(title);
     }
-
+    @Override
     public void gradesButtonClick(View view) {
         Log.d("gradesButtonClick", "clicked!");
         startActivityForResult(new Intent(this, GradesListActivity.class), 1);
         Log.d("gradesButtonClick", "GradesListActivity opened!");
     }
 
+    @Override
     public void ratingButtonClick(View view) {
         Log.d("gradesButtonClick", "clicked!");
         startActivityForResult(new Intent(this, RatingActivity.class), 1);
         Log.d("gradesButtonClick", "GradesListActivity opened!");
     }
 
+    @Override
     public void openLoginActivity(View view) {
         Log.d("openLoginActivity", "clicked!");
         startActivity(new Intent(this, LoginActivity.class));

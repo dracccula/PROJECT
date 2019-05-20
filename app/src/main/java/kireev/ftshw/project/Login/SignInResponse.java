@@ -1,4 +1,4 @@
-package kireev.ftshw.project.Profile.Login;
+package kireev.ftshw.project.Login;
 
 import java.util.List;
 import com.google.gson.annotations.Expose;

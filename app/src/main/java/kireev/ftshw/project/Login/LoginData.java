@@ -1,4 +1,4 @@
-package kireev.ftshw.project.Profile.Login;
+package kireev.ftshw.project.Login;
 
 
 import com.google.gson.annotations.SerializedName;
