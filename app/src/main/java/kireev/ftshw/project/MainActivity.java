@@ -31,6 +31,7 @@ public class MainActivity extends MvpActivity<MainView,MainPresenter> implements
     private static long back_pressed;
     public static SharedPreferences spStorage;
     public static String anygenCookie;
+    private MainModel model = new MainModel();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +44,7 @@ public class MainActivity extends MvpActivity<MainView,MainPresenter> implements
             startActivity(new Intent(this, LoginActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
             finish();
         } else {
+            presenter.getConnections();
             if (savedInstanceState == null) {
                 navigation.getMenu().getItem(1).setChecked(true);
                 if (navigation.getMenu().findItem(navigation.getSelectedItemId()) == navigation.getMenu().getItem(0)) {
@@ -114,7 +116,7 @@ public class MainActivity extends MvpActivity<MainView,MainPresenter> implements
     @NonNull
     @Override
     public MainPresenter createPresenter() {
-        return new MainPresenter();
+        return new MainPresenter(model);
     }
 
     @Override

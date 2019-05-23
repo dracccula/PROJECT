@@ -31,7 +31,7 @@ public class Connector {
         return netInfo != null && netInfo.isConnectedOrConnecting();
     }
 
-    public static Retrofit retrofit;
+    private static Retrofit retrofit;
 
     /*
     This public static method will return Retrofit client

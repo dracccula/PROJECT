@@ -17,6 +17,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import kireev.ftshw.project.App;
+import kireev.ftshw.project.Database.Dao.CourseDao;
+import kireev.ftshw.project.Database.Entity.Course;
 import kireev.ftshw.project.MainActivity;
 import kireev.ftshw.project.R;
 import kireev.ftshw.project.TempTools.SetRandom;
@@ -48,9 +51,14 @@ public class CoursesFragment extends Fragment implements SwipeRefreshLayout.OnRe
                              Bundle savedInstanceState) {
         ((MainActivity) Objects.requireNonNull(getActivity()))
                 .setActionBarTitle(getString(R.string.title_courses));
-        View v = inflater.inflate(R.layout.fragment_courses, container, false);
-        mSwipeRefreshLayout = v.findViewById(R.id.swipe_container);
-        mSwipeRefreshLayout.setOnRefreshListener(this);
+        CourseDao courseDao = App.getInstance().getDatabase().courseDao();
+        List<Course> course = courseDao.getAll();
+        View v = inflater.inflate(R.layout.fragment_error, container, false);;
+        if (course.size() != 0) {
+            v = inflater.inflate(R.layout.fragment_courses, container, false);
+            mSwipeRefreshLayout = v.findViewById(R.id.swipe_container);
+            mSwipeRefreshLayout.setOnRefreshListener(this);
+        }
         return v;
     }
 

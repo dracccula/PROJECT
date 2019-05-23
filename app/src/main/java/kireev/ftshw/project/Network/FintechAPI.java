@@ -1,5 +1,6 @@
 package kireev.ftshw.project.Network;
 
+import kireev.ftshw.project.Network.Model.ConnectionsResponse;
 import kireev.ftshw.project.Network.Model.EventsResponse;
 import kireev.ftshw.project.Network.Model.HomeworksResponse;
 import kireev.ftshw.project.Login.LoginData;
@@ -10,6 +11,9 @@ import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 
+import static kireev.ftshw.project.Network.Urls.ABOUT;
+import static kireev.ftshw.project.Network.Urls.CONNECTIONS;
+import static kireev.ftshw.project.Network.Urls.COURSE;
 import static kireev.ftshw.project.Network.Urls.EVENTS;
 import static kireev.ftshw.project.Network.Urls.HOMEWORKS;
 import static kireev.ftshw.project.Network.Urls.SIGNIN;
@@ -29,4 +33,10 @@ public interface FintechAPI {
 
     @GET(EVENTS)
     Call<EventsResponse> getEventsList();
+
+    @GET(CONNECTIONS)
+    Call<ConnectionsResponse> getConnections();
+
+//    @GET(ABOUT)
+//    Call<> getAbout();
 }

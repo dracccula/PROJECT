@@ -31,7 +31,7 @@ public class Profile {
     private Boolean admin;
     private String avatar;
 
-    public Profile(long id, String firstName, String lastName, String middleName, String email, String birthday, String phoneMobile, String description, String region, String school, long schoolGraduation, String university, String faculty, long universityGraduation, String grade, String department, String currentWork, String avatar, String resume, String skypeLogin, Boolean isClient, String shirtSize, Boolean admin ){
+    public Profile(long id, String firstName, String lastName, String middleName, String email, String birthday, String phoneMobile, String description, String region, String school, long schoolGraduation, String university, String faculty, long universityGraduation, String grade, String department, String currentWork, String avatar, String resume, String skypeLogin, Boolean isClient, String shirtSize, Boolean admin){
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;

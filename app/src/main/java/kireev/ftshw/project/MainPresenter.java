@@ -1,12 +1,51 @@
 package kireev.ftshw.project;
 
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import com.hannesdorfmann.mosby3.mvp.MvpPresenter;
 
+import java.util.List;
+import java.util.Objects;
+
+import kireev.ftshw.project.Database.Dao.CourseDao;
+import kireev.ftshw.project.Database.Entity.Course;
+import kireev.ftshw.project.Database.ProjectDatabase;
+import kireev.ftshw.project.Network.Model.ConnectionsResponse;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 class MainPresenter implements MvpPresenter<MainView> {
 
-    MainPresenter(){
+    private MainModel model;
+
+    MainPresenter(MainModel mainModel) {
+        this.model = mainModel;
+    }
+
+
+    public void getConnections() {
+        model.getConnections(new Callback<ConnectionsResponse>() {
+            @Override
+            public void onResponse(Call<ConnectionsResponse> call, Response<ConnectionsResponse> response) {
+                ConnectionsResponse connectionsResponse = response.body();
+                int code = response.code();
+                if (code == 200 && Objects.requireNonNull(connectionsResponse).getCourses() != null) {
+                    List<ConnectionsResponse.Course> courseList = connectionsResponse.getCourses();
+                    String url = courseList.get(0).getUrl();
+                    String title = courseList.get(0).getTitle();
+                    String status = courseList.get(0).getStatus();
+                    String dateStart = courseList.get(0).getEventDateStart();
+                    model.updateProfileCourseData(url, title, status, dateStart);
+                    Log.e("getConnections", url + title + status + dateStart);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ConnectionsResponse> call, Throwable t) {
+            }
+        });
     }
 
     @Override
