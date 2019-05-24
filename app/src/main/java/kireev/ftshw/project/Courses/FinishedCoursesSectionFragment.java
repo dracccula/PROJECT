@@ -11,15 +11,19 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.hannesdorfmann.mosby3.mvp.MvpFragment;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import kireev.ftshw.project.R;
 
 public class FinishedCoursesSectionFragment extends MvpFragment<FinishedCoursesSectionView, FinishedCoursesSectionPresenter> implements FinishedCoursesSectionView {
 
-    TextView tvCourseTitle, tvCourseDate, tvCoursePoints;
+    ProgressBar pbCourses;
     RecyclerView rvCourses;
     CoursesAdapter coursesAdapter;
 
@@ -39,9 +43,7 @@ public class FinishedCoursesSectionFragment extends MvpFragment<FinishedCoursesS
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_finished_courses_section, container, false);
-        tvCourseDate = v.findViewById(R.id.tvCourseDate);
-        tvCourseTitle = v.findViewById(R.id.tvCourseTitle);
-        tvCoursePoints = v.findViewById(R.id.tvCoursePoints);
+        pbCourses = v.findViewById(R.id.pbCourses);
         rvCourses = v.findViewById(R.id.rvCourses);
         rvCourses.setLayoutManager(new LinearLayoutManager(getContext()));
         coursesAdapter = new CoursesAdapter(getContext());
@@ -66,12 +68,12 @@ public class FinishedCoursesSectionFragment extends MvpFragment<FinishedCoursesS
 
     @Override
     public void getCourses(String title, String dateStart) {
-        tvCourseTitle.setText("555");
-        tvCourseDate.setText("111");
-    }
-
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
+        List<CoursesVO> coursesVOList = new ArrayList<>();
+        CoursesVO coursesVO = new CoursesVO();
+        coursesVO.setTitle(title);
+        coursesVO.setDateStart(dateStart);
+        coursesVOList.add(0,coursesVO);
+        coursesAdapter.setItems(coursesVOList);
+        rvCourses.setAdapter(coursesAdapter);
     }
 }

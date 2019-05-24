@@ -39,6 +39,8 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
+import static kireev.ftshw.project.MainActivity.spStorage;
+
 public class RatingFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
     SwipeRefreshLayout mSwipeRefreshLayout;
     RecyclerView rvHomeworks;
@@ -130,7 +132,7 @@ public class RatingFragment extends Fragment implements SwipeRefreshLayout.OnRef
         homeworkVOList.clear();
         Retrofit retrofit = Connector.getRetrofitClient();
         FintechAPI fintechAPI = retrofit.create(FintechAPI.class);
-        Call<HomeworksResponse> call = fintechAPI.getHomeworks();
+        Call<HomeworksResponse> call = fintechAPI.getHomeworks(spStorage.getString("courseUrl", ""));
         call.enqueue(new Callback<HomeworksResponse>() {
             @Override
             public void onResponse(Call call, Response response) {

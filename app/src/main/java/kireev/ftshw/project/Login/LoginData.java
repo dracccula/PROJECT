@@ -26,7 +26,7 @@ public class LoginData {
         this.password = password;
     }
 
-    public LoginData(String email, String password){
+    LoginData(String email, String password){
         this.email = email;
         this.password = password;
     }

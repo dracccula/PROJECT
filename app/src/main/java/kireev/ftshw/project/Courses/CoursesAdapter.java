@@ -10,15 +10,14 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import kireev.ftshw.project.Database.Entity.Course;
 import kireev.ftshw.project.R;
 
 public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.CoursesViewHolder> {
 
+    private List<CoursesVO> coursesVOList;
     private Context context;
-    private CoursesVO coursesVO;
 
-    public CoursesAdapter(Context context) {this.context = context;
+    CoursesAdapter(Context context) {this.context = context;
     }
 
     @NonNull
@@ -30,13 +29,18 @@ public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.CoursesV
 
     @Override
     public void onBindViewHolder(@NonNull CoursesViewHolder coursesViewHolder, int i) {
-        coursesViewHolder.tvCourseDate.setText(coursesVO.getDateStart());
-        coursesViewHolder.tvCourseTitle.setText(coursesVO.getTitle());
+        coursesViewHolder.tvCourseDate.setText(coursesVOList.get(0).getDateStart());
+        coursesViewHolder.tvCourseTitle.setText(coursesVOList.get(0).getTitle());
     }
 
     @Override
     public int getItemCount() {
-        return 1;
+        return coursesVOList.size();
+    }
+
+    void setItems(List<CoursesVO> courses) {
+        this.coursesVOList = courses;
+        notifyDataSetChanged();
     }
 
     class CoursesViewHolder extends RecyclerView.ViewHolder {

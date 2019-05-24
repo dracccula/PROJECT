@@ -120,28 +120,43 @@ class EventsPresenter extends MvpBasePresenter<EventsView> {
                             archiveEventsVOList.add(archiveEventsVO);
                         }
                         model.updateArchiveEventsDB(archiveList, true);
-                        getView().getArchiveEventsList(archiveEventsVOList);
-                        getView().hideArchiveErrorText();
-                        getView().hideArchiveProgressbar();
-                        getView().showArchiveRecyclerView();
-                        getView().stopRefreshLayoutAnimation();
+                        ifViewAttached(new ViewAction<EventsView>() {
+                            @Override
+                            public void run(@NonNull EventsView view) {
+                                view.getArchiveEventsList(archiveEventsVOList);
+                                view.hideArchiveErrorText();
+                                view.hideArchiveProgressbar();
+                                view.showArchiveRecyclerView();
+                                view.stopRefreshLayoutAnimation();
+                            }
+                        });
                     } else {
-                        getView().hideArchiveProgressbar();
-                        getView().showArchiveErrorText();
-                        getView().stopRefreshLayoutAnimation();
+                        ifViewAttached(new ViewAction<EventsView>() {
+                            @Override
+                            public void run(@NonNull EventsView view) {
+                                view.hideArchiveProgressbar();
+                                view.showArchiveErrorText();
+                                view.stopRefreshLayoutAnimation();
+                            }
+                        });
                     }
 
                 }
 
                 @Override
                 public void onFailure(@NonNull Call<EventsResponse> call, @NonNull Throwable t) {
-                    getView().hideActiveProgressbar();
-                    getView().hideActiveRecyclerView();
-                    getView().showActiveErrorText();
-                    getView().hideArchiveProgressbar();
-                    getView().hideArchiveRecyclerView();
-                    getView().showArchiveErrorText();
-                    getView().stopRefreshLayoutAnimation();
+                    ifViewAttached(new ViewAction<EventsView>() {
+                        @Override
+                        public void run(@NonNull EventsView view) {
+                            view.hideActiveProgressbar();
+                            view.hideActiveRecyclerView();
+                            view.showActiveErrorText();
+                            view.hideArchiveProgressbar();
+                            view.hideArchiveRecyclerView();
+                            view.showArchiveErrorText();
+                            view.stopRefreshLayoutAnimation();
+                        }
+                    });
                 }
             });
         }

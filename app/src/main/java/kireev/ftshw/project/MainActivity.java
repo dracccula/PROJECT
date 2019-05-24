@@ -24,7 +24,6 @@ import kireev.ftshw.project.Login.LoginActivity;
 import kireev.ftshw.project.Profile.AnonimProfileFragment;
 import kireev.ftshw.project.Profile.MVP.ProfileViewFragment;
 
-
 public class MainActivity extends MvpActivity<MainView,MainPresenter> implements MainView {
 
     public AlertDialog.Builder ad, adEmptyFields, adLogout;

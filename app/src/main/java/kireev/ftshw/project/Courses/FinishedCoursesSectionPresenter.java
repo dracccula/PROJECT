@@ -4,26 +4,20 @@ import android.support.annotation.NonNull;
 
 import com.hannesdorfmann.mosby3.mvp.MvpBasePresenter;
 
-import java.util.List;
-
 import kireev.ftshw.project.App;
-import kireev.ftshw.project.Database.Dao.CourseDao;
-import kireev.ftshw.project.Database.Entity.Course;
 import kireev.ftshw.project.Database.ProjectDatabase;
+
+import static kireev.ftshw.project.MainActivity.spStorage;
 
 class FinishedCoursesSectionPresenter extends MvpBasePresenter<FinishedCoursesSectionView> {
     private ProjectDatabase db = App.getInstance().getDatabase();
 
-    private String getCourseTitleFromDB(){
-        CourseDao courseDao = db.courseDao();
-        List<Course> course = courseDao.getAll();
-        return course.get(0).getCourseTitle();
+    private String getCourseTitleFromDB() {
+        return spStorage.getString("courseTitle", "");
     }
 
-    private String getCourseStartDateFromDB(){
-        CourseDao courseDao = db.courseDao();
-        List<Course> course = courseDao.getAll();
-        return course.get(0).getCourseDateStart();
+    private String getCourseStartDateFromDB() {
+        return spStorage.getString("courseDateStart", "");
     }
 
     @Override
@@ -47,6 +41,11 @@ class FinishedCoursesSectionPresenter extends MvpBasePresenter<FinishedCoursesSe
     }
 
     public void viewIsReady() {
-        getView().getCourses(getCourseTitleFromDB(),getCourseStartDateFromDB());
+        ifViewAttached(new ViewAction<FinishedCoursesSectionView>() {
+            @Override
+            public void run(@NonNull FinishedCoursesSectionView view) {
+                view.getCourses(getCourseTitleFromDB(), getCourseStartDateFromDB());
+            }
+        });
     }
 }

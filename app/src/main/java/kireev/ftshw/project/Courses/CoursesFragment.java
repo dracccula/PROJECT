@@ -51,14 +51,11 @@ public class CoursesFragment extends Fragment implements SwipeRefreshLayout.OnRe
                              Bundle savedInstanceState) {
         ((MainActivity) Objects.requireNonNull(getActivity()))
                 .setActionBarTitle(getString(R.string.title_courses));
-        CourseDao courseDao = App.getInstance().getDatabase().courseDao();
-        List<Course> course = courseDao.getAll();
-        View v = inflater.inflate(R.layout.fragment_error, container, false);;
-        if (course.size() != 0) {
-            v = inflater.inflate(R.layout.fragment_courses, container, false);
-            mSwipeRefreshLayout = v.findViewById(R.id.swipe_container);
-            mSwipeRefreshLayout.setOnRefreshListener(this);
-        }
+//        CourseDao courseDao = App.getInstance().getDatabase().courseDao();
+//        List<Course> course = courseDao.getAll();
+        View v = inflater.inflate(R.layout.fragment_courses, container, false);
+        mSwipeRefreshLayout = v.findViewById(R.id.swipe_container);
+        mSwipeRefreshLayout.setOnRefreshListener(this);
         return v;
     }
 
