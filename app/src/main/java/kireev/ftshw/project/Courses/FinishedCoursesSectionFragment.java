@@ -1,8 +1,10 @@
 package kireev.ftshw.project.Courses;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -11,6 +13,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
@@ -20,6 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import kireev.ftshw.project.R;
+import kireev.ftshw.project.WebViewActivity;
 
 public class FinishedCoursesSectionFragment extends MvpFragment<FinishedCoursesSectionView, FinishedCoursesSectionPresenter> implements FinishedCoursesSectionView {
 
@@ -46,14 +50,21 @@ public class FinishedCoursesSectionFragment extends MvpFragment<FinishedCoursesS
         pbCourses = v.findViewById(R.id.pbCourses);
         rvCourses = v.findViewById(R.id.rvCourses);
         rvCourses.setLayoutManager(new LinearLayoutManager(getContext()));
-        coursesAdapter = new CoursesAdapter(getContext());
+        CoursesAdapter.OnClickListener onClickListener = new CoursesAdapter.OnClickListener() {
+            @Override
+            public void onClick(CoursesVO coursesVO) {
+                Intent intent = new Intent(getActivity(), WebViewActivity.class);
+                startActivity(intent);
+            }
+        };
+        coursesAdapter = new CoursesAdapter(onClickListener, getContext());
         return v;
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        presenter.viewIsReady();
+        presenter.attachView(this);
     }
 
     @Override
@@ -75,5 +86,10 @@ public class FinishedCoursesSectionFragment extends MvpFragment<FinishedCoursesS
         coursesVOList.add(0,coursesVO);
         coursesAdapter.setItems(coursesVOList);
         rvCourses.setAdapter(coursesAdapter);
+    }
+
+    @Override
+    public void hideCoursesProgressBar() {
+        pbCourses.setVisibility(View.GONE);
     }
 }

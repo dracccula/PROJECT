@@ -1,5 +1,6 @@
 package kireev.ftshw.project.Network;
 
+import kireev.ftshw.project.Network.Model.AboutResponse;
 import kireev.ftshw.project.Network.Model.ConnectionsResponse;
 import kireev.ftshw.project.Network.Model.EventsResponse;
 import kireev.ftshw.project.Network.Model.HomeworksResponse;
@@ -16,6 +17,7 @@ import retrofit2.http.Path;
 import static kireev.ftshw.project.Network.Urls.ABOUT;
 import static kireev.ftshw.project.Network.Urls.CONNECTIONS;
 
+import static kireev.ftshw.project.Network.Urls.COURSE;
 import static kireev.ftshw.project.Network.Urls.EVENTS;
 import static kireev.ftshw.project.Network.Urls.HOMEWORKS;
 import static kireev.ftshw.project.Network.Urls.SIGNIN;
@@ -30,7 +32,7 @@ public interface FintechAPI {
     @GET(USER)
     Call<ProfileData> getUser();
 
-    @GET(HOMEWORKS)
+    @GET(COURSE + HOMEWORKS)
     Call<HomeworksResponse> getHomeworks(@Path("course_id") String courseId);
 
     @GET(EVENTS)
@@ -39,6 +41,6 @@ public interface FintechAPI {
     @GET(CONNECTIONS)
     Call<ConnectionsResponse> getConnections();
 
-//    @GET(ABOUT)
-//    Call<> getAbout(@Path("course_id") String courseId);
+    @GET(COURSE + ABOUT)
+    Call<AboutResponse> getAbout(@Path("course_id") String courseId);
 }

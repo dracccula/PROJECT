@@ -22,12 +22,9 @@ class FinishedCoursesSectionPresenter extends MvpBasePresenter<FinishedCoursesSe
 
     @Override
     public void attachView(@NonNull FinishedCoursesSectionView view) {
-
-    }
-
-    @Override
-    public void detachView(boolean retainInstance) {
-
+        //viewIsReady();
+        view.hideCoursesProgressBar();
+        view.getCourses(getCourseTitleFromDB(), getCourseStartDateFromDB());
     }
 
     @Override
@@ -40,10 +37,11 @@ class FinishedCoursesSectionPresenter extends MvpBasePresenter<FinishedCoursesSe
 
     }
 
-    public void viewIsReady() {
+    private void viewIsReady() {
         ifViewAttached(new ViewAction<FinishedCoursesSectionView>() {
             @Override
             public void run(@NonNull FinishedCoursesSectionView view) {
+                view.hideCoursesProgressBar();
                 view.getCourses(getCourseTitleFromDB(), getCourseStartDateFromDB());
             }
         });

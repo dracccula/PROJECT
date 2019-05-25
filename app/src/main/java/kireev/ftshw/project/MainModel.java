@@ -19,10 +19,4 @@ class MainModel {
         Call<ConnectionsResponse> call = fintechAPI.getConnections();
         call.enqueue(callback);
     }
-
-    void updateProfileCourseData(String courseUrl, String courseTitle, String courseStatus, String courseDateStart){
-        CourseDao courseDao = db.courseDao();
-        Course course = new Course(courseUrl, courseTitle, courseStatus,courseDateStart);
-        courseDao.insert(course);
-    }
 }

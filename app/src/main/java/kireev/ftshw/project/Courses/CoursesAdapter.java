@@ -8,16 +8,23 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import kireev.ftshw.project.R;
 
 public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.CoursesViewHolder> {
 
     private List<CoursesVO> coursesVOList;
+    private OnClickListener onClickListener;
     private Context context;
 
-    CoursesAdapter(Context context) {this.context = context;
+    CoursesAdapter(OnClickListener onClickListener, Context context) {
+        this.context = context;
+        this.onClickListener = onClickListener;
     }
 
     @NonNull
@@ -29,8 +36,28 @@ public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.CoursesV
 
     @Override
     public void onBindViewHolder(@NonNull CoursesViewHolder coursesViewHolder, int i) {
-        coursesViewHolder.tvCourseDate.setText(coursesVOList.get(0).getDateStart());
+        String courseDateStart = coursesVOList.get(0).getDateStart();
+        String formattedDateStart = "Отсутствует";
+        if (courseDateStart != null) {
+            SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.getDefault());
+            try {
+                Date dStartDate = inputFormat.parse(courseDateStart);
+                SimpleDateFormat newDate = new SimpleDateFormat("MMM yyyy", Locale.getDefault());//set format of new date
+
+                formattedDateStart = newDate.format(dStartDate);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            coursesViewHolder.tvCourseDate.setText(formattedDateStart.toUpperCase());
+        } else {
+            coursesViewHolder.tvCourseDate.setVisibility(View.INVISIBLE);
+        }
+        coursesViewHolder.tvCourseDate.setText(formattedDateStart);
         coursesViewHolder.tvCourseTitle.setText(coursesVOList.get(0).getTitle());
+    }
+
+    public interface OnClickListener {
+        void onClick(CoursesVO coursesVO);
     }
 
     @Override
@@ -53,6 +80,13 @@ public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.CoursesV
             tvCourseTitle = itemView.findViewById(R.id.tvCourseTitle);
             tvCourseDate = itemView.findViewById(R.id.tvCourseDate);
             tvCoursePoints = itemView.findViewById(R.id.tvCoursePoints);
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    CoursesVO coursesVO = coursesVOList.get(getLayoutPosition());
+                    onClickListener.onClick(coursesVO);
+                }
+            });
         }
     }
 }

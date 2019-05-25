@@ -19,11 +19,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:targetApi="n">
+        <activity android:name=".WebViewActivity"></activity>
         <activity android:name=".Courses.Rating.Tasks.TasksActivity" />
-        <activity android:name=".Courses.Rating.RatingActivity">
-        </activity>
-        <activity android:name=".Login.LoginActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity android:name=".Courses.Rating.RatingActivity"></activity>
+        <activity
+            android:name=".Login.LoginActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity android:name=".Courses.GradesList.GradesListActivity" />
         <activity
             android:name=".MainActivity"

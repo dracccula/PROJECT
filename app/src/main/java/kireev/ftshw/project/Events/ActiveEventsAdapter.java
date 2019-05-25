@@ -44,8 +44,8 @@ public class ActiveEventsAdapter extends RecyclerView.Adapter<ActiveEventsAdapte
         activeEventsViewHolder.tvActiveEventTitle.setText(activeEventsVO.getTitle());
         String startDate = activeEventsVO.getDateStart();
         String endDate = activeEventsVO.getDateEnd();
-        String formattedStartDate = "XXX";
-        String formattedEndDate = "XXX";
+        String formattedStartDate = "Отсутствует";
+        String formattedEndDate = "Отсутствует";
         if (startDate != null) {
             SimpleDateFormat inputFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss'Z'", Locale.getDefault());
             try {

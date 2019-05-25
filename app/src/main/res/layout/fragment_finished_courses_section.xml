@@ -5,9 +5,6 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:divider="@drawable/divider"
-    android:showDividers="middle"
-    android:dividerPadding="3dp"
     tools:context=".Courses.FinishedCoursesSectionFragment">
 
     <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -37,7 +34,8 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rvCourses"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        >
     </android.support.v7.widget.RecyclerView>
 
 </LinearLayout>
