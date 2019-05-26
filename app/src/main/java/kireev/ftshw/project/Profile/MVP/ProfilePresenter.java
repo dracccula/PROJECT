@@ -1,6 +1,7 @@
 package kireev.ftshw.project.Profile.MVP;
 
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import com.hannesdorfmann.mosby3.mvp.MvpBasePresenter;
 
@@ -11,6 +12,7 @@ import kireev.ftshw.project.App;
 import kireev.ftshw.project.Database.Dao.ProfileDao;
 import kireev.ftshw.project.Database.Entity.Profile;
 import kireev.ftshw.project.Database.ProjectDatabase;
+import kireev.ftshw.project.Network.Model.GradesResponse;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -81,5 +83,32 @@ public class ProfilePresenter extends MvpBasePresenter<ProfileView> {
 
     void viewIsReady() {
         checkDatabase();
+        getGrades();
+    }
+
+    private void getGrades(){
+        model.getGrades(new Callback<GradesResponse>() {
+            @Override
+            public void onResponse(Call<GradesResponse> call, Response<GradesResponse> response) {
+                int testCount = 0;
+                GradesResponse gradesResponse = response.body();
+                if (gradesResponse.getName().contains("Доступ")){
+                    List<List<GradesResponse.GroupedTask>> groupedTaskList = gradesResponse.getGroupedTasks();
+                    for (int i = 0; i < groupedTaskList.size(); i++) {
+                        for (int j = 0; i < groupedTaskList.size(); i++) {
+                            if (!groupedTaskList.get(i).get(j).getTitle().contains("Сумма")){
+                                testCount++;
+                            }
+                        }
+                    }
+                    Log.i("Tests: ", String.valueOf(testCount));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<GradesResponse> call, Throwable t) {
+
+            }
+        });
     }
 }

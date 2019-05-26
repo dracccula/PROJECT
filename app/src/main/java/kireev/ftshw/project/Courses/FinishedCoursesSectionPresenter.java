@@ -12,11 +12,11 @@ import static kireev.ftshw.project.MainActivity.spStorage;
 class FinishedCoursesSectionPresenter extends MvpBasePresenter<FinishedCoursesSectionView> {
     private ProjectDatabase db = App.getInstance().getDatabase();
 
-    private String getCourseTitleFromDB() {
+    private String getCourseTitleFromSP() {
         return spStorage.getString("courseTitle", "");
     }
 
-    private String getCourseStartDateFromDB() {
+    private String getCourseStartDateFromSP() {
         return spStorage.getString("courseDateStart", "");
     }
 
@@ -24,7 +24,7 @@ class FinishedCoursesSectionPresenter extends MvpBasePresenter<FinishedCoursesSe
     public void attachView(@NonNull FinishedCoursesSectionView view) {
         //viewIsReady();
         view.hideCoursesProgressBar();
-        view.getCourses(getCourseTitleFromDB(), getCourseStartDateFromDB());
+        view.getCourses(getCourseTitleFromSP(), getCourseStartDateFromSP());
     }
 
     @Override
@@ -42,7 +42,7 @@ class FinishedCoursesSectionPresenter extends MvpBasePresenter<FinishedCoursesSe
             @Override
             public void run(@NonNull FinishedCoursesSectionView view) {
                 view.hideCoursesProgressBar();
-                view.getCourses(getCourseTitleFromDB(), getCourseStartDateFromDB());
+                view.getCourses(getCourseTitleFromSP(), getCourseStartDateFromSP());
             }
         });
     }

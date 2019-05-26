@@ -1,4 +1,4 @@
-package kireev.ftshw.project.Profile.MVP;
+package kireev.ftshw.project.Courses;
 
 import java.util.List;
 
@@ -11,16 +11,9 @@ import retrofit2.Retrofit;
 
 import static kireev.ftshw.project.MainActivity.spStorage;
 
-class ProfileModel {
+class GradesSectionModel {
 
-    void getUserData(Callback<ProfileData> callback) {
-        Retrofit retrofit = Connector.getRetrofitClient();
-        FintechAPI fintechAPI = retrofit.create(FintechAPI.class);
-        Call<ProfileData> call = fintechAPI.getUser();
-        call.enqueue(callback);
-    }
-
-    void getGrades(Callback<GradesResponse> callback) {
+    void getGrades(Callback<GradesResponse> callback){
         Retrofit retrofit = Connector.getRetrofitClient();
         FintechAPI fintechAPI = retrofit.create(FintechAPI.class);
         Call<GradesResponse> call = fintechAPI.getGrades(spStorage.getString("courseUrl", ""));
@@ -28,4 +21,3 @@ class ProfileModel {
     }
 
 }
-

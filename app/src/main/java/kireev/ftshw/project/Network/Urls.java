@@ -9,4 +9,5 @@ public interface Urls {
     String EVENTS = "calendar/list/event";
     String CONNECTIONS = "connections";
     String ABOUT = "{course_id}/about";
+    String GRADES = "{course_id}/grades";
 }

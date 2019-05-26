@@ -1,9 +1,13 @@
 package kireev.ftshw.project;
 
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.MenuItem;
+import android.view.View;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -30,6 +34,7 @@ public class WebViewActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_web_view);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         activityTitle = "О курсе ";
         webView = findViewById(R.id.webView);
         webView.setWebViewClient(new MyWebViewClient());
@@ -39,6 +44,16 @@ public class WebViewActivity extends AppCompatActivity {
 //        webView.loadUrl("http://fintech.tinkoff.ru/course/" + spStorage.getString("courseUrl", "") + "/about");
         webView.loadDataWithBaseURL(null, html, "text/html",null,null);
         getAboutResponse();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                Log.d("Back", "clicked!");
+                finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private class MyWebViewClient extends WebViewClient {
@@ -57,22 +72,19 @@ public class WebViewActivity extends AppCompatActivity {
         }
     }
 
-//    @Override
-//    public void onBackPressed() {
-//        if(webView.canGoBack()) {
-//            webView.goBack();
-//        } else {
-//            super.onBackPressed();
-//        }
-//    }
 
-    private void getAboutResponse(){
+    public void getAboutResponse(){
         Retrofit retrofit = Connector.getRetrofitClient();
         FintechAPI fintechAPI = retrofit.create(FintechAPI.class);
         Call<AboutResponse> call = fintechAPI.getAbout(spStorage.getString("courseUrl", ""));
         call.enqueue(new Callback<AboutResponse>() {
             @Override
             public void onResponse(Call<AboutResponse> call, Response<AboutResponse> response) {
+                if (getSupportFragmentManager().findFragmentById(R.id.ErrorFragment) != null){
+                    //finish();
+                    //recreate();
+                }
+                getSupportFragmentManager().popBackStack();
                 AboutResponse aboutResponse = response.body();
                 activityTitle = activityTitle + Objects.requireNonNull(aboutResponse).getTitle();
                 setTitle(activityTitle);
@@ -82,7 +94,8 @@ public class WebViewActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<AboutResponse> call, Throwable t) {
-
+                getSupportFragmentManager().beginTransaction().replace(R.id.webView,
+                        new ErrorFragment()).commitNow();
             }
         });
     }
