@@ -17,6 +17,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static kireev.ftshw.project.MainActivity.spStorage;
+
 public class ProfilePresenter extends MvpBasePresenter<ProfileView> {
 
     private final ProfileModel model;
@@ -33,6 +35,7 @@ public class ProfilePresenter extends MvpBasePresenter<ProfileView> {
             refresh();
         } else {
             getProfileFromDb();
+            getProfileProgressFromSp();
             refresh();
         }
     }
@@ -42,6 +45,21 @@ public class ProfilePresenter extends MvpBasePresenter<ProfileView> {
         ProfileDao profileDao = db.profileDao();
         List<Profile> profileList = profileDao.getAll();
         getView().showProfileFromDB(profileList);
+    }
+
+    private int getProfileIdFromDb() {
+        db = App.getInstance().getDatabase();
+        ProfileDao profileDao = db.profileDao();
+        List<Profile> profileList = profileDao.getAll();
+        return (int) profileList.get(0).getId();
+    }
+
+    private void getProfileProgressFromSp(){
+        int[] progressCardArray = new int[3];
+        progressCardArray[0] = spStorage.getInt("profilePoints",0);
+        progressCardArray[1] = spStorage.getInt("profileTests",0);
+        progressCardArray[2] = 1;
+        getView().showProgressOnCard(spStorage.getInt("profilePoints",0), spStorage.getInt("profileTests",0), 1);
     }
 
 
@@ -86,28 +104,55 @@ public class ProfilePresenter extends MvpBasePresenter<ProfileView> {
         getGrades();
     }
 
-    private void getGrades(){
-        model.getGrades(new Callback<GradesResponse>() {
+    private void getGrades() {
+        model.getGrades(new Callback<List<GradesResponse>>() {
             @Override
-            public void onResponse(Call<GradesResponse> call, Response<GradesResponse> response) {
+            public void onResponse(Call<List<GradesResponse>> call, Response<List<GradesResponse>> response) {
                 int testCount = 0;
-                GradesResponse gradesResponse = response.body();
-                if (gradesResponse.getName().contains("Доступ")){
-                    List<List<GradesResponse.GroupedTask>> groupedTaskList = gradesResponse.getGroupedTasks();
-                    for (int i = 0; i < groupedTaskList.size(); i++) {
-                        for (int j = 0; i < groupedTaskList.size(); i++) {
-                            if (!groupedTaskList.get(i).get(j).getTitle().contains("Сумма")){
-                                testCount++;
+                double points = 0;
+                int intPoints = 0;
+                List<GradesResponse> gradesResponseList = response.body();
+                for (int i = 0; i < gradesResponseList.size(); i++) {
+                    if (gradesResponseList.get(i).getName().toLowerCase().contains("общий")) {
+                        List<GradesResponse.Grades> gradesList = gradesResponseList.get(i).getGrades();
+                        for (int j = 0; j < gradesList.size(); j++) {
+                            if (gradesList.get(j).getStudentId() == getProfileIdFromDb()){
+                                points = gradesList.get(j).getGrades().get(0).getMark();
+                                intPoints = (int) Math.round(points);
                             }
                         }
                     }
-                    Log.i("Tests: ", String.valueOf(testCount));
                 }
+                for (int i = 0; i < gradesResponseList.size(); i++) {
+                    if (gradesResponseList.get(i).getName().toLowerCase().contains("доступ")) {
+                        List<List<GradesResponse.GroupedTask>> groupedTaskList = gradesResponseList.get(i).getGroupedTasks();
+                        for (int j = 0; j < groupedTaskList.size(); j++) {
+                            for (int k = 0; k < groupedTaskList.get(j).size(); k++) {
+                                if (!groupedTaskList.get(j).get(k).getTitle().toLowerCase().contains("сумма")){
+                                    if (groupedTaskList.get(j).get(k).getTitle().toLowerCase().contains("тест")){
+                                        testCount++;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                final int finalTestCount = testCount;
+                final int finalIntPoints = intPoints;
+                spStorage.edit().putInt("profilePoints", finalIntPoints).apply();
+                spStorage.edit().putInt("profileTests", finalTestCount).apply();
+                ifViewAttached(new ViewAction<ProfileView>() {
+                    @Override
+                    public void run(@NonNull ProfileView view) {
+                        view.showProgressOnCard(finalIntPoints, finalTestCount,1);
+                    }
+                });
+                Log.i("Profile header:",  "Баллов: " + intPoints + " Тестов: " + testCount + " Курсов: 1");
             }
 
             @Override
-            public void onFailure(Call<GradesResponse> call, Throwable t) {
-
+            public void onFailure(Call<List<GradesResponse>> call, Throwable t) {
+                t.printStackTrace();
             }
         });
     }

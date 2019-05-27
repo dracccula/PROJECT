@@ -21,13 +21,6 @@ public class RatingActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportFragmentManager().beginTransaction().replace(R.id.container,
                 new RatingFragment()).commitNow();
-//        if (spStorage.getBoolean("IS_AUTORIZED", false)) {
-//            getSupportFragmentManager().beginTransaction().replace(R.id.container,
-//                    new RatingFragment()).commitNow();
-//        } else {
-//            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-//                    new AnonimProfileFragment()).commitNow();
-//        }
     }
 
     @Override

@@ -35,8 +35,9 @@ public class ProfileViewFragment extends MvpFragment<ProfileView, ProfilePresent
     TextView headerName, headerEmail,
             about, aboutSignature, quotesStart, quotesEnd, workValue,
             phoneValue, emailValue, cityValue, schoolValue, schoolGraduationValue,
-            universityValue, facultyValue, departmentValue, universityGraduationValue;
+            universityValue, facultyValue, departmentValue, universityGraduationValue, valuePoints, valueTests, valueCourses;
     CardView cardView;
+
 
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,6 +78,11 @@ public class ProfileViewFragment extends MvpFragment<ProfileView, ProfilePresent
         cardView = v.findViewById(R.id.cvPoints);
         cardView.setVisibility(View.INVISIBLE);
         avatarTop = v.findViewById(R.id.ivAvatarTop);
+
+        valuePoints = v.findViewById(R.id.valuePoints);
+        valueTests = v.findViewById(R.id.valueTests);
+        valueCourses = v.findViewById(R.id.valueCourses);
+
         Log.e("Profile onCreateView", "view attached");
         return v;
     }
@@ -89,7 +95,7 @@ public class ProfileViewFragment extends MvpFragment<ProfileView, ProfilePresent
 
     @Override
     public void showProfileFromResponse(ProfileData.User user, String status) {
-        cardView.setVisibility(View.VISIBLE);
+        //cardView.setVisibility(View.VISIBLE);
         headerName.setText(user.getFirstName() + "\n" + user.getLastName());
         headerEmail.setText(user.getEmail());
 
@@ -120,7 +126,7 @@ public class ProfileViewFragment extends MvpFragment<ProfileView, ProfilePresent
 
     @Override
     public void showProfileFromDB(List<Profile> profileList) {
-        cardView.setVisibility(View.VISIBLE);
+        //cardView.setVisibility(View.VISIBLE);
         headerName.setText(profileList.get(0).getFirstName() + "\n" + profileList.get(0).getLastName());
         headerEmail.setText(profileList.get(0).getEmail());
 
@@ -153,6 +159,14 @@ public class ProfileViewFragment extends MvpFragment<ProfileView, ProfilePresent
     public void showError(String message) {
         Log.e("getUserData onFailure", "ooops!");
         Toast.makeText(getContext(), "getUserData went wrong!", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showProgressOnCard(int points, int tests, int courses) {
+        cardView.setVisibility(View.VISIBLE);
+        valuePoints.setText(points + "");
+        valueTests.setText(tests + "");
+        valueCourses.setText(courses + "");
     }
 
     @Override

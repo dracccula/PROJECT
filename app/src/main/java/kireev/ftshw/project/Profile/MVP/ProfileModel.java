@@ -20,10 +20,10 @@ class ProfileModel {
         call.enqueue(callback);
     }
 
-    void getGrades(Callback<GradesResponse> callback) {
+    void getGrades(Callback<List<GradesResponse>> callback) {
         Retrofit retrofit = Connector.getRetrofitClient();
         FintechAPI fintechAPI = retrofit.create(FintechAPI.class);
-        Call<GradesResponse> call = fintechAPI.getGrades(spStorage.getString("courseUrl", ""));
+        Call<List<GradesResponse>> call = fintechAPI.getGrades(spStorage.getString("courseUrl", ""));
         call.enqueue(callback);
     }
 

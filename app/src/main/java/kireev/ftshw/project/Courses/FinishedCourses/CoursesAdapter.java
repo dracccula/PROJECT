@@ -1,4 +1,4 @@
-package kireev.ftshw.project.Courses;
+package kireev.ftshw.project.Courses.FinishedCourses;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -54,6 +54,7 @@ public class CoursesAdapter extends RecyclerView.Adapter<CoursesAdapter.CoursesV
         }
         coursesViewHolder.tvCourseDate.setText(formattedDateStart);
         coursesViewHolder.tvCourseTitle.setText(coursesVOList.get(0).getTitle());
+        coursesViewHolder.tvCoursePoints.setText(coursesVOList.get(0).getPoints());
     }
 
     public interface OnClickListener {

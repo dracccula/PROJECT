@@ -1,4 +1,4 @@
-package kireev.ftshw.project.Courses;
+package kireev.ftshw.project.Courses.FinishedCourses;
 
 import android.support.annotation.NonNull;
 
@@ -20,11 +20,15 @@ class FinishedCoursesSectionPresenter extends MvpBasePresenter<FinishedCoursesSe
         return spStorage.getString("courseDateStart", "");
     }
 
+    private String getCoursePointsFromSP(){
+        return String.valueOf(spStorage.getInt("profilePoints", 0));
+    }
+
     @Override
     public void attachView(@NonNull FinishedCoursesSectionView view) {
         //viewIsReady();
         view.hideCoursesProgressBar();
-        view.getCourses(getCourseTitleFromSP(), getCourseStartDateFromSP());
+        view.getCourses(getCourseTitleFromSP(), getCourseStartDateFromSP(), getCoursePointsFromSP());
     }
 
     @Override
@@ -42,7 +46,7 @@ class FinishedCoursesSectionPresenter extends MvpBasePresenter<FinishedCoursesSe
             @Override
             public void run(@NonNull FinishedCoursesSectionView view) {
                 view.hideCoursesProgressBar();
-                view.getCourses(getCourseTitleFromSP(), getCourseStartDateFromSP());
+                view.getCourses(getCourseTitleFromSP(), getCourseStartDateFromSP(), getCoursePointsFromSP());
             }
         });
     }

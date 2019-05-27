@@ -80,11 +80,6 @@ public class WebViewActivity extends AppCompatActivity {
         call.enqueue(new Callback<AboutResponse>() {
             @Override
             public void onResponse(Call<AboutResponse> call, Response<AboutResponse> response) {
-                if (getSupportFragmentManager().findFragmentById(R.id.ErrorFragment) != null){
-                    //finish();
-                    //recreate();
-                }
-                getSupportFragmentManager().popBackStack();
                 AboutResponse aboutResponse = response.body();
                 activityTitle = activityTitle + Objects.requireNonNull(aboutResponse).getTitle();
                 setTitle(activityTitle);

@@ -1,0 +1,41 @@
+<android.support.constraint.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="4dp">
+
+    <view
+        android:id="@+id/irvGradesStudentAvatar"
+        class="kireev.ftshw.project.Tools.InitialsRoundView"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvGradesStudentName"
+        android:layout_width="79dp"
+        android:layout_height="wrap_content"
+        android:text="Vladislav Kireev Vladislav Kireev Vladislav Kireev"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/irvGradesStudentAvatar" />
+
+    <TextView
+        android:id="@+id/tvGradesStudentPoints"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:background="@drawable/badge"
+        android:gravity="center"
+        app:layout_constraintDimensionRatio="H,1:1"
+        android:text="111"
+        android:textColor="#FFF"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="@id/irvGradesStudentAvatar"
+        app:layout_constraintTop_toTopOf="@id/irvGradesStudentAvatar" />
+
+</android.support.constraint.ConstraintLayout>

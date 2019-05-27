@@ -30,6 +30,7 @@ import kireev.ftshw.project.Database.Dao.TasksDao;
 import kireev.ftshw.project.Database.Entity.Homeworks;
 import kireev.ftshw.project.Database.Entity.Tasks;
 import kireev.ftshw.project.Database.ProjectDatabase;
+import kireev.ftshw.project.ErrorFragment;
 import kireev.ftshw.project.Network.Connector;
 import kireev.ftshw.project.Network.FintechAPI;
 import kireev.ftshw.project.Network.Model.HomeworksResponse;
@@ -180,6 +181,7 @@ public class RatingFragment extends Fragment implements SwipeRefreshLayout.OnRef
                 Toast.makeText(getContext(), "getHomeworks went wrong!", Toast.LENGTH_SHORT).show();
                 getHomeworksFromDb();
                 hideProgress();
+                getFragmentManager().beginTransaction().add(R.id.container, new ErrorFragment()).commitNow();
             }
         });
     }

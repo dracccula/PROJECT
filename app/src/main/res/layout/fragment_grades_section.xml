@@ -8,7 +8,7 @@
     android:layout_height="wrap_content"
     app:cardCornerRadius="5dp"
     app:cardElevation="3dp"
-    tools:context=".Courses.GradesSectionFragment">
+    tools:context=".Courses.Grades.GradesSectionFragment">
 
     <LinearLayout
         android:id="@+id/linearLayout4"
@@ -47,6 +47,14 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
         </android.support.constraint.ConstraintLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rvGradesStudents"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+        </android.support.v7.widget.RecyclerView>
 
         <LinearLayout
             android:id="@+id/linearLayout3"

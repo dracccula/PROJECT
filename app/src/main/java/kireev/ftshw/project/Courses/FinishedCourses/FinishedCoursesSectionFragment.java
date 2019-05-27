@@ -1,21 +1,16 @@
-package kireev.ftshw.project.Courses;
+package kireev.ftshw.project.Courses.FinishedCourses;
 
 import android.content.Context;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebView;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import com.hannesdorfmann.mosby3.mvp.MvpFragment;
 
@@ -78,11 +73,12 @@ public class FinishedCoursesSectionFragment extends MvpFragment<FinishedCoursesS
     }
 
     @Override
-    public void getCourses(String title, String dateStart) {
+    public void getCourses(String title, String dateStart, String points) {
         List<CoursesVO> coursesVOList = new ArrayList<>();
         CoursesVO coursesVO = new CoursesVO();
         coursesVO.setTitle(title);
         coursesVO.setDateStart(dateStart);
+        coursesVO.setPoints(points);
         coursesVOList.add(0,coursesVO);
         coursesAdapter.setItems(coursesVOList);
         rvCourses.setAdapter(coursesAdapter);

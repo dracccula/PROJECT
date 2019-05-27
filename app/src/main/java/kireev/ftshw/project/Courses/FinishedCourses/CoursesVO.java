@@ -1,9 +1,10 @@
-package kireev.ftshw.project.Courses;
+package kireev.ftshw.project.Courses.FinishedCourses;
 
 public class CoursesVO {
 
     private String title;
     private String dateStart;
+    private String points;
 
     public String getTitle() {
         return title;
@@ -19,5 +20,13 @@ public class CoursesVO {
 
     public void setDateStart(String dateStart) {
         this.dateStart = dateStart;
+    }
+
+    public String getPoints() {
+        return points;
+    }
+
+    public void setPoints(String points) {
+        this.points = points;
     }
 }

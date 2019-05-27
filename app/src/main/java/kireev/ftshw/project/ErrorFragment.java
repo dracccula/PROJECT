@@ -26,18 +26,7 @@ public class ErrorFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_error, container, false);
-        btnReload = v.findViewById(R.id.btnReload);
-        btnReload.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                reload(v);
-            }
-        });
         return v;
     }
-
-    public void reload(View view){
-            new WebViewActivity().getAboutResponse();
-        }
 
 }

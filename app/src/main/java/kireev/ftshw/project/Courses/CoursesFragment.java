@@ -17,19 +17,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import kireev.ftshw.project.App;
-import kireev.ftshw.project.Database.Dao.CourseDao;
-import kireev.ftshw.project.Database.Entity.Course;
 import kireev.ftshw.project.MainActivity;
 import kireev.ftshw.project.R;
 import kireev.ftshw.project.TempTools.SetRandom;
 
-import static kireev.ftshw.project.Courses.GradesSectionFragment.pointsBadge1;
-import static kireev.ftshw.project.Courses.GradesSectionFragment.pointsBadge2;
-import static kireev.ftshw.project.Courses.GradesSectionFragment.pointsBadge3;
-import static kireev.ftshw.project.Courses.GradesSectionFragment.viewAvatarOne;
-import static kireev.ftshw.project.Courses.GradesSectionFragment.viewAvatarTwo;
-import static kireev.ftshw.project.Courses.GradesSectionFragment.viewAvatarThree;
+import static kireev.ftshw.project.Courses.Grades.GradesSectionFragment.pointsBadge1;
+import static kireev.ftshw.project.Courses.Grades.GradesSectionFragment.pointsBadge2;
+import static kireev.ftshw.project.Courses.Grades.GradesSectionFragment.pointsBadge3;
+import static kireev.ftshw.project.Courses.Grades.GradesSectionFragment.viewAvatarOne;
+import static kireev.ftshw.project.Courses.Grades.GradesSectionFragment.viewAvatarTwo;
+import static kireev.ftshw.project.Courses.Grades.GradesSectionFragment.viewAvatarThree;
 
 
 public class CoursesFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {

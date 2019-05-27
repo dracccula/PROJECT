@@ -49,5 +49,5 @@ public interface FintechAPI {
     Call<AboutResponse> getAbout(@Path("course_id") String courseId);
 
     @GET(COURSE + GRADES)
-    Call<GradesResponse> getGrades(@Path("course_id") String courseId);
+    Call<List<GradesResponse>> getGrades(@Path("course_id") String courseId);
 }

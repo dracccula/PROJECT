@@ -13,4 +13,6 @@ public interface ProfileView extends MvpView {
     void showProfileFromDB(List<Profile> profileList);
 
     void showError(String message);
+
+    void showProgressOnCard(int points, int tests, int courses);
 }
