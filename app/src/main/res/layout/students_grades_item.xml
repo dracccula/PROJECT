@@ -7,8 +7,8 @@
     <view
         android:id="@+id/irvGradesStudentAvatar"
         class="kireev.ftshw.project.Tools.InitialsRoundView"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="90dp"
+        android:layout_height="90dp"
         android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -16,10 +16,12 @@
 
     <TextView
         android:id="@+id/tvGradesStudentName"
-        android:layout_width="79dp"
+        android:layout_width="90dp"
         android:layout_height="wrap_content"
-        android:text="Vladislav Kireev Vladislav Kireev Vladislav Kireev"
+        android:text="Горош Алек"
+        android:ellipsize="end"
         android:textAlignment="center"
+        android:minLines="2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -27,12 +29,14 @@
 
     <TextView
         android:id="@+id/tvGradesStudentPoints"
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:background="@drawable/badge"
+        android:padding="8dp"
         android:gravity="center"
         app:layout_constraintDimensionRatio="H,1:1"
-        android:text="111"
+        android:text="22345"
+        android:maxLength="2"
         android:textColor="#FFF"
         android:textSize="12sp"
         app:layout_constraintEnd_toEndOf="@id/irvGradesStudentAvatar"

@@ -12,6 +12,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import kireev.ftshw.project.R;
+import kireev.ftshw.project.TempTools.SetRandom;
 import kireev.ftshw.project.Tools.InitialsRoundView;
 
 public class GradesAdapter extends RecyclerView.Adapter<GradesAdapter.GradesViewHolder> {
@@ -33,7 +34,9 @@ public class GradesAdapter extends RecyclerView.Adapter<GradesAdapter.GradesView
     @Override
     public void onBindViewHolder(@NonNull GradesAdapter.GradesViewHolder gradesViewHolder, int i) {
         gradesViewHolder.tvGradesStudentName.setText(gradesVOList.get(i).getName());
-        gradesViewHolder.tvGradesStudentPoints.setText(gradesVOList.get(i).getPoints());
+        gradesViewHolder.irvGradesStudentAvatar.setText(gradesVOList.get(i).getName());
+        gradesViewHolder.irvGradesStudentAvatar.setBackgroundColor(SetRandom.SetRandomColor());
+        gradesViewHolder.tvGradesStudentPoints.setText(gradesVOList.get(i).getPoints() + "");
     }
 
     @Override
@@ -45,6 +48,13 @@ public class GradesAdapter extends RecyclerView.Adapter<GradesAdapter.GradesView
         Log.i("LOG", grades.toString());
         this.gradesVOList = grades;
         notifyDataSetChanged();
+    }
+
+    public void clearList(List<GradesVO> grades) {
+        if (grades == null){
+            grades.clear();
+            notifyDataSetChanged();
+        }
     }
 
     class GradesViewHolder extends RecyclerView.ViewHolder {

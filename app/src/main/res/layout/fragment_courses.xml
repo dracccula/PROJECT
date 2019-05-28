@@ -4,7 +4,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
-    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    <android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/frameLayout3"
         android:layout_width="match_parent"
@@ -18,12 +18,11 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <fragment
+            <FrameLayout
                 android:id="@+id/fragmentGrades"
                 android:name="kireev.ftshw.project.Courses.Grades.GradesSectionFragment"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp" />
+                android:layout_height="wrap_content" />
 
             <fragment
                 android:id="@+id/fragment2"
@@ -44,6 +43,6 @@
 
         </LinearLayout>
 
-    </ScrollView>
+    </android.support.v4.widget.NestedScrollView>
 
 </android.support.v4.widget.SwipeRefreshLayout>

@@ -6,6 +6,8 @@ import java.util.List;
 
 interface GradesSectionView extends MvpView {
 
-    void getGrades(List<GradesVO> gradesVOList);
+    void showGrades(List<GradesVO> gradesVOList);
+
+    void hideProgressBar();
 
 }

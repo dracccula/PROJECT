@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.hannesdorfmann.mosby3.mvp.MvpFragment;
@@ -28,6 +29,7 @@ public class GradesSectionFragment extends MvpFragment<GradesSectionView, Grades
 
     RecyclerView rvGrades;
     GradesAdapter gradesAdapter;
+    ProgressBar pbGradesStudents;
 
 
     public GradesSectionFragment() {
@@ -61,7 +63,8 @@ public class GradesSectionFragment extends MvpFragment<GradesSectionView, Grades
         viewAvatarTwo.setText((String) tvAvatarNameTwo.getText());
         viewAvatarThree.setText((String) tvAvatarNameThree.getText());
 
-        rvGrades = v.findViewById(R.id.rvGrades);
+        pbGradesStudents = v.findViewById(R.id.pbGradesStudents);
+        rvGrades = v.findViewById(R.id.rvGradesStudents);
         //rvGrades.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         gradesAdapter = new GradesAdapter(getContext());
         presenter.attachView(this);
@@ -83,10 +86,19 @@ public class GradesSectionFragment extends MvpFragment<GradesSectionView, Grades
     }
 
     @Override
-    public void getGrades(List<GradesVO> gradesVOList) {
+    public void showGrades(List<GradesVO> gradesVOList) {
         Log.i("hui123", "getGrades in Grades");
+        gradesAdapter.clearList(gradesVOList);
         gradesAdapter.setItems(gradesVOList);
-        rvGrades.setLayoutManager(new LinearLayoutManager(getContext()));
+        rvGrades.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+        hideProgressBar();
         rvGrades.setAdapter(gradesAdapter);
     }
+
+    @Override
+    public void hideProgressBar() {
+        pbGradesStudents.setVisibility(View.GONE);
+    }
+
+
 }

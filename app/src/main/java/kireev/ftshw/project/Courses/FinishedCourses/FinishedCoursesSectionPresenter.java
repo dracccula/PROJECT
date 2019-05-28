@@ -20,7 +20,7 @@ class FinishedCoursesSectionPresenter extends MvpBasePresenter<FinishedCoursesSe
         return spStorage.getString("courseDateStart", "");
     }
 
-    private String getCoursePointsFromSP(){
+    private String getCoursePointsFromSP() {
         return String.valueOf(spStorage.getInt("profilePoints", 0));
     }
 

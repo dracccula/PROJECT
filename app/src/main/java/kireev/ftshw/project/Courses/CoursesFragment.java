@@ -1,10 +1,12 @@
 package kireev.ftshw.project.Courses;
+
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -38,7 +40,7 @@ public class CoursesFragment extends Fragment implements SwipeRefreshLayout.OnRe
         // Required empty public constructor
     }
 
-    public GradesSectionFragment getGradesSectionFragment(){
+    public GradesSectionFragment getGradesSectionFragment() {
         Fragment fragment = getFragmentManager().findFragmentById(R.id.fragmentGrades);
         return (GradesSectionFragment) fragment;
     }
@@ -59,7 +61,17 @@ public class CoursesFragment extends Fragment implements SwipeRefreshLayout.OnRe
         View v = inflater.inflate(R.layout.fragment_courses, container, false);
         mSwipeRefreshLayout = v.findViewById(R.id.swipe_container);
         mSwipeRefreshLayout.setOnRefreshListener(this);
+
+        FragmentTransaction ft = getFragmentManager().beginTransaction();
+        ft.replace(R.id.fragmentGrades, new GradesSectionFragment());
+        ft.commit();
+
         return v;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
     }
 
     @Override

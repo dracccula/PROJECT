@@ -44,6 +44,6 @@ class GradesSectionPresenter extends MvpBasePresenter<GradesSectionView> {
 
 
     void viewIsReady() {
-        //getGrades();
+//        getGrades();
     }
 }

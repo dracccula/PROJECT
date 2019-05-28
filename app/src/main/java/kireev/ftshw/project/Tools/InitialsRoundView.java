@@ -91,9 +91,10 @@ public class InitialsRoundView extends FrameLayout {
         setBackground(gradientDrawable);
         tv = new TextView(context);
         tv.setText(text);
-        tv.setTypeface(tv.getTypeface(), Typeface.BOLD);
+        //tv.setTypeface(tv.getTypeface(), Typeface.BOLD);
         tv.setTextColor(Color.WHITE);
         tv.setGravity(Gravity.CENTER);
+        tv.setTextSize(26);
         int padding = getResources().getDimensionPixelOffset(R.dimen.text_margin);
         tv.setPadding(padding,padding,padding,padding);
         addView(tv);

@@ -7,8 +7,12 @@ import android.util.Log;
 import com.hannesdorfmann.mosby3.mvp.MvpBasePresenter;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 
 import kireev.ftshw.project.Courses.Grades.GradesSectionFragment;
@@ -27,8 +31,11 @@ class MainPresenter extends MvpBasePresenter<MainView> {
     private GradesSectionFragment fragment;
     private List<GradesVO> gradesVOList = new ArrayList<>();
 
-    MainPresenter(MainModel mainModel, GradesSectionFragment fragment) {
+    MainPresenter(MainModel mainModel) {
         this.model = mainModel;
+    }
+
+    void setGradesSectionFragment(GradesSectionFragment fragment) {
         this.fragment = fragment;
     }
 
@@ -49,7 +56,7 @@ class MainPresenter extends MvpBasePresenter<MainView> {
                     ed.putString("courseTitle", title);
                     ed.putString("courseUrl", url);
                     ed.putString("courseStatus", status);
-                    ed.putString("courseDateStart",dateStart);
+                    ed.putString("courseDateStart", dateStart);
                     ed.apply();
                     //model.updateProfileCourseData(url, title, status, dateStart);
                     Log.e("getConnections", url + title + status + dateStart);
@@ -63,12 +70,12 @@ class MainPresenter extends MvpBasePresenter<MainView> {
     }
 
     public void getGrades() {
-        //gradesVOList.clear();
+        gradesVOList.clear();
         model.getGrades(new Callback<List<GradesResponse>>() {
             @Override
             public void onResponse(Call<List<GradesResponse>> call, Response<List<GradesResponse>> response) {
                 String studentName = "";
-                String studentPoints = "";
+                int studentPoints;
                 List<GradesResponse> gradesResponseList = response.body();
                 for (int i = 0; i < gradesResponseList.size(); i++) {
                     List<GradesResponse.Grades> gradesList = gradesResponseList.get(i).getGrades();
@@ -76,14 +83,15 @@ class MainPresenter extends MvpBasePresenter<MainView> {
                         GradesVO gradesVO = new GradesVO();
                         studentName = gradesList.get(j).getStudent();
                         gradesVO.setName(studentName);
-                        List<GradesResponse.StudentGrade> studentGradeList =  gradesList.get(j).getGrades();
-                        studentPoints =studentGradeList.get(studentGradeList.size() - 1).getMark() + "";
+                        List<GradesResponse.StudentGrade> studentGradeList = gradesList.get(j).getGrades();
+                        Double dPoints = studentGradeList.get(studentGradeList.size() - 1).getMark();
+                        studentPoints = (int) Math.round(dPoints);
                         gradesVO.setPoints(studentPoints);
                         gradesVOList.add(gradesVO);
                     }
                 }
                 Log.i("hui123", "getGrades in main");
-                fragment.getGrades(gradesVOList);
+                fragment.showGrades(gradesVOList);
                 Log.i("Profile header:", gradesVOList.toString());
             }
 

@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cvGradesSection"
+    android:layout_margin="8dp"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:cardCornerRadius="5dp"
@@ -54,6 +55,12 @@
             android:orientation="horizontal">
 
         </android.support.v7.widget.RecyclerView>
+
+        <ProgressBar
+            android:id="@+id/pbGradesStudents"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="24dp"/>
 
         <LinearLayout
             android:id="@+id/linearLayout3"

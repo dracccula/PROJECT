@@ -82,6 +82,7 @@ public class FinishedCoursesSectionFragment extends MvpFragment<FinishedCoursesS
         coursesVOList.add(0,coursesVO);
         coursesAdapter.setItems(coursesVOList);
         rvCourses.setAdapter(coursesAdapter);
+        hideCoursesProgressBar();
     }
 
     @Override

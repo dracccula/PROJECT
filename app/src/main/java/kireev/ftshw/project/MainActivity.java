@@ -25,7 +25,7 @@ import kireev.ftshw.project.Login.LoginActivity;
 import kireev.ftshw.project.Profile.AnonimProfileFragment;
 import kireev.ftshw.project.Profile.MVP.ProfileViewFragment;
 
-public class MainActivity extends MvpActivity<MainView,MainPresenter> implements MainView {
+public class MainActivity extends MvpActivity<MainView, MainPresenter> implements MainView {
 
     public AlertDialog.Builder ad, adEmptyFields, adLogout;
     private static long back_pressed;
@@ -45,8 +45,6 @@ public class MainActivity extends MvpActivity<MainView,MainPresenter> implements
             startActivity(new Intent(this, LoginActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
             finish();
         } else {
-            presenter.getConnections();
-            presenter.getGrades();
             if (savedInstanceState == null) {
                 navigation.getMenu().getItem(1).setChecked(true);
                 if (navigation.getMenu().findItem(navigation.getSelectedItemId()) == navigation.getMenu().getItem(0)) {
@@ -54,8 +52,7 @@ public class MainActivity extends MvpActivity<MainView,MainPresenter> implements
                             new EventsFragment()).commitNow();
                 }
                 if (navigation.getMenu().findItem(navigation.getSelectedItemId()) == navigation.getMenu().getItem(1)) {
-                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                            coursesFragment).commitNow();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, coursesFragment).commitNow();
                 }
                 if (navigation.getMenu().findItem(navigation.getSelectedItemId()) == navigation.getMenu().getItem(2)) {
                     if (spStorage.getBoolean("IS_AUTORIZED", false)) {
@@ -66,7 +63,12 @@ public class MainActivity extends MvpActivity<MainView,MainPresenter> implements
                                 new AnonimProfileFragment()).commitNow();
                     }
                 }
+
             }
+//            GradesSectionFragment fragment = (GradesSectionFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentGrades);
+//            presenter.setGradesSectionFragment(coursesFragment.getGradesSectionFragment());
+//            presenter.getConnections();
+//            presenter.getGrades();
         }
 
         ad = new AlertDialog.Builder(this);
@@ -115,10 +117,19 @@ public class MainActivity extends MvpActivity<MainView,MainPresenter> implements
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+//        GradesSectionFragment fragment = (GradesSectionFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentGrades);
+        presenter.setGradesSectionFragment(coursesFragment.getGradesSectionFragment());
+        presenter.getConnections();
+        presenter.getGrades();
+    }
+
     @NonNull
     @Override
     public MainPresenter createPresenter() {
-        return new MainPresenter(model, coursesFragment.getGradesSectionFragment());
+        return new MainPresenter(model);
     }
 
     @Override
@@ -140,7 +151,7 @@ public class MainActivity extends MvpActivity<MainView,MainPresenter> implements
                     selectedFragment = new EventsFragment();
                     break;
                 case R.id.navigation_courses:
-                    selectedFragment = new CoursesFragment();
+                    selectedFragment = coursesFragment;
                     break;
                 case R.id.navigation_profile:
                     if (spStorage.getBoolean("IS_AUTORIZED", false)) {
@@ -151,7 +162,6 @@ public class MainActivity extends MvpActivity<MainView,MainPresenter> implements
                         break;
                     }
             }
-
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                     selectedFragment).commitNow();
             return true;
@@ -162,6 +172,7 @@ public class MainActivity extends MvpActivity<MainView,MainPresenter> implements
     public void setActionBarTitle(String title) {
         getSupportActionBar().setTitle(title);
     }
+
     @Override
     public void gradesButtonClick(View view) {
         Log.d("gradesButtonClick", "clicked!");
