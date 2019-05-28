@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.hannesdorfmann.mosby3.mvp.MvpActivity;
 
 import kireev.ftshw.project.Courses.CoursesFragment;
+import kireev.ftshw.project.Courses.Grades.GradesSectionFragment;
 import kireev.ftshw.project.Courses.GradesList.GradesListActivity;
 import kireev.ftshw.project.Courses.Rating.RatingActivity;
 import kireev.ftshw.project.Events.EventsFragment;
@@ -31,6 +32,7 @@ public class MainActivity extends MvpActivity<MainView,MainPresenter> implements
     public static SharedPreferences spStorage;
     public static String anygenCookie;
     private MainModel model = new MainModel();
+    private CoursesFragment coursesFragment = new CoursesFragment();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +46,7 @@ public class MainActivity extends MvpActivity<MainView,MainPresenter> implements
             finish();
         } else {
             presenter.getConnections();
+            presenter.getGrades();
             if (savedInstanceState == null) {
                 navigation.getMenu().getItem(1).setChecked(true);
                 if (navigation.getMenu().findItem(navigation.getSelectedItemId()) == navigation.getMenu().getItem(0)) {
@@ -52,7 +55,7 @@ public class MainActivity extends MvpActivity<MainView,MainPresenter> implements
                 }
                 if (navigation.getMenu().findItem(navigation.getSelectedItemId()) == navigation.getMenu().getItem(1)) {
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                            new CoursesFragment()).commitNow();
+                            coursesFragment).commitNow();
                 }
                 if (navigation.getMenu().findItem(navigation.getSelectedItemId()) == navigation.getMenu().getItem(2)) {
                     if (spStorage.getBoolean("IS_AUTORIZED", false)) {
@@ -115,7 +118,7 @@ public class MainActivity extends MvpActivity<MainView,MainPresenter> implements
     @NonNull
     @Override
     public MainPresenter createPresenter() {
-        return new MainPresenter(model);
+        return new MainPresenter(model, coursesFragment.getGradesSectionFragment());
     }
 
     @Override

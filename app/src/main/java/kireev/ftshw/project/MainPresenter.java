@@ -4,25 +4,32 @@ import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
-import com.hannesdorfmann.mosby3.mvp.MvpPresenter;
+import com.hannesdorfmann.mosby3.mvp.MvpBasePresenter;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 
+import kireev.ftshw.project.Courses.Grades.GradesSectionFragment;
+import kireev.ftshw.project.Courses.Grades.GradesVO;
 import kireev.ftshw.project.Network.Model.ConnectionsResponse;
+import kireev.ftshw.project.Network.Model.GradesResponse;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 import static kireev.ftshw.project.MainActivity.spStorage;
 
-class MainPresenter implements MvpPresenter<MainView> {
+class MainPresenter extends MvpBasePresenter<MainView> {
 
     private MainModel model;
+    private GradesSectionFragment fragment;
+    private List<GradesVO> gradesVOList = new ArrayList<>();
 
-    MainPresenter(MainModel mainModel) {
+    MainPresenter(MainModel mainModel, GradesSectionFragment fragment) {
         this.model = mainModel;
+        this.fragment = fragment;
     }
 
 
@@ -54,6 +61,40 @@ class MainPresenter implements MvpPresenter<MainView> {
             }
         });
     }
+
+    public void getGrades() {
+        //gradesVOList.clear();
+        model.getGrades(new Callback<List<GradesResponse>>() {
+            @Override
+            public void onResponse(Call<List<GradesResponse>> call, Response<List<GradesResponse>> response) {
+                String studentName = "";
+                String studentPoints = "";
+                List<GradesResponse> gradesResponseList = response.body();
+                for (int i = 0; i < gradesResponseList.size(); i++) {
+                    List<GradesResponse.Grades> gradesList = gradesResponseList.get(i).getGrades();
+                    for (int j = 0; j < gradesList.size(); j++) {
+                        GradesVO gradesVO = new GradesVO();
+                        studentName = gradesList.get(j).getStudent();
+                        gradesVO.setName(studentName);
+                        List<GradesResponse.StudentGrade> studentGradeList =  gradesList.get(j).getGrades();
+                        studentPoints =studentGradeList.get(studentGradeList.size() - 1).getMark() + "";
+                        gradesVO.setPoints(studentPoints);
+                        gradesVOList.add(gradesVO);
+                    }
+                }
+                Log.i("hui123", "getGrades in main");
+                fragment.getGrades(gradesVOList);
+                Log.i("Profile header:", gradesVOList.toString());
+            }
+
+            @Override
+            public void onFailure(Call<List<GradesResponse>> call, Throwable t) {
+                t.printStackTrace();
+            }
+        });
+
+    }
+
 
     @Override
     public void attachView(@NonNull MainView view) {

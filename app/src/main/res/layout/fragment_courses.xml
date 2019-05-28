@@ -19,7 +19,7 @@
             android:orientation="vertical">
 
             <fragment
-                android:id="@+id/fragment3"
+                android:id="@+id/fragmentGrades"
                 android:name="kireev.ftshw.project.Courses.Grades.GradesSectionFragment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

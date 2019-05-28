@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +15,6 @@ import android.widget.TextView;
 
 import com.hannesdorfmann.mosby3.mvp.MvpFragment;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import kireev.ftshw.project.Tools.InitialsRoundView;
@@ -28,7 +28,6 @@ public class GradesSectionFragment extends MvpFragment<GradesSectionView, Grades
 
     RecyclerView rvGrades;
     GradesAdapter gradesAdapter;
-    List<GradesVO> gradesVOList = new ArrayList<>();
 
 
     public GradesSectionFragment() {
@@ -70,14 +69,22 @@ public class GradesSectionFragment extends MvpFragment<GradesSectionView, Grades
     }
 
     @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.i("hui123", "onDestroy");
+    }
+
+    @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         presenter.attachView(this);
+        Log.i("hui123", "onViewCreated");
         //presenter.viewIsReady();
     }
 
     @Override
     public void getGrades(List<GradesVO> gradesVOList) {
+        Log.i("hui123", "getGrades in Grades");
         gradesAdapter.setItems(gradesVOList);
         rvGrades.setLayoutManager(new LinearLayoutManager(getContext()));
         rvGrades.setAdapter(gradesAdapter);

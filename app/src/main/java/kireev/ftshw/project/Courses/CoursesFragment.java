@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import kireev.ftshw.project.Courses.Grades.GradesSectionFragment;
 import kireev.ftshw.project.MainActivity;
 import kireev.ftshw.project.R;
 import kireev.ftshw.project.TempTools.SetRandom;
@@ -35,6 +36,11 @@ public class CoursesFragment extends Fragment implements SwipeRefreshLayout.OnRe
 
     public CoursesFragment() {
         // Required empty public constructor
+    }
+
+    public GradesSectionFragment getGradesSectionFragment(){
+        Fragment fragment = getFragmentManager().findFragmentById(R.id.fragmentGrades);
+        return (GradesSectionFragment) fragment;
     }
 
     @Override
