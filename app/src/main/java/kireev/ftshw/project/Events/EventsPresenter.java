@@ -54,8 +54,10 @@ class EventsPresenter extends MvpBasePresenter<EventsView> {
             activeEventsVO.setImageId(SetRandom.SetRandomInt());
             activeEventsVOList.add(activeEventsVO);
         }
-        getView().getActiveEventsList(activeEventsVOList);
-        getView().hideActiveProgressbar();
+        ifViewAttached(view -> {
+            view.getActiveEventsList(activeEventsVOList);
+            view.hideActiveProgressbar();
+        });
 
         archiveEventsVOList.clear();
         List<Events> archiveList = eventsDao.getAllArchive();
@@ -70,8 +72,10 @@ class EventsPresenter extends MvpBasePresenter<EventsView> {
             }
             archiveEventsVOList.add(archiveEventsVO);
         }
-        getView().getArchiveEventsList(archiveEventsVOList);
-        getView().hideArchiveProgressbar();
+        ifViewAttached(view -> {
+            view.getArchiveEventsList(archiveEventsVOList);
+            view.hideArchiveProgressbar();
+        });
     }
 
     public void getEvents() {
@@ -98,15 +102,19 @@ class EventsPresenter extends MvpBasePresenter<EventsView> {
                             activeEventsVOList.add(activeEventsVO);
                         }
                         model.updateActiveEventsDB(activeList, false);
-                        getView().getActiveEventsList(activeEventsVOList);
-                        getView().hideActiveErrorText();
-                        getView().hideActiveProgressbar();
-                        getView().showActiveRecyclerView();
-                        getView().stopRefreshLayoutAnimation();
+                        ifViewAttached(view -> {
+                            view.getActiveEventsList(activeEventsVOList);
+                            view.hideActiveErrorText();
+                            view.hideActiveProgressbar();
+                            view.showActiveRecyclerView();
+                            view.stopRefreshLayoutAnimation();
+                        });
                     } else {
-                        getView().hideActiveProgressbar();
-                        getView().showActiveErrorText();
-                        getView().stopRefreshLayoutAnimation();
+                        ifViewAttached(view -> {
+                            view.hideActiveProgressbar();
+                            view.showActiveErrorText();
+                            view.stopRefreshLayoutAnimation();
+                        });
                     }
                     if (code == 200 && Objects.requireNonNull(eventsResponse).getArchive() != null) {
                         List<EventsResponse.Archive> archiveList = eventsResponse.getArchive();
@@ -120,24 +128,18 @@ class EventsPresenter extends MvpBasePresenter<EventsView> {
                             archiveEventsVOList.add(archiveEventsVO);
                         }
                         model.updateArchiveEventsDB(archiveList, true);
-                        ifViewAttached(new ViewAction<EventsView>() {
-                            @Override
-                            public void run(@NonNull EventsView view) {
-                                view.getArchiveEventsList(archiveEventsVOList);
-                                view.hideArchiveErrorText();
-                                view.hideArchiveProgressbar();
-                                view.showArchiveRecyclerView();
-                                view.stopRefreshLayoutAnimation();
-                            }
+                        ifViewAttached(view -> {
+                            view.getArchiveEventsList(archiveEventsVOList);
+                            view.hideArchiveErrorText();
+                            view.hideArchiveProgressbar();
+                            view.showArchiveRecyclerView();
+                            view.stopRefreshLayoutAnimation();
                         });
                     } else {
-                        ifViewAttached(new ViewAction<EventsView>() {
-                            @Override
-                            public void run(@NonNull EventsView view) {
-                                view.hideArchiveProgressbar();
-                                view.showArchiveErrorText();
-                                view.stopRefreshLayoutAnimation();
-                            }
+                        ifViewAttached(view -> {
+                            view.hideArchiveProgressbar();
+                            view.showArchiveErrorText();
+                            view.stopRefreshLayoutAnimation();
                         });
                     }
 
@@ -145,17 +147,14 @@ class EventsPresenter extends MvpBasePresenter<EventsView> {
 
                 @Override
                 public void onFailure(@NonNull Call<EventsResponse> call, @NonNull Throwable t) {
-                    ifViewAttached(new ViewAction<EventsView>() {
-                        @Override
-                        public void run(@NonNull EventsView view) {
-                            view.hideActiveProgressbar();
-                            view.hideActiveRecyclerView();
-                            view.showActiveErrorText();
-                            view.hideArchiveProgressbar();
-                            view.hideArchiveRecyclerView();
-                            view.showArchiveErrorText();
-                            view.stopRefreshLayoutAnimation();
-                        }
+                    ifViewAttached(view -> {
+                        view.hideActiveProgressbar();
+                        view.hideActiveRecyclerView();
+                        view.showActiveErrorText();
+                        view.hideArchiveProgressbar();
+                        view.hideArchiveRecyclerView();
+                        view.showArchiveErrorText();
+                        view.stopRefreshLayoutAnimation();
                     });
                 }
             });

@@ -1,4 +1,4 @@
-package kireev.ftshw.project.Courses.Rating.Tasks;
+package kireev.ftshw.project.Courses.RatingList.Tasks;
 
 
 import android.os.Bundle;
@@ -13,21 +13,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import kireev.ftshw.project.App;
-import kireev.ftshw.project.Courses.Rating.Adapters.TaskAdapter;
-import kireev.ftshw.project.Courses.Rating.Adapters.TaskVO;
+import kireev.ftshw.project.Courses.RatingList.Adapters.TaskAdapter;
+import kireev.ftshw.project.Courses.RatingList.Adapters.TaskVO;
 import kireev.ftshw.project.Database.Dao.TasksDao;
 import kireev.ftshw.project.Database.Entity.Tasks;
 import kireev.ftshw.project.Database.ProjectDatabase;
 import kireev.ftshw.project.R;
 
-import static kireev.ftshw.project.Courses.Rating.Tasks.TasksActivity.HOMEWORK_ID;
-import static kireev.ftshw.project.Courses.Rating.Tasks.TasksActivity.HOMEWORK_TITLE;
+import static kireev.ftshw.project.Courses.RatingList.Tasks.TasksActivity.HOMEWORK_ID;
+import static kireev.ftshw.project.Courses.RatingList.Tasks.TasksActivity.HOMEWORK_TITLE;
 
 public class TasksFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
     SwipeRefreshLayout mSwipeRefreshLayout;

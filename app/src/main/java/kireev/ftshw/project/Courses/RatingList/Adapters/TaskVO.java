@@ -1,4 +1,4 @@
-package kireev.ftshw.project.Courses.Rating.Adapters;
+package kireev.ftshw.project.Courses.RatingList.Adapters;
 
 public class TaskVO {
     private int id;

@@ -1,4 +1,4 @@
-package kireev.ftshw.project.Courses.Rating;
+package kireev.ftshw.project.Courses.RatingList;
 
 
 import android.app.ProgressDialog;
@@ -21,10 +21,10 @@ import java.util.Collections;
 import java.util.List;
 
 import kireev.ftshw.project.App;
-import kireev.ftshw.project.Courses.Rating.Adapters.HomeworkVO;
-import kireev.ftshw.project.Courses.Rating.Adapters.HomeworksAdapter;
-import kireev.ftshw.project.Courses.Rating.Adapters.TaskVO;
-import kireev.ftshw.project.Courses.Rating.Tasks.TasksActivity;
+import kireev.ftshw.project.Courses.RatingList.Adapters.HomeworkVO;
+import kireev.ftshw.project.Courses.RatingList.Adapters.HomeworksAdapter;
+import kireev.ftshw.project.Courses.RatingList.Adapters.TaskVO;
+import kireev.ftshw.project.Courses.RatingList.Tasks.TasksActivity;
 import kireev.ftshw.project.Database.Dao.HomeworksDao;
 import kireev.ftshw.project.Database.Dao.TasksDao;
 import kireev.ftshw.project.Database.Entity.Homeworks;

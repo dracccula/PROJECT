@@ -1,4 +1,4 @@
-package kireev.ftshw.project.Courses.Rating.Tasks.MVP;
+package kireev.ftshw.project.Courses.RatingList.Tasks.MVP;
 
 public class TasksPresenter {
 

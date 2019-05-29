@@ -20,12 +20,13 @@
         android:theme="@style/AppTheme"
         tools:targetApi="n">
         <activity android:name=".WebViewActivity"></activity>
-        <activity android:name=".Courses.Rating.Tasks.TasksActivity" />
-        <activity android:name=".Courses.Rating.RatingActivity"></activity>
+        <activity android:name=".Courses.RatingList.Tasks.TasksActivity" />
+        <activity android:name=".Courses.RatingList.RatingActivity"></activity>
         <activity
             android:name=".Login.LoginActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity android:name=".Courses.GradesList.GradesListActivity" />
+        <activity android:name=".Courses.GradesList.GradesListActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name">

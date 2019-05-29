@@ -1,32 +1,23 @@
-package kireev.ftshw.project.Courses.Rating.Tasks;
+package kireev.ftshw.project.Courses.RatingList;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 
-import kireev.ftshw.project.Courses.Rating.Tasks.MVP.TasksViewFragment;
 import kireev.ftshw.project.R;
 
-public class TasksActivity extends AppCompatActivity {
-    public static final String HOMEWORK_TITLE = "title";
-    public static final int HOMEWORK_ID = 0;
+public class RatingActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tasks);
-        setTitle(getIntent().getStringExtra(HOMEWORK_TITLE));
+        setContentView(R.layout.activity_rating);
+        setTitle(getString(R.string.title_rating));
         assert getSupportActionBar() != null;   //null check
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.container, new TasksViewFragment())
-                .commit();
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
+        getSupportFragmentManager().beginTransaction().replace(R.id.container,
+                new RatingFragment()).commitNow();
     }
 
     @Override
@@ -39,4 +30,3 @@ public class TasksActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 }
-

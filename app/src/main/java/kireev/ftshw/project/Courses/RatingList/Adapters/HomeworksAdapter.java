@@ -1,4 +1,4 @@
-package kireev.ftshw.project.Courses.Rating.Adapters;
+package kireev.ftshw.project.Courses.RatingList.Adapters;
 
 import android.content.Context;
 import android.support.annotation.NonNull;

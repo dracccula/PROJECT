@@ -22,11 +22,6 @@ import kireev.ftshw.project.Tools.InitialsRoundView;
 import kireev.ftshw.project.R;
 
 public class GradesSectionFragment extends MvpFragment<GradesSectionView, GradesSectionPresenter> implements GradesSectionView {
-
-    public static TextView pointsBadge1, pointsBadge2, pointsBadge3;
-    public static TextView tvAvatarNameOne, tvAvatarNameTwo, tvAvatarNameThree;
-    public static InitialsRoundView viewAvatarOne, viewAvatarTwo, viewAvatarThree;
-
     RecyclerView rvGrades;
     GradesAdapter gradesAdapter;
     ProgressBar pbGradesStudents;
@@ -49,20 +44,6 @@ public class GradesSectionFragment extends MvpFragment<GradesSectionView, Grades
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_grades_section, container, false);
-        pointsBadge1 = v.findViewById(R.id.pointsBadgeOne);
-        pointsBadge2 = v.findViewById(R.id.pointsBadgeTwo);
-        pointsBadge3 = v.findViewById(R.id.pointsBadgeThree);
-        tvAvatarNameOne = v.findViewById(R.id.tvAvatarNameOne);
-        tvAvatarNameTwo = v.findViewById(R.id.tvAvatarNameTwo);
-        tvAvatarNameThree = v.findViewById(R.id.tvAvatarNameThree);
-        viewAvatarOne = v.findViewById(R.id.viewAvatarOne);
-        viewAvatarTwo = v.findViewById(R.id.viewAvatarTwo);
-        viewAvatarThree = v.findViewById(R.id.viewAvatarThree);
-
-        viewAvatarOne.setText((String) tvAvatarNameOne.getText());
-        viewAvatarTwo.setText((String) tvAvatarNameTwo.getText());
-        viewAvatarThree.setText((String) tvAvatarNameThree.getText());
-
         pbGradesStudents = v.findViewById(R.id.pbGradesStudents);
         rvGrades = v.findViewById(R.id.rvGradesStudents);
         //rvGrades.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:layout_marginLeft="8dp"
     android:layout_marginRight="8dp"
-    tools:context=".Courses.Rating.RatingActivity">
+    tools:context=".Courses.RatingList.RatingActivity">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rvHomeworks"

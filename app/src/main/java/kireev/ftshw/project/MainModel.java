@@ -15,24 +15,5 @@ import static kireev.ftshw.project.MainActivity.spStorage;
 
 public class MainModel {
 
-    void getConnections(Callback<ConnectionsResponse> callback){
-        Retrofit retrofit = Connector.getRetrofitClient();
-        FintechAPI fintechAPI = retrofit.create(FintechAPI.class);
-        Call<ConnectionsResponse> call = fintechAPI.getConnections();
-        call.enqueue(callback);
-    }
 
-    void getGrades(final Callback<List<GradesResponse>> callback){
-        Retrofit retrofit = Connector.getRetrofitClient();
-        FintechAPI fintechAPI = retrofit.create(FintechAPI.class);
-        Call<List<GradesResponse>> call = fintechAPI.getGrades(spStorage.getString("courseUrl", ""));
-        call.enqueue(callback);
-    }
-
-    void getUserData(Callback<ProfileData> callback) {
-        Retrofit retrofit = Connector.getRetrofitClient();
-        FintechAPI fintechAPI = retrofit.create(FintechAPI.class);
-        Call<ProfileData> call = fintechAPI.getUser();
-        call.enqueue(callback);
-    }
 }

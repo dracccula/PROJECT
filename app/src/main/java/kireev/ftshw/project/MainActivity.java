@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,10 +18,9 @@ import android.widget.Toast;
 import com.hannesdorfmann.mosby3.mvp.MvpActivity;
 
 import kireev.ftshw.project.Courses.CoursesFragment;
-import kireev.ftshw.project.Courses.FinishedCourses.FinishedCoursesSectionFragment;
 import kireev.ftshw.project.Courses.Grades.GradesSectionFragment;
 import kireev.ftshw.project.Courses.GradesList.GradesListActivity;
-import kireev.ftshw.project.Courses.Rating.RatingActivity;
+import kireev.ftshw.project.Courses.RatingList.RatingActivity;
 import kireev.ftshw.project.Events.EventsFragment;
 import kireev.ftshw.project.Login.LoginActivity;
 import kireev.ftshw.project.Profile.AnonimProfileFragment;
@@ -33,7 +33,6 @@ public class MainActivity extends MvpActivity<MainView, MainPresenter> implement
     public static SharedPreferences spStorage;
     public static String anygenCookie;
     private MainModel model = new MainModel();
-    private CoursesFragment coursesFragment = new CoursesFragment();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +52,7 @@ public class MainActivity extends MvpActivity<MainView, MainPresenter> implement
                             new EventsFragment()).commitNow();
                 }
                 if (navigation.getMenu().findItem(navigation.getSelectedItemId()) == navigation.getMenu().getItem(1)) {
-                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, coursesFragment).commitNow();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new CoursesFragment()).commitNow();
                 }
                 if (navigation.getMenu().findItem(navigation.getSelectedItemId()) == navigation.getMenu().getItem(2)) {
                     if (spStorage.getBoolean("IS_AUTORIZED", false)) {
@@ -122,9 +121,9 @@ public class MainActivity extends MvpActivity<MainView, MainPresenter> implement
     protected void onResume() {
         super.onResume();
 //        GradesSectionFragment fragment = (GradesSectionFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentGrades);
-        presenter.setGradesSectionFragment(coursesFragment.getGradesSectionFragment());
-        presenter.setFinishedCoursesSectionFragment(coursesFragment.getFinishedCoursesSectionFragment());
-        presenter.getConnections();
+        //presenter.setGradesSectionFragment(coursesFragment.getGradesSectionFragment());
+        //presenter.setFinishedCoursesSectionFragment(coursesFragment.getFinishedCoursesSectionFragment());
+        //presenter.getConnections();
         //presenter.getGrades();
     }
 
@@ -153,7 +152,7 @@ public class MainActivity extends MvpActivity<MainView, MainPresenter> implement
                     selectedFragment = new EventsFragment();
                     break;
                 case R.id.navigation_courses:
-                    selectedFragment = coursesFragment;
+                    selectedFragment = new CoursesFragment();
                     break;
                 case R.id.navigation_profile:
                     if (spStorage.getBoolean("IS_AUTORIZED", false)) {

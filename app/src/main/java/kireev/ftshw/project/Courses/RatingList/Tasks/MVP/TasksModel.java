@@ -1,4 +1,4 @@
-package kireev.ftshw.project.Courses.Rating.Tasks.MVP;
+package kireev.ftshw.project.Courses.RatingList.Tasks.MVP;
 
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import kireev.ftshw.project.App;
-import kireev.ftshw.project.Courses.Rating.Adapters.TaskAdapter;
-import kireev.ftshw.project.Courses.Rating.Adapters.TaskVO;
+import kireev.ftshw.project.Courses.RatingList.Adapters.TaskAdapter;
+import kireev.ftshw.project.Courses.RatingList.Adapters.TaskVO;
 import kireev.ftshw.project.Database.Dao.TasksDao;
 import kireev.ftshw.project.Database.Entity.Tasks;
 import kireev.ftshw.project.Database.ProjectDatabase;

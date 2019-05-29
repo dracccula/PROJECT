@@ -8,12 +8,15 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.hannesdorfmann.mosby3.mvp.MvpFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,26 +28,20 @@ import kireev.ftshw.project.MainActivity;
 import kireev.ftshw.project.MainModel;
 import kireev.ftshw.project.MainPresenter;
 import kireev.ftshw.project.R;
-import kireev.ftshw.project.TempTools.SetRandom;
 
-import static kireev.ftshw.project.Courses.Grades.GradesSectionFragment.pointsBadge1;
-import static kireev.ftshw.project.Courses.Grades.GradesSectionFragment.pointsBadge2;
-import static kireev.ftshw.project.Courses.Grades.GradesSectionFragment.pointsBadge3;
-import static kireev.ftshw.project.Courses.Grades.GradesSectionFragment.viewAvatarOne;
-import static kireev.ftshw.project.Courses.Grades.GradesSectionFragment.viewAvatarTwo;
-import static kireev.ftshw.project.Courses.Grades.GradesSectionFragment.viewAvatarThree;
-
-
-public class CoursesFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
+public class CoursesFragment extends MvpFragment<CoursesFragmentView, CourseFragmentPresenter> implements SwipeRefreshLayout.OnRefreshListener, CoursesFragmentView {
 
     private SwipeRefreshLayout mSwipeRefreshLayout;
-    private MainModel mainModel;
-    MainPresenter mainPresenter = new MainPresenter(mainModel);
-//    GradesSectionFragment fragmentGrades = new GradesSectionFragment();
-//    FinishedCoursesSectionFragment fragmentFinishedCourses = new FinishedCoursesSectionFragment();
+    private CoursesFragmentModel model = new CoursesFragmentModel();
 
     public CoursesFragment() {
         // Required empty public constructor
+    }
+
+    @NonNull
+    @Override
+    public CourseFragmentPresenter createPresenter() {
+        return new CourseFragmentPresenter(model);
     }
 
     public GradesSectionFragment getGradesSectionFragment() {
@@ -60,9 +57,8 @@ public class CoursesFragment extends Fragment implements SwipeRefreshLayout.OnRe
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mainPresenter.setGradesSectionFragment(getGradesSectionFragment());
-        mainPresenter.setFinishedCoursesSectionFragment(getFinishedCoursesSectionFragment());
         setHasOptionsMenu(false);
+        Log.i("hui123", "onCreate " + getFragmentManager().getFragments());
     }
 
     @Override
@@ -70,21 +66,26 @@ public class CoursesFragment extends Fragment implements SwipeRefreshLayout.OnRe
                              Bundle savedInstanceState) {
         ((MainActivity) Objects.requireNonNull(getActivity()))
                 .setActionBarTitle(getString(R.string.title_courses));
-//        CourseDao courseDao = App.getInstance().getDatabase().courseDao();
-//        List<Course> course = courseDao.getAll();
         View v = inflater.inflate(R.layout.fragment_courses, container, false);
         mSwipeRefreshLayout = v.findViewById(R.id.swipe_container);
         mSwipeRefreshLayout.setOnRefreshListener(this);
-        FragmentTransaction ft = getFragmentManager().beginTransaction();
-        ft.replace(R.id.fragmentGrades, new GradesSectionFragment());
-        ft.replace(R.id.fragmentFinishedCourses, new FinishedCoursesSectionFragment());
-        ft.commit();
+        Log.i("hui123", "onCreateView ");
         return v;
     }
 
     @Override
     public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        Log.i("hui123", "onViewCreated " + getFragmentManager().getFragments());
+        FragmentTransaction ft = getChildFragmentManager().beginTransaction();
+        GradesSectionFragment fragmentGrades = new GradesSectionFragment();
+        ft.replace(R.id.fragmentGrades, fragmentGrades);
+        FinishedCoursesSectionFragment fragmentFinishedCourses = new FinishedCoursesSectionFragment();
+        ft.replace(R.id.fragmentFinishedCourses, fragmentFinishedCourses);
+        ft.commit();
+        presenter.setGradesSectionFragment(fragmentGrades);
+        presenter.setFinishedCoursesSectionFragment(fragmentFinishedCourses);
+        presenter.viewIsReady();
     }
 
     @Override
@@ -96,44 +97,11 @@ public class CoursesFragment extends Fragment implements SwipeRefreshLayout.OnRe
 
     @Override
     public void onRefresh() {
-        postRunnable(SetRandom.SetRandomInt(), SetRandom.SetRandomInt(), SetRandom.SetRandomInt());
+        presenter.viewIsReady();
     }
 
-    private void postRunnable(final int id1, final int id2, final int id3) {
-        tryToSleepForTwoSecondsInNewThread(id1, id2, id3);
-    }
-
-    private void tryToSleepForTwoSecondsInNewThread(final int id1, final int id2, final int id3) {
-        final Handler handler = new Handler() {
-            @Override
-            public void handleMessage(Message msg) {
-                if (msg.what == 42) {
-                    List<String> badges = (List<String>) msg.obj;
-                    pointsBadge1.setText(badges.get(0));
-                    pointsBadge2.setText(badges.get(1));
-                    pointsBadge3.setText(badges.get(2));
-                    viewAvatarOne.setBackgroundColor(SetRandom.SetRandomColor());
-                    viewAvatarTwo.setBackgroundColor(SetRandom.SetRandomColor());
-                    viewAvatarThree.setBackgroundColor(SetRandom.SetRandomColor());
-                    mSwipeRefreshLayout.setRefreshing(false);
-                }
-            }
-        };
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    Thread.sleep(2000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                final List<String> messages = new ArrayList<>(3);
-                messages.add(String.valueOf(SetRandom.SetRandomInt()));
-                messages.add(String.valueOf(SetRandom.SetRandomInt()));
-                messages.add(String.valueOf(SetRandom.SetRandomInt()));
-                Message message = handler.obtainMessage(42, messages);
-                handler.sendMessage(message);
-            }
-        }).start();
+    @Override
+    public void stopRefreshing() {
+        mSwipeRefreshLayout.setRefreshing(false);
     }
 }
