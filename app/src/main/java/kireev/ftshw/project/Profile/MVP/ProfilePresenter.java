@@ -55,11 +55,7 @@ public class ProfilePresenter extends MvpBasePresenter<ProfileView> {
     }
 
     private void getProfileProgressFromSp(){
-        int[] progressCardArray = new int[3];
-        progressCardArray[0] = spStorage.getInt("profilePoints",0);
-        progressCardArray[1] = spStorage.getInt("profileTests",0);
-        progressCardArray[2] = 1;
-        getView().showProgressOnCard(spStorage.getInt("profilePoints",0), spStorage.getInt("profileTests",0), 1);
+        getView().showProgressOnCard(spStorage.getInt("profilePoints",0), spStorage.getInt("profileTests",0), spStorage.getInt("profileCourses",0));
     }
 
 
@@ -141,12 +137,8 @@ public class ProfilePresenter extends MvpBasePresenter<ProfileView> {
                 final int finalIntPoints = intPoints;
                 spStorage.edit().putInt("profilePoints", finalIntPoints).apply();
                 spStorage.edit().putInt("profileTests", finalTestCount).apply();
-                ifViewAttached(new ViewAction<ProfileView>() {
-                    @Override
-                    public void run(@NonNull ProfileView view) {
-                        view.showProgressOnCard(finalIntPoints, finalTestCount,1);
-                    }
-                });
+                spStorage.edit().putInt("profileCourses", 1).apply();
+                ifViewAttached(view -> view.showProgressOnCard(finalIntPoints, finalTestCount,1));
                 Log.i("Profile header:",  "Баллов: " + intPoints + " Тестов: " + testCount + " Курсов: 1");
             }
 

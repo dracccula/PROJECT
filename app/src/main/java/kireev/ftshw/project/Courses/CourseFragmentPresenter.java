@@ -66,7 +66,6 @@ class CourseFragmentPresenter extends MvpBasePresenter<CoursesFragmentView> {
                     user.getCurrentWork(), user.getAvatar(), user.getResume(), user.getSkypeLogin(), user.getIsClient(), user.getTShirtSize(), user.getAdmin());
             profileDao.insert(profile);
         }
-
     }
 
     private void getConnections() {
@@ -177,6 +176,11 @@ class CourseFragmentPresenter extends MvpBasePresenter<CoursesFragmentView> {
 
     public void viewIsReady(){
         getConnections();
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         getGrades();
         getProfile();
     }

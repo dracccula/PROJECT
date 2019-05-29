@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,13 +17,12 @@ import android.widget.Toast;
 import com.hannesdorfmann.mosby3.mvp.MvpActivity;
 
 import kireev.ftshw.project.Courses.CoursesFragment;
-import kireev.ftshw.project.Courses.Grades.GradesSectionFragment;
 import kireev.ftshw.project.Courses.GradesList.GradesListActivity;
 import kireev.ftshw.project.Courses.RatingList.RatingActivity;
 import kireev.ftshw.project.Events.EventsFragment;
 import kireev.ftshw.project.Login.LoginActivity;
 import kireev.ftshw.project.Profile.AnonimProfileFragment;
-import kireev.ftshw.project.Profile.MVP.ProfileViewFragment;
+import kireev.ftshw.project.Profile.MVP.ProfileFragment;
 
 public class MainActivity extends MvpActivity<MainView, MainPresenter> implements MainView {
 
@@ -57,7 +55,7 @@ public class MainActivity extends MvpActivity<MainView, MainPresenter> implement
                 if (navigation.getMenu().findItem(navigation.getSelectedItemId()) == navigation.getMenu().getItem(2)) {
                     if (spStorage.getBoolean("IS_AUTORIZED", false)) {
                         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                                new ProfileViewFragment()).commitNow();
+                                new ProfileFragment()).commitNow();
                     } else {
                         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
                                 new AnonimProfileFragment()).commitNow();
@@ -156,7 +154,7 @@ public class MainActivity extends MvpActivity<MainView, MainPresenter> implement
                     break;
                 case R.id.navigation_profile:
                     if (spStorage.getBoolean("IS_AUTORIZED", false)) {
-                        selectedFragment = new ProfileViewFragment();
+                        selectedFragment = new ProfileFragment();
                         break;
                     } else {
                         selectedFragment = new AnonimProfileFragment();

@@ -29,7 +29,7 @@ import kireev.ftshw.project.Database.Entity.Profile;
 import kireev.ftshw.project.MainActivity;
 import kireev.ftshw.project.R;
 
-public class ProfileViewFragment extends MvpFragment<ProfileView, ProfilePresenter> implements ProfileView {
+public class ProfileFragment extends MvpFragment<ProfileView, ProfilePresenter> implements ProfileView {
 
     ImageView avatarTop;
     TextView headerName, headerEmail,
