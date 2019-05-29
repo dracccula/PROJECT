@@ -15,30 +15,40 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 
+import kireev.ftshw.project.Courses.FinishedCourses.FinishedCoursesSectionFragment;
 import kireev.ftshw.project.Courses.Grades.GradesSectionFragment;
 import kireev.ftshw.project.Courses.Grades.GradesVO;
+import kireev.ftshw.project.Database.Dao.ProfileDao;
+import kireev.ftshw.project.Database.Entity.Profile;
+import kireev.ftshw.project.Database.ProjectDatabase;
 import kireev.ftshw.project.Network.Model.ConnectionsResponse;
 import kireev.ftshw.project.Network.Model.GradesResponse;
+import kireev.ftshw.project.Profile.MVP.ProfileData;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 import static kireev.ftshw.project.MainActivity.spStorage;
 
-class MainPresenter extends MvpBasePresenter<MainView> {
+public class MainPresenter extends MvpBasePresenter<MainView> {
 
     private MainModel model;
-    private GradesSectionFragment fragment;
+    private GradesSectionFragment gradesSectionFragmentragment;
+    private FinishedCoursesSectionFragment finishedCoursesSectionFragment;
     private List<GradesVO> gradesVOList = new ArrayList<>();
+    private ProjectDatabase db;
 
-    MainPresenter(MainModel mainModel) {
+    public MainPresenter(MainModel mainModel) {
         this.model = mainModel;
     }
 
-    void setGradesSectionFragment(GradesSectionFragment fragment) {
-        this.fragment = fragment;
+    public void setGradesSectionFragment(GradesSectionFragment grades) {
+        this.gradesSectionFragmentragment = grades;
     }
 
+    public void setFinishedCoursesSectionFragment(FinishedCoursesSectionFragment courses) {
+        this.finishedCoursesSectionFragment = courses;
+    }
 
     public void getConnections() {
         model.getConnections(new Callback<ConnectionsResponse>() {
@@ -58,6 +68,8 @@ class MainPresenter extends MvpBasePresenter<MainView> {
                     ed.putString("courseStatus", status);
                     ed.putString("courseDateStart", dateStart);
                     ed.apply();
+                    getGrades();
+                    getProfile();
                     //model.updateProfileCourseData(url, title, status, dateStart);
                     Log.e("getConnections", url + title + status + dateStart);
                 }
@@ -69,15 +81,61 @@ class MainPresenter extends MvpBasePresenter<MainView> {
         });
     }
 
-    public void getGrades() {
+    private void getProfile(){
+        model.getUserData(new Callback<ProfileData>() {
+            @Override
+            public void onResponse(Call<ProfileData> call, Response<ProfileData> response) {
+                ProfileData profileData = response.body();
+                updateProfileData(Objects.requireNonNull(profileData).getUser());
+            }
+
+            @Override
+            public void onFailure(Call<ProfileData> call, Throwable t) {
+
+            }
+        });
+    }
+
+    private int getProfileIdFromDb() {
+        db = App.getInstance().getDatabase();
+        ProfileDao profileDao = db.profileDao();
+        List<Profile> profileList = profileDao.getAll();
+        return (int) profileList.get(0).getId();
+    }
+
+    private void updateProfileData(ProfileData.User user) {
+        db = App.getInstance().getDatabase();
+        ProfileDao profileDao = db.profileDao();
+        if (user != null) {
+            Profile profile = new Profile(user.getId(), user.getFirstName(), user.getLastName(), user.getMiddleName(), user.getEmail(),
+                    user.getBirthday(), user.getPhoneMobile(), user.getDescription(), user.getRegion(), user.getSchool(), user.getSchoolGraduation(),
+                    user.getUniversity(), user.getFaculty(), user.getUniversityGraduation(), user.getGrade(), user.getDepartment(),
+                    user.getCurrentWork(), user.getAvatar(), user.getResume(), user.getSkypeLogin(), user.getIsClient(), user.getTShirtSize(), user.getAdmin());
+            profileDao.insert(profile);
+        }
+
+    }
+
+    private void getGrades() {
         gradesVOList.clear();
         model.getGrades(new Callback<List<GradesResponse>>() {
             @Override
             public void onResponse(Call<List<GradesResponse>> call, Response<List<GradesResponse>> response) {
                 String studentName = "";
+                int profilePoints = 0;
                 int studentPoints;
                 List<GradesResponse> gradesResponseList = response.body();
                 for (int i = 0; i < gradesResponseList.size(); i++) {
+                    if (gradesResponseList.get(i).getName().toLowerCase().contains("общий")) {
+                        List<GradesResponse.Grades> gradesList = gradesResponseList.get(i).getGrades();
+                        for (int j = 0; j < gradesList.size(); j++) {
+                            if (gradesList.get(j).getStudentId() == getProfileIdFromDb()){
+                                double points = gradesList.get(j).getGrades().get(0).getMark();
+                                profilePoints = (int) Math.round(points);
+                            }
+                        }
+                    }
+                    spStorage.edit().putInt("profilePoints", profilePoints).apply();
                     List<GradesResponse.Grades> gradesList = gradesResponseList.get(i).getGrades();
                     for (int j = 0; j < gradesList.size(); j++) {
                         GradesVO gradesVO = new GradesVO();
@@ -91,7 +149,8 @@ class MainPresenter extends MvpBasePresenter<MainView> {
                     }
                 }
                 Log.i("hui123", "getGrades in main");
-                fragment.showGrades(gradesVOList);
+                gradesSectionFragmentragment.showGrades(gradesVOList);
+                finishedCoursesSectionFragment.showCourses(getCourseTitleFromSP(),getCourseStartDateFromSP(),getCoursePointsFromSP());
                 Log.i("Profile header:", gradesVOList.toString());
             }
 
@@ -101,6 +160,18 @@ class MainPresenter extends MvpBasePresenter<MainView> {
             }
         });
 
+    }
+
+    private String getCourseTitleFromSP() {
+        return spStorage.getString("courseTitle", "");
+    }
+
+    private String getCourseStartDateFromSP() {
+        return spStorage.getString("courseDateStart", "");
+    }
+
+    private String getCoursePointsFromSP() {
+        return String.valueOf(spStorage.getInt("profilePoints", 0));
     }
 
 

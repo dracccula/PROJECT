@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.hannesdorfmann.mosby3.mvp.MvpActivity;
 
 import kireev.ftshw.project.Courses.CoursesFragment;
+import kireev.ftshw.project.Courses.FinishedCourses.FinishedCoursesSectionFragment;
 import kireev.ftshw.project.Courses.Grades.GradesSectionFragment;
 import kireev.ftshw.project.Courses.GradesList.GradesListActivity;
 import kireev.ftshw.project.Courses.Rating.RatingActivity;
@@ -122,8 +123,9 @@ public class MainActivity extends MvpActivity<MainView, MainPresenter> implement
         super.onResume();
 //        GradesSectionFragment fragment = (GradesSectionFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentGrades);
         presenter.setGradesSectionFragment(coursesFragment.getGradesSectionFragment());
+        presenter.setFinishedCoursesSectionFragment(coursesFragment.getFinishedCoursesSectionFragment());
         presenter.getConnections();
-        presenter.getGrades();
+        //presenter.getGrades();
     }
 
     @NonNull

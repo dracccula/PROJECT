@@ -19,8 +19,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import kireev.ftshw.project.Courses.FinishedCourses.FinishedCoursesSectionFragment;
 import kireev.ftshw.project.Courses.Grades.GradesSectionFragment;
 import kireev.ftshw.project.MainActivity;
+import kireev.ftshw.project.MainModel;
+import kireev.ftshw.project.MainPresenter;
 import kireev.ftshw.project.R;
 import kireev.ftshw.project.TempTools.SetRandom;
 
@@ -35,6 +38,10 @@ import static kireev.ftshw.project.Courses.Grades.GradesSectionFragment.viewAvat
 public class CoursesFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
 
     private SwipeRefreshLayout mSwipeRefreshLayout;
+    private MainModel mainModel;
+    MainPresenter mainPresenter = new MainPresenter(mainModel);
+//    GradesSectionFragment fragmentGrades = new GradesSectionFragment();
+//    FinishedCoursesSectionFragment fragmentFinishedCourses = new FinishedCoursesSectionFragment();
 
     public CoursesFragment() {
         // Required empty public constructor
@@ -45,9 +52,16 @@ public class CoursesFragment extends Fragment implements SwipeRefreshLayout.OnRe
         return (GradesSectionFragment) fragment;
     }
 
+    public FinishedCoursesSectionFragment getFinishedCoursesSectionFragment() {
+        Fragment fragment = getFragmentManager().findFragmentById(R.id.fragmentFinishedCourses);
+        return (FinishedCoursesSectionFragment) fragment;
+    }
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mainPresenter.setGradesSectionFragment(getGradesSectionFragment());
+        mainPresenter.setFinishedCoursesSectionFragment(getFinishedCoursesSectionFragment());
         setHasOptionsMenu(false);
     }
 
@@ -61,11 +75,10 @@ public class CoursesFragment extends Fragment implements SwipeRefreshLayout.OnRe
         View v = inflater.inflate(R.layout.fragment_courses, container, false);
         mSwipeRefreshLayout = v.findViewById(R.id.swipe_container);
         mSwipeRefreshLayout.setOnRefreshListener(this);
-
         FragmentTransaction ft = getFragmentManager().beginTransaction();
         ft.replace(R.id.fragmentGrades, new GradesSectionFragment());
+        ft.replace(R.id.fragmentFinishedCourses, new FinishedCoursesSectionFragment());
         ft.commit();
-
         return v;
     }
 

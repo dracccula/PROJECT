@@ -73,7 +73,7 @@ public class FinishedCoursesSectionFragment extends MvpFragment<FinishedCoursesS
     }
 
     @Override
-    public void getCourses(String title, String dateStart, String points) {
+    public void showCourses(String title, String dateStart, String points) {
         List<CoursesVO> coursesVOList = new ArrayList<>();
         CoursesVO coursesVO = new CoursesVO();
         coursesVO.setTitle(title);
