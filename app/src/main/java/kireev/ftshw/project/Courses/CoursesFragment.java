@@ -24,6 +24,7 @@ import java.util.Objects;
 
 import kireev.ftshw.project.Courses.FinishedCourses.FinishedCoursesSectionFragment;
 import kireev.ftshw.project.Courses.Grades.GradesSectionFragment;
+import kireev.ftshw.project.Courses.Rating.RatingSectionFragment;
 import kireev.ftshw.project.MainActivity;
 import kireev.ftshw.project.MainModel;
 import kireev.ftshw.project.MainPresenter;
@@ -80,10 +81,13 @@ public class CoursesFragment extends MvpFragment<CoursesFragmentView, CourseFrag
         FragmentTransaction ft = getChildFragmentManager().beginTransaction();
         GradesSectionFragment fragmentGrades = new GradesSectionFragment();
         ft.replace(R.id.fragmentGrades, fragmentGrades);
+        RatingSectionFragment fragmentRating = new RatingSectionFragment();
+        ft.replace(R.id.fragmentRating, fragmentRating);
         FinishedCoursesSectionFragment fragmentFinishedCourses = new FinishedCoursesSectionFragment();
         ft.replace(R.id.fragmentFinishedCourses, fragmentFinishedCourses);
         ft.commit();
         presenter.setGradesSectionFragment(fragmentGrades);
+        Log.i("hui123", "CoursesFragment onViewCreated " + fragmentGrades);
         presenter.setFinishedCoursesSectionFragment(fragmentFinishedCourses);
         presenter.viewIsReady();
     }

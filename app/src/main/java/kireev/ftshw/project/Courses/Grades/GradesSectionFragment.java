@@ -12,13 +12,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
-import android.widget.TextView;
 
 import com.hannesdorfmann.mosby3.mvp.MvpFragment;
 
 import java.util.List;
 
-import kireev.ftshw.project.Tools.InitialsRoundView;
 import kireev.ftshw.project.R;
 
 public class GradesSectionFragment extends MvpFragment<GradesSectionView, GradesSectionPresenter> implements GradesSectionView {
@@ -46,7 +44,6 @@ public class GradesSectionFragment extends MvpFragment<GradesSectionView, Grades
         View v = inflater.inflate(R.layout.fragment_grades_section, container, false);
         pbGradesStudents = v.findViewById(R.id.pbGradesStudents);
         rvGrades = v.findViewById(R.id.rvGradesStudents);
-        //rvGrades.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         gradesAdapter = new GradesAdapter(getContext());
         presenter.attachView(this);
         return v;
@@ -62,18 +59,20 @@ public class GradesSectionFragment extends MvpFragment<GradesSectionView, Grades
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         presenter.attachView(this);
-        Log.i("hui123", "onViewCreated");
+        Log.i("hui123", "GradesSectionFragment onViewCreated");
         //presenter.viewIsReady();
     }
 
     @Override
     public void showGrades(List<GradesVO> gradesVOList) {
         Log.i("hui123", "getGrades in Grades");
-        gradesAdapter.clearList(gradesVOList);
-        gradesAdapter.setItems(gradesVOList);
-        rvGrades.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-        hideProgressBar();
-        rvGrades.setAdapter(gradesAdapter);
+        if (isAdded()){
+            gradesAdapter.clearList(gradesVOList);
+            gradesAdapter.setItems(gradesVOList);
+            rvGrades.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+            hideProgressBar();
+            rvGrades.setAdapter(gradesAdapter);
+        }
     }
 
     @Override
@@ -81,5 +80,9 @@ public class GradesSectionFragment extends MvpFragment<GradesSectionView, Grades
         pbGradesStudents.setVisibility(View.GONE);
     }
 
+    @Override
+    public void stopScrollRV() {
+        rvGrades.stopScroll();
+    }
 
 }

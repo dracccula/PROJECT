@@ -1,4 +1,4 @@
-package kireev.ftshw.project.Courses;
+package kireev.ftshw.project.Courses.Rating;
 
 
 import android.os.Bundle;

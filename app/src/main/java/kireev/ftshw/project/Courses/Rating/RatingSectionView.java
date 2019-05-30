@@ -1,4 +1,4 @@
-package kireev.ftshw.project.Courses;
+package kireev.ftshw.project.Courses.Rating;
 
 import com.hannesdorfmann.mosby3.mvp.MvpView;
 

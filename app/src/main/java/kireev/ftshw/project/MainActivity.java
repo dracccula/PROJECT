@@ -63,10 +63,6 @@ public class MainActivity extends MvpActivity<MainView, MainPresenter> implement
                 }
 
             }
-//            GradesSectionFragment fragment = (GradesSectionFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentGrades);
-//            presenter.setGradesSectionFragment(coursesFragment.getGradesSectionFragment());
-//            presenter.getConnections();
-//            presenter.getGrades();
         }
 
         ad = new AlertDialog.Builder(this);
@@ -95,9 +91,9 @@ public class MainActivity extends MvpActivity<MainView, MainPresenter> implement
         adLogout.setPositiveButton(getString(R.string.profile_logout_yes), new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int arg1) {
                 SharedPreferences.Editor ed = spStorage.edit();
-                ed.remove("anygenCookie");
-                ed.remove("IS_AUTORIZED");
+                ed.clear();
                 ed.apply();
+                App.getInstance().getDatabase().clearAllTables();
                 Toast.makeText(getBaseContext(), "signOut!", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(getBaseContext(), LoginActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
             }
@@ -118,11 +114,6 @@ public class MainActivity extends MvpActivity<MainView, MainPresenter> implement
     @Override
     protected void onResume() {
         super.onResume();
-//        GradesSectionFragment fragment = (GradesSectionFragment) getSupportFragmentManager().findFragmentById(R.id.fragmentGrades);
-        //presenter.setGradesSectionFragment(coursesFragment.getGradesSectionFragment());
-        //presenter.setFinishedCoursesSectionFragment(coursesFragment.getFinishedCoursesSectionFragment());
-        //presenter.getConnections();
-        //presenter.getGrades();
     }
 
     @NonNull

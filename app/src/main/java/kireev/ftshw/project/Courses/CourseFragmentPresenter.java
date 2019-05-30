@@ -17,36 +17,71 @@ import kireev.ftshw.project.App;
 import kireev.ftshw.project.Courses.FinishedCourses.FinishedCoursesSectionFragment;
 import kireev.ftshw.project.Courses.Grades.GradesSectionFragment;
 import kireev.ftshw.project.Courses.Grades.GradesVO;
+import kireev.ftshw.project.Database.Dao.GradesDao;
 import kireev.ftshw.project.Database.Dao.ProfileDao;
+import kireev.ftshw.project.Database.Entity.Grades;
 import kireev.ftshw.project.Database.Entity.Profile;
 import kireev.ftshw.project.Database.ProjectDatabase;
 import kireev.ftshw.project.Network.Model.ConnectionsResponse;
 import kireev.ftshw.project.Network.Model.GradesResponse;
 import kireev.ftshw.project.Profile.MVP.ProfileData;
+import kireev.ftshw.project.TempTools.SetRandom;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 import static kireev.ftshw.project.MainActivity.spStorage;
 
-class CourseFragmentPresenter extends MvpBasePresenter<CoursesFragmentView> {
+public class CourseFragmentPresenter extends MvpBasePresenter<CoursesFragmentView> {
 
     private CoursesFragmentModel model;
     private List<GradesVO> gradesVOList = new ArrayList<>();
     private ProjectDatabase db;
-    private GradesSectionFragment gradesSectionFragmentragment;
+    private GradesSectionFragment gradesSectionFragment;
     private FinishedCoursesSectionFragment finishedCoursesSectionFragment;
 
-    CourseFragmentPresenter(CoursesFragmentModel coursesFragmentModel) {
+    public CourseFragmentPresenter(CoursesFragmentModel coursesFragmentModel) {
         this.model = coursesFragmentModel;
     }
 
     public void setGradesSectionFragment(GradesSectionFragment grades) {
-        this.gradesSectionFragmentragment = grades;
+        this.gradesSectionFragment = grades;
     }
 
     public void setFinishedCoursesSectionFragment(FinishedCoursesSectionFragment courses) {
         this.finishedCoursesSectionFragment = courses;
+    }
+
+    private void checkDatabase() {
+        db = App.getInstance().getDatabase();
+        GradesDao gradesDao = db.gradesDao();
+        if (gradesDao.getAllOrderedByMark().isEmpty()) {
+            refreshData();
+        } else {
+            getGradesFromDb();
+            getProfileIdFromDb();
+            refreshData();
+        }
+    }
+
+    private void getGradesFromDb() {
+        db = App.getInstance().getDatabase();
+        GradesDao gradesDao = db.gradesDao();
+        List<Grades> gradesList = gradesDao.getAllOrderedByMark();
+        for (int i = 0; i < gradesList.size(); i++) {
+            GradesVO gradesVO = new GradesVO();
+            gradesVO.setId(gradesList.get(i).student_id);
+            gradesVO.setName(gradesList.get(i).name);
+            gradesVO.setPoints(gradesList.get(i).mark);
+            gradesVO.setColor(gradesList.get(i).color);
+            gradesVOList.add(gradesVO);
+        }
+        ifViewAttached(view -> {gradesSectionFragment.showGrades(gradesVOList);});
+    }
+
+    private void refreshData() {
+        getGrades();
+        getProfile();
     }
 
     private int getProfileIdFromDb() {
@@ -54,6 +89,19 @@ class CourseFragmentPresenter extends MvpBasePresenter<CoursesFragmentView> {
         ProfileDao profileDao = db.profileDao();
         List<Profile> profileList = profileDao.getAll();
         return (int) profileList.get(0).getId();
+    }
+
+    private void updateGradesData(int student_id, String name, int mark, int color) {
+        db = App.getInstance().getDatabase();
+        GradesDao gradesDao = db.gradesDao();
+        Grades grades = new Grades();
+        grades.setStudent_id(student_id);
+        grades.setName(name);
+        grades.setMark(mark);
+        grades.setColor(color);
+        gradesDao.insert(grades);
+
+
     }
 
     private void updateProfileData(ProfileData.User user) {
@@ -96,7 +144,7 @@ class CourseFragmentPresenter extends MvpBasePresenter<CoursesFragmentView> {
         });
     }
 
-    private void getProfile(){
+    private void getProfile() {
         model.getUserData(new Callback<ProfileData>() {
             @Override
             public void onResponse(Call<ProfileData> call, Response<ProfileData> response) {
@@ -119,6 +167,7 @@ class CourseFragmentPresenter extends MvpBasePresenter<CoursesFragmentView> {
         model.getGrades(new Callback<List<GradesResponse>>() {
             @Override
             public void onResponse(Call<List<GradesResponse>> call, Response<List<GradesResponse>> response) {
+                int studentId;
                 String studentName = "";
                 int profilePoints = 0;
                 int studentPoints;
@@ -127,19 +176,24 @@ class CourseFragmentPresenter extends MvpBasePresenter<CoursesFragmentView> {
                     if (gradesResponseList.get(i).getName().toLowerCase().contains("общий")) {
                         List<GradesResponse.Grades> gradesList = gradesResponseList.get(i).getGrades();
                         for (int j = 0; j < gradesList.size(); j++) {
-                            if (gradesList.get(j).getStudentId() == getProfileIdFromDb()){
+                            if (gradesList.get(j).getStudentId() == getProfileIdFromDb()) {
                                 double points = gradesList.get(j).getGrades().get(0).getMark();
                                 profilePoints = (int) Math.round(points);
                                 spStorage.edit().putInt("profilePoints", profilePoints).apply();
                             }
                             GradesVO gradesVO = new GradesVO();
+                            studentId = gradesList.get(j).getStudentId();
+                            gradesVO.setId(studentId);
                             studentName = gradesList.get(j).getStudent();
                             gradesVO.setName(studentName);
                             List<GradesResponse.StudentGrade> studentGradeList = gradesList.get(j).getGrades();
                             Double dPoints = studentGradeList.get(studentGradeList.size() - 1).getMark();
                             studentPoints = (int) Math.round(dPoints);
                             gradesVO.setPoints(studentPoints);
+                            int studentColor = SetRandom.SetRandomColor();
+                            gradesVO.setColor(studentColor);
                             gradesVOList.add(gradesVO);
+                            updateGradesData(studentId,studentName,studentPoints,studentColor);
                         }
                     }
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
@@ -148,8 +202,8 @@ class CourseFragmentPresenter extends MvpBasePresenter<CoursesFragmentView> {
                     Collections.reverse(gradesVOList);
                 }
                 Log.i("hui123", "getGrades in main");
-                gradesSectionFragmentragment.showGrades(gradesVOList);
-                finishedCoursesSectionFragment.showCourses(getCourseTitleFromSP(),getCourseStartDateFromSP(),getCoursePointsFromSP());
+                gradesSectionFragment.showGrades(gradesVOList);
+                finishedCoursesSectionFragment.showCourses(getCourseTitleFromSP(), getCourseStartDateFromSP(), getCoursePointsFromSP());
                 Log.i("Profile header:", gradesVOList.toString());
                 ifViewAttached(CoursesFragmentView::stopRefreshing);
             }
@@ -174,14 +228,8 @@ class CourseFragmentPresenter extends MvpBasePresenter<CoursesFragmentView> {
         return String.valueOf(spStorage.getInt("profilePoints", 0));
     }
 
-    public void viewIsReady(){
+    public void viewIsReady() {
         getConnections();
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        getGrades();
-        getProfile();
+        checkDatabase();
     }
 }

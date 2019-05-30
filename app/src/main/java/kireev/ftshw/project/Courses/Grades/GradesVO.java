@@ -2,8 +2,18 @@ package kireev.ftshw.project.Courses.Grades;
 
 public class GradesVO{
 
+    private int id;
     private String name;
     private int points;
+    private int color;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -19,5 +29,13 @@ public class GradesVO{
 
     public void setPoints(int points) {
         this.points = points;
+    }
+
+    public int getColor() {
+        return color;
+    }
+
+    public void setColor(int color) {
+        this.color = color;
     }
 }

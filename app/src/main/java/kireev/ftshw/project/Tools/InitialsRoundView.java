@@ -2,8 +2,11 @@ package kireev.ftshw.project.Tools;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.GradientDrawable;
 import android.util.AttributeSet;
 import android.view.Gravity;
@@ -94,7 +97,7 @@ public class InitialsRoundView extends FrameLayout {
         //tv.setTypeface(tv.getTypeface(), Typeface.BOLD);
         tv.setTextColor(Color.WHITE);
         tv.setGravity(Gravity.CENTER);
-        tv.setTextSize(26);
+        tv.setTextSize(22);
         int padding = getResources().getDimensionPixelOffset(R.dimen.text_margin);
         tv.setPadding(padding,padding,padding,padding);
         addView(tv);
