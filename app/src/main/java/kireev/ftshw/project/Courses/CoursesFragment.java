@@ -88,6 +88,7 @@ public class CoursesFragment extends MvpFragment<CoursesFragmentView, CourseFrag
         ft.commit();
         presenter.setGradesSectionFragment(fragmentGrades);
         Log.i("hui123", "CoursesFragment onViewCreated " + fragmentGrades);
+        presenter.setRatingSectionFragment(fragmentRating);
         presenter.setFinishedCoursesSectionFragment(fragmentFinishedCourses);
         presenter.viewIsReady();
     }

@@ -17,6 +17,7 @@ import kireev.ftshw.project.App;
 import kireev.ftshw.project.Courses.FinishedCourses.FinishedCoursesSectionFragment;
 import kireev.ftshw.project.Courses.Grades.GradesSectionFragment;
 import kireev.ftshw.project.Courses.Grades.GradesVO;
+import kireev.ftshw.project.Courses.Rating.RatingSectionFragment;
 import kireev.ftshw.project.Database.Dao.GradesDao;
 import kireev.ftshw.project.Database.Dao.ProfileDao;
 import kireev.ftshw.project.Database.Entity.Grades;
@@ -38,14 +39,19 @@ public class CourseFragmentPresenter extends MvpBasePresenter<CoursesFragmentVie
     private List<GradesVO> gradesVOList = new ArrayList<>();
     private ProjectDatabase db;
     private GradesSectionFragment gradesSectionFragment;
+    private RatingSectionFragment ratingSectionFragment;
     private FinishedCoursesSectionFragment finishedCoursesSectionFragment;
 
-    public CourseFragmentPresenter(CoursesFragmentModel coursesFragmentModel) {
+    CourseFragmentPresenter(CoursesFragmentModel coursesFragmentModel) {
         this.model = coursesFragmentModel;
     }
 
     public void setGradesSectionFragment(GradesSectionFragment grades) {
         this.gradesSectionFragment = grades;
+    }
+
+    public void setRatingSectionFragment(RatingSectionFragment rating) {
+        this.ratingSectionFragment = rating;
     }
 
     public void setFinishedCoursesSectionFragment(FinishedCoursesSectionFragment courses) {
@@ -59,6 +65,7 @@ public class CourseFragmentPresenter extends MvpBasePresenter<CoursesFragmentVie
             refreshData();
         } else {
             getGradesFromDb();
+            //getRatingFromSP();
             getProfileIdFromDb();
             refreshData();
         }
@@ -76,7 +83,9 @@ public class CourseFragmentPresenter extends MvpBasePresenter<CoursesFragmentVie
             gradesVO.setColor(gradesList.get(i).color);
             gradesVOList.add(gradesVO);
         }
-        ifViewAttached(view -> {gradesSectionFragment.showGrades(gradesVOList);});
+        ifViewAttached(view -> {
+            gradesSectionFragment.showGrades(gradesVOList);
+        });
     }
 
     private void refreshData() {
@@ -89,6 +98,20 @@ public class CourseFragmentPresenter extends MvpBasePresenter<CoursesFragmentVie
         ProfileDao profileDao = db.profileDao();
         List<Profile> profileList = profileDao.getAll();
         return (int) profileList.get(0).getId();
+    }
+
+    private void getRatingFromSP() {
+        int profilePoints = spStorage.getInt("profilePoints", 0);
+        int allStudents = spStorage.getInt("allStudents", 0);
+        int studentPosition = spStorage.getInt("studentPosition", 0);
+        int acceptedTests = spStorage.getInt("acceptedTests", 0);
+        int allTests = spStorage.getInt("allTests", 0);
+        int acceptedHomeworks = spStorage.getInt("acceptedHomeworks", 0);
+        int allHomeworks = spStorage.getInt("allHomeworks", 0);
+        int allLessons = spStorage.getInt("allLessons", 0);
+        int lessonsDone = spStorage.getInt("lessonsDone", 0);
+        int lessonsLeft = spStorage.getInt("lessonsLeft", 0);
+        ifViewAttached(view -> ratingSectionFragment.showRating(profilePoints, allStudents, studentPosition, acceptedTests, allTests, acceptedHomeworks, allHomeworks, allLessons, lessonsDone, lessonsLeft));
     }
 
     private void updateGradesData(int student_id, String name, int mark, int color) {
@@ -171,12 +194,15 @@ public class CourseFragmentPresenter extends MvpBasePresenter<CoursesFragmentVie
                 String studentName = "";
                 int profilePoints = 0;
                 int studentPoints;
+                int allStudents = 0, studentPosition = 0, acceptedTests = 0, allTests = 0, acceptedHomeworks = 0, allHomeworks = 0, allLessons = 0, lessonsDone = 0, lessonsLeft = 0;
+                int activeStudentId = getProfileIdFromDb();
+
                 List<GradesResponse> gradesResponseList = response.body();
                 for (int i = 0; i < gradesResponseList.size(); i++) {
                     if (gradesResponseList.get(i).getName().toLowerCase().contains("общий")) {
                         List<GradesResponse.Grades> gradesList = gradesResponseList.get(i).getGrades();
                         for (int j = 0; j < gradesList.size(); j++) {
-                            if (gradesList.get(j).getStudentId() == getProfileIdFromDb()) {
+                            if (gradesList.get(j).getStudentId() == activeStudentId) {
                                 double points = gradesList.get(j).getGrades().get(0).getMark();
                                 profilePoints = (int) Math.round(points);
                                 spStorage.edit().putInt("profilePoints", profilePoints).apply();
@@ -193,17 +219,60 @@ public class CourseFragmentPresenter extends MvpBasePresenter<CoursesFragmentVie
                             int studentColor = SetRandom.SetRandomColor();
                             gradesVO.setColor(studentColor);
                             gradesVOList.add(gradesVO);
-                            updateGradesData(studentId,studentName,studentPoints,studentColor);
+                            updateGradesData(studentId, studentName, studentPoints, studentColor);
+                        }
+                    }
+                    if (gradesResponseList.get(i).getName().toLowerCase().contains("доступ")) {
+                        List<GradesResponse.Grades> gradesList = gradesResponseList.get(i).getGrades();
+                        for (int j = 0; j < gradesList.size(); j++) {
+                            allStudents = gradesList.size();
+                            for (int k = 0; k < gradesList.size(); k++) {
+                                if (gradesList.get(k).getStudentId() == activeStudentId){
+                                    for (int l = 0; l < gradesList.size(); l++) {
+                                        if (gradesList.get(k).getGrades().get(l).getTaskType().toLowerCase().contains("test")) {
+                                            allTests++;
+                                            if (gradesList.get(k).getGrades().get(l).getStatus().contentEquals("accepted")) {
+                                                acceptedTests++;
+                                            }
+                                        }
+                                        if (gradesList.get(k).getGrades().get(l).getTaskType().toLowerCase().contains("full")) {
+                                            allHomeworks++;
+                                            if (gradesList.get(k).getGrades().get(l).getStatus().contentEquals("accepted")) {
+                                                acceptedHomeworks++;
+                                            }
+                                        }
+
+                                    }
+                                }
+                            }
                         }
                     }
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                         Collections.sort(gradesVOList, Comparator.comparing(GradesVO::getPoints));
                     }
+                    for (int m = 0; m < gradesVOList.size(); m++) {
+                        if (gradesVOList.get(m).getId() == activeStudentId) {
+                            studentPosition = m;
+                        }
+                    }
                     Collections.reverse(gradesVOList);
                 }
                 Log.i("hui123", "getGrades in main");
                 gradesSectionFragment.showGrades(gradesVOList);
+                ratingSectionFragment.showRating(profilePoints, allStudents, studentPosition, acceptedTests, allTests, acceptedHomeworks, allHomeworks, 5, 2, 3);
                 finishedCoursesSectionFragment.showCourses(getCourseTitleFromSP(), getCourseStartDateFromSP(), getCoursePointsFromSP());
+                spStorage.edit()
+                        .putInt("profilePoints", profilePoints)
+                        .putInt("allStudents", allStudents)
+                        .putInt("studentPosition", studentPosition)
+                        .putInt("acceptedTests", acceptedTests)
+                        .putInt("allTests", allTests)
+                        .putInt("acceptedHomeworks", acceptedHomeworks)
+                        .putInt("allHomeworks", allHomeworks)
+                        .putInt("allLessons", allLessons)
+                        .putInt("lessonsDone", lessonsDone)
+                        .putInt("lessonsLeft", lessonsLeft)
+                        .apply();
                 Log.i("Profile header:", gradesVOList.toString());
                 ifViewAttached(CoursesFragmentView::stopRefreshing);
             }
