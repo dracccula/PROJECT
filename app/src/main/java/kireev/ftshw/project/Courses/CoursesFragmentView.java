@@ -15,4 +15,10 @@ interface CoursesFragmentView extends MvpView {
     void showRating(int profilePoints, int allStudents, int studentPosition, int acceptedTests, int allTests, int acceptedHomeworks, int allHomeworks, int allLessons, int lessonsDone, int lessonsLeft);
 
     void showCourses(String courseTitleFromSP, String courseStartDateFromSP, String coursePointsFromSP);
+
+    void hideGradesProgressBar();
+
+    void hideRatingProgressBar();
+
+    void hideCoursesProgressBar();
 }

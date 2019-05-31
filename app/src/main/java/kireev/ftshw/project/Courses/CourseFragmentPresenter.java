@@ -57,6 +57,14 @@ public class CourseFragmentPresenter extends MvpBasePresenter<CoursesFragmentVie
         if (gradesDao.getAllOrderedByMark().isEmpty()) {
             refreshData();
         } else {
+            ifViewAttached(view -> {
+                Handler handler = new Handler();
+                handler.postDelayed(() -> {
+                    view.hideGradesProgressBar();
+                    view.hideRatingProgressBar();
+                    view.hideCoursesProgressBar();
+                }, 1);
+            });
             getGradesFromDb();
             getRatingFromSP();
             getProfileIdFromDb();
@@ -64,7 +72,7 @@ public class CourseFragmentPresenter extends MvpBasePresenter<CoursesFragmentVie
                 Handler handler = new Handler();
                 handler.postDelayed(() -> {
                     view.showCourses(getCourseTitleFromSP(), getCourseStartDateFromSP(), getCoursePointsFromSP());
-                }, 1000);
+                }, 30);
             });
             //refreshData();
         }
@@ -84,7 +92,7 @@ public class CourseFragmentPresenter extends MvpBasePresenter<CoursesFragmentVie
         }
         ifViewAttached(view -> {
             Handler handler = new Handler();
-            handler.postDelayed(() -> view.showGrades(gradesVOList), 1000);
+            handler.postDelayed(() -> view.showGrades(gradesVOList), 30);
         });
     }
 
@@ -98,7 +106,7 @@ public class CourseFragmentPresenter extends MvpBasePresenter<CoursesFragmentVie
             getHomeworksData();
             getGrades();
             getProfile();
-        }, 1000);
+        }, 500);
     }
 
     private int getProfileIdFromDb() {
@@ -121,7 +129,9 @@ public class CourseFragmentPresenter extends MvpBasePresenter<CoursesFragmentVie
         int lessonsLeft = spStorage.getInt("lessonsLeft", 0);
         ifViewAttached(view -> {
             Handler handler = new Handler();
-            handler.postDelayed(() -> view.showRating(profilePoints, allStudents, studentPosition, acceptedTests, allTests, acceptedHomeworks, allHomeworks, allLessons, lessonsDone, lessonsLeft), 1000);
+            handler.postDelayed(() -> view.showRating(profilePoints, allStudents, studentPosition,
+                    acceptedTests, allTests, acceptedHomeworks, allHomeworks,
+                    allLessons, lessonsDone, lessonsLeft), 30);
         });
     }
 
@@ -195,7 +205,6 @@ public class CourseFragmentPresenter extends MvpBasePresenter<CoursesFragmentVie
 
     private void getGrades() {
         gradesVOList.clear();
-        //getHomeworksData();
         Handler handler = new Handler();
         handler.postDelayed(() -> model.getGrades(new Callback<List<GradesResponse>>() {
             @Override
@@ -277,7 +286,6 @@ public class CourseFragmentPresenter extends MvpBasePresenter<CoursesFragmentVie
                         }
                     }
                 }
-                Log.i("hui123", "getGrades in main");
                 lessonsLeft = getLessonsLeft();
                 lessonsDone = allLessons - lessonsLeft;
                 int finalProfilePoints = profilePoints;
@@ -295,13 +303,6 @@ public class CourseFragmentPresenter extends MvpBasePresenter<CoursesFragmentVie
                     view.showRating(finalProfilePoints, finalAllStudents, finalStudentPosition, finalAcceptedTests, finalAllTests, finalAcceptedHomeworks, finalAllHomeworks, finalAllLessons, finalLessonsDone, finalLessonsLeft);
                     view.showCourses(getCourseTitleFromSP(), getCourseStartDateFromSP(), getCoursePointsFromSP());
                 });
-
-//                gradesSectionFragment.hideProgressBar();
-//                gradesSectionFragment.showRecyclerView();
-//                gradesSectionFragment.showGrades(gradesVOList);
-
-//                ratingSectionFragment.showRating(profilePoints, allStudents, studentPosition, acceptedTests, allTests, acceptedHomeworks, allHomeworks, allLessons, lessonsDone, lessonsLeft);
-
                 spStorage.edit()
                         .putInt("profilePoints", profilePoints)
                         .putInt("allStudents", allStudents)
@@ -313,7 +314,6 @@ public class CourseFragmentPresenter extends MvpBasePresenter<CoursesFragmentVie
                         .putInt("allLessons", allLessons)
                         .putInt("lessonsDone", lessonsDone)
                         .apply();
-                Log.i("Profile header:", gradesVOList.toString());
                 ifViewAttached(CoursesFragmentView::stopRefreshing);
             }
 
@@ -321,7 +321,7 @@ public class CourseFragmentPresenter extends MvpBasePresenter<CoursesFragmentVie
             public void onFailure(Call<List<GradesResponse>> call, Throwable t) {
                 t.printStackTrace();
             }
-        }), 1000);
+        }), 500);
 
     }
 

@@ -73,4 +73,9 @@ public class RatingSectionFragment extends MvpFragment<RatingSectionView, Rating
         pbRating.setVisibility(View.GONE);
         clRating.setVisibility(View.VISIBLE);
     }
+
+    @Override
+    public void hideProgressBar() {
+        pbRating.setVisibility(View.GONE);
+    }
 }

@@ -111,4 +111,19 @@ public class CoursesFragment extends MvpFragment<CoursesFragmentView, CourseFrag
     public void showCourses(String courseTitleFromSP, String courseStartDateFromSP, String coursePointsFromSP) {
         fragmentFinishedCourses.showCourses(courseTitleFromSP, courseStartDateFromSP, coursePointsFromSP);
     }
+
+    @Override
+    public void hideGradesProgressBar() {
+        fragmentGrades.hideProgressBar();
+    }
+
+    @Override
+    public void hideRatingProgressBar() {
+        fragmentRating.hideProgressBar();
+    }
+
+    @Override
+    public void hideCoursesProgressBar() {
+        fragmentFinishedCourses.hideCoursesProgressBar();
+    }
 }
