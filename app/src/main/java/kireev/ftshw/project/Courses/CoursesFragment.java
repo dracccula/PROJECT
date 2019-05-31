@@ -49,21 +49,10 @@ public class CoursesFragment extends MvpFragment<CoursesFragmentView, CourseFrag
         return new CourseFragmentPresenter(model);
     }
 
-    public GradesSectionFragment getGradesSectionFragment() {
-        Fragment fragment = getFragmentManager().findFragmentById(R.id.fragmentGrades);
-        return (GradesSectionFragment) fragment;
-    }
-
-    public FinishedCoursesSectionFragment getFinishedCoursesSectionFragment() {
-        Fragment fragment = getFragmentManager().findFragmentById(R.id.fragmentFinishedCourses);
-        return (FinishedCoursesSectionFragment) fragment;
-    }
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(false);
-        Log.i("hui123", "onCreate " + getFragmentManager().getFragments());
     }
 
     @Override
@@ -74,14 +63,12 @@ public class CoursesFragment extends MvpFragment<CoursesFragmentView, CourseFrag
         View v = inflater.inflate(R.layout.fragment_courses, container, false);
         mSwipeRefreshLayout = v.findViewById(R.id.swipe_container);
         mSwipeRefreshLayout.setOnRefreshListener(this);
-        Log.i("hui123", "onCreateView ");
         return v;
     }
 
     @Override
     public void onViewCreated(@NonNull final View view, @Nullable final Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Log.i("hui123", "onViewCreated " + getFragmentManager().getFragments());
         FragmentTransaction ft = getChildFragmentManager().beginTransaction();
         fragmentGrades = new GradesSectionFragment();
         ft.replace(R.id.fragmentGrades, fragmentGrades);
@@ -90,10 +77,6 @@ public class CoursesFragment extends MvpFragment<CoursesFragmentView, CourseFrag
         fragmentFinishedCourses = new FinishedCoursesSectionFragment();
         ft.replace(R.id.fragmentFinishedCourses, fragmentFinishedCourses);
         ft.commitNow();
-//        presenter.setGradesSectionFragment(fragmentGrades);
-        Log.i("hui123", "CoursesFragment onViewCreated " + fragmentGrades);
-//        presenter.setRatingSectionFragment(fragmentRating);
-//        presenter.setFinishedCoursesSectionFragment(fragmentFinishedCourses);
         presenter.viewIsReady();
     }
 
@@ -106,7 +89,7 @@ public class CoursesFragment extends MvpFragment<CoursesFragmentView, CourseFrag
 
     @Override
     public void onRefresh() {
-        presenter.viewIsReady();
+        presenter.refreshData();
     }
 
     @Override

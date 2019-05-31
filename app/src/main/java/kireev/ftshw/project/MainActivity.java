@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
@@ -94,7 +93,6 @@ public class MainActivity extends MvpActivity<MainView, MainPresenter> implement
                 ed.clear();
                 ed.apply();
                 App.getInstance().getDatabase().clearAllTables();
-                Toast.makeText(getBaseContext(), "signOut!", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(getBaseContext(), LoginActivity.class).addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP));
             }
         });
@@ -168,21 +166,16 @@ public class MainActivity extends MvpActivity<MainView, MainPresenter> implement
 
     @Override
     public void gradesButtonClick(View view) {
-        Log.d("gradesButtonClick", "clicked!");
         startActivityForResult(new Intent(this, GradesListActivity.class), 1);
-        Log.d("gradesButtonClick", "GradesListActivity opened!");
     }
 
     @Override
     public void ratingButtonClick(View view) {
-        Log.d("gradesButtonClick", "clicked!");
         startActivityForResult(new Intent(this, RatingActivity.class), 1);
-        Log.d("gradesButtonClick", "GradesListActivity opened!");
     }
 
     @Override
     public void openLoginActivity(View view) {
-        Log.d("openLoginActivity", "clicked!");
         startActivity(new Intent(this, LoginActivity.class));
     }
 

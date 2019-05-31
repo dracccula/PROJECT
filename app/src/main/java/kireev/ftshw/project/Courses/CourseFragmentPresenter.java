@@ -2,6 +2,7 @@ package kireev.ftshw.project.Courses;
 
 import android.content.SharedPreferences;
 import android.os.Build;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.View;
@@ -56,10 +57,16 @@ public class CourseFragmentPresenter extends MvpBasePresenter<CoursesFragmentVie
         if (gradesDao.getAllOrderedByMark().isEmpty()) {
             refreshData();
         } else {
-//            getGradesFromDb();
-//            getRatingFromSP();
-//            getProfileIdFromDb();
-            refreshData();
+            getGradesFromDb();
+            getRatingFromSP();
+            getProfileIdFromDb();
+            ifViewAttached(view -> {
+                Handler handler = new Handler();
+                handler.postDelayed(() -> {
+                    view.showCourses(getCourseTitleFromSP(), getCourseStartDateFromSP(), getCoursePointsFromSP());
+                }, 1000);
+            });
+            //refreshData();
         }
     }
 
@@ -76,18 +83,22 @@ public class CourseFragmentPresenter extends MvpBasePresenter<CoursesFragmentVie
             gradesVOList.add(gradesVO);
         }
         ifViewAttached(view -> {
-            view.showGrades(gradesVOList);
+            Handler handler = new Handler();
+            handler.postDelayed(() -> view.showGrades(gradesVOList), 1000);
         });
     }
 
-    private void refreshData() {
+    public void refreshData() {
 //        if (gradesSectionFragment.rvGrades != null) {
 //            gradesSectionFragment.stopScrollRV();
 //        }
         getConnections();
-        getHomeworksData();
-        getGrades();
-        getProfile();
+        Handler handler = new Handler();
+        handler.postDelayed(() -> {
+            getHomeworksData();
+            getGrades();
+            getProfile();
+        }, 1000);
     }
 
     private int getProfileIdFromDb() {
@@ -108,7 +119,10 @@ public class CourseFragmentPresenter extends MvpBasePresenter<CoursesFragmentVie
         int allLessons = spStorage.getInt("allLessons", 0);
         int lessonsDone = spStorage.getInt("lessonsDone", 0);
         int lessonsLeft = spStorage.getInt("lessonsLeft", 0);
-        ifViewAttached(view -> view.showRating(profilePoints, allStudents, studentPosition, acceptedTests, allTests, acceptedHomeworks, allHomeworks, allLessons, lessonsDone, lessonsLeft));
+        ifViewAttached(view -> {
+            Handler handler = new Handler();
+            handler.postDelayed(() -> view.showRating(profilePoints, allStudents, studentPosition, acceptedTests, allTests, acceptedHomeworks, allHomeworks, allLessons, lessonsDone, lessonsLeft), 1000);
+        });
     }
 
     private void updateGradesData(int student_id, String name, int mark, int color) {
@@ -180,14 +194,10 @@ public class CourseFragmentPresenter extends MvpBasePresenter<CoursesFragmentVie
     }
 
     private void getGrades() {
-        if (!spStorage.contains("courseUrl")) {
-            getConnections();
-        }
         gradesVOList.clear();
-        if (!spStorage.contains("lessonsLeft")) {
-            getHomeworksData();
-        }
-        model.getGrades(new Callback<List<GradesResponse>>() {
+        //getHomeworksData();
+        Handler handler = new Handler();
+        handler.postDelayed(() -> model.getGrades(new Callback<List<GradesResponse>>() {
             @Override
             public void onResponse(Call<List<GradesResponse>> call, Response<List<GradesResponse>> response) {
                 int studentId;
@@ -196,7 +206,6 @@ public class CourseFragmentPresenter extends MvpBasePresenter<CoursesFragmentVie
                 int studentPoints;
                 int allStudents = 0, studentPosition = 0, acceptedTests = 0, allTests = 0, acceptedHomeworks = 0, allHomeworks = 0, allLessons = 0, lessonsDone = 0, lessonsLeft = 0;
                 int activeStudentId = getProfileIdFromDb();
-
                 List<GradesResponse> gradesResponseList = response.body();
                 for (int i = 0; i < gradesResponseList.size(); i++) {
                     if (gradesResponseList.get(i).getName().toLowerCase().contains("общий")) {
@@ -312,7 +321,7 @@ public class CourseFragmentPresenter extends MvpBasePresenter<CoursesFragmentVie
             public void onFailure(Call<List<GradesResponse>> call, Throwable t) {
                 t.printStackTrace();
             }
-        });
+        }), 1000);
 
     }
 

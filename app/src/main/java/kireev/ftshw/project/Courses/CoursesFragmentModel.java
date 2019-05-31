@@ -26,7 +26,7 @@ class CoursesFragmentModel {
     void getGrades(final Callback<List<GradesResponse>> callback){
         Retrofit retrofit = Connector.getRetrofitClient();
         FintechAPI fintechAPI = retrofit.create(FintechAPI.class);
-        Call<List<GradesResponse>> call = fintechAPI.getGrades(spStorage.getString("courseUrl", "android_spring_2019"));
+        Call<List<GradesResponse>> call = fintechAPI.getGrades(spStorage.getString("courseUrl", ""));
         call.enqueue(callback);
     }
 
