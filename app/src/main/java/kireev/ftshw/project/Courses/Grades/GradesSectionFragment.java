@@ -23,6 +23,7 @@ public class GradesSectionFragment extends MvpFragment<GradesSectionView, Grades
     public RecyclerView rvGrades;
     GradesAdapter gradesAdapter;
     ProgressBar pbGradesStudents;
+    private List<GradesVO> gradesVOList;
 
 
     public GradesSectionFragment() {
@@ -45,6 +46,10 @@ public class GradesSectionFragment extends MvpFragment<GradesSectionView, Grades
         pbGradesStudents = v.findViewById(R.id.pbGradesStudents);
         rvGrades = v.findViewById(R.id.rvGradesStudents);
         gradesAdapter = new GradesAdapter(getContext());
+        if (gradesVOList != null) {
+            gradesAdapter.setItems(gradesVOList);
+            gradesVOList = null;
+        }
         presenter.attachView(this);
         return v;
     }
@@ -65,12 +70,15 @@ public class GradesSectionFragment extends MvpFragment<GradesSectionView, Grades
 
     @Override
     public void showGrades(List<GradesVO> gradesVOList) {
+        this.gradesVOList = gradesVOList;
         Log.i("hui123", "getGrades in Grades");
-        if (isAdded()){
+        if (isAdded() && gradesAdapter != null){
+            this.gradesVOList = null;
             gradesAdapter.clearList(gradesVOList);
             gradesAdapter.setItems(gradesVOList);
             rvGrades.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
             hideProgressBar();
+            showRecyclerView();
             rvGrades.setAdapter(gradesAdapter);
         }
     }

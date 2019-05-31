@@ -47,18 +47,18 @@ public class MainActivity extends MvpActivity<MainView, MainPresenter> implement
                 navigation.getMenu().getItem(1).setChecked(true);
                 if (navigation.getMenu().findItem(navigation.getSelectedItemId()) == navigation.getMenu().getItem(0)) {
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                            new EventsFragment()).commitNow();
+                            new EventsFragment(), EventsFragment.class.getSimpleName()).commitNow();
                 }
                 if (navigation.getMenu().findItem(navigation.getSelectedItemId()) == navigation.getMenu().getItem(1)) {
-                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new CoursesFragment()).commitNow();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new CoursesFragment(), CoursesFragment.class.getSimpleName()).commitNow();
                 }
                 if (navigation.getMenu().findItem(navigation.getSelectedItemId()) == navigation.getMenu().getItem(2)) {
                     if (spStorage.getBoolean("IS_AUTORIZED", false)) {
                         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                                new ProfileFragment()).commitNow();
+                                new ProfileFragment(), ProfileFragment.class.getSimpleName()).commitNow();
                     } else {
                         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                                new AnonimProfileFragment()).commitNow();
+                                new AnonimProfileFragment(), AnonimProfileFragment.class.getSimpleName()).commitNow();
                     }
                 }
 
@@ -152,8 +152,11 @@ public class MainActivity extends MvpActivity<MainView, MainPresenter> implement
                         break;
                     }
             }
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
-                    selectedFragment).commitNow();
+            if (getSupportFragmentManager().findFragmentByTag(selectedFragment.getClass().getSimpleName()) == null) {
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,
+                        selectedFragment, selectedFragment.getClass().getSimpleName()).commitNow();
+            }
+
             return true;
         }
     };

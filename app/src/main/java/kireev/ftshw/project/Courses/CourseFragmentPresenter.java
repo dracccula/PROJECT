@@ -45,24 +45,9 @@ public class CourseFragmentPresenter extends MvpBasePresenter<CoursesFragmentVie
     private CoursesFragmentModel model;
     private List<GradesVO> gradesVOList = new ArrayList<>();
     private ProjectDatabase db;
-    private GradesSectionFragment gradesSectionFragment;
-    private RatingSectionFragment ratingSectionFragment;
-    private FinishedCoursesSectionFragment finishedCoursesSectionFragment;
 
     CourseFragmentPresenter(CoursesFragmentModel coursesFragmentModel) {
         this.model = coursesFragmentModel;
-    }
-
-    public void setGradesSectionFragment(GradesSectionFragment grades) {
-        this.gradesSectionFragment = grades;
-    }
-
-    public void setRatingSectionFragment(RatingSectionFragment rating) {
-        this.ratingSectionFragment = rating;
-    }
-
-    public void setFinishedCoursesSectionFragment(FinishedCoursesSectionFragment courses) {
-        this.finishedCoursesSectionFragment = courses;
     }
 
     private void checkDatabase() {
@@ -71,9 +56,9 @@ public class CourseFragmentPresenter extends MvpBasePresenter<CoursesFragmentVie
         if (gradesDao.getAllOrderedByMark().isEmpty()) {
             refreshData();
         } else {
-            //getGradesFromDb();
-            //getRatingFromSP();
-            //getProfileIdFromDb();
+//            getGradesFromDb();
+//            getRatingFromSP();
+//            getProfileIdFromDb();
             refreshData();
         }
     }
@@ -91,14 +76,14 @@ public class CourseFragmentPresenter extends MvpBasePresenter<CoursesFragmentVie
             gradesVOList.add(gradesVO);
         }
         ifViewAttached(view -> {
-            gradesSectionFragment.showGrades(gradesVOList);
+            view.showGrades(gradesVOList);
         });
     }
 
     private void refreshData() {
-        if (gradesSectionFragment.rvGrades != null) {
-            gradesSectionFragment.stopScrollRV();
-        }
+//        if (gradesSectionFragment.rvGrades != null) {
+//            gradesSectionFragment.stopScrollRV();
+//        }
         getConnections();
         getHomeworksData();
         getGrades();
@@ -123,7 +108,7 @@ public class CourseFragmentPresenter extends MvpBasePresenter<CoursesFragmentVie
         int allLessons = spStorage.getInt("allLessons", 0);
         int lessonsDone = spStorage.getInt("lessonsDone", 0);
         int lessonsLeft = spStorage.getInt("lessonsLeft", 0);
-        ifViewAttached(view -> ratingSectionFragment.showRating(profilePoints, allStudents, studentPosition, acceptedTests, allTests, acceptedHomeworks, allHomeworks, allLessons, lessonsDone, lessonsLeft));
+        ifViewAttached(view -> view.showRating(profilePoints, allStudents, studentPosition, acceptedTests, allTests, acceptedHomeworks, allHomeworks, allLessons, lessonsDone, lessonsLeft));
     }
 
     private void updateGradesData(int student_id, String name, int mark, int color) {
@@ -284,13 +269,30 @@ public class CourseFragmentPresenter extends MvpBasePresenter<CoursesFragmentVie
                     }
                 }
                 Log.i("hui123", "getGrades in main");
-                gradesSectionFragment.hideProgressBar();
-                gradesSectionFragment.showRecyclerView();
-                gradesSectionFragment.showGrades(gradesVOList);
                 lessonsLeft = getLessonsLeft();
                 lessonsDone = allLessons - lessonsLeft;
-                ratingSectionFragment.showRating(profilePoints, allStudents, studentPosition, acceptedTests, allTests, acceptedHomeworks, allHomeworks, allLessons, lessonsDone, lessonsLeft);
-                finishedCoursesSectionFragment.showCourses(getCourseTitleFromSP(), getCourseStartDateFromSP(), getCoursePointsFromSP());
+                int finalProfilePoints = profilePoints;
+                int finalAllStudents = allStudents;
+                int finalStudentPosition = studentPosition;
+                int finalAcceptedTests = acceptedTests;
+                int finalAllTests = allTests;
+                int finalAcceptedHomeworks = acceptedHomeworks;
+                int finalAllHomeworks = allHomeworks;
+                int finalAllLessons = allLessons;
+                int finalLessonsDone = lessonsDone;
+                int finalLessonsLeft = lessonsLeft;
+                ifViewAttached(view -> {
+                    view.showGrades(gradesVOList);
+                    view.showRating(finalProfilePoints, finalAllStudents, finalStudentPosition, finalAcceptedTests, finalAllTests, finalAcceptedHomeworks, finalAllHomeworks, finalAllLessons, finalLessonsDone, finalLessonsLeft);
+                    view.showCourses(getCourseTitleFromSP(), getCourseStartDateFromSP(), getCoursePointsFromSP());
+                });
+
+//                gradesSectionFragment.hideProgressBar();
+//                gradesSectionFragment.showRecyclerView();
+//                gradesSectionFragment.showGrades(gradesVOList);
+
+//                ratingSectionFragment.showRating(profilePoints, allStudents, studentPosition, acceptedTests, allTests, acceptedHomeworks, allHomeworks, allLessons, lessonsDone, lessonsLeft);
+
                 spStorage.edit()
                         .putInt("profilePoints", profilePoints)
                         .putInt("allStudents", allStudents)

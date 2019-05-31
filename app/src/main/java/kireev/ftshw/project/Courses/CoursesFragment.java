@@ -24,6 +24,7 @@ import java.util.Objects;
 
 import kireev.ftshw.project.Courses.FinishedCourses.FinishedCoursesSectionFragment;
 import kireev.ftshw.project.Courses.Grades.GradesSectionFragment;
+import kireev.ftshw.project.Courses.Grades.GradesVO;
 import kireev.ftshw.project.Courses.Rating.RatingSectionFragment;
 import kireev.ftshw.project.MainActivity;
 import kireev.ftshw.project.MainModel;
@@ -34,6 +35,9 @@ public class CoursesFragment extends MvpFragment<CoursesFragmentView, CourseFrag
 
     private SwipeRefreshLayout mSwipeRefreshLayout;
     private CoursesFragmentModel model = new CoursesFragmentModel();
+    private GradesSectionFragment fragmentGrades;
+    private RatingSectionFragment fragmentRating;
+    private FinishedCoursesSectionFragment fragmentFinishedCourses;
 
     public CoursesFragment() {
         // Required empty public constructor
@@ -79,17 +83,17 @@ public class CoursesFragment extends MvpFragment<CoursesFragmentView, CourseFrag
         super.onViewCreated(view, savedInstanceState);
         Log.i("hui123", "onViewCreated " + getFragmentManager().getFragments());
         FragmentTransaction ft = getChildFragmentManager().beginTransaction();
-        GradesSectionFragment fragmentGrades = new GradesSectionFragment();
+        fragmentGrades = new GradesSectionFragment();
         ft.replace(R.id.fragmentGrades, fragmentGrades);
-        RatingSectionFragment fragmentRating = new RatingSectionFragment();
+        fragmentRating = new RatingSectionFragment();
         ft.replace(R.id.fragmentRating, fragmentRating);
-        FinishedCoursesSectionFragment fragmentFinishedCourses = new FinishedCoursesSectionFragment();
+        fragmentFinishedCourses = new FinishedCoursesSectionFragment();
         ft.replace(R.id.fragmentFinishedCourses, fragmentFinishedCourses);
-        ft.commit();
-        presenter.setGradesSectionFragment(fragmentGrades);
+        ft.commitNow();
+//        presenter.setGradesSectionFragment(fragmentGrades);
         Log.i("hui123", "CoursesFragment onViewCreated " + fragmentGrades);
-        presenter.setRatingSectionFragment(fragmentRating);
-        presenter.setFinishedCoursesSectionFragment(fragmentFinishedCourses);
+//        presenter.setRatingSectionFragment(fragmentRating);
+//        presenter.setFinishedCoursesSectionFragment(fragmentFinishedCourses);
         presenter.viewIsReady();
     }
 
@@ -108,5 +112,20 @@ public class CoursesFragment extends MvpFragment<CoursesFragmentView, CourseFrag
     @Override
     public void stopRefreshing() {
         mSwipeRefreshLayout.setRefreshing(false);
+    }
+
+    @Override
+    public void showGrades(List<GradesVO> gradesVOList) {
+        fragmentGrades.showGrades(gradesVOList);
+    }
+
+    @Override
+    public void showRating(int profilePoints, int allStudents, int studentPosition, int acceptedTests, int allTests, int acceptedHomeworks, int allHomeworks, int allLessons, int lessonsDone, int lessonsLeft) {
+        fragmentRating.showRating(profilePoints, allStudents, studentPosition, acceptedTests, allTests, acceptedHomeworks, allHomeworks, allLessons, lessonsDone, lessonsLeft);
+    }
+
+    @Override
+    public void showCourses(String courseTitleFromSP, String courseStartDateFromSP, String coursePointsFromSP) {
+        fragmentFinishedCourses.showCourses(courseTitleFromSP, courseStartDateFromSP, coursePointsFromSP);
     }
 }

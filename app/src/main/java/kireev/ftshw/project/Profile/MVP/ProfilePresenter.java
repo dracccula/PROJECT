@@ -54,8 +54,8 @@ public class ProfilePresenter extends MvpBasePresenter<ProfileView> {
         return (int) profileList.get(0).getId();
     }
 
-    private void getProfileProgressFromSp(){
-        getView().showProgressOnCard(spStorage.getInt("profilePoints",0), spStorage.getInt("profileTests",0), spStorage.getInt("profileCourses",0));
+    private void getProfileProgressFromSp() {
+        getView().showProgressOnCard(spStorage.getInt("profilePoints", 0), spStorage.getInt("profileTests", 0), spStorage.getInt("profileCourses", 0));
     }
 
 
@@ -112,7 +112,7 @@ public class ProfilePresenter extends MvpBasePresenter<ProfileView> {
                     if (gradesResponseList.get(i).getName().toLowerCase().contains("общий")) {
                         List<GradesResponse.Grades> gradesList = gradesResponseList.get(i).getGrades();
                         for (int j = 0; j < gradesList.size(); j++) {
-                            if (gradesList.get(j).getStudentId() == getProfileIdFromDb()){
+                            if (gradesList.get(j).getStudentId() == getProfileIdFromDb()) {
                                 points = gradesList.get(j).getGrades().get(0).getMark();
                                 intPoints = (int) Math.round(points);
                             }
@@ -124,8 +124,8 @@ public class ProfilePresenter extends MvpBasePresenter<ProfileView> {
                         List<List<GradesResponse.GroupedTask>> groupedTaskList = gradesResponseList.get(i).getGroupedTasks();
                         for (int j = 0; j < groupedTaskList.size(); j++) {
                             for (int k = 0; k < groupedTaskList.get(j).size(); k++) {
-                                if (!groupedTaskList.get(j).get(k).getTitle().toLowerCase().contains("сумма")){
-                                    if (groupedTaskList.get(j).get(k).getTitle().toLowerCase().contains("тест")){
+                                if (!groupedTaskList.get(j).get(k).getTitle().toLowerCase().contains("сумма")) {
+                                    if (groupedTaskList.get(j).get(k).getTitle().toLowerCase().contains("тест")) {
                                         testCount++;
                                     }
                                 }
@@ -138,8 +138,8 @@ public class ProfilePresenter extends MvpBasePresenter<ProfileView> {
                 spStorage.edit().putInt("profilePoints", finalIntPoints).apply();
                 spStorage.edit().putInt("profileTests", finalTestCount).apply();
                 spStorage.edit().putInt("profileCourses", 1).apply();
-                ifViewAttached(view -> view.showProgressOnCard(finalIntPoints, finalTestCount,1));
-                Log.i("Profile header:",  "Баллов: " + intPoints + " Тестов: " + testCount + " Курсов: 1");
+                ifViewAttached(view -> view.showProgressOnCard(finalIntPoints, finalTestCount, 1));
+                Log.i("Profile header:", "Баллов: " + intPoints + " Тестов: " + testCount + " Курсов: 1");
             }
 
             @Override
