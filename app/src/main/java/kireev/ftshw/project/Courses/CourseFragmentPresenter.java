@@ -202,6 +202,7 @@ public class CourseFragmentPresenter extends MvpBasePresenter<CoursesFragmentVie
                     if (gradesResponseList.get(i).getName().toLowerCase().contains("общий")) {
                         List<GradesResponse.Grades> gradesList = gradesResponseList.get(i).getGrades();
                         for (int j = 0; j < gradesList.size(); j++) {
+                            allStudents = gradesList.size();
                             if (gradesList.get(j).getStudentId() == activeStudentId) {
                                 double points = gradesList.get(j).getGrades().get(0).getMark();
                                 profilePoints = (int) Math.round(points);
@@ -225,7 +226,6 @@ public class CourseFragmentPresenter extends MvpBasePresenter<CoursesFragmentVie
                     if (gradesResponseList.get(i).getName().toLowerCase().contains("доступ")) {
                         List<GradesResponse.Grades> gradesList = gradesResponseList.get(i).getGrades();
                         for (int j = 0; j < gradesList.size(); j++) {
-                            allStudents = gradesList.size();
                             for (int k = 0; k < gradesList.size(); k++) {
                                 if (gradesList.get(k).getStudentId() == activeStudentId){
                                     for (int l = 0; l < gradesList.size(); l++) {
@@ -247,15 +247,18 @@ public class CourseFragmentPresenter extends MvpBasePresenter<CoursesFragmentVie
                             }
                         }
                     }
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                        Collections.sort(gradesVOList, Comparator.comparing(GradesVO::getPoints));
-                    }
+                    Collections.sort(gradesVOList, new Comparator<GradesVO>() {
+                        @Override
+                        public int compare(GradesVO o1, GradesVO o2) {
+                            return Integer.compare(o1.getPoints(), o2.getPoints());
+                        }
+                    });
+                    Collections.reverse(gradesVOList);
                     for (int m = 0; m < gradesVOList.size(); m++) {
                         if (gradesVOList.get(m).getId() == activeStudentId) {
-                            studentPosition = m;
+                            studentPosition = m+1;
                         }
                     }
-                    Collections.reverse(gradesVOList);
                 }
                 Log.i("hui123", "getGrades in main");
                 gradesSectionFragment.showGrades(gradesVOList);
