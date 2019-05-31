@@ -10,6 +10,12 @@ interface GradesSectionView extends MvpView {
 
     void hideProgressBar();
 
+    void showProgressBar();
+
+    void hideRecyclerView();
+
+    void showRecyclerView();
+
     void stopScrollRV();
 
 }

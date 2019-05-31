@@ -20,7 +20,7 @@ import java.util.List;
 import kireev.ftshw.project.R;
 
 public class GradesSectionFragment extends MvpFragment<GradesSectionView, GradesSectionPresenter> implements GradesSectionView {
-    RecyclerView rvGrades;
+    public RecyclerView rvGrades;
     GradesAdapter gradesAdapter;
     ProgressBar pbGradesStudents;
 
@@ -81,8 +81,25 @@ public class GradesSectionFragment extends MvpFragment<GradesSectionView, Grades
     }
 
     @Override
+    public void showProgressBar() {
+        pbGradesStudents.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideRecyclerView() {
+        rvGrades.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void showRecyclerView() {
+        rvGrades.setVisibility(View.VISIBLE);
+    }
+
+    @Override
     public void stopScrollRV() {
         rvGrades.stopScroll();
     }
+
+
 
 }

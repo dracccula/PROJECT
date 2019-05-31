@@ -6,6 +6,7 @@ import kireev.ftshw.project.Network.Connector;
 import kireev.ftshw.project.Network.FintechAPI;
 import kireev.ftshw.project.Network.Model.ConnectionsResponse;
 import kireev.ftshw.project.Network.Model.GradesResponse;
+import kireev.ftshw.project.Network.Model.HomeworksResponse;
 import kireev.ftshw.project.Profile.MVP.ProfileData;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -33,6 +34,13 @@ class CoursesFragmentModel {
         Retrofit retrofit = Connector.getRetrofitClient();
         FintechAPI fintechAPI = retrofit.create(FintechAPI.class);
         Call<ProfileData> call = fintechAPI.getUser();
+        call.enqueue(callback);
+    }
+
+    void getHomeworksData(Callback<HomeworksResponse> callback){
+        Retrofit retrofit = Connector.getRetrofitClient();
+        FintechAPI fintechAPI = retrofit.create(FintechAPI.class);
+        Call<HomeworksResponse> call = fintechAPI.getHomeworks(spStorage.getString("courseUrl", ""));
         call.enqueue(callback);
     }
 }
