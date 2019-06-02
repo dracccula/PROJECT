@@ -51,7 +51,7 @@ public class ProfilePresenter extends MvpBasePresenter<ProfileView> {
         db = App.getInstance().getDatabase();
         ProfileDao profileDao = db.profileDao();
         List<Profile> profileList = profileDao.getAll();
-        return (int) profileList.get(0).getId();
+        return (profileList != null) ? (int) profileList.get(0).getId() : 0;
     }
 
     private void getProfileProgressFromSp() {

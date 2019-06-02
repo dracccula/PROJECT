@@ -10,6 +10,7 @@ public class Grades {
     public String name;
     public int mark;
     public int color;
+    public boolean isActiveUser;
 
     public int getStudent_id() {
         return student_id;
@@ -41,5 +42,13 @@ public class Grades {
 
     public void setColor(int color) {
         this.color = color;
+    }
+
+    public boolean isActiveUser() {
+        return isActiveUser;
+    }
+
+    public void setActiveUser(boolean activeUser) {
+        isActiveUser = activeUser;
     }
 }

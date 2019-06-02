@@ -183,6 +183,16 @@ public class EventsFragment extends MvpFragment<EventsView, EventsPresenter> imp
     }
 
     @Override
+    public void stopSrcollActiveRV() {
+        rvActiveEvents.setLayoutFrozen(true);
+    }
+
+    @Override
+    public void resumeScrollActiveRV() {
+        rvActiveEvents.setLayoutFrozen(false);
+    }
+
+    @Override
     public void onRefresh() {
         presenter.getEvents();
     }

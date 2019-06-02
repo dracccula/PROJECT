@@ -72,7 +72,7 @@ public class GradesSectionFragment extends MvpFragment<GradesSectionView, Grades
     public void showGrades(List<GradesVO> gradesVOList) {
         this.gradesVOList = gradesVOList;
         Log.i("hui123", "getGrades in Grades");
-        if (isAdded() && gradesAdapter != null){
+        if (isAdded() && gradesAdapter != null) {
             this.gradesVOList = null;
             gradesAdapter.clearList(gradesVOList);
             gradesAdapter.setItems(gradesVOList);
@@ -105,9 +105,15 @@ public class GradesSectionFragment extends MvpFragment<GradesSectionView, Grades
 
     @Override
     public void stopScrollRV() {
-        rvGrades.stopScroll();
+        if (rvGrades != null) {
+            rvGrades.setLayoutFrozen(true);
+        }
     }
 
-
-
+    @Override
+    public void resumeSrcollRV() {
+        if (rvGrades != null) {
+            rvGrades.setLayoutFrozen(false);
+        }
+    }
 }

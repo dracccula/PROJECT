@@ -13,7 +13,7 @@ import kireev.ftshw.project.Database.Entity.Grades;
 
 @Dao
 public interface GradesDao {
-    @Query("SELECT * FROM grades ORDER BY mark")
+    @Query("SELECT * FROM grades ORDER BY mark DESC")
     List<Grades> getAllOrderedByMark();
 
     @Query("SELECT * FROM grades WHERE student_id = :id")

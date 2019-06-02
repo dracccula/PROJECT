@@ -79,86 +79,87 @@ class EventsPresenter extends MvpBasePresenter<EventsView> {
     }
 
     public void getEvents() {
+        ifViewAttached(view -> view.stopSrcollActiveRV());
         activeEventsVOList.clear();
         archiveEventsVOList.clear();
-        if (getView() != null) {
-            model.getEventList(new Callback<EventsResponse>() {
-                @Override
-                public void onResponse(@NonNull Call<EventsResponse> call, @NonNull Response<EventsResponse> response) {
-                    EventsResponse eventsResponse = response.body();
-                    int code = response.code();
-                    if (code == 200 && Objects.requireNonNull(eventsResponse).getActive() != null) {
-                        List<EventsResponse.Active> activeList = eventsResponse.getActive();
-                        for (int i = 0; i < activeList.size(); i++) {
-                            ActiveEventsVO activeEventsVO = new ActiveEventsVO();
-                            activeEventsVO.setTitle(activeList.get(i).getTitle());
-                            activeEventsVO.setDateStart(activeList.get(i).getDateStart());
-                            activeEventsVO.setDateEnd(activeList.get(i).getDateEnd());
-                            if (activeList.get(i).getEventType() != null) {
-                                activeEventsVO.setEventTypeName(activeList.get(i).getEventType().name);
-                                activeEventsVO.setEventTypeColor(activeList.get(i).getEventType().color);
-                            }
-                            activeEventsVO.setImageId(SetRandom.SetRandomInt());
-                            activeEventsVOList.add(activeEventsVO);
+        ifViewAttached(view -> model.getEventList(new Callback<EventsResponse>() {
+            @Override
+            public void onResponse(@NonNull Call<EventsResponse> call, @NonNull Response<EventsResponse> response) {
+                EventsResponse eventsResponse = response.body();
+                int code = response.code();
+                if (code == 200 && Objects.requireNonNull(eventsResponse).getActive() != null) {
+                    List<EventsResponse.Active> activeList = eventsResponse.getActive();
+                    for (int i = 0; i < activeList.size(); i++) {
+                        ActiveEventsVO activeEventsVO = new ActiveEventsVO();
+                        activeEventsVO.setTitle(activeList.get(i).getTitle());
+                        activeEventsVO.setDateStart(activeList.get(i).getDateStart());
+                        activeEventsVO.setDateEnd(activeList.get(i).getDateEnd());
+                        if (activeList.get(i).getEventType() != null) {
+                            activeEventsVO.setEventTypeName(activeList.get(i).getEventType().name);
+                            activeEventsVO.setEventTypeColor(activeList.get(i).getEventType().color);
                         }
-                        model.updateActiveEventsDB(activeList, false);
-                        ifViewAttached(view -> {
-                            view.getActiveEventsList(activeEventsVOList);
-                            view.hideActiveErrorText();
-                            view.hideActiveProgressbar();
-                            view.showActiveRecyclerView();
-                            view.stopRefreshLayoutAnimation();
-                        });
-                    } else {
-                        ifViewAttached(view -> {
-                            view.hideActiveProgressbar();
-                            view.showActiveErrorText();
-                            view.stopRefreshLayoutAnimation();
-                        });
+                        activeEventsVO.setImageId(SetRandom.SetRandomInt());
+                        activeEventsVOList.add(activeEventsVO);
                     }
-                    if (code == 200 && Objects.requireNonNull(eventsResponse).getArchive() != null) {
-                        List<EventsResponse.Archive> archiveList = eventsResponse.getArchive();
-                        for (int i = 0; i < archiveList.size(); i++) {
-                            ArchiveEventsVO archiveEventsVO = new ArchiveEventsVO();
-                            archiveEventsVO.setTitle(archiveList.get(i).getTitle());
-                            if (archiveList.get(i).getEventType() != null) {
-                                archiveEventsVO.setEventTypeName(archiveList.get(i).getEventType().name);
-                                archiveEventsVO.setEventTypeColor(archiveList.get(i).getEventType().color);
-                            }
-                            archiveEventsVOList.add(archiveEventsVO);
-                        }
-                        model.updateArchiveEventsDB(archiveList, true);
-                        ifViewAttached(view -> {
-                            view.getArchiveEventsList(archiveEventsVOList);
-                            view.hideArchiveErrorText();
-                            view.hideArchiveProgressbar();
-                            view.showArchiveRecyclerView();
-                            view.stopRefreshLayoutAnimation();
-                        });
-                    } else {
-                        ifViewAttached(view -> {
-                            view.hideArchiveProgressbar();
-                            view.showArchiveErrorText();
-                            view.stopRefreshLayoutAnimation();
-                        });
-                    }
-
-                }
-
-                @Override
-                public void onFailure(@NonNull Call<EventsResponse> call, @NonNull Throwable t) {
+                    model.updateActiveEventsDB(activeList, false);
+                    ifViewAttached(view -> {
+                        view.getActiveEventsList(activeEventsVOList);
+                        view.hideActiveErrorText();
+                        view.hideActiveProgressbar();
+                        view.showActiveRecyclerView();
+                        view.resumeScrollActiveRV();
+                        view.stopRefreshLayoutAnimation();
+                    });
+                } else {
                     ifViewAttached(view -> {
                         view.hideActiveProgressbar();
-                        view.hideActiveRecyclerView();
                         view.showActiveErrorText();
+                        view.stopRefreshLayoutAnimation();
+                    });
+                }
+                if (code == 200 && Objects.requireNonNull(eventsResponse).getArchive() != null) {
+                    List<EventsResponse.Archive> archiveList = eventsResponse.getArchive();
+                    for (int i = 0; i < archiveList.size(); i++) {
+                        ArchiveEventsVO archiveEventsVO = new ArchiveEventsVO();
+                        archiveEventsVO.setTitle(archiveList.get(i).getTitle());
+                        if (archiveList.get(i).getEventType() != null) {
+                            archiveEventsVO.setEventTypeName(archiveList.get(i).getEventType().name);
+                            archiveEventsVO.setEventTypeColor(archiveList.get(i).getEventType().color);
+                        }
+                        archiveEventsVOList.add(archiveEventsVO);
+                    }
+                    model.updateArchiveEventsDB(archiveList, true);
+                    ifViewAttached(view -> {
+                        view.getArchiveEventsList(archiveEventsVOList);
+                        view.hideArchiveErrorText();
                         view.hideArchiveProgressbar();
-                        view.hideArchiveRecyclerView();
+                        view.showArchiveRecyclerView();
+                        view.stopRefreshLayoutAnimation();
+                    });
+                } else {
+                    ifViewAttached(view -> {
+                        view.hideArchiveProgressbar();
                         view.showArchiveErrorText();
                         view.stopRefreshLayoutAnimation();
                     });
                 }
-            });
-        }
+
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<EventsResponse> call, @NonNull Throwable t) {
+                ifViewAttached(view -> {
+                    view.hideActiveProgressbar();
+                    view.hideActiveRecyclerView();
+                    view.showActiveErrorText();
+                    view.hideArchiveProgressbar();
+                    view.hideArchiveRecyclerView();
+                    view.showArchiveErrorText();
+                    view.stopRefreshLayoutAnimation();
+                });
+            }
+        }));
+
     }
 
     void viewIsReady() {

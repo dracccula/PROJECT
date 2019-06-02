@@ -20,5 +20,7 @@ interface EventsView extends MvpView {
     void showArchiveRecyclerView();
     void hideArchiveRecyclerView();
     void stopRefreshLayoutAnimation();
+    void stopSrcollActiveRV();
+    void resumeScrollActiveRV();
 
 }

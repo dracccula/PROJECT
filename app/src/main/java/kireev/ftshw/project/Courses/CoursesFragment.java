@@ -107,9 +107,21 @@ public class CoursesFragment extends MvpFragment<CoursesFragmentView, CourseFrag
         fragmentRating.showRating(profilePoints, allStudents, studentPosition, acceptedTests, allTests, acceptedHomeworks, allHomeworks, allLessons, lessonsDone, lessonsLeft);
     }
 
+
+
     @Override
     public void showCourses(String courseTitleFromSP, String courseStartDateFromSP, String coursePointsFromSP) {
         fragmentFinishedCourses.showCourses(courseTitleFromSP, courseStartDateFromSP, coursePointsFromSP);
+    }
+
+    @Override
+    public void stopScrollRV() {
+        fragmentGrades.stopScrollRV();
+    }
+
+    @Override
+    public void resumeScrollRV() {
+        fragmentGrades.resumeSrcollRV();
     }
 
     @Override

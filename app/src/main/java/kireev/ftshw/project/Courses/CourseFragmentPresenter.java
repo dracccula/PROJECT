@@ -74,7 +74,6 @@ public class CourseFragmentPresenter extends MvpBasePresenter<CoursesFragmentVie
                     view.showCourses(getCourseTitleFromSP(), getCourseStartDateFromSP(), getCoursePointsFromSP());
                 }, 30);
             });
-            //refreshData();
         }
     }
 
@@ -88,6 +87,7 @@ public class CourseFragmentPresenter extends MvpBasePresenter<CoursesFragmentVie
             gradesVO.setName(gradesList.get(i).name);
             gradesVO.setPoints(gradesList.get(i).mark);
             gradesVO.setColor(gradesList.get(i).color);
+            gradesVO.setActiveUser(gradesList.get(i).isActiveUser);
             gradesVOList.add(gradesVO);
         }
         ifViewAttached(view -> {
@@ -97,9 +97,7 @@ public class CourseFragmentPresenter extends MvpBasePresenter<CoursesFragmentVie
     }
 
     public void refreshData() {
-//        if (gradesSectionFragment.rvGrades != null) {
-//            gradesSectionFragment.stopScrollRV();
-//        }
+        ifViewAttached(view -> view.stopScrollRV());
         getConnections();
         Handler handler = new Handler();
         handler.postDelayed(() -> {
@@ -135,7 +133,7 @@ public class CourseFragmentPresenter extends MvpBasePresenter<CoursesFragmentVie
         });
     }
 
-    private void updateGradesData(int student_id, String name, int mark, int color) {
+    private void updateGradesData(int student_id, String name, int mark, int color, boolean isActive) {
         db = App.getInstance().getDatabase();
         GradesDao gradesDao = db.gradesDao();
         Grades grades = new Grades();
@@ -143,6 +141,7 @@ public class CourseFragmentPresenter extends MvpBasePresenter<CoursesFragmentVie
         grades.setName(name);
         grades.setMark(mark);
         grades.setColor(color);
+        grades.setActiveUser(isActive);
         gradesDao.insert(grades);
 
 
@@ -221,10 +220,12 @@ public class CourseFragmentPresenter extends MvpBasePresenter<CoursesFragmentVie
                         List<GradesResponse.Grades> gradesList = gradesResponseList.get(i).getGrades();
                         for (int j = 0; j < gradesList.size(); j++) {
                             allStudents = gradesList.size();
+                            boolean isActiveUser = false;
                             if (gradesList.get(j).getStudentId() == activeStudentId) {
                                 double points = gradesList.get(j).getGrades().get(0).getMark();
                                 profilePoints = (int) Math.round(points);
                                 spStorage.edit().putInt("profilePoints", profilePoints).apply();
+                                isActiveUser = true;
                             }
                             GradesVO gradesVO = new GradesVO();
                             studentId = gradesList.get(j).getStudentId();
@@ -237,8 +238,9 @@ public class CourseFragmentPresenter extends MvpBasePresenter<CoursesFragmentVie
                             gradesVO.setPoints(studentPoints);
                             int studentColor = SetRandom.SetRandomColor();
                             gradesVO.setColor(studentColor);
+                            gradesVO.setActiveUser(isActiveUser);
                             gradesVOList.add(gradesVO);
-                            updateGradesData(studentId, studentName, studentPoints, studentColor);
+                            updateGradesData(studentId, studentName, studentPoints, studentColor, isActiveUser);
                         }
                     }
                     if (gradesResponseList.get(i).getName().toLowerCase().contains("доступ")) {

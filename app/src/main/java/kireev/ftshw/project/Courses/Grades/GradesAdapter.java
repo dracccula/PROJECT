@@ -37,26 +37,26 @@ public class GradesAdapter extends RecyclerView.Adapter<GradesAdapter.GradesView
 
     @Override
     public void onBindViewHolder(@NonNull GradesAdapter.GradesViewHolder gradesViewHolder, int i) {
+        if (gradesVOList.get(i).isActiveUser()) {
+            gradesViewHolder.tvGradesStudentName.setTypeface(Typeface.DEFAULT_BOLD);
+            gradesViewHolder.tvGradesStudentPoints.setBackgroundResource(R.drawable.badge_active_user);
+            //gradesViewHolder.tvGradesStudentPoints.setPadding(pxPadding, pxPadding, pxPadding, pxPadding);
+            gradesViewHolder.tvGradesStudentPoints.setTextColor(Color.BLACK);
+            gradesViewHolder.tvGradesStudentPoints.setTypeface(Typeface.DEFAULT_BOLD);
+        }
         gradesViewHolder.tvGradesStudentName.setText(gradesVOList.get(i).getName());
         gradesViewHolder.irvGradesStudentAvatar.setText(gradesVOList.get(i).getName());
         gradesViewHolder.irvGradesStudentAvatar.setBackgroundColor(gradesVOList.get(i).getColor());
         gradesViewHolder.tvGradesStudentPoints.setText(gradesVOList.get(i).getPoints() + "");
 
-        ProfileDao profileDao = App.getInstance().getDatabase().profileDao();
-        List<Profile> profileList = profileDao.getAll();
-        int activeUserId = (int) profileList.get(0).getId();
-        String activeUserName = profileList.get(0).getLastName() + " " + profileList.get(0).getFirstName();
-        int dpPadding = 8;
-        final float scale = App.getContext().getResources().getDisplayMetrics().density;
-        int pxPadding = (int) (dpPadding * scale + 0.5f);
+//        ProfileDao profileDao = App.getInstance().getDatabase().profileDao();
+//        List<Profile> profileList = profileDao.getAll();
+//        int activeUserId = (int) profileList.get(0).getId();
+//        String activeUserName = profileList.get(0).getLastName() + " " + profileList.get(0).getFirstName();
+//        int dpPadding = 8;
+//        final float scale = App.getContext().getResources().getDisplayMetrics().density;
+//        int pxPadding = (int) (dpPadding * scale + 0.5f);
 
-        if (gradesVOList.get(i).getId() == activeUserId || gradesVOList.get(i).getName().contentEquals(activeUserName)) {
-            gradesViewHolder.tvGradesStudentName.setTypeface(Typeface.DEFAULT_BOLD);
-            gradesViewHolder.tvGradesStudentPoints.setBackgroundResource(R.drawable.badge_active_user);
-            gradesViewHolder.tvGradesStudentPoints.setPadding(pxPadding, pxPadding, pxPadding, pxPadding);
-            gradesViewHolder.tvGradesStudentPoints.setTextColor(Color.BLACK);
-            gradesViewHolder.tvGradesStudentPoints.setTypeface(Typeface.DEFAULT_BOLD);
-        }
     }
 
     @Override

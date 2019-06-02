@@ -6,6 +6,7 @@ public class GradesVO{
     private String name;
     private int points;
     private int color;
+    private boolean isActiveUser;
 
     public int getId() {
         return id;
@@ -37,5 +38,13 @@ public class GradesVO{
 
     public void setColor(int color) {
         this.color = color;
+    }
+
+    public boolean isActiveUser() {
+        return isActiveUser;
+    }
+
+    public void setActiveUser(boolean activeUser) {
+        isActiveUser = activeUser;
     }
 }

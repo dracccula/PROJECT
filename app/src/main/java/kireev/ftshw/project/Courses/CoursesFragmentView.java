@@ -21,4 +21,8 @@ interface CoursesFragmentView extends MvpView {
     void hideRatingProgressBar();
 
     void hideCoursesProgressBar();
+
+    void stopScrollRV();
+
+    void resumeScrollRV();
 }

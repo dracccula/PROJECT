@@ -18,4 +18,6 @@ interface GradesSectionView extends MvpView {
 
     void stopScrollRV();
 
+    void resumeSrcollRV();
+
 }
