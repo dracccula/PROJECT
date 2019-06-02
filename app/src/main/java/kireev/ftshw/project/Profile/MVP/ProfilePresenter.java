@@ -81,6 +81,7 @@ public class ProfilePresenter extends MvpBasePresenter<ProfileView> {
                 if (profileData.getUser() != null) {
                     ifViewAttached(view1 -> view1.showProfileFromResponse(profileData.getUser(), profileData.getStatus()));
                 }
+                getGrades();
             }
 
             @Override
@@ -92,59 +93,56 @@ public class ProfilePresenter extends MvpBasePresenter<ProfileView> {
 
     void viewIsReady() {
         checkDatabase();
-        getGrades();
     }
 
     private void getGrades() {
-        ifViewAttached(view -> {
-            int activeUserId = getProfileIdFromDb();
-            model.getGrades(new Callback<List<GradesResponse>>() {
-                @Override
-                public void onResponse(Call<List<GradesResponse>> call, Response<List<GradesResponse>> response) {
-                    int testCount = 0;
-                    double points = 0;
-                    int intPoints = 0;
-                    List<GradesResponse> gradesResponseList = response.body();
-                    for (int i = 0; i < gradesResponseList.size(); i++) {
-                        if (gradesResponseList.get(i).getName().toLowerCase().contains("общий")) {
-                            List<GradesResponse.Grades> gradesList = gradesResponseList.get(i).getGrades();
-                            for (int j = 0; j < gradesList.size(); j++) {
-                                if (gradesList.get(j).getStudentId() == activeUserId) {
-                                    points = gradesList.get(j).getGrades().get(0).getMark();
-                                    intPoints = (int) Math.round(points);
-                                }
+        int activeUserId = getProfileIdFromDb();
+        model.getGrades(new Callback<List<GradesResponse>>() {
+            @Override
+            public void onResponse(Call<List<GradesResponse>> call, Response<List<GradesResponse>> response) {
+                int testCount = 0;
+                double points = 0;
+                int intPoints = 0;
+                List<GradesResponse> gradesResponseList = response.body();
+                for (int i = 0; i < gradesResponseList.size(); i++) {
+                    if (gradesResponseList.get(i).getName().toLowerCase().contains("общий")) {
+                        List<GradesResponse.Grades> gradesList = gradesResponseList.get(i).getGrades();
+                        for (int j = 0; j < gradesList.size(); j++) {
+                            if (gradesList.get(j).getStudentId() == activeUserId) {
+                                points = gradesList.get(j).getGrades().get(0).getMark();
+                                intPoints = (int) Math.round(points);
                             }
                         }
                     }
-                    for (int i = 0; i < gradesResponseList.size(); i++) {
-                        if (gradesResponseList.get(i).getName().toLowerCase().contains("доступ")) {
-                            List<List<GradesResponse.GroupedTask>> groupedTaskList = gradesResponseList.get(i).getGroupedTasks();
-                            for (int j = 0; j < groupedTaskList.size(); j++) {
-                                for (int k = 0; k < groupedTaskList.get(j).size(); k++) {
-                                    if (!groupedTaskList.get(j).get(k).getTitle().toLowerCase().contains("сумма")) {
-                                        if (groupedTaskList.get(j).get(k).getTitle().toLowerCase().contains("тест")) {
-                                            testCount++;
-                                        }
+                }
+                for (int i = 0; i < gradesResponseList.size(); i++) {
+                    if (gradesResponseList.get(i).getName().toLowerCase().contains("доступ")) {
+                        List<List<GradesResponse.GroupedTask>> groupedTaskList = gradesResponseList.get(i).getGroupedTasks();
+                        for (int j = 0; j < groupedTaskList.size(); j++) {
+                            for (int k = 0; k < groupedTaskList.get(j).size(); k++) {
+                                if (!groupedTaskList.get(j).get(k).getTitle().toLowerCase().contains("сумма")) {
+                                    if (groupedTaskList.get(j).get(k).getTitle().toLowerCase().contains("тест")) {
+                                        testCount++;
                                     }
                                 }
                             }
                         }
                     }
-                    final int finalTestCount = testCount;
-                    final int finalIntPoints = intPoints;
-                    spStorage.edit().putInt("profilePoints", finalIntPoints).apply();
-                    spStorage.edit().putInt("profileTests", finalTestCount).apply();
-                    spStorage.edit().putInt("profileCourses", 1).apply();
-                    ifViewAttached(view -> view.showProgressOnCard(finalIntPoints, finalTestCount, 1));
-                    Log.i("Profile header:", "Баллов: " + intPoints + " Тестов: " + testCount + " Курсов: 1");
                 }
+                final int finalTestCount = testCount;
+                final int finalIntPoints = intPoints;
+                spStorage.edit().putInt("profilePoints", finalIntPoints).apply();
+                spStorage.edit().putInt("profileTests", finalTestCount).apply();
+                spStorage.edit().putInt("profileCourses", 1).apply();
+                ifViewAttached(view -> view.showProgressOnCard(finalIntPoints, finalTestCount, 1));
+                Log.i("Profile header:", "Баллов: " + intPoints + " Тестов: " + testCount + " Курсов: 1");
+            }
 
-                @Override
-                public void onFailure(Call<List<GradesResponse>> call, Throwable t) {
-                    t.printStackTrace();
-                    ifViewAttached(view -> view.showError("Что-то пошло не так.."));
-                }
-            });
+            @Override
+            public void onFailure(Call<List<GradesResponse>> call, Throwable t) {
+                t.printStackTrace();
+                ifViewAttached(view -> view.showError("Что-то пошло не так.."));
+            }
         });
     }
 }
