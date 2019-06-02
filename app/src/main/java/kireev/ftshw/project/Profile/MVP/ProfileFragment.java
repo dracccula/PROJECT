@@ -158,7 +158,7 @@ public class ProfileFragment extends MvpFragment<ProfileView, ProfilePresenter> 
     @Override
     public void showError(String message) {
         Log.e("getUserData onFailure", "ooops!");
-        Toast.makeText(getContext(), "getUserData went wrong!", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
     }
 
     @Override

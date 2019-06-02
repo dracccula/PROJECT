@@ -24,10 +24,6 @@ class LoginPresenter {
         Log.i("presenter", "presenter=" + this);
     }
 
-    void detachView() {
-        view = null;
-    }
-
     void signIn(String login, String password) {
         if (view != null) {
             view.showProgress();
@@ -55,7 +51,7 @@ class LoginPresenter {
                 @Override
                 public void onFailure(Call<SignInResponse> call, Throwable t) {
                     view.hideProgress();
-                    view.showError(t.getMessage());
+                    view.showError("Что-то пошло не так..");
                 }
             }, login, password);
         }

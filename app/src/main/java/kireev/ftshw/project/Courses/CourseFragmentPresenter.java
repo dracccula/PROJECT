@@ -3,9 +3,11 @@ package kireev.ftshw.project.Courses;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Handler;
+import android.os.HandlerThread;
 import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.hannesdorfmann.mosby3.mvp.MvpBasePresenter;
 
@@ -64,15 +66,15 @@ public class CourseFragmentPresenter extends MvpBasePresenter<CoursesFragmentVie
                     view.hideRatingProgressBar();
                     view.hideCoursesProgressBar();
                 }, 1);
-            });
-            getGradesFromDb();
-            getRatingFromSP();
-            getProfileIdFromDb();
-            ifViewAttached(view -> {
-                Handler handler = new Handler();
-                handler.postDelayed(() -> {
-                    view.showCourses(getCourseTitleFromSP(), getCourseStartDateFromSP(), getCoursePointsFromSP());
-                }, 30);
+                getGradesFromDb();
+                getRatingFromSP();
+                //getProfileIdFromDb();
+                ifViewAttached(view2 -> {
+                    Handler handler2 = new Handler();
+                    handler2.postDelayed(() -> {
+                        view.showCourses(getCourseTitleFromSP(), getCourseStartDateFromSP(), getCoursePointsFromSP());
+                    }, 30);
+                });
             });
         }
     }
@@ -111,7 +113,7 @@ public class CourseFragmentPresenter extends MvpBasePresenter<CoursesFragmentVie
         db = App.getInstance().getDatabase();
         ProfileDao profileDao = db.profileDao();
         List<Profile> profileList = profileDao.getAll();
-        return (int) profileList.get(0).getId();
+        return (profileList != null) ? (int) profileList.get(0).getId() : 0;
     }
 
     private void getRatingFromSP() {
@@ -183,6 +185,7 @@ public class CourseFragmentPresenter extends MvpBasePresenter<CoursesFragmentVie
 
             @Override
             public void onFailure(Call<ConnectionsResponse> call, Throwable t) {
+                ifViewAttached(view -> {view.stopRefreshing(); view.showError("Что-то пошло не так..");});
             }
         });
     }
@@ -197,7 +200,7 @@ public class CourseFragmentPresenter extends MvpBasePresenter<CoursesFragmentVie
 
             @Override
             public void onFailure(Call<ProfileData> call, Throwable t) {
-
+                ifViewAttached(view -> {view.stopRefreshing(); view.showError("Что-то пошло не так..");});
             }
         });
     }
@@ -208,31 +211,37 @@ public class CourseFragmentPresenter extends MvpBasePresenter<CoursesFragmentVie
         handler.postDelayed(() -> model.getGrades(new Callback<List<GradesResponse>>() {
             @Override
             public void onResponse(Call<List<GradesResponse>> call, Response<List<GradesResponse>> response) {
+                int activeStudentId = 0;
                 int studentId;
                 String studentName = "";
                 int profilePoints = 0;
                 int studentPoints;
                 int allStudents = 0, studentPosition = 0, acceptedTests = 0, allTests = 0, acceptedHomeworks = 0, allHomeworks = 0, allLessons = 0, lessonsDone = 0, lessonsLeft = 0;
-                int activeStudentId = getProfileIdFromDb();
+                if (spStorage.contains("IS_AUTORIZED")){
+                    activeStudentId = getProfileIdFromDb();
+                }
+                else {
+                    activeStudentId = 0;
+                }
                 List<GradesResponse> gradesResponseList = response.body();
                 for (int i = 0; i < gradesResponseList.size(); i++) {
                     if (gradesResponseList.get(i).getName().toLowerCase().contains("общий")) {
                         List<GradesResponse.Grades> gradesList = gradesResponseList.get(i).getGrades();
-                        for (int j = 0; j < gradesList.size(); j++) {
+                        for (int e = 0; e < gradesList.size(); e++) {
                             allStudents = gradesList.size();
                             boolean isActiveUser = false;
-                            if (gradesList.get(j).getStudentId() == activeStudentId) {
-                                double points = gradesList.get(j).getGrades().get(0).getMark();
+                            if (gradesList.get(e).getStudentId() == activeStudentId) {
+                                double points = gradesList.get(e).getGrades().get(0).getMark();
                                 profilePoints = (int) Math.round(points);
                                 spStorage.edit().putInt("profilePoints", profilePoints).apply();
                                 isActiveUser = true;
                             }
                             GradesVO gradesVO = new GradesVO();
-                            studentId = gradesList.get(j).getStudentId();
+                            studentId = gradesList.get(e).getStudentId();
                             gradesVO.setId(studentId);
-                            studentName = gradesList.get(j).getStudent();
+                            studentName = gradesList.get(e).getStudent();
                             gradesVO.setName(studentName);
-                            List<GradesResponse.StudentGrade> studentGradeList = gradesList.get(j).getGrades();
+                            List<GradesResponse.StudentGrade> studentGradeList = gradesList.get(e).getGrades();
                             Double dPoints = studentGradeList.get(studentGradeList.size() - 1).getMark();
                             studentPoints = (int) Math.round(dPoints);
                             gradesVO.setPoints(studentPoints);
@@ -322,6 +331,7 @@ public class CourseFragmentPresenter extends MvpBasePresenter<CoursesFragmentVie
             @Override
             public void onFailure(Call<List<GradesResponse>> call, Throwable t) {
                 t.printStackTrace();
+                ifViewAttached(view -> {view.stopRefreshing(); view.showError("Что-то пошло не так..");});
             }
         }), 500);
 
@@ -368,7 +378,7 @@ public class CourseFragmentPresenter extends MvpBasePresenter<CoursesFragmentVie
 
             @Override
             public void onFailure(Call<HomeworksResponse> call, Throwable t) {
-                Log.e("getHomeworks onFailure", "ooops!");
+                ifViewAttached(view -> {view.stopRefreshing(); view.showError("Что-то пошло не так..");});
             }
         });
     }

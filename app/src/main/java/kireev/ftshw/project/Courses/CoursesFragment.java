@@ -15,6 +15,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.hannesdorfmann.mosby3.mvp.MvpFragment;
 
@@ -122,6 +123,11 @@ public class CoursesFragment extends MvpFragment<CoursesFragmentView, CourseFrag
     @Override
     public void resumeScrollRV() {
         fragmentGrades.resumeSrcollRV();
+    }
+
+    @Override
+    public void showError(String error) {
+        Toast.makeText(getContext(), error, Toast.LENGTH_SHORT).show();
     }
 
     @Override

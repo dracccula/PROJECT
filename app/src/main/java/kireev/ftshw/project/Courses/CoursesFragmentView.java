@@ -25,4 +25,6 @@ interface CoursesFragmentView extends MvpView {
     void stopScrollRV();
 
     void resumeScrollRV();
+
+    void showError(String error);
 }
