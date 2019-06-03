@@ -21,7 +21,6 @@ class LoginPresenter {
 
     void attachView(LoginView profileView) {
         view = profileView;
-        Log.i("presenter", "presenter=" + this);
     }
 
     void signIn(String login, String password) {
@@ -35,8 +34,6 @@ class LoginPresenter {
                         String cookie = response.headers().get("Set-Cookie");
                         anygenCookie = cookie;
                         SharedPreferences.Editor ed = spStorage.edit();
-                        Log.i("signIn Response", "body: " + signInResponse);
-                        Log.i("signIn Response", "cookie: " + cookie);
                         ed.putBoolean("IS_AUTORIZED", true);
                         ed.putString("anygenCookie", anygenCookie);
                         ed.apply();

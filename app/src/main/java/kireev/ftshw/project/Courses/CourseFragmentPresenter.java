@@ -56,26 +56,30 @@ public class CourseFragmentPresenter extends MvpBasePresenter<CoursesFragmentVie
     private void checkDatabase() {
         db = App.getInstance().getDatabase();
         GradesDao gradesDao = db.gradesDao();
-        if (gradesDao.getAllOrderedByMark().isEmpty()) {
+        if (!spStorage.contains("lessonsLeft")) {
             refreshData();
         } else {
-            ifViewAttached(view -> {
-                Handler handler = new Handler();
-                handler.postDelayed(() -> {
-                    view.hideGradesProgressBar();
-                    view.hideRatingProgressBar();
-                    view.hideCoursesProgressBar();
-                }, 1);
-                getGradesFromDb();
-                getRatingFromSP();
-                //getProfileIdFromDb();
-                ifViewAttached(view2 -> {
-                    Handler handler2 = new Handler();
-                    handler2.postDelayed(() -> {
-                        view.showCourses(getCourseTitleFromSP(), getCourseStartDateFromSP(), getCoursePointsFromSP());
-                    }, 30);
+            if (gradesDao.getAllOrderedByMark().isEmpty()) {
+                refreshData();
+            } else {
+                ifViewAttached(view -> {
+                    Handler handler = new Handler();
+                    handler.postDelayed(() -> {
+                        view.hideGradesProgressBar();
+                        view.hideRatingProgressBar();
+                        view.hideCoursesProgressBar();
+                    }, 1);
+                    getGradesFromDb();
+                    getRatingFromSP();
+                    //getProfileIdFromDb();
+                    ifViewAttached(view2 -> {
+                        Handler handler2 = new Handler();
+                        handler2.postDelayed(() -> {
+                            view.showCourses(getCourseTitleFromSP(), getCourseStartDateFromSP(), getCoursePointsFromSP());
+                        }, 30);
+                    });
                 });
-            });
+            }
         }
     }
 
@@ -185,7 +189,10 @@ public class CourseFragmentPresenter extends MvpBasePresenter<CoursesFragmentVie
 
             @Override
             public void onFailure(Call<ConnectionsResponse> call, Throwable t) {
-                ifViewAttached(view -> {view.stopRefreshing(); view.showError("Что-то пошло не так..");});
+                ifViewAttached(view -> {
+                    view.stopRefreshing();
+                    view.showError("Что-то пошло не так..");
+                });
             }
         });
     }
@@ -200,7 +207,10 @@ public class CourseFragmentPresenter extends MvpBasePresenter<CoursesFragmentVie
 
             @Override
             public void onFailure(Call<ProfileData> call, Throwable t) {
-                ifViewAttached(view -> {view.stopRefreshing(); view.showError("Что-то пошло не так..");});
+                ifViewAttached(view -> {
+                    view.stopRefreshing();
+                    view.showError("Что-то пошло не так..");
+                });
             }
         });
     }
@@ -217,10 +227,9 @@ public class CourseFragmentPresenter extends MvpBasePresenter<CoursesFragmentVie
                 int profilePoints = 0;
                 int studentPoints;
                 int allStudents = 0, studentPosition = 0, acceptedTests = 0, allTests = 0, acceptedHomeworks = 0, allHomeworks = 0, allLessons = 0, lessonsDone = 0, lessonsLeft = 0;
-                if (spStorage.contains("IS_AUTORIZED")){
+                if (spStorage.contains("IS_AUTORIZED")) {
                     activeStudentId = getProfileIdFromDb();
-                }
-                else {
+                } else {
                     activeStudentId = 0;
                 }
                 List<GradesResponse> gradesResponseList = response.body();
@@ -331,7 +340,10 @@ public class CourseFragmentPresenter extends MvpBasePresenter<CoursesFragmentVie
             @Override
             public void onFailure(Call<List<GradesResponse>> call, Throwable t) {
                 t.printStackTrace();
-                ifViewAttached(view -> {view.stopRefreshing(); view.showError("Что-то пошло не так..");});
+                ifViewAttached(view -> {
+                    view.stopRefreshing();
+                    view.showError("Что-то пошло не так..");
+                });
             }
         }), 500);
 
@@ -378,7 +390,10 @@ public class CourseFragmentPresenter extends MvpBasePresenter<CoursesFragmentVie
 
             @Override
             public void onFailure(Call<HomeworksResponse> call, Throwable t) {
-                ifViewAttached(view -> {view.stopRefreshing(); view.showError("Что-то пошло не так..");});
+                ifViewAttached(view -> {
+                    view.stopRefreshing();
+                    view.showError("Что-то пошло не так..");
+                });
             }
         });
     }

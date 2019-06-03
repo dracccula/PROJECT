@@ -8,6 +8,7 @@ import android.provider.ContactsContract;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -54,7 +55,6 @@ public class GradesListFragment extends Fragment {
             lc = new LoadContacts();
             lc.subscribe(this);
             lc.execute();
-            Log.d("onViewCreated","contactVOList == null");
         }
     }
 
@@ -81,7 +81,11 @@ public class GradesListFragment extends Fragment {
         contactVOList = contacts;
         contactAdapter = new AllContactsAdapter(contactVOList);
         rvGrades.setAdapter(contactAdapter);
-        rvGrades.setLayoutManager(new LinearLayoutManager(getContext()));
+        if (!GradesListActivity.mGridMode){
+            rvGrades.setLayoutManager(new LinearLayoutManager(getContext()));
+        } else {
+            GradesListFragment.rvGrades.setLayoutManager(new GridLayoutManager(getContext(), 3));
+        }
     }
 
 

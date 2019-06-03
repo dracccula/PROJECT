@@ -17,7 +17,7 @@ import android.widget.Toast;
 import kireev.ftshw.project.R;
 
 
-public class GradesListActivity extends AppCompatActivity{
+public class GradesListActivity extends AppCompatActivity {
 
     public static boolean mGridMode;
     private static final int REQUEST_CODE_READ_CONTACTS = 1;
@@ -39,8 +39,6 @@ public class GradesListActivity extends AppCompatActivity{
     protected void onStart() {
         super.onStart();
         showPermissionRequest();
-//        LoadContacts lc = new LoadContacts();
-//        lc.execute();
     }
 
     @Override
@@ -59,12 +57,16 @@ public class GradesListActivity extends AppCompatActivity{
     public boolean onPrepareOptionsMenu(Menu menu) {
         MenuItem item = menu.findItem(R.id.change_rv_layout);
         item.setVisible(READ_CONTACTS_GRANTED);
+        if (item.getTitle().toString().toLowerCase().contains("сетка")) {
+            GradesListFragment.rvGrades.setLayoutManager(new LinearLayoutManager(this));
+        } else {
+            GradesListFragment.rvGrades.setLayoutManager(new GridLayoutManager(this, 3));
+        }
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle item selection
         if (item.getItemId() == R.id.change_rv_layout) {
             if (item.getTitle().equals("Сетка")) {
                 item.setTitle("Список");
@@ -74,18 +76,15 @@ public class GradesListActivity extends AppCompatActivity{
         }
 
         if (item.getItemId() == android.R.id.home) {
-            Log.d("Back", "clicked!");
             finish();
         }
 
         if (item.getItemId() == R.id.change_rv_layout) {
-            if (mGridMode == false) {
+            if (!mGridMode) {
                 GradesListFragment.rvGrades.setLayoutManager(new GridLayoutManager(this, 3));
-                Log.d("GridMode true", "Layout changed to GRID");
                 mGridMode = true;
             } else {
                 GradesListFragment.rvGrades.setLayoutManager(new LinearLayoutManager(this));
-                Log.d("GridMode true", "Layout changed to LIST");
                 mGridMode = false;
             }
 
