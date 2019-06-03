@@ -178,10 +178,12 @@ public class RatingFragment extends Fragment implements SwipeRefreshLayout.OnRef
             @Override
             public void onFailure(Call call, Throwable t) {
                 Log.e("getHomeworks onFailure", "ooops!");
-                Toast.makeText(getContext(), "getHomeworks went wrong!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Что-то пошло не так..", Toast.LENGTH_SHORT).show();
                 getHomeworksFromDb();
                 hideProgress();
-                getFragmentManager().beginTransaction().add(R.id.container, new ErrorFragment()).commitNow();
+                if (App.getInstance().getDatabase().homeworksDao().getAll().isEmpty()) {
+                    getFragmentManager().beginTransaction().replace(R.id.container, new ErrorFragment()).commitNow();
+                }
             }
         });
     }
