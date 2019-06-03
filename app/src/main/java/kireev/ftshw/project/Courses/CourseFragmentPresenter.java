@@ -264,23 +264,21 @@ public class CourseFragmentPresenter extends MvpBasePresenter<CoursesFragmentVie
                     if (gradesResponseList.get(i).getName().toLowerCase().contains("доступ")) {
                         List<GradesResponse.Grades> gradesList = gradesResponseList.get(i).getGrades();
                         List<List<GradesResponse.GroupedTask>> groupedTaskList = gradesResponseList.get(i).getGroupedTasks();
-                        for (int j = 0; j < gradesList.size(); j++) {
-                            for (int k = 0; k < gradesList.size(); k++) {
-                                if (gradesList.get(k).getStudentId() == activeStudentId) {
-                                    List<GradesResponse.StudentGrade> activeStudentGradeList = gradesList.get(k).getGrades();
-                                    for (int l = 0; l < activeStudentGradeList.size(); l++) {
-                                        if (activeStudentGradeList.get(l).getTaskType() != null) {
-                                            if (activeStudentGradeList.get(l).getTaskType().toLowerCase().contains("test")) {
-                                                allTests++;
-                                                if (gradesList.get(k).getGrades().get(l).getStatus().contentEquals("accepted")) {
-                                                    acceptedTests++;
-                                                }
+                        for (int k = 0; k < gradesList.size(); k++) {
+                            if (gradesList.get(k).getStudentId() == activeStudentId) {
+                                List<GradesResponse.StudentGrade> activeStudentGradeList = gradesList.get(k).getGrades();
+                                for (int l = 0; l < activeStudentGradeList.size(); l++) {
+                                    if (activeStudentGradeList.get(l).getTaskType() != null) {
+                                        if (activeStudentGradeList.get(l).getTaskType().toLowerCase().contains("test") && gradesList.get(k).getStudentId().equals(activeStudentId)) {
+                                            allTests++;
+                                            if (activeStudentGradeList.get(l).getStatus().contentEquals("accepted")) {
+                                                acceptedTests++;
                                             }
-                                            if (activeStudentGradeList.get(l).getTaskType().toLowerCase().contains("full")) {
-                                                allHomeworks++;
-                                                if (activeStudentGradeList.get(l).getStatus().contentEquals("accepted")) {
-                                                    acceptedHomeworks++;
-                                                }
+                                        }
+                                        if (activeStudentGradeList.get(l).getTaskType().toLowerCase().contains("full")) {
+                                            allHomeworks++;
+                                            if (activeStudentGradeList.get(l).getStatus().contentEquals("accepted")) {
+                                                acceptedHomeworks++;
                                             }
                                         }
                                     }
